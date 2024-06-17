@@ -1,7 +1,8 @@
 from worlds.AutoWorld import World
 from BaseClasses import Item, Location, Dict
 from typing import Dict, Tuple, Type, List
-from Options import Choice, Option, DefaultOnToggle, Toggle, Range
+from dataclasses import dataclass
+from Options import Choice, Option, DefaultOnToggle, Toggle, Range, PerGameCommonOptions
 from .Names import names as el
 from .StartingLocations import startingLocationsData
 
@@ -12,7 +13,7 @@ def option(name: str):
 
     @classmethod
     def get_option(cls, world: World) -> Option:
-        return getattr(world.multiworld, cls.name)[world.player]
+        return getattr(world, cls.name)
 
     def decorator(cls: Type[Option]) -> Type[Option]:
         cls.name = name
@@ -324,3 +325,24 @@ class RandomizeEntrances(Toggle):
     default: Off"""
 
     display_name = "Randomize Entrances"
+
+
+@dataclass
+class EnderLiliesGameOptions(PerGameCommonOptions):
+    starting_spirit: StartingSpirit
+    starting_location: StartingLocation
+    item_pool_priority: ItemPoolPriority
+    goal: Goal
+    early_maneuver: EarlyManeuver
+    shuffle_slots: ShuffleRelicsCosts
+    minibosses_chapter: SubSpiritsIncreaseChapter
+    ng_plus: NewGamePlusAI
+    shuffle_upgrades: ShuffleSpiritsUpgrades
+    force_ancient_souls: StartingWeaponUsesAncientSouls
+    shuffle_bgm: ShuffleBGM
+    start_chapter: ChapterMin
+    max_chapter: ChapterMax
+    stone_tablets_placement: StoneTabletsPlacement
+    add_unused_items: AddUnusedItems
+    # dash_before_lance: DashBeforeLance
+    entrance_randomizer: RandomizeEntrances
