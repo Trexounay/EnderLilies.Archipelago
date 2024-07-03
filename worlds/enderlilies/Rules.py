@@ -1370,8 +1370,8 @@ def get_rules(p : int) -> Tuple[Dict[str, CollectionRule], Dict[str, ItemRule]]:
 		"Cliffside Hamlet 02 - Amulet Fragment"                : lambda s : s.can_reach(el['Village02Left'], 'Region', p),
 #		                                                        Village02Left + (djump + (silva | champion) | (djump | silva) + HORIZONTAL | hook)
 		"Cliffside Hamlet 02 - Left Stagnant Blight x10"       : lambda s : s.can_reach(el['Village02Left'], 'Region', p) and (s.has(el['djump'], p) and (s.has(el['silva'], p) or s.has(el['champion'], p)) or (s.has(el['djump'], p) or s.has(el['silva'], p)) and macros['HORIZONTAL'](s) or s.has(el['hook'], p)),
-#		                                                        Village02Left + (2LEDGE | silva + dodge | hook +  (LEDGE | claw))
-		"Cliffside Hamlet 02 - Right Stagnant Blight x10"      : lambda s : s.can_reach(el['Village02Left'], 'Region', p) and (macros['2LEDGE'](s) or s.has(el['silva'], p) and s.has(el['dodge'], p) or s.has(el['hook'], p) and (macros['LEDGE'](s) or s.has(el['claw'], p))),
+#		                                                        (Village02Right | Village02Bottom | Village02Left + (LEDGE | claw)) + (2LEDGE | silva + dodge | hook)
+		"Cliffside Hamlet 02 - Right Stagnant Blight x10"	   : lambda s: (s.can_reach(el['Village02Right'], 'Region', p) or s.can_reach(el['Village02Bottom'], 'Region', p) or (s.can_reach(el['Village02Left'], 'Region', p) and (macros['LEDGE'](s) or s.has(el['claw'], p)))) and (macros['2LEDGE'](s) or (s.has(el['silva'], p) and s.has(el['dodge'], p)) or s.has(el['hook'], p)),
 #		                                                        Village02Right | Village02Bottom | Village02Left + (LEDGE | claw)
 		"Cliffside Hamlet 02 To Cliffside Hamlet 03"           : lambda s : s.can_reach(el['Village02Right'], 'Region', p) or s.can_reach(el['Village02Bottom'], 'Region', p) or s.can_reach(el['Village02Left'], 'Region', p) and (macros['LEDGE'](s) or s.has(el['claw'], p)),
 #		                                                        Village02Left | Village02Bottom
