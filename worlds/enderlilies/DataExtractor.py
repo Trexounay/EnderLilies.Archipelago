@@ -138,7 +138,7 @@ with open(rules_path, "w") as rules_py:
     print("\tmacros : Dict[str, CollectionRule] = {", file=rules_py)
     for macro, rule in macros.items():
         py_rule = rule_to_py(rule)
-        print(f"#\t\t{''.ljust(maxlen)}    {rule}" ,file=rules_py)
+        #print(f"#\t\t{''.ljust(maxlen)}    {rule}" ,file=rules_py)
         print(f"\t\t'{macro}'{''.ljust(maxlen - len(macro))} : lambda s : {py_rule}," ,file=rules_py)
     print("\t}\n", file=rules_py)
 
@@ -156,7 +156,7 @@ with open(rules_path, "w") as rules_py:
                 indirect[n] = regions
         else:
             py_rule = "True"
-        print(f"#\t\t{''.ljust(maxlen)}    {rule}" ,file=rules_py)
+        #print(f"#\t\t{''.ljust(maxlen)}    {rule}" ,file=rules_py)
 
         print(f'\t\t"{n}"{"".ljust(maxlen - len(n))} : lambda s : {py_rule},' ,file=rules_py)
     print("\t\t'Ending_A'                                             : lambda s : True,", file=rules_py)

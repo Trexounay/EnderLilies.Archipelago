@@ -122,6 +122,7 @@
     "Passive.i_passive_override_skin_level_max",
     "Parameter.i_maxHPUp_03"
   ],
+
   "tags": {
     "Map.map_abyss_01.2": "Abyss_01_GAMEPLAY.BP_WorldTravelVolume3",
     "Map.map_abyss_01.S18": "Abyss_01_GAMEPLAY.BP_WorldTravelVolume2",
@@ -693,9 +694,9 @@
     "Castle16Right": "Map.map_castle_16.15",
     "Castle17Right": "Map.map_castle_17.13",
     "Castle17Top": "Map.map_castle_17.18",
-    "Castle18Bottom": "Map.map_castle_18.17",
+    "Castle18Bottom": "Map.map_castle_18.16",
     "Castle18Right": "Map.map_castle_18.19",
-    "Castle18Top": "Map.map_castle_18.16",
+    "Castle18Top": "Map.map_castle_18.17",
     "Castle19Left": "Map.map_castle_19.18",
     "Castle19Right": "Map.map_castle_19.20",
     "Castle20Left": "Map.map_castle_20.19",
@@ -1109,11 +1110,11 @@
     },
     "Abyss_04_GAMEPLAY.BP_SCR_LV1L_2170_2": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
-      "rules": "Abyss04Top + mask + slam + hook + 3HEAL + dash"
+      "rules": "Abyss04Top + mask + claw + slam + hook + 3HEAL + dash"
     },
     "Abyss_04_GAMEPLAY.BP_SCR_LV1L_2170_3": {
       "content": "Generic.i_SpiritCurrencyLv1_L",
-      "rules": "Abyss04Top + mask + slam + hook + 3HEAL + dash"
+      "rules": "Abyss04Top + mask + claw + slam + hook + 3HEAL + dash"
     },
     "Abyss_04_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_swamp_12.4",
@@ -1121,7 +1122,7 @@
     },
     "Abyss_04_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_abyss_05.4",
-      "rules": "Abyss04Bottom | Abyss04Top + mask + swim + slam + hook + 3HEAL + dash"
+      "rules": "Abyss04Bottom | Abyss04Top + mask + claw + swim + slam + hook + 3HEAL + dash"
     },
     "Abyss_05_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2": {
       "content": "Generic.i_FinalPassivePart_Up",
@@ -1149,7 +1150,7 @@
     },
     "Castle_01_GAMEPLAY.BP_Interactable_Passive_healcountup_4": {
       "content": "Passive.i_passive_heal_count_up_3",
-      "rules": "Castle01Right2 + (LEDGE | HORIZONTAL)"
+      "rules": "Dog + (LEDGE | HORIZONTAL)"
     },
     "Castle_01_GAMEPLAY.BP_Interactable_Passive_Spirit_StunStaminaDamageUp_2": {
       "content": "Passive.i_passive_stunstamina_damage_up",
@@ -1169,7 +1170,7 @@
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume4": {
       "content": "Map.map_castle_02.1",
-      "rules": "Castle01Right2"
+      "rules": "Castle01Right2 | Dog + (HORIZONTAL | LEDGE | dash)"
     },
     "Castle_01_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_castle_02.1B",
@@ -1181,7 +1182,7 @@
     },
     "Castle_02_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
-      "rules": "Castle02Top"
+      "rules": "Castle02Top + (LEDGE | HORIZONTAL | dash | claw | hook)"
     },
     "Castle_02_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_castle_05.2",
@@ -1201,7 +1202,7 @@
     },
     "Castle_02_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_01.2B",
-      "rules": "Castle02Left1 | Castle02Left2 + (claw + LEDGE)"
+      "rules": "Castle02Left1 | Castle02Left2 + (claw + (djump | champion))"
     },
     "Castle_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1217,11 +1218,11 @@
     },
     "Castle_03_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_castle_11.3A",
-      "rules": "Castle03Top1 + claw"
+      "rules": "Castle03Top1 + claw | Castle03Top2  + claw + HORIZONTAL + 2LEDGE | Castle03Bottom + claw + (2HORIZONTAL + 2LEDGE | HORIZONTAL + 3LEDGE)"
     },
     "Castle_03_GAMEPLAY.BP_WorldTravelVolume6": {
       "content": "Map.map_castle_11.3B",
-      "rules": "Castle03Top2 + claw"
+      "rules": "Castle03Top2 + claw | Castle03Top1  + claw + HORIZONTAL + 2LEDGE | Castle03Bottom + claw + (2HORIZONTAL + 2LEDGE | HORIZONTAL + 3LEDGE)"
     },
     "Castle_04_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_035",
@@ -1229,7 +1230,7 @@
     },
     "Castle_04_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_02.4",
-      "rules": "Castle04Top | RuinedCastleCellar + (LEDGE | claw)"
+      "rules": "Castle04Top | RuinedCastleCellar + (LEDGE | claw | HORIZONTAL)"
     },
     "Castle_05_GAMEPLAY.BP_Interactable_WorldTravel_2": {
       "content": "Map.map_castle_02.5",
@@ -1281,7 +1282,7 @@
     },
     "Castle_08_GAMEPLAY.BP_Interactable_Item_PassiveSlot_2": {
       "content": "Generic.i_PassiveSlot_Up",
-      "rules": "Castle08Top + claw + (LEDGE | HORIZONTAL)"
+      "rules": "Castle08Top + claw + (LEDGE | HORIZONTAL | dash)"
     },
     "Castle_08_GAMEPLAY.BP_Interactable_Passive_expup_5": {
       "content": "Passive.i_passive_expup_2",
@@ -1437,7 +1438,7 @@
     },
     "Castle_15_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_14.15",
-      "rules": "Castle15Bottom | TowerAlcove"
+      "rules": "TowerAlcove"
     },
     "Castle_16_GAMEPLAY.BP_e2032_BigKnight": {
       "content": "Spirit.s2032",
@@ -1485,15 +1486,15 @@
     },
     "Castle_16_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_18.16",
-      "rules": "Castle17Top | Aegis"
+      "rules": "Aegis"
     },
     "Castle_16_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_castle_15.16",
-      "rules": "Castle16Right | Aegis + (2LEDGE | claw)"
+      "rules": "Aegis + (2LEDGE | claw)"
     },
     "Castle_17_GAMEPLAY.BP_SCR_LV1M_2000_3": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
-      "rules": "Castle17Right + (LEDGE | claw)"
+      "rules": "Castle17Right + (LEDGE | claw | HORIZONTAL)"
     },
     "Castle_17_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_13.17",
@@ -1501,7 +1502,7 @@
     },
     "Castle_17_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_castle_18.17",
-      "rules": "Castle17Right + LEDGE"
+      "rules": "Castle17Top | Castle17Right + LEDGE"
     },
     "Castle_18_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
@@ -1545,7 +1546,7 @@
     },
     "Castle_20_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_castle_19.20",
-      "rules": "Julius"
+      "rules": "Castle20Left"
     },
     "Castle_21_GAMEPLAY.BP_Interactable_Item_Tip3": {
       "content": "Tip.tip_044",
@@ -1563,6 +1564,7 @@
       "content": "Generic.i_SpiritCurrencyLv1_L",
       "rules": "Castle21Left"
     },
+    "CathedralCloister": { "rules": "Church05Right | Church05Bottom | Church05Top" },
     "Cave_01_GAMEPLAY.BP_Interactable_Passive_Parry_2": {
       "content": "Passive.i_passive_parry",
       "rules": "Cave01Bottom | Cave01Left"
@@ -1581,7 +1583,7 @@
     },
     "Cave_02_GAMEPLAY.BP_SCR_LV1M_2160_1": {
       "content": "Generic.i_SpiritCurrencyLv1_M",
-      "rules": "Cave02Right + (hook | claw + (HORIZONTAL | djump | champion + dash | silva + dash))"
+      "rules": "Cave02Right + (hook | claw + (HORIZONTAL | LEDGE + dash))"
     },
     "Cave_02_GAMEPLAY.BP_SCR_LV1S_2020_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -1745,7 +1747,7 @@
     },
     "Cave_10_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_05.10",
-      "rules": "Cave10Left | Cave10Bottom + (hook | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL)"
+      "rules": "Cave10Left | Cave10Bottom + (hook | 2LEDGE | 2HORIZONTAL | LEDGE + HORIZONTAL | sinner + dash)"
     },
     "Cave_10_GAMEPLAY.BP_WorldTravelVolume5": {
       "content": "Map.map_cave_09.10",
@@ -1781,7 +1783,7 @@
     },
     "Cave_12_GAMEPLAY.BP_Interactable_Item_FinalPassivePart_2": {
       "content": "Generic.i_FinalPassivePart_Up",
-      "rules": "Cave12Right"
+      "rules": "Cave12Right + (champion | silva)"
     },
     "Cave_12_GAMEPLAY.BP_WorldTravelVolume3": {
       "content": "Map.map_cave_04.12",
@@ -2039,7 +2041,6 @@
       "content": "Map.map_church_03.0",
       "rules": "CathedralCloister"
     },
-    "CathedralCloister": { "rules": "Church05Right | Church05Bottom | Church05Top" },
     "Church_05_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_church_09.5",
       "rules": "CathedralCloister + claw"
@@ -2282,7 +2283,7 @@
     },
     "Forest_07_GAMEPLAY.BP_WorldTravelVolume10_2": {
       "content": "Map.map_oubliette_01.F7",
-      "rules": "Forest07Right | Forest07Left + (dodge + (LEDGE | dash) | 2LEDGE | hook | sinner | djump + dash)"
+      "rules": "Forest07Right | Forest07Left + (dodge + (LEDGE | dash) | 2LEDGE | hook | sinner | (djump | champion) + dash | silva + dash + claw)"
     },
     "Forest_07_GAMEPLAY.BP_WorldTravelVolume12": {
       "content": "Map.map_forest_08.7",
@@ -2892,7 +2893,6 @@
       "content": "Map.map_fort_19.20",
       "rules": "Fort20Bottom | MourningHall"
     },
-    "MourningHall": { "rules": "Fort20Bottom | Fort20Top" },
     "Fort_20_GAMEPLAY.BP_WorldTravelVolume2_5": {
       "content": "Map.map_fort_21.20",
       "rules": "Fort20Top | MourningHall"
@@ -2913,6 +2913,7 @@
       "content": "Map.map_fort_20.21",
       "rules": "Fort21Bottom"
     },
+    "MourningHall": { "rules": "Fort20Bottom | Fort20Top" },
     "Oubliette_01_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_5": {
       "content": "Parameter.i_maxHPUp_01",
       "rules": "Oubliette01Left + swim"
@@ -3767,11 +3768,11 @@
     },
     "Village_03_GAMEPLAY.BP_Interactable_Item_MaxHPUp_01_2": {
       "content": "Parameter.i_maxHPUp_01",
-      "rules": "slam + (Village03Right + (LEDGE | HORIZONTAL) | Village03Bottom1 + (LEDGE | claw))"
+      "rules": "slam + (Village03Right + (LEDGE | HORIZONTAL | hook | dash) | Village03Bottom1 + (LEDGE | claw))"
     },
     "Village_03_GAMEPLAY.BP_Interactable_Passives_Treasure_2": {
       "content": "Passive.i_passive_dmgcut_LV1",
-      "rules": "Village03Right + (claw | hook | LEDGE | HORIZONTAL | dash)"
+      "rules": "Village03Right + (claw | LEDGE | HORIZONTAL | hook | dash)"
     },
     "Village_03_GAMEPLAY.BP_SCR_LV1S_2021_2": {
       "content": "Generic.i_SpiritCurrencyLv1_S",
@@ -3783,7 +3784,7 @@
     },
     "Village_03_GAMEPLAY.BP_WorldTravelVolume_2": {
       "content": "Map.map_village_02.1",
-      "rules": "Village03Bottom1 | Village03Right + (HORIZONTAL | LEDGE | hook | dash)"
+      "rules": "Village03Bottom1 | Village03Right + (LEDGE | HORIZONTAL | hook | dash)"
     },
     "Village_03_GAMEPLAY.BP_WorldTravelVolume2": {
       "content": "Map.map_village_05.3",
@@ -4011,7 +4012,7 @@
     },
     "Village_13_GAMEPLAY.BP_Interactable_Item_MaxHPUp_02_Treasure_2": {
       "content": "Parameter.i_maxHPUp_02",
-      "rules": "Village13Right + (djump | 2LEDGE | LEDGE + HORIZONTAL)"
+      "rules": "Village13Right + (2LEDGE | LEDGE + (dash | HORIZONTAL))"
     },
     "Village_13_GAMEPLAY.BP_Interactable_Item_PassiveSlot_Drop": {
       "content": "Generic.i_PassiveSlot_Up",
