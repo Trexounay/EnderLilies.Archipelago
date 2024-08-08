@@ -111,7 +111,7 @@ class EnderLiliesWorld(World):
         pool : List[EnderLiliesItem] = self.get_option(ItemPoolPriority).sort_items_list(pool, len(unfilled_location))
 
         if self.get_option(StoneTabletsPlacement).value == StoneTabletsPlacement.option_region:
-            self.multiworld.local_items[self.player].value.add("Stone Tablet Fragment")
+            self.options.local_items.value.add("Stone Tablet Fragment")
             for item in pool:
                 if item.name == 'Stone Tablet Fragment':
                     item.classification = ItemClassification.progression_skip_balancing
