@@ -27,6 +27,7 @@ startingLocationsData : Dict[int, StartingLocationData] = {
     55  : StartingLocationData("BastionGates",       ["LEDGE", "sinner"]),
     61  : StartingLocationData("Courtyard",          ["LEDGE"]),
     62  : StartingLocationData("SecondSpireChamber", ["LEDGE"]),
+    68  : StartingLocationData("MonumentOfTheWindStart", ["LEDGE"]),
     72  : StartingLocationData("MourningHall",       ["claw"]),
     78  : StartingLocationData("DryadLake",          ["LEDGE", "claw"]),
     83  : StartingLocationData("WitchsHermitage",    ["LEDGE"]),

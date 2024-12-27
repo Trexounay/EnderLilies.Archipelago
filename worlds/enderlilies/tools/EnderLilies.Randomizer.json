@@ -609,7 +609,7 @@
     "Lab5": "Swamp_16_GAMEPLAY.BP_Interactable_Item_Tip3",
     "MaelstromRemparts": "Castle_10_GAMEPLAY.BP_Interactable_Item_Tip3",
     "ManisasRing": "Forest_08_GAMEPLAY.BP_Interactable_Passive_Treasure_2",
-    "MonumentOfTheWind": "Fort_16_GAMEPLAY.BP_Interactable_Item_Tip3",
+    "MonumentOfTheWindStart": "MonumentOfTheWindStart",
     "MourningHall": "MourningHall",
     "NymphiliasRing": "Outside_03_GAMEPLAY.BP_Interactable_Passive_ShortHeal_2",
     "Ossuary": "Cave_13_GAMEPLAY.BP_Interactable_Item_Tip3",

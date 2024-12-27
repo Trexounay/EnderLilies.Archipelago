@@ -72,7 +72,7 @@ names : Dict[str, str] = {
     "Lab4"                   : "Verboten Domain 12 - Faden's Archives 2",             # Swamp_12_GAMEPLAY.BP_Interactable_Item_Tip3
     "Lab5"                   : "Verboten Domain 16 - Faden's Archives 1",             # Swamp_16_GAMEPLAY.BP_Interactable_Item_Tip3
     "MaelstromRemparts"      : "Ruined Castle 10 - Julius' Book",                     # Castle_10_GAMEPLAY.BP_Interactable_Item_Tip3
-    "MonumentOfTheWind"      : "Twin Spires 16 - Monument Engraving",                 # Fort_16_GAMEPLAY.BP_Interactable_Item_Tip3
+    "MonumentOfTheWindStart" : "MonumentOfTheWindStart",                              # Fort_16_GAMEPLAY.BP_Interactable_Item_Tip3
     "MourningHall"           : "MourningHall",                                        # None
     "Ossuary"                : "Catacombs 13 - Silva's Note 1",                       # Cave_13_GAMEPLAY.BP_Interactable_Item_Tip3
     "SaintsPassage"          : "White Parish 04 - Groa's Letter",                     # Church_04_GAMEPLAY.BP_Interactable_Item_Tip3

@@ -126,6 +126,7 @@ class StartingLocation(Choice):
     option_bastion_gates = 55
     option_courtyard = 61
     option_second_spire_chamber = 62
+    option_monument_of_the_wind = 68
     option_mourninghall = 72
 
     option_dryad_lake = 78

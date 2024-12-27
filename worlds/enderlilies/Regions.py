@@ -625,6 +625,7 @@ regions = {
     "Fort_16": [
         "Twin Spires 16 - Monument Engraving",
         "Twin Spires 16 To Twin Spires 15 Upper",
+        "MonumentOfTheWindStart",
         "Twin Spires 16 To Twin Spires 18",
         "Twin Spires 16 To Twin Spires 15 Lower",
         "Twin Spires 16 To Twin Spires 12",

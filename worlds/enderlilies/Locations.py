@@ -348,6 +348,7 @@ locations : Dict[str, LocationData]= {
 # entrances and events
 	'CathedralCloister'                                    : LocationData(content='CathedralCloister'),
 	'MourningHall'                                         : LocationData(content='MourningHall'),
+	'MonumentOfTheWindStart'                               : LocationData(content='MonumentOfTheWindStart'),
     
     "The Abyss 01 To Verboten Domain 18"                   : LocationData(key='Abyss_01_GAMEPLAY.BP_WorldTravelVolume2',                       content='Map.map_swamp_18.A1'),
     "The Abyss 01 To The Abyss 02"                         : LocationData(key='Abyss_01_GAMEPLAY.BP_WorldTravelVolume3',                       content='Map.map_abyss_02.1'),
