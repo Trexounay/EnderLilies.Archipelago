@@ -219,6 +219,8 @@ class EnderLiliesWorld(World):
 
         # Data that will be in the seed file
         slot_data["SEED"] = str(self.multiworld.seed)
+        if self.get_option(EnemyRebalance):
+            slot_data[f'SETTINGS:{EnemyRebalance.name}'] = None
         if self.get_option(ShuffleRelicsCosts):
             slot_data[f'SETTINGS:{ShuffleRelicsCosts.name}'] = None
         if self.get_option(SubSpiritsIncreaseChapter):

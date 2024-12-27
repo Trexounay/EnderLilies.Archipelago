@@ -10,7 +10,6 @@ options: Dict[str, Option] = {}
 
 # decorator to autofill options
 def option(name: str):
-
     @classmethod
     def get_option(cls, world: World) -> Option:
         return getattr(world, cls.name)
@@ -94,6 +93,7 @@ class StartingSpirit(Choice):
     ]
 
     default = option_any_main_spirit
+
     def get_starting_weapon_pool(self) -> List[str]:
         if self.value == StartingSpirit.option_any_main_spirit:
             return StartingSpirit.spirits[:8]
@@ -204,15 +204,17 @@ class Goal(Choice):
         else:
             return ["Ending_A", "Ending_B", "Ending_C"]
 
-# This option might not work as intended with room randomizer. 
+
+# This option might not work as intended with room randomizer.
 @option("early_maneuver")
 class EarlyManeuver(Choice):
-    """Defines if a maneuver item, e.g. claw, should be placed early. 
+    """Defines if a maneuver item, e.g. claw, should be placed early.
     The goal of this option is to reduce possibility of early BK.
 
     local: Ensure that a maneuver item is in sphere 1 of the EL player.
     global: Ensure that a maneuver item is in sphere 1 of any player in the multiworld.
-    none: Do nothing. (Default) """
+    none: Do nothing. (Default)"""
+
     display_name = "Force early maneuver"
     option_none = 0
     option_local = 1
@@ -222,8 +224,11 @@ class EarlyManeuver(Choice):
 
     def get_early_maneuver(self, startLocationId) -> List[str]:
         # Only called if needed
-        return [el[item] for item in startingLocationsData[startLocationId].earlyManeuverItems]
-        
+        return [
+            el[item]
+            for item in startingLocationsData[startLocationId].earlyManeuverItems
+        ]
+
 
 @option("shuffle_slots")
 class ShuffleRelicsCosts(Toggle):
@@ -232,12 +237,14 @@ class ShuffleRelicsCosts(Toggle):
 
     display_name = "Shuffle relics costs"
 
+
 @option("minibosses_chapter")
 class SubSpiritsIncreaseChapter(Toggle):
     """Increase the game difficulty whenever you defeat a Sub Spirit in Addition to Main Bosses
     default: Off"""
 
     display_name = "Sub-spirits chapters"
+
 
 @option("ng_plus")
 class NewGamePlusAI(Toggle):
@@ -246,12 +253,14 @@ class NewGamePlusAI(Toggle):
 
     display_name = "NG+ AI"
 
+
 @option("shuffle_upgrades")
 class ShuffleSpiritsUpgrades(Toggle):
     """Shuffle what currency is required to upgrade each weapon
     default: Off"""
 
     display_name = "Shuffle spirits upgrades"
+
 
 @option("force_ancient_souls")
 class StartingWeaponUsesAncientSouls(Toggle):
@@ -260,6 +269,7 @@ class StartingWeaponUsesAncientSouls(Toggle):
 
     display_name = "Starter uses ancient souls"
 
+
 @option("shuffle_bgm")
 class ShuffleBGM(Toggle):
     """Each room will have a random music from the BGM list
@@ -267,24 +277,29 @@ class ShuffleBGM(Toggle):
 
     display_name = "Random background music"
 
+
 @option("start_chapter")
 class ChapterMin(Range):
     """Defines starting chapter difficulty
     default: 1"""
+
     range_start = 1
     range_end = 10
     default = 1
     display_name = "Starting chapter"
 
+
 @option("max_chapter")
 class ChapterMax(Range):
     """Defines max chapter difficulty that you can reach during gameplay
     default: 10"""
+
     range_start = 1
     range_end = 10
     default = 10
     display_name = "Max chapter"
-    
+
+
 @option("stone_tablets_placement")
 class StoneTabletsPlacement(Choice):
     """any: Stone tablets can be anywhere. (Default)
@@ -294,15 +309,43 @@ class StoneTabletsPlacement(Choice):
     option_region = 1
     default = option_any
     display_name = "Stone tablets placement"
-    regions = ['Ruined Castle', 'Catacombs', "Witch's Thicket", ('Twin Spires', 'Hinterlands'), 'Stockade', ('Verboten Domain', 'The Abyss'), 'Cliffside Hamlet']
+    regions = [
+        "Ruined Castle",
+        "Catacombs",
+        "Witch's Thicket",
+        ("Twin Spires", "Hinterlands"),
+        "Stockade",
+        ("Verboten Domain", "The Abyss"),
+        "Cliffside Hamlet",
+    ]
 
     @classmethod
-    def place_tablets_in_regions(cls, tablets_locations : List[Location], locations : List[Location]) -> List[Tuple[Location, Location]]:
+    def place_tablets_in_regions(
+        cls, tablets_locations: List[Location], locations: List[Location]
+    ) -> List[Tuple[Location, Location]]:
         locations = tablets_locations + locations
-        new_locations: List[Location]  = [next((location for location in locations if location.name.startswith(region))) for region in StoneTabletsPlacement.regions]
-        tablet_to_swap = [location for location in tablets_locations if location not in new_locations]
-        new_locations = [location for location in new_locations if location not in tablets_locations]
-        return [(tablet_to_swap[i], new_locations[i]) for i in range(len(tablet_to_swap))]
+        new_locations: List[Location] = [
+            next(
+                (location for location in locations if location.name.startswith(region))
+            )
+            for region in StoneTabletsPlacement.regions
+        ]
+        tablet_to_swap = [
+            location for location in tablets_locations if location not in new_locations
+        ]
+        new_locations = [
+            location for location in new_locations if location not in tablets_locations
+        ]
+        return [
+            (tablet_to_swap[i], new_locations[i]) for i in range(len(tablet_to_swap))
+        ]
+
+@option("balance_enemies")
+class EnemyRebalance(Toggle):
+    """Scale down some enemies locked to late game chapters when fought on lower chapters
+    default: Off"""
+
+    display_name = "Enemy Rebalance"
 
 @option("add_unused_items")
 class AddUnusedItems(Toggle):
@@ -311,14 +354,16 @@ class AddUnusedItems(Toggle):
 
     display_name = "Add unused items"
 
+
 # not implemented yet
-#@option("dash_before_lance")
+# @option("dash_before_lance")
 class DashBeforeLance(DefaultOnToggle):
     """Make Piercing Lance a progression of Dash meaning you will always find Dash first
     default: On"""
 
     display_name = "Dash before lance"
-    
+
+
 @option("entrance_randomizer")
 class RandomizeEntrances(Toggle):
     """Randomize every room entrances and exits,
@@ -347,3 +392,4 @@ class EnderLiliesGameOptions(PerGameCommonOptions):
     add_unused_items: AddUnusedItems
     # dash_before_lance: DashBeforeLance
     entrance_randomizer: RandomizeEntrances
+    balance_enemies: EnemyRebalance
