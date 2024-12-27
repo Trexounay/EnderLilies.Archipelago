@@ -5,8 +5,8 @@ from typing import Any, Dict, List, Optional, TextIO, Union
 from Options import Option
 from Fill import swap_location_item
 
-from .Items import ItemData, items
-from .Locations import LocationData, locations
+from .Items import ItemData, items, ItemGroup
+from .Locations import LocationData, locations, LocationGroup
 from .Rules import get_rules
 from .Options import *
 from .Regions import regions as regions_list, entrances, indirect_connections
@@ -22,7 +22,7 @@ class EnderLiliesWeb(WebWorld):
         "English",
         "setup_en.md",
         "setup/en",
-        ["Neocerber", "Trex", "Lurch9229"]
+        ["Neocerber", "Lurch9229"]
     )
 
     theme = "partyTime"
@@ -58,7 +58,6 @@ class EnderLiliesLocation(Location):
     def key(self):
         return self.data.key
 
-
 class EnderLiliesWorld(World):
     """
     Ender Lilies: QUIETUS OF THE KNIGHTS
@@ -71,7 +70,9 @@ class EnderLiliesWorld(World):
     options: EnderLiliesGameOptions
     location_name_to_id = {name: data.address for name, data in locations.items()}
     item_name_to_id = {name: data.code for name, data in items.items()}
-    
+    item_name_groups = {item_group.name : {name for name, data in items.items() if data.item_group == item_group} for item_group in ItemGroup}
+    location_name_groups = {location_group.name : {name for name, data in locations.items() if data.location_group == location_group} for location_group in LocationGroup}
+
     randomized_entrances : Dict[str, str] = {}
 
     def generate_early(self):
