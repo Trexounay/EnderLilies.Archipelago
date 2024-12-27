@@ -229,13 +229,20 @@ class EarlyManeuver(Choice):
             for item in startingLocationsData[startLocationId].earlyManeuverItems
         ]
 
-
+    
 @option("shuffle_slots")
 class ShuffleRelicsCosts(Toggle):
     """Shuffle the how many slots you need to equip each relics
     default: Off"""
 
     display_name = "Shuffle relics costs"
+
+@option("shuffle_enemies")
+class ShuffleEnemies(Toggle):
+    """Shuffle enemies spawn location in each room
+    default: Off"""
+
+    display_name = "Shuffle Enemies"
 
 
 @option("minibosses_chapter")
@@ -381,6 +388,7 @@ class EnderLiliesGameOptions(PerGameCommonOptions):
     goal: Goal
     early_maneuver: EarlyManeuver
     shuffle_slots: ShuffleRelicsCosts
+    shuffle_enemies: ShuffleEnemies
     minibosses_chapter: SubSpiritsIncreaseChapter
     ng_plus: NewGamePlusAI
     shuffle_upgrades: ShuffleSpiritsUpgrades

@@ -220,10 +220,13 @@ class EnderLiliesWorld(World):
 
         # Data that will be in the seed file
         slot_data["SEED"] = str(self.multiworld.seed)
+
         if self.get_option(EnemyRebalance):
             slot_data[f'SETTINGS:{EnemyRebalance.name}'] = None
         if self.get_option(ShuffleRelicsCosts):
             slot_data[f'SETTINGS:{ShuffleRelicsCosts.name}'] = None
+        if self.get_option(ShuffleEnemies):
+            slot_data[f'SETTINGS:{ShuffleEnemies.name}'] = None
         if self.get_option(SubSpiritsIncreaseChapter):
             slot_data[f'SETTINGS:{SubSpiritsIncreaseChapter.name}'] = None
         if self.get_option(NewGamePlusAI):
@@ -234,6 +237,7 @@ class EnderLiliesWorld(World):
             slot_data[f'SETTINGS:{StartingWeaponUsesAncientSouls.name}'] = None
         if self.get_option(ShuffleBGM):
             slot_data[f'SETTINGS:{ShuffleBGM.name}'] = None
+
         if self.get_option(ChapterMin).value != ChapterMin.default:
             slot_data[f'SETTINGS:{ChapterMin.name}'] = str(self.get_option(ChapterMin).value)
         if self.get_option(ChapterMax).value != ChapterMax.default:
