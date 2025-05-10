@@ -120,8 +120,8 @@ class EnderLiliesWorld(World):
         self.multiworld.itempool.extend(pool)
 
     def create_regions(self) -> None:
-        victory_locations = self.get_option(Goal).get_victory_locations()
-        starting_location = self.get_option(StartingLocation).get_starting_location()
+        victory_locations:List[str] = self.get_option(Goal).get_victory_locations()
+        starting_location:str = self.get_option(StartingLocation).get_starting_location()
         
         self.randomized_entrances = {}
         if self.get_option(RandomizeEntrances):
@@ -147,11 +147,12 @@ class EnderLiliesWorld(World):
            regions[entrance].connect(regions[region_name])
 
         rules, _ = get_rules(self.player)
+        is_real_gen = not hasattr(self.multiworld, "generation_is_fake") #if we're in a fake gen, do this later
         for region_name, region_locations in regions_list.items():
             for location in region_locations:
-                if location == starting_location:
+                if is_real_gen and location == starting_location:
                     regions["Menu"].connect(regions[region_name])
-                if locations[location].content and locations[location].content in entrances:
+                if is_real_gen and locations[location].content and locations[location].content in entrances:
                     if location in self.randomized_entrances:
                         destination_name = self.randomized_entrances[location]
                     else:
@@ -170,8 +171,34 @@ class EnderLiliesWorld(World):
                         check.place_locked_item(self.create_item("Victory"))
                     else:
                         check.place_locked_item(self.create_item(check.data.content))
-
         self.multiworld.regions.extend([region for name, region in regions.items()])
+    
+    def interpret_slot_data(self, slot_data: Dict[str, Any]) -> None:
+        from .Names import names as el
+        from .StartingLocations import startingLocationsData
+        starting_location:str = el[startingLocationsData[int(slot_data["SETTINGS:starting_room"])].clientKey]
+        regions:Dict[str,Region] = self.multiworld.regions.region_cache[self.player]
+        for loc,data in locations.items():
+            if data.key in slot_data:
+                self.randomized_entrances[loc] = slot_data[data.key]
+        rules, _ = get_rules(self.player)
+        for region_name, region_locations in regions_list.items():
+            for location in region_locations:
+                if location == starting_location:
+                    regions["Menu"].connect(regions[region_name])
+                if locations[location].content and locations[location].content in entrances:
+                    if location in self.randomized_entrances:
+                        destination_name = self.randomized_entrances[location]
+                    else:
+                        destination_name = locations[location].content
+                    region_exit = regions[region_name].connect(regions[destination_name], location, rules[location])
+                    if location in indirect_connections:
+                        for indirect_regions in indirect_connections[location]:
+                            self.multiworld.register_indirect_condition(regions[indirect_regions],region_exit)
+        set_rule(self.multiworld.get_location(starting_location, self.player), lambda s : True)
+
+
+
 
     def post_fill(self) -> None:
         if self.get_option(StoneTabletsPlacement) == StoneTabletsPlacement.option_region:
@@ -197,8 +224,9 @@ class EnderLiliesWorld(World):
         for name, rule in items_rules.items():
             add_item_rule(self.multiworld.get_location(name, self.player), rule)
 
-        starting_location = self.get_option(StartingLocation).get_starting_location()
-        set_rule(self.multiworld.get_location(starting_location, self.player), lambda s : True)
+        if not hasattr(self.multiworld, "generation_is_fake"): #if we're in a fake gen, do this later
+            starting_location = self.get_option(StartingLocation).get_starting_location()
+            set_rule(self.multiworld.get_location(starting_location, self.player), lambda s : True)
 
         self.multiworld.completion_condition[self.player] = lambda state: state.has(
             "Victory", self.player
