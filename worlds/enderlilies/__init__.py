@@ -65,7 +65,6 @@ class EnderLiliesWorld(World):
 
     game = ENDERLILIES
     web = EnderLiliesWeb()
-    # option_definitions = options
     options_dataclass = EnderLiliesGameOptions
     options: EnderLiliesGameOptions
     location_name_to_id = {name: data.address for name, data in locations.items()}
@@ -101,7 +100,7 @@ class EnderLiliesWorld(World):
     def create_items(self) -> None:
         starting_items = self.assign_starting_items()
 
-        pool = []
+        pool : List[Item] = []
         for item, data in items.items():
             if item in starting_items or data.unused and not self.get_option(AddUnusedItems):
                 continue
@@ -109,7 +108,7 @@ class EnderLiliesWorld(World):
                 pool.append(self.create_item(item))
         unfilled_location = self.multiworld.get_unfilled_locations(self.player)
         self.random.shuffle(pool)
-        pool : List[EnderLiliesItem] = self.get_option(ItemPoolPriority).sort_items_list(pool, len(unfilled_location))
+        pool = self.get_option(ItemPoolPriority).sort_items_list(pool, len(unfilled_location))
 
         if self.get_option(StoneTabletsPlacement).value == StoneTabletsPlacement.option_region:
             self.options.local_items.value.add("Stone Tablet Fragment")
@@ -196,9 +195,6 @@ class EnderLiliesWorld(World):
                         for indirect_regions in indirect_connections[location]:
                             self.multiworld.register_indirect_condition(regions[indirect_regions],region_exit)
         set_rule(self.multiworld.get_location(starting_location, self.player), lambda s : True)
-
-
-
 
     def post_fill(self) -> None:
         if self.get_option(StoneTabletsPlacement) == StoneTabletsPlacement.option_region:
