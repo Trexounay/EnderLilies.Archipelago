@@ -1,4 +1,6 @@
-from typing import Dict, List, Optional
+import os
+from typing import Dict, List, Optional, TextIO
+from Utils import output_path
 import settings
 from BaseClasses import Item, ItemClassification, Location, Region
 from worlds.AutoWorld import World
@@ -105,3 +107,16 @@ class EnderMagnoliaWorld(World):
     def get_filler_item_name(self) -> str:
         return "nothing"
 
+    def generate_output(self, output_directory):
+        out_path = os.path.join(output_directory, "EnderMagnolia.txt")
+        output = ""
+        locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations();
+        for location in locations:
+            if location.item and location.key() and location.item.name and location.item.name in items:
+                s = f"{location.key()}:{items[location.item.name].key}"
+                print(s)
+                output += f"{s}\n"
+
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(output)
+        return super().generate_output(output_directory)
