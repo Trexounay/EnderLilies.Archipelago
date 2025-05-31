@@ -1,4 +1,6 @@
-from typing import Dict, List, Optional
+import os
+from typing import Dict, List, Optional, TextIO
+from Utils import output_path
 import settings
 from BaseClasses import Item, ItemClassification, Location, Region
 from worlds.AutoWorld import World
@@ -16,7 +18,7 @@ class EnderMagnoliaItem(Item):
 
 class EnderMagnoliaLocation(Location):
     game = ENDERMAGNOLIA
-    data : LocationData
+    data : Optional[LocationData]
 
     def __init__(self, player: int, name: str = '', data: Optional[LocationData] = None, parent: Optional[Region] = None):
         address = None
@@ -39,11 +41,11 @@ class EnderMagnoliaWorld(World):
 
     # items
     item_name_to_id = {name: data.code for name, data in items.items()}
-    item_name_groups = {item_group.name : {name for name, data in items.items() if data.item_group == item_group} for item_group in ItemGroup}
+    item_name_groups = {group.name : {name for name, data in items.items() if data.group == group} for group in ItemGroup}
     
     # locations
     location_name_to_id = {name: data.address for name, data in locations.items()}
-    location_name_groups = {location_group.name : {name for name, data in locations.items() if data.location_group == location_group} for location_group in LocationGroup}
+    location_name_groups = {group.name : {name for name, data in locations.items() if data.group == group} for group in LocationGroup}
 
     def create_item(self, item: str) -> EnderMagnoliaItem:
         if item in items:
@@ -54,7 +56,7 @@ class EnderMagnoliaWorld(World):
     def create_items(self) -> None:
         items_pool : List[Item] = []
         for name, data in items.items():
-            if not data.code:
+            if not data.code or not data.count:
                 continue
             for i in range(data.count):
                 items_pool.append(self.create_item(name))
@@ -63,6 +65,8 @@ class EnderMagnoliaWorld(World):
     def create_region(self, name: str, checks: Optional[List[LocationData]] = []) -> Region:
         region = Region(name, self.player, self.multiworld)
         self.multiworld.regions.append(region)
+        if checks is None:
+            return region
         for location in checks:
             self.create_location(location.name, region)
         return region
@@ -72,6 +76,8 @@ class EnderMagnoliaWorld(World):
         if name in locations:
             data = locations[name]
         location = EnderMagnoliaLocation(self.player, name, data, parent_region)
+        if data is None:
+            return location
         if not data.address and data.content:
             location.place_locked_item(self.create_item(data.content.name))
         if parent_region:
@@ -105,3 +111,17 @@ class EnderMagnoliaWorld(World):
     def get_filler_item_name(self) -> str:
         return "nothing"
 
+    def generate_output(self, output_directory):
+        print(f"Creating EnderMagnolia.txt file in AP.zip output location")
+        out_path = os.path.join(output_directory, "EnderMagnolia.txt")
+        output = ""
+        locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations();
+        for location in locations:
+            if location.item and location.key() and location.item.name and location.item.name in items:
+                s = f"{location.key()}:{items[location.item.name].key}"
+                print(s)
+                output += f"{s}\n"
+
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(output)
+        return super().generate_output(output_directory)
