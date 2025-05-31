@@ -187,6 +187,8 @@ crossroad_regions: List[RegionData] = [
     RegionData(
         "Crossroad 5",
         [
+            locations["Crossroad 5 - Aerial Jump"],
+            locations["Crossroad 5 - Dodge"],
             ExitData("Crossroad 5 to Crossroad 4", "Crossroad 4"),
             ExitData("Crossroad 5 to Crossroad 2", "Crossroad 2"),
         ]

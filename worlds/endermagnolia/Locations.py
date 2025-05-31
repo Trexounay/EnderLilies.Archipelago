@@ -35,8 +35,10 @@ locations: Dict[str, LocationData] = {location.name: location for location in [
     LocationData("Ruins 15 - Healing Ward",                  address=7, key="Ruins_001_Zone_015.BP_Trigger_Event_C_0",              group=LocationGroup.Event,        content=items["Healing Ward"]),
 
 # New checks
-    LocationData("Crossroad 2 - Charmed Fragment",           address=8,key="Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Charmed Fragment"]),
-    LocationData("Slum 1 - Tattered Letter",                 address=9,key="Slum_001_Zone_001.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Tattered Letter"]),
+    LocationData("Crossroad 2 - Charmed Fragment",           address=8, key="Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Charmed Fragment"]),
+    LocationData("Crossroad 5 - Aerial Jump",                address=9, key="Crossroad_001_Zone_005.BP_Trigger_Event_C_0",       group=LocationGroup.Interactable, content=items["Aerial Jump"]),
+    LocationData("Crossroad 5 - Dodge",                      address=10,key="Crossroad_001_Zone_005.BP_Trigger_Event_C_0.1",       group=LocationGroup.Interactable, content=items["Dodge"]),
+    LocationData("Slum 1 - Tattered Letter",                 address=11,key="Slum_001_Zone_001.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Tattered Letter"]),
 
 
 # event locations
