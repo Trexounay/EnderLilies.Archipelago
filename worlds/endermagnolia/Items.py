@@ -1,6 +1,7 @@
 from typing import Optional, Dict
 from enum import Enum
 from BaseClasses import ItemClassification as IC
+from dataclasses import dataclass
 
 
 class   ItemGroup(Enum):
@@ -26,31 +27,24 @@ class   ItemGroup(Enum):
     #Message
     Finding     = 12
 
+@dataclass
 class ItemData():
     name: str
-    key: Optional[str]
-    code: Optional[int]
-    count: Optional[int]
-    classification: IC
-    item_group: Optional[ItemGroup]
-    unused: bool
+    key: Optional[str] = None
+    code: Optional[int] = None
+    count: Optional[int] = 1
+    classification: IC = IC.filler
+    group: Optional[ItemGroup] = None
+    unused: bool = False
+    cost: int = 0
+    stock: int = 0
 
-    def __init__(self, name, key: Optional[str] = None, code:Optional[int]=None,
-                 group:Optional[ItemGroup]=None, count: Optional[int]=1,
-                classification:IC=IC.filler, cost=0, stock=0):
-        self.name = name
-        self.key = key
-        self.code = code
-        self.count = count
-        self.classification = classification
-        self.item_group = group
 
-items : Dict[str, ItemData] = {item.name: item for item in [ 
-    ItemData("Nola", code=0, key="DT_ItemSpirits.s5000_reaper", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
+untested_items : Dict[str, ItemData] = {item.name: item for item in [ 
     ItemData("Nola Spirit Piercer", code=1, key="DT_ItemSpirits.s5000_sword", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
     ItemData("Nola Soul Harverster", code=2, key="DT_ItemSpirits.s5001_scythe", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
     ItemData("Nola Vanquisher", code=3, key="DT_ItemSpirits.s5002_axe", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lito", code=4, key="DT_ItemSpirits.s5030_rogue", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
+
     ItemData("Lito Blazing Fist", code=5, key="DT_ItemSpirits.s5030_punch", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
     ItemData("Lito Glacial Fist", code=6, key="DT_ItemSpirits.s5031_bomb", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
     ItemData("Lito Rocket Fist", code=7, key="DT_ItemSpirits.s5032_roket", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
@@ -87,8 +81,19 @@ items : Dict[str, ItemData] = {item.name: item for item in [
     ItemData("Huginn Poison Cloud", code=38, key="DT_ItemSpirits.s5081_trail", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
     ItemData("Huginn Flaming Feather", code=39, key="DT_ItemSpirits.s5082_gast", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
 
-    ItemData("Worn Experiment Log", code=40, key="DT_ItemTips.tip_ruinsrecords_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Homunculus Research Log 1", code=41, key="DT_ItemTips.tip_homunculusrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
+    ItemData("Aerial Jump", code=90, key="DT_ItemAptitudes.double_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Dodge", code=91, key="DT_ItemAptitudes.dodge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Fast Travel", code=92, key="DT_ItemAptitudes.fast_travel", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Garm's Iron Stake", code=93, key="DT_ItemAptitudes.pile_attack", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Hati's Charge", code=94, key="DT_ItemAptitudes.dash_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Lar's Grip", code=95, key="DT_ItemAptitudes.wall_grab", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Dive", code=96, key="DT_ItemAptitudes.dive", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Motley's Magic Strands", code=97, key="DT_ItemAptitudes.hook", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Attuner Arts", code=98, key="DT_ItemAptitudes.sp", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Motley's Torrent", code=99, key="DT_ItemAptitudes.dash_charge_underwater", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Garm's Ascent", code=100, key="DT_ItemAptitudes.high_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Lar's Swift Flight", code=101, key="DT_ItemAptitudes.wall_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+
     ItemData("Tattered Letter", code=42, key="DT_ItemTips.tip_tunerletter_0", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
     ItemData("Subterranean Laborer's Code", code=43, key="DT_ItemTips.tip_workerscode_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
     ItemData("Writing Etched Into the Wall", code=44, key="DT_ItemTips.tip_writingwall_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
@@ -136,20 +141,6 @@ items : Dict[str, ItemData] = {item.name: item for item in [
     ItemData("Frost Confidential Records 2", code=86, key="DT_ItemTips.tip_frostsrecord_02", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
     ItemData("Frost Confidential Records 1", code=87, key="DT_ItemTips.tip_frostsrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
     ItemData("Survey Teams Notes", code=88, key="DT_ItemTips.tip_freeze_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Healing Ward", code=89, key="DT_ItemAptitudes.heal", count=1, group=ItemGroup.Action, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Aerial Jump", code=90, key="DT_ItemAptitudes.double_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Dodge", code=91, key="DT_ItemAptitudes.dodge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Fast Travel", code=92, key="DT_ItemAptitudes.fast_travel", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Garm's Iron Stake", code=93, key="DT_ItemAptitudes.pile_attack", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Hati's Charge", code=94, key="DT_ItemAptitudes.dash_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lar's Grip", code=95, key="DT_ItemAptitudes.wall_grab", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Dive", code=96, key="DT_ItemAptitudes.dive", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Motley's Magic Strands", code=97, key="DT_ItemAptitudes.hook", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Attuner Arts", code=98, key="DT_ItemAptitudes.sp", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Motley's Torrent", code=99, key="DT_ItemAptitudes.dash_charge_underwater", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Garm's Ascent", code=100, key="DT_ItemAptitudes.high_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lar's Swift Flight", code=101, key="DT_ItemAptitudes.wall_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Charmed Fragment", code=102, key="DT_ItemStats.hp_up_s", count=44, group=ItemGroup.Upgrade, classification=IC.filler, cost=0, stock=0), 
     ItemData("Charmed Ore", code=103, key="DT_ItemStats.hp_up_l", count=4, group=ItemGroup.Upgrade, classification=IC.filler, cost=5000, stock=1), 
     ItemData("Magic Vial", code=104, key="DT_ItemStats.passive_slot_s", count=45, group=ItemGroup.Upgrade, classification=IC.filler, cost=250 + 1.2, stock=15), 
     ItemData("Magic Vial", code=105, key="DT_ItemStats.passive_slot_s", count=45, group=ItemGroup.Upgrade, classification=IC.filler, cost=250 + 1.2, stock=20), 
@@ -177,18 +168,17 @@ items : Dict[str, ItemData] = {item.name: item for item in [
     ItemData("New Model Parts", code=127, key="DT_ItemMaterials.parts_lv4_c", count=4, group=ItemGroup.Component, classification=IC.filler, cost=1000, stock=4), 
     ItemData("Special Alloy Part", code=128, key="DT_ItemMaterials.parts_lv5_c", count=4, group=ItemGroup.Component, classification=IC.filler, cost=2250, stock=4), 
     ItemData("Highest Grade Parts", code=129, key="DT_ItemMaterials.parts_lv6_c", count=9, group=ItemGroup.Component, classification=IC.filler, cost=5500, stock=9), 
-    ItemData("Subterranean Testing Site Key", code=130, key="DT_ItemKeys.key_ruins_tuto", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lower Stratum Key", code=131, key="DT_ItemKeys.key_lower", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Frost Lord's Mark", code=132, key="DT_ItemKeys.key_higher_a", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Mutated Mineral", code=133, key="DT_ItemQuests.quest_artifact", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Frost Vestige", code=134, key="DT_ItemQuests.quest_stone", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Avian Remains", code=135, key="DT_ItemQuests.quest_bird", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Milius Resident Records", code=136, key="DT_ItemQuests.quest_board", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Black Perfume", code=137, key="DT_ItemQuests.quest_perfume", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Blighted Pupil", code=138, key="DT_ItemQuests.quest_eye", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Stele of the Land of Origin", code=139, key="DT_ItemQuests.quest_lithograph", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Grand Sorcerer's Key", code=140, key="DT_ItemKeys.key_owner", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Milius Lord's Mark", code=141, key="DT_ItemKeys.key_higher_b", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Lower Stratum Key", code=131, key="DT_ItemKeys.key_lower", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Frost Lord's Mark", code=132, key="DT_ItemKeys.key_higher_a", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Mutated Mineral", code=133, key="DT_ItemQuests.quest_artifact", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Frost Vestige", code=134, key="DT_ItemQuests.quest_stone", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Avian Remains", code=135, key="DT_ItemQuests.quest_bird", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Milius Resident Records", code=136, key="DT_ItemQuests.quest_board", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Black Perfume", code=137, key="DT_ItemQuests.quest_perfume", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Blighted Pupil", code=138, key="DT_ItemQuests.quest_eye", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Stele of the Land of Origin", code=139, key="DT_ItemQuests.quest_lithograph", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Grand Sorcerer's Key", code=140, key="DT_ItemKeys.key_owner", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
+    # ItemData("Milius Lord's Mark", code=141, key="DT_ItemKeys.key_higher_b", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
     ItemData("Eye of the Homunculus", code=142, key="DT_ItemPassives.junk_up_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
     ItemData("Helix Crystal", code=143, key="DT_ItemPassives.onkill_restorehp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
     ItemData("Tarnished Tag", code=144, key="DT_ItemPassives.damage_cut_physic_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
@@ -280,7 +270,22 @@ items : Dict[str, ItemData] = {item.name: item for item in [
     ItemData("Levy's Mantle", code=230, key="DT_ItemCostumes.p0040", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
     ItemData("White Priestess' Attire", code=231, key="DT_ItemCostumes.p0050", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
     ItemData("Mantle of Milius", code=232, key="DT_ItemCostumes.p0030", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
+]}
 
+
+items : Dict[str, ItemData] = {item.name: item for item in [ 
+    ItemData("Charmed Fragment", code=102, key="DT_ItemStats.hp_up_s", count=2, group=ItemGroup.Upgrade, classification=IC.filler, cost=0, stock=0), # Actual count: 44
+    ItemData("Homunculus Research Log 1", code=41, key="DT_ItemTips.tip_homunculusrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
+    ItemData("Worn Experiment Log", code=40, key="DT_ItemTips.tip_ruinsrecords_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
+    ItemData("Tattered Letter", code=42, key="DT_ItemTips.tip_tunerletter_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
+
+    ItemData("Nola", code=0, key="DT_ItemSpirits.s5000_reaper", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Lito", code=4, key="DT_ItemSpirits.s5030_rogue", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Subterranean Testing Site Key", code=130, key="DT_ItemKeys.key_ruins_tuto", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Healing Ward", code=89, key="DT_ItemAptitudes.heal", count=1, group=ItemGroup.Action, classification=IC.filler, cost=0, stock=0), 
+    ItemData("Aerial Jump", code=90, key="DT_ItemAptitudes.double_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Hati's Charge", code=94, key="DT_ItemAptitudes.dash_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    ItemData("Dodge", code=91, key="DT_ItemAptitudes.dodge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
                                              
 # event
     ItemData("Ruins 7 Lever"                 , classification=IC.progression),
