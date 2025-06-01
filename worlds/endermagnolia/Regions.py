@@ -24,8 +24,7 @@ class RegionData:
             connection for connection in content if isinstance(connection, ExitData)]
         assert len(content) == len(self.connections) + len(self.locations), f"Wrong element in region content ({name})"
 
-
-regions: List[RegionData] = [
+ruins_regions: List[RegionData] = [
     RegionData(
         "Menu",
         [
@@ -128,6 +127,7 @@ regions: List[RegionData] = [
         [
             locations["Ruins 13 - Homunculus Research Log 1"],
             ExitData("Ruins 13 to Ruins 10", "Ruins 10"),
+            ExitData("Ruins 13 to Crossroad 1", "Crossroad 1")
         ]
     ),
     RegionData(
@@ -153,3 +153,61 @@ regions: List[RegionData] = [
         ]
     ),
 ]
+
+crossroad_regions: List[RegionData] = [
+    RegionData(
+        "Crossroad 1",
+        [
+            ExitData("Crossroad 1 to Crossroad 4", "Crossroad 4"),
+            ExitData("Crossroad 1 to Ruins 13", "Ruins 13")
+        ]
+    ),
+    RegionData(
+        "Crossroad 2",
+        [
+            locations["Crossroad 2 - Charmed Fragment"],
+            ExitData("Crossroad 2 to Crossroad 5", "Crossroad 5"),
+            ExitData("Crossroad 2 to Slum 1", "Slum 1")
+        ]
+    ),
+    RegionData(
+        "Crossroad 3",
+        [
+            ExitData("Crossroad 3 to Crossroad 4", "Crossroad 4"),
+        ]
+    ),
+    RegionData(
+        "Crossroad 4",
+        [
+            ExitData("Crossroad 4 to Crossroad 1", "Crossroad 1"),
+            ExitData("Crossroad 4 to Crossroad 3", "Crossroad 3"),
+            ExitData("Crossroad 4 to Crossroad 5", "Crossroad 5"),
+        ]
+    ),
+    RegionData(
+        "Crossroad 5",
+        [
+            locations["Crossroad 5 - Aerial Jump"],
+            locations["Crossroad 5 - Dodge"],
+            ExitData("Crossroad 5 to Crossroad 4", "Crossroad 4"),
+            ExitData("Crossroad 5 to Crossroad 2", "Crossroad 2"),
+        ]
+    ),
+]
+
+slum_regions: List[RegionData] = [
+    RegionData(
+        "Slum 1",
+        [
+            locations["Slum 1 - Tattered Letter"],
+            ExitData("Slum 1 to Crossroad 2", "Crossroad 2")
+        ]
+    )
+]
+
+regions: List[RegionData] = []
+regions.extend(ruins_regions)
+regions.extend(crossroad_regions)
+regions.extend(slum_regions)
+
+
