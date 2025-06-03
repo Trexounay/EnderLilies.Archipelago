@@ -1,293 +1,398 @@
-from typing import Optional, Dict
+from typing import List, Optional, Dict
 from enum import Enum
 from BaseClasses import ItemClassification as IC
-from dataclasses import dataclass
-
+from dataclasses import dataclass, field
 
 class   ItemGroup(Enum):
-    """
-    Used to group items
-    """
-    #Abilities
-    Ability     = 0
-    #Equipement
-    Carapace    = 1
-    Bracelet    = 2
-    Totem       = 3
-    #Relic
-    Relic       = 4
-    #Collection 
-    QuestItem   = 5
-    Component   = 6
-    KeyItem     = 7
-    Upgrade     = 8
-    Action      = 9
-    Ally        = 10
-    Costume     = 11
-    #Message
-    Finding     = 12
+    Aptitude = 1
+    Assist = 2
+    Costume = 3
+    Currency = 4
+    Equipment = 5
+    Quest = 6
+    Key = 7
+    Material = 8
+    Passive = 9
+    Skill = 10
+    Spirit = 11
+    Stat = 12
+    Tip = 13
 
 @dataclass
 class ItemData():
     name: str
     key: Optional[str] = None
     code: Optional[int] = None
-    count: Optional[int] = 1
-    classification: IC = IC.filler
     group: Optional[ItemGroup] = None
-    unused: bool = False
-    cost: int = 0
-    stock: int = 0
+    classification: IC = IC.filler
 
+    def __rmul__(self, other):
+        return [self for _ in range(other)]
 
-untested_items : Dict[str, ItemData] = {item.name: item for item in [ 
-    ItemData("Nola Spirit Piercer", code=1, key="DT_ItemSpirits.s5000_sword", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Nola Soul Harverster", code=2, key="DT_ItemSpirits.s5001_scythe", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Nola Vanquisher", code=3, key="DT_ItemSpirits.s5002_axe", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
+@dataclass()
+class DataTable():
+    name: str
+    group: ItemGroup
+    code: int
+    rows: Dict[str, str]
+    classification: IC = IC.filler
+    codes: Dict[str, int] = field(init=False)
 
-    ItemData("Lito Blazing Fist", code=5, key="DT_ItemSpirits.s5030_punch", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lito Glacial Fist", code=6, key="DT_ItemSpirits.s5031_bomb", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lito Rocket Fist", code=7, key="DT_ItemSpirits.s5032_roket", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Yolvan", code=8, key="DT_ItemSpirits.s5110_gunman", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Yolvan Barrage", code=9, key="DT_ItemSpirits.s5110_gatling", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Yolvan Lacerate", code=10, key="DT_ItemSpirits.s5111_saw", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Yolvan Eviscerate", code=11, key="DT_ItemSpirits.s5112_drill", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Reibolg", code=12, key="DT_ItemSpirits.s5010_lancer", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Reibolg Magic Tracer", code=13, key="DT_ItemSpirits.s5010_blaster", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Reibolg Piercing Beam", code=14, key="DT_ItemSpirits.s5011_lazer", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Reibolg Blast Volley", code=15, key="DT_ItemSpirits.s5012_granade", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Luiseach", code=16, key="DT_ItemSpirits.s5070_witch", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Luiseach Volcanic", code=17, key="DT_ItemSpirits.s5070_fire", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Luiseach Whirlwind", code=18, key="DT_ItemSpirits.s5071_thunder", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Luiseach Cocytus", code=19, key="DT_ItemSpirits.s5072_ice", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("No.7", code=20, key="DT_ItemSpirits.s5050_ronin", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("No.7 Lunar Manifestation", code=21, key="DT_ItemSpirits.s5050_moon", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("No.7 Hail Dance", code=22, key="DT_ItemSpirits.s5051_snow", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("No.7 Thunder Flower", code=23, key="DT_ItemSpirits.s5052_flower", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Shackled Beast", code=24, key="DT_ItemSpirits.s5060_beast", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Shackled Beast Chain Whip", code=25, key="DT_ItemSpirits.s5060_chain", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Shackled Beast Charge", code=26, key="DT_ItemSpirits.s5061_horn", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Shackled Beast Benumbed Howl", code=27, key="DT_ItemSpirits.s5062_voice", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lorna", code=28, key="DT_ItemSpirits.s5040_maiden", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lorna Gravity Field", code=29, key="DT_ItemSpirits.s5040_reflect", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lorna Light Show", code=30, key="DT_ItemSpirits.s5041_gravit", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lorna Fire", code=31, key="DT_ItemSpirits.s5042_ignit", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Muninn", code=32, key="DT_ItemSpirits.s5090_owl", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Muninn Seeker", code=33, key="DT_ItemSpirits.s5090_homing", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Muninn Stun", code=34, key="DT_ItemSpirits.s5091_stun", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Muninn Bombard", code=35, key="DT_ItemSpirits.s5092_fall", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Huginn", code=36, key="DT_ItemSpirits.s5080_hawk", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Huginn Gust Wing", code=37, key="DT_ItemSpirits.s5080_wing", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Huginn Poison Cloud", code=38, key="DT_ItemSpirits.s5081_trail", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Huginn Flaming Feather", code=39, key="DT_ItemSpirits.s5082_gast", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
+    def __post_init__(self):
+        code = self.code
+        self.codes = {}
+        for entry in self.rows:
+            self.codes[entry] = code
+            code += 1
 
-    ItemData("Aerial Jump", code=90, key="DT_ItemAptitudes.double_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Dodge", code=91, key="DT_ItemAptitudes.dodge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Fast Travel", code=92, key="DT_ItemAptitudes.fast_travel", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Garm's Iron Stake", code=93, key="DT_ItemAptitudes.pile_attack", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Hati's Charge", code=94, key="DT_ItemAptitudes.dash_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lar's Grip", code=95, key="DT_ItemAptitudes.wall_grab", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Dive", code=96, key="DT_ItemAptitudes.dive", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Motley's Magic Strands", code=97, key="DT_ItemAptitudes.hook", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Attuner Arts", code=98, key="DT_ItemAptitudes.sp", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Motley's Torrent", code=99, key="DT_ItemAptitudes.dash_charge_underwater", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Garm's Ascent", code=100, key="DT_ItemAptitudes.high_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lar's Swift Flight", code=101, key="DT_ItemAptitudes.wall_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
+    def __getitem__(self, entry) -> ItemData:
+        return ItemData(self.rows[entry], self.name + "." + entry, self.codes[entry], self.group, self.classification)
 
-    ItemData("Tattered Letter", code=42, key="DT_ItemTips.tip_tunerletter_0", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Subterranean Laborer's Code", code=43, key="DT_ItemTips.tip_workerscode_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Writing Etched Into the Wall", code=44, key="DT_ItemTips.tip_writingwall_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Notification of Restricted Areas", code=45, key="DT_ItemTips.tip_tunerjournal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Worries of a Sorcerer", code=46, key="DT_ItemTips.tip_painting_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Homunculus Expedition Report", code=47, key="DT_ItemTips.tip_searchrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Broken Warning Sign", code=48, key="DT_ItemTips.tip_tornletter_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Tavern Bulletin Board", code=49, key="DT_ItemTips.tip_townboard_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Chief Attuner's Journal", code=50, key="DT_ItemTips.tip_chieftunerjournal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magicite Mining Record", code=51, key="DT_ItemTips.tip_magicrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Homunculus Research Log 2", code=52, key="DT_ItemTips.tip_homunculusrecord_02", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Book of the Blighted", code=53, key="DT_ItemTips.tip_frostgrimoire_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Words Etched into Stone", code=54, key="DT_ItemTips.tip_tombstone_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Spy's Letter", code=55, key="DT_ItemTips.tip_secretletter_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Cassia's Grimoire", code=56, key="DT_ItemTips.tip_cassiabook_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Tattered Notice", code=57, key="DT_ItemTips.tip_raggedpastedown_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Depths Survey Record", code=58, key="DT_ItemTips.tip_lowestrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Corroded Warning Sign", code=59, key="DT_ItemTips.tip_corrosionboard_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Blighted Note", code=60, key="DT_ItemTips.tip_disposaljournal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Letter in a Bottle", code=61, key="DT_ItemTips.tip_vials_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Silencing Light Documents", code=62, key="DT_ItemTips.tip_lightsilence_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Journal of an Attuner", code=63, key="DT_ItemTips.tip_tornjournal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Arcane Smith's Musings", code=64, key="DT_ItemTips.tip_engineermemoirs_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Chronicles of Milius", code=65, key="DT_ItemTips.tip_miliusbook_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Words on Land's End", code=66, key="DT_ItemTips.tip_landend_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Mother's Note", code=67, key="DT_ItemTips.tip_mothersnote_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Arena Tower Flyer", code=68, key="DT_ItemTips.tip_fightingtower_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Fugitive Researcher's Notes", code=69, key="DT_ItemTips.tip_researchersjournal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Declan's Records", code=70, key="DT_ItemTips.tip_degrandsrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Bloodstained Diary", code=71, key="DT_ItemTips.tip_bloodstaineddiary_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Words Etched into Cell", code=72, key="DT_ItemTips.tip_prisonwall_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Worker's Surveillance Records", code=73, key="DT_ItemTips.tip_surveillancerecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Factory Management Records", code=74, key="DT_ItemTips.tip_administrationrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Miner Enchancement Project", code=75, key="DT_ItemTips.tip_enhancementplan_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Document on the Empyrean Parasol", code=76, key="DT_ItemTips.tip_towerumbrella_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Lilia's Diary", code=77, key="DT_ItemTips.tip_liliasdiary_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Gilroy Examination Record", code=78, key="DT_ItemTips.tip_gilroyrecords_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Caladrius Records", code=79, key="DT_ItemTips.tip_caladriusrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Blighted Prophecy", code=80, key="DT_ItemTips.tip_prophecybook_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Joran's Notes 1", code=81, key="DT_ItemTips.tip_yoransdiary_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Joran's Notes 2", code=82, key="DT_ItemTips.tip_yoransdiary_02", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Upper Stratum Communication Device", code=83, key="DT_ItemTips.tip_upperterminal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Gilroy's Communication Device", code=84, key="DT_ItemTips.tip_gilroysterminal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Motley's Communication Device", code=85, key="DT_ItemTips.tip_motleysterminal_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Frost Confidential Records 2", code=86, key="DT_ItemTips.tip_frostsrecord_02", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Frost Confidential Records 1", code=87, key="DT_ItemTips.tip_frostsrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Survey Teams Notes", code=88, key="DT_ItemTips.tip_freeze_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Charmed Ore", code=103, key="DT_ItemStats.hp_up_l", count=4, group=ItemGroup.Upgrade, classification=IC.filler, cost=5000, stock=1), 
-    ItemData("Magic Vial", code=104, key="DT_ItemStats.passive_slot_s", count=45, group=ItemGroup.Upgrade, classification=IC.filler, cost=250 + 1.2, stock=15), 
-    ItemData("Magic Vial", code=105, key="DT_ItemStats.passive_slot_s", count=45, group=ItemGroup.Upgrade, classification=IC.filler, cost=250 + 1.2, stock=20), 
-    ItemData("Experimental Amplifier", code=106, key="DT_ItemMaterials.parts_lv2_b", count=2, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Unidentified Amplifier", code=107, key="DT_ItemMaterials.parts_s5000_b", count=3, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Unidentified Transformer", code=108, key="DT_ItemMaterials.parts_s5000_c", count=3, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Obsolete Core", code=109, key="DT_ItemMaterials.parts_lv3_b", count=2, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Special Alloy Core", code=110, key="DT_ItemMaterials.parts_lv5_a", count=3, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("New Model Core", code=111, key="DT_ItemMaterials.parts_lv4_a", count=2, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Unidentified Core", code=112, key="DT_ItemMaterials.parts_s5000_a", count=3, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Origin Gem Core", code=113, key="DT_ItemMaterials.parts_lv6_a", count=7, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magic Amplifier x2", code=114, key="DT_ItemMaterials.parts_lv4_b", count=1, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magic Amplifier x2", code=115, key="DT_ItemMaterials.parts_lv4_b", count=2, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magic Amplifier", code=116, key="DT_ItemMaterials.parts_lv4_b", count=1, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magic Amplifier", code=117, key="DT_ItemMaterials.parts_lv4_b", count=2, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Tripartite Magic Vial", code=118, key="DT_ItemStats.passive_slot_l", count=1, group=ItemGroup.Upgrade, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Special Alloy Amplifier", code=119, key="DT_ItemMaterials.parts_lv5_b", count=1, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Special Alloy Amplifier", code=120, key="DT_ItemMaterials.parts_lv5_b", count=1, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Special Alloy Amplifier x3", code=121, key="DT_ItemMaterials.parts_lv5_b", count=1, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Special Alloy Amplifier x3", code=122, key="DT_ItemMaterials.parts_lv5_b", count=1, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Administrator's Amplifier", code=123, key="DT_ItemMaterials.parts_lv6_b", count=9, group=ItemGroup.Component, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Grimoire", code=124, key="DT_ItemStats.shop_line_up", count=12, group=ItemGroup.Upgrade, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Mixed Parts", code=125, key="DT_ItemMaterials.parts_lv2_c", count=2, group=ItemGroup.Component, classification=IC.filler, cost=250, stock=2), 
-    ItemData("Antiquated Parts", code=126, key="DT_ItemMaterials.parts_lv3_c", count=2, group=ItemGroup.Component, classification=IC.filler, cost=500, stock=2), 
-    ItemData("New Model Parts", code=127, key="DT_ItemMaterials.parts_lv4_c", count=4, group=ItemGroup.Component, classification=IC.filler, cost=1000, stock=4), 
-    ItemData("Special Alloy Part", code=128, key="DT_ItemMaterials.parts_lv5_c", count=4, group=ItemGroup.Component, classification=IC.filler, cost=2250, stock=4), 
-    ItemData("Highest Grade Parts", code=129, key="DT_ItemMaterials.parts_lv6_c", count=9, group=ItemGroup.Component, classification=IC.filler, cost=5500, stock=9), 
-    # ItemData("Lower Stratum Key", code=131, key="DT_ItemKeys.key_lower", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Frost Lord's Mark", code=132, key="DT_ItemKeys.key_higher_a", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Mutated Mineral", code=133, key="DT_ItemQuests.quest_artifact", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Frost Vestige", code=134, key="DT_ItemQuests.quest_stone", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Avian Remains", code=135, key="DT_ItemQuests.quest_bird", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Milius Resident Records", code=136, key="DT_ItemQuests.quest_board", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Black Perfume", code=137, key="DT_ItemQuests.quest_perfume", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Blighted Pupil", code=138, key="DT_ItemQuests.quest_eye", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Stele of the Land of Origin", code=139, key="DT_ItemQuests.quest_lithograph", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Grand Sorcerer's Key", code=140, key="DT_ItemKeys.key_owner", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    # ItemData("Milius Lord's Mark", code=141, key="DT_ItemKeys.key_higher_b", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Eye of the Homunculus", code=142, key="DT_ItemPassives.junk_up_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Helix Crystal", code=143, key="DT_ItemPassives.onkill_restorehp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Tarnished Tag", code=144, key="DT_ItemPassives.damage_cut_physic_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Sanguinary Raven", code=145, key="DT_ItemPassives.damage_up_airborne_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Attuner's Earrings", code=146, key="DT_ItemPassives.onkill_restoresp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Crimson Ribbon", code=147, key="DT_ItemPassives.debuff_cut_burn_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Blighted Dice", code=148, key="DT_ItemPassives.experience_up_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Eye of the Ancients", code=149, key="DT_ItemPassives.reduce_skill_cooldown_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Pure Floral Necklace", code=150, key="DT_ItemPassives.damage_up_skillcategory_repeat_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Crimson Bangle", code=151, key="DT_ItemEquipments.armor_008", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Beast Horn Ornanment", code=152, key="DT_ItemPassives.damage_cut_maxhp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Incomplete Gear", code=153, key="DT_ItemPassives.reduce_gravity", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Chain Belt", code=154, key="DT_ItemPassives.damage_up_grounded_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Effigy", code=155, key="DT_ItemPassives.damage_cut_minhp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Abelia's Bracelet", code=156, key="DT_ItemEquipments.armor_014", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Survey Team Gauntlet", code=157, key="DT_ItemPassives.debuff_damage_up_a_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Blighted Talisman", code=158, key="DT_ItemPassives.stamina_damage_up_a_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magic Strange Charm", code=159, key="DT_ItemPassives.damage_up_maxhp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Eye of the Beast", code=160, key="DT_ItemPassives.gold_up_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Cleaner's Tag", code=161, key="DT_ItemPassives.damage_up_targetstunned_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Vivid Claws", code=162, key="DT_ItemPassives.damage_up_targetdebuffed_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("House Milius Earrings", code=163, key="DT_ItemPassives.damage_up_skillcategory_auto_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Faintly Glowing Aegis Curio", code=164, key="DT_ItemQuests.quest_amulet", count=1, group=ItemGroup.QuestItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Bloodstained Stuffed Toy", code=165, key="DT_ItemPassives.damage_cut_debuffed_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Sorcerer's Gauntlet", code=166, key="DT_ItemPassives.debuff_damage_up_b_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Chiron", code=167, key="DT_ItemAssists.assist_009", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Luiseach's Carapace", code=168, key="DT_ItemEquipments.shield_009", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Chief Attuner's Ring", code=169, key="DT_ItemPassives.restore_sp_up_a_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Arena Tower Demon Mask", code=170, key="DT_ItemPassives.damage_up_skillcategory_defence_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Magicite Hairpin", code=171, key="DT_ItemPassives.onkill_reduce_cooldowns_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Spica", code=172, key="DT_ItemAssists.assist_006", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Declan's Ring", code=173, key="DT_ItemPassives.onattack_restorehp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Declan's Binds", code=174, key="DT_ItemEquipments.armor_015", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Headless Gold Statue", code=175, key="DT_ItemPassives.onkill_drops_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Cracked Magicite Dagger", code=176, key="DT_ItemPassives.damage_up_skillcategory_special_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Mysterious Glowing Can", code=177, key="DT_ItemPassives.stamina_damage_up_b_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Labourer's Tag", code=178, key="DT_ItemPassives.damage_cut_debuff_down_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Cain's Ring", code=179, key="DT_ItemPassives.onattack_restorehp_damage_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Echo Device", code=180, key="DT_ItemPassives.damage_up_skillcategory_combo_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Crtystallised Fusion", code=181, key="DT_ItemPassives.damage_cut_sp_gauge_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Priestess' Tears", code=182, key="DT_ItemPassives.damage_up_sp_gauge_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Typhon", code=183, key="DT_ItemAssists.assist_010", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Lilia's Blighted Ring", code=184, key="DT_ItemPassives.ending_flag", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Primordial Heirloom", code=185, key="DT_ItemPassives.shield_008", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Abelia's Ring", code=186, key="DT_ItemPassives.onattack_instantkill_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Ancient's Fury", code=187, key="DT_ItemEquipments.armor_020", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Celestial Bangle", code=188, key="DT_ItemEquipments.armor_021", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Nameless Priestess' Ring", code=189, key="DT_ItemPassives.restore_sp_up_b_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Battered Grimoire", code=190, key="DT_ItemPassives.damage_up_debuffed_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Worn Bangle", code=191, key="DT_ItemEquipments.armor_001", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=200, stock=1), 
-    ItemData("Crude Bangle", code=192, key="DT_ItemEquipments.armor_002", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=80, stock=1), 
-    ItemData("Thistle Bangle", code=193, key="DT_ItemEquipments.armor_003", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=350, stock=1), 
-    ItemData("Stone Bangle", code=194, key="DT_ItemEquipments.armor_004", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=450, stock=1), 
-    ItemData("Bone Bangle", code=195, key="DT_ItemEquipments.armor_005", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=600, stock=1), 
-    ItemData("Protective Carapace", code=196, key="DT_ItemEquipments.shield_001", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=350, stock=1), 
-    ItemData("Enhancer", code=197, key="DT_ItemEquipments.shield_002", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=350, stock=1), 
-    ItemData("Dagger Bangle", code=198, key="DT_ItemEquipments.armor_006", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=900, stock=1), 
-    ItemData("Ward Propagator", code=199, key="DT_ItemPassives.heal_short", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=2100, stock=1), 
-    ItemData("Leg Enhancement Gear", code=200, key="DT_ItemPassives.higher_mobility", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=1050, stock=1), 
-    ItemData("Beast Bangle", code=201, key="DT_ItemEquipments.armor_010", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=1050, stock=1), 
-    ItemData("Flower Bangle", code=202, key="DT_ItemEquipments.armor_009", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=1500, stock=1), 
-    ItemData("Pyroflective Carapace", code=203, key="DT_ItemEquipments.shield_004", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=1300, stock=1), 
-    ItemData("Reflective Carapace", code=204, key="DT_ItemEquipments.shield_003", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=1300, stock=1), 
-    ItemData("Taurus", code=205, key="DT_ItemAssists.assist_002", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=2000, stock=1), 
-    ItemData("Gemini", code=206, key="DT_ItemAssists.assist_003", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=2000, stock=1), 
-    ItemData("Carcinus", code=207, key="DT_ItemAssists.assist_004", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=2000, stock=1), 
-    ItemData("Regulus", code=208, key="DT_ItemAssists.assist_005", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=2000, stock=1), 
-    ItemData("Yggdrasil Bangle", code=209, key="DT_ItemEquipments.armor_012", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=2650, stock=1), 
-    ItemData("Central Stratum Bangle", code=210, key="DT_ItemEquipments.armor_011", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=2100, stock=1), 
-    ItemData("Evasive Fragrance", code=211, key="DT_ItemPassives.dodge_long", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=3300, stock=1), 
-    ItemData("Blessed Carapace", code=212, key="DT_ItemEquipments.shield_007", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=4600, stock=1), 
-    ItemData("High Enhancer", code=213, key="DT_ItemEquipments.shield_005", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=3100, stock=1), 
-    ItemData("Impact Carapace", code=214, key="DT_ItemEquipments.shield_006", count=1, group=ItemGroup.Carapace, classification=IC.filler, cost=3100, stock=1), 
-    ItemData("Lunar Bangle", code=215, key="DT_ItemEquipments.armor_016", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=4150, stock=1), 
-    ItemData("Spire Bangle", code=216, key="DT_ItemEquipments.armor_013", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=3800, stock=1), 
-    ItemData("Cetus", code=217, key="DT_ItemAssists.assist_012", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=5000, stock=1), 
-    ItemData("Ilion", code=218, key="DT_ItemAssists.assist_011", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=5000, stock=1), 
-    ItemData("Ares", code=219, key="DT_ItemAssists.assist_008", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=5000, stock=1), 
-    ItemData("Lyra", code=220, key="DT_ItemAssists.assist_007", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=5000, stock=1), 
-    ItemData("Aster Bangle", code=221, key="DT_ItemEquipments.armor_018", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=6700, stock=1), 
-    ItemData("Sol Bangle", code=222, key="DT_ItemEquipments.armor_017", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=6300, stock=1), 
-    ItemData("Enhancement Gear", code=223, key="DT_ItemPassives.exploration_charge_short", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=4350, stock=1), 
-    ItemData("Upper Stratum Bangle", code=224, key="DT_ItemEquipments.armor_019", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=7500, stock=1), 
-    ItemData("Chloe's Bracelet", code=225, key="DT_ItemEquipments.armor_007", count=1, group=ItemGroup.Bracelet, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Attuner's Pendant", code=226, key="DT_ItemPassives.damage_up_swimming_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Krios", code=227, key="DT_ItemAssists.assist_001", count=1, group=ItemGroup.Totem, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Jagged Crystal", code=228, key="DT_ItemPassives.damage_up_minhp_1", count=1, group=ItemGroup.Relic, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Azure Mantle", code=229, key="DT_ItemCostumes.p0010", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Levy's Mantle", code=230, key="DT_ItemCostumes.p0040", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
-    ItemData("White Priestess' Attire", code=231, key="DT_ItemCostumes.p0050", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Mantle of Milius", code=232, key="DT_ItemCostumes.p0030", count=1, group=ItemGroup.Costume, classification=IC.filler, cost=0, stock=0), 
-]}
+    def __len__(self) -> int:
+        return len(self.rows)
 
+    def __iter__(self):
+        for entry in self.rows:
+            yield self[entry]
+
+aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, code=1000,rows = 
+{
+    "Crouch"                 : "Crouch",
+    "Hook"                   : "Motley's Magic Strands",
+    "Jump"                   : "Jump",
+    "SP"                     : "Attuner Arts",
+    "dash"                   : "Sprint",
+    "dash_charge"            : "Hati's Charge",
+    "dash_charge_underwater" : "Motley's Torrent",
+    "dive"                   : "Dive",
+    "dodge"                  : "Dodge",
+    "dodge_weak"             : "Roll",
+    "double_jump"            : "Aerial Jump",
+    "fast_travel"            : "Fast Travel",
+    "heal"                   : "Healing Ward",
+    "high_jump"              : "Garm's Ascent",
+    "pile_attack"            : "Garm's Iron Stake",
+    "wall_charge"            : "Lar's Swift Flight",
+    "wall_grab"              : "Lar's Grip",
+})
+
+assists = DataTable("DT_ItemAssists", group=ItemGroup.Assist, code=2000,rows = 
+{
+    "assist_001" : "Krios",
+    "assist_002" : "Taurus",
+    "assist_003" : "Gemini",
+    "assist_004" : "Carcinus",
+    "assist_005" : "Regulus",
+    "assist_006" : "Spica",
+    "assist_007" : "Lyra",
+    "assist_008" : "Ares",
+    "assist_009" : "Chiron",
+    "assist_010" : "Typhon",
+    "assist_011" : "Ilion",
+    "assist_012" : "Cetus",
+})
+
+costumes = DataTable("DT_ItemCostumes", group=ItemGroup.Costume, code=3000,rows = 
+{
+    "p0000" : "Sorcerer's Academy Uniform",
+    "p0010" : "Azure Mantle",
+    "p0011" : "Attuner's Mantle Ex",
+    "p0020" : "Attuner's Mantle",
+    "p0021" : "Attuner's Mantle Ex 2",
+    "p0030" : "Mantle of Milius",
+    "p0031" : "Mantle of Milius Ex",
+    "p0040" : "Levy's Mantle",
+    "p0041" : "Levy's Mantle Ex",
+    "p0042" : "Levy's Mantle Ex 2",
+    "p0050" : "White Priestess' Attire",
+    "p0051" : "White Priestess' Attire Ex",
+    "p0060" : "Land's End Priestess Garb",
+})
+
+currencies = DataTable("DT_ItemCurrencies", group=ItemGroup.Currency, code=4000,rows = 
+{
+    "Default" : "Materials",
+    "grade"   : "Fragments",
+    "rare"    : "Scrap",
+})
+
+equipments = DataTable("DT_ItemEquipments", group=ItemGroup.Equipment, code=5000,rows = 
+{
+    "armor_001"  : "Worn Bangle",
+    "armor_002"  : "Crude Bangle",
+    "armor_003"  : "Thistle Bangle",
+    "armor_004"  : "Stone Bangle",
+    "armor_005"  : "Bone Bangle",
+    "armor_006"  : "Dagger Bangle",
+    "armor_007"  : "Chloe's Bracelet",
+    "armor_008"  : "Crimson Bangle",
+    "armor_009"  : "Flower Bangle",
+    "armor_010"  : "Beast Bangle",
+    "armor_011"  : "Central Stratum Bangle",
+    "armor_012"  : "Yggdrasil Bangle",
+    "armor_013"  : "Spire Bangle",
+    "armor_014"  : "Abelia's Bracelet",
+    "armor_015"  : "Declan's Binds",
+    "armor_016"  : "Lunar Bangle",
+    "armor_017"  : "Sol Bangle",
+    "armor_018"  : "Aster Bangle",
+    "armor_019"  : "Upper Stratum Bangle",
+    "armor_020"  : "Ancient's Fury",
+    "armor_021"  : "Celestial Bangle",
+    "shield_001" : "Protective Carapace",
+    "shield_002" : "Enhancer",
+    "shield_003" : "Reflective Carapace",
+    "shield_004" : "Pyroflective Carapace",
+    "shield_005" : "High Enhancer",
+    "shield_006" : "Impact Carapace",
+    "shield_007" : "Blessed Carapace",
+    "shield_008" : "Primordial Heirloom",
+    "shield_009" : "Luiseach's Carapace",
+})
+
+quests = DataTable("DT_ItemQuests", group=ItemGroup.Quest, code=6000,rows = 
+{
+    "quest_amulet"     : "Faintly Glowing Aegis Curio",
+    "quest_artifact"   : "Mutated Mineral",
+    "quest_bird"       : "Avian Remains",
+    "quest_board"      : "Milius Resident Records",
+    "quest_eye"        : "Blighted Pupil",
+    "quest_lithograph" : "Stele of the Land of Origin",
+    "quest_perfume"    : "Black Perfume",
+    "quest_stone"      : "Frost Vestige",
+})
+
+keys = DataTable("DT_ItemKeys", group=ItemGroup.Key, code=7000,rows = 
+{
+    "key_higher_a"   : "Frost Lord's Mark",
+    "key_higher_b"   : "Milius Lord's Mark",
+    "key_lower"      : "Lower Stratum Key",
+    "key_owner"      : "Grand Sorcerer's Key",
+    "key_ruins_tuto" : "Subterranean Testing Site Key",
+})
+
+materials = DataTable("DT_ItemMaterials", group=ItemGroup.Material, code=8000,rows = 
+{
+    "parts_lv2_b"   : "Experimental Amplifier",
+    "parts_lv2_c"   : "Mixed Parts",
+    "parts_lv3_a"   : "???",
+    "parts_lv3_b"   : "Obsolete Core",
+    "parts_lv3_c"   : "Antiquated Parts",
+    "parts_lv4_a"   : "New Model Core",
+    "parts_lv4_b"   : "Magic Amplifier",
+    "parts_lv4_c"   : "New Model Parts",
+    "parts_lv5_a"   : "Special Alloy Core",
+    "parts_lv5_b"   : "Special Alloy Amplifier",
+    "parts_lv5_c"   : "Special Alloy Part",
+    "parts_lv6_a"   : "Origin Gem Core",
+    "parts_lv6_b"   : "Administrator's Amplifier",
+    "parts_lv6_c"   : "Highest Grade Parts",
+    "parts_s5000_a" : "Unidentified Core",
+    "parts_s5000_b" : "Unidentified Amplifier",
+    "parts_s5000_c" : "Unidentified Transformer",
+})
+
+passives = DataTable("DT_ItemPassives", group=ItemGroup.Passive, code=9000,rows = 
+{
+
+    "damage_cut_debuff_down_1"          : "Labourer's Tag",
+    "damage_cut_debuffed_1"             : "Bloodstained Stuffed Toy",
+    "damage_cut_maxhp_1"                : "Beast Horn Ornanment",
+    "damage_cut_minhp_1"                : "Effigy",
+    "damage_cut_physic_1"               : "Tarnished Tag",
+    "damage_cut_sp_gauge_1"             : "Crtystallised Fusion",
+    "damage_up_airborne_1"              : "Sanguinary Raven",
+    "damage_up_debuffed_1"              : "Battered Grimoire",
+    "damage_up_grounded_1"              : "Chain Belt",
+    "damage_up_maxhp_1"                 : "Magic Strange Charm",
+    "damage_up_minhp_1"                 : "Jagged Crystal",
+    "damage_up_skillcategory_auto_1"    : "House Milius Earrings",
+    "damage_up_skillcategory_combo_1"   : "Echo Device",
+    "damage_up_skillcategory_defence_1" : "Arena Tower Demon Mask",
+    "damage_up_skillcategory_repeat_1"  : "Pure Floral Necklace",
+    "damage_up_skillcategory_special_1" : "Cracked Magicite Dagger",
+    "damage_up_sp_gauge_1"              : "Priestess' Tears",
+    "damage_up_swimming_1"              : "Attuner's Pendant",
+    "damage_up_targetdebuffed_1"        : "Vivid Claws",
+    "damage_up_targetstunned_1"         : "Cleaner's Tag",
+    "debuff_cut_burn_1"                 : "Crimson Ribbon",
+    "debuff_damage_up_a_1"              : "Survey Team Gauntlet",
+    "debuff_damage_up_b_1"              : "Sorcerer's Gauntlet",
+    "dodge_long"                        : "Evasive Fragrance",
+    "ending_flag"                       : "Lilia's Blighted Ring",
+    "experience_up_1"                   : "Blighted Dice",
+    "exploration_charge_short"          : "Enhancement Gear",
+    "gold_up_1"                         : "Eye of the Beast",
+    "heal_short"                        : "Ward Propagator",
+    "higher_mobility"                   : "Leg Enhancement Gear",
+    "junk_up_1"                         : "Eye of the Homunculus",
+    "onattack_instantkill_1"            : "Abelia's Ring",
+    "onattack_restorehp_1"              : "Declan's Ring",
+    "onattack_restorehp_damage_1"       : "Cain's Ring",
+    "onkill_drops_1"                    : "Headless Gold Statue",
+    "onkill_reduce_cooldowns_1"         : "Magicite Hairpin",
+    "onkill_restorehp_1"                : "Helix Crystal",
+    "onkill_restoresp_1"                : "Attuner's Earrings",
+    "reduce_gravity"                    : "Incomplete Gear",
+    "reduce_skill_cooldown_1"           : "Eye of the Ancients",
+    "restore_sp_up_a_1"                 : "Chief Attuner's Ring",
+    "restore_sp_up_b_1"                 : "Nameless Priestess' Ring",
+    "stamina_damage_up_a_1"             : "Blighted Talisman",
+    "stamina_damage_up_b_1"             : "Mysterious Glowing Can",
+})
+
+skills = DataTable("DT_ItemSkills", group=ItemGroup.Skill, code=10000,rows = 
+{
+    "s5000_sword"   : "Nola Spirit Piercer",
+    "s5001_scythe"  : "Nola Soul Harverster",
+    "s5002_axe"     : "Nola Vanquisher",
+    "s5010_blaster" : "Reibolg Magic Tracer",
+    "s5011_lazer"   : "Reibolg Piercing Beam",
+    "s5012_granade" : "Reibolg Blast Volley",
+    "s5030_punch"   : "Lito Blazing Fist",
+    "s5031_bomb"    : "Lito Glacial Fist",
+    "s5032_roket"   : "Lito Rocket Fist",
+    "s5040_reflect" : "Lorna Gravity Field",
+    "s5041_gravit"  : "Lorna Light Show",
+    "s5042_ignit"   : "Lorna Fire",
+    "s5050_moon"    : "No.7 Lunar Manifestation",
+    "s5051_snow"    : "No.7 Hail Dance",
+    "s5052_flower"  : "No.7 Thunder Flower",
+    "s5060_chain"   : "Shackled Beast Chain Whip",
+    "s5061_horn"    : "Shackled Beast Charge",
+    "s5062_voice"   : "Shackled Beast Benumbed Howl",
+    "s5070_fire"    : "Luiseach Volcanic",
+    "s5071_thunder" : "Luiseach Whirlwind",
+    "s5072_ice"     : "Luiseach Cocytus",
+    "s5080_wing"    : "Huginn Gust Wing",
+    "s5081_trail"   : "Huginn Poison Cloud",
+    "s5082_gast"    : "Huginn Flaming Feather",
+    "s5090_homing"  : "Muninn Seeker",
+    "s5091_stun"    : "Muninn Stun",
+    "s5092_fall"    : "Muninn Bombard",
+    "s5110_gatling" : "Yolvan Barrage",
+    "s5111_saw"     : "Yolvan Lacerate",
+    "s5112_drill"   : "Yolvan Eviscerate",
+})
+
+spirits = DataTable("DT_ItemSpirits", group=ItemGroup.Spirit, code=11000,rows = 
+{
+    "s5000_reaper" : "Nola",
+    "s5010_lancer" : "Reibolg",
+    "s5030_rogue"  : "Lito",
+    "s5040_maiden" : "Lorna",
+    "s5050_ronin"  : "No.7",
+    "s5060_beast"  : "Shackled Beast",
+    "s5070_witch"  : "Luiseach",
+    "s5080_hawk"   : "Huginn",
+    "s5090_owl"    : "Muninn",
+    "s5110_gunman" : "Yolvan",
+})
+
+stats = DataTable("DT_ItemStats", group=ItemGroup.Stat, code=12000,rows = 
+{
+    "attack_up_s"    : "Attack Up",
+    "defense_up_s"   : "Defense Up",
+    "hp_up_l"        : "Charmed Fragment",
+    "hp_up_s"        : "Charmed Ore",
+    "passive_slot_l" : "Tripartite Magic Vial",
+    "passive_slot_s" : "Magic Vial",
+    "shop_line_up"   : "Grimoire",
+})
+
+tips = DataTable("DT_ItemTips", group=ItemGroup.Tip, code=13000,rows = 
+{
+    "tip_administrationrecord_01" : "Factory Management Records",
+    "tip_bloodstaineddiary_01"    : "Bloodstained Diary",
+    "tip_caladriusrecord_01"      : "Caladrius Records",
+    "tip_cassiabook_01"           : "Cassia's Grimoire",
+    "tip_chieftunerjournal_01"    : "Chief Attuner's Journal",
+    "tip_corrosionboard_01"       : "Corroded Warning Sign",
+    "tip_degrandsrecord_01"       : "Declan's Records",
+    "tip_disposaljournal_01"      : "Blighted Note",
+    "tip_engineermemoirs_01"      : "Arcane Smith's Musings",
+    "tip_enhancementplan_01"      : "Miner Enchancement Project",
+    "tip_fightingtower_01"        : "Arena Tower Flyer",
+    "tip_freeze_01"               : "Survey Teams Notes",
+    "tip_frostgrimoire_01"        : "Book of the Blighted",
+    "tip_frostsrecord_01"         : "Frost Confidential Records 1",
+    "tip_frostsrecord_02"         : "Frost Confidential Records 2",
+    "tip_gilroyrecords_01"        : "Gilroy Examination Record",
+    "tip_gilroysterminal_01"      : "Gilroy's Communication Device",
+    "tip_homunculusrecord_01"     : "Homunculus Research Log 1",
+    "tip_homunculusrecord_02"     : "Homunculus Research Log 2",
+    "tip_landend_01"              : "Words on Land's End",
+    "tip_lightsilence_01"         : "Silencing Light Documents",
+    "tip_liliasdiary_01"          : "Lilia's Diary",
+    "tip_lowestrecord_01"         : "Depths Survey Record",
+    "tip_magicrecord_01"          : "Magicite Mining Record",
+    "tip_miliusbook_01"           : "Chronicles of Milius",
+    "tip_mothersnote_01"          : "Mother's Note",
+    "tip_motleysterminal_01"      : "Motley's Communication Device",
+    "tip_painting_01"             : "Worries of a Sorcerer",
+    "tip_prisonwall_01"           : "Words Etched into Cell",
+    "tip_prophecybook_01"         : "Blighted Prophecy",
+    "tip_raggedpastedown_01"      : "Tattered Notice",
+    "tip_researchersjournal_01"   : "Fugitive Researcher's Notes",
+    "tip_ruinsrecords_01"         : "Worn Experiment Log",
+    "tip_searchrecord_01"         : "Homunculus Expedition Report",
+    "tip_secretletter_01"         : "Spy's Letter",
+    "tip_surveillancerecord_01"   : "Worker's Surveillance Records",
+    "tip_tombstone_01"            : "Words Etched into Stone",
+    "tip_tornjournal_01"          : "Journal of an Attuner",
+    "tip_tornletter_01"           : "Broken Warning Sign",
+    "tip_towerumbrella_01"        : "Document on the Empyrean Parasol",
+    "tip_townboard_01"            : "Tavern Bulletin Board",
+    "tip_tunerjournal_01"         : "Notification of Restricted Areas",
+    "tip_tunerletter_01"          : "Tattered Letter",
+    "tip_upperterminal_01"        : "Upper Stratum Communication Device",
+    "tip_vials_01"                : "Letter in a Bottle",
+    "tip_workerscode_01"          : "Subterranean Laborer's Code",
+    "tip_writingwall_01"          : "Writing Etched Into the Wall",
+    "tip_yoransdiary_01"          : "Joran's Notes 1",
+    "tip_yoransdiary_02"          : "Joran's Notes 2",
+})
 
 items : Dict[str, ItemData] = {item.name: item for item in [ 
-    ItemData("Charmed Fragment", code=102, key="DT_ItemStats.hp_up_s", count=2, group=ItemGroup.Upgrade, classification=IC.filler, cost=0, stock=0), # Actual count: 44
-    ItemData("Homunculus Research Log 1", code=41, key="DT_ItemTips.tip_homunculusrecord_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Worn Experiment Log", code=40, key="DT_ItemTips.tip_ruinsrecords_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Tattered Letter", code=42, key="DT_ItemTips.tip_tunerletter_01", count=1, group=ItemGroup.Finding, classification=IC.filler, cost=0, stock=0), 
+    *aptitudes,*assists, *costumes, *currencies, *equipments, *quests, *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
+}
 
-    ItemData("Nola", code=0, key="DT_ItemSpirits.s5000_reaper", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Lito", code=4, key="DT_ItemSpirits.s5030_rogue", count=1, group=ItemGroup.Ally, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Subterranean Testing Site Key", code=130, key="DT_ItemKeys.key_ruins_tuto", count=1, group=ItemGroup.KeyItem, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Healing Ward", code=89, key="DT_ItemAptitudes.heal", count=1, group=ItemGroup.Action, classification=IC.filler, cost=0, stock=0), 
-    ItemData("Aerial Jump", code=90, key="DT_ItemAptitudes.double_jump", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Hati's Charge", code=94, key="DT_ItemAptitudes.dash_charge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-    ItemData("Dodge", code=91, key="DT_ItemAptitudes.dodge", count=1, group=ItemGroup.Action, classification=IC.progression, cost=0, stock=0), 
-                                             
-# event
-    ItemData("Ruins 7 Lever"                 , classification=IC.progression),
-    ItemData("Victory"                       , classification=IC.progression),
+pool = [
+    aptitudes["Hook"],
+    aptitudes["SP"],
+    aptitudes["dash_charge"],
+    aptitudes["dash_charge_underwater"],
+    aptitudes["dive"],
+    aptitudes["dodge"],
+    aptitudes["double_jump"],
+    aptitudes["heal"],
+    aptitudes["high_jump"],
+    aptitudes["pile_attack"],
+    aptitudes["wall_charge"],
+    aptitudes["wall_grab"],
+    *assists,
+    # costume events are not yet handled by the client
+    # currencies need some additional work to create packs
+    *equipments,
+    *quests,
+    *keys,
+    *2 * materials["parts_lv2_b"],
+    *2 * materials["parts_lv3_b"],
+    *2 * materials["parts_lv4_a"],
+    *4 * materials["parts_lv4_b"],
+    *3 * materials["parts_lv5_a"],
+    *4 * materials["parts_lv5_b"],
+    *7 * materials["parts_lv6_a"],
+    *9 * materials["parts_lv6_b"],
+    *3 * materials["parts_s5000_a"],
+    *3 * materials["parts_s5000_b"],
+    *3 * materials["parts_s5000_c"],
+    *passives,
+    *skills,
+    *tips,
+]
+
+events : Dict[str, ItemData] = {item.name: item for item in [ 
+    ItemData("Ruins 7 Lever"),
+    ItemData("Victory"),
 ]}

@@ -1,7 +1,7 @@
 from os import name
 from typing import List, Optional, Dict
 from enum import Enum
-from .Items import ItemData, items
+from .Items import ItemData, items, events
 from dataclasses import dataclass
 
 
@@ -23,9 +23,9 @@ class LocationData:
     content: Optional[ItemData] = None
     group: Optional[LocationGroup] = None
 
-
 locations: Dict[str, LocationData] = {location.name: location for location in [
-# checks
+    LocationData("Goal", content=events["Victory"]),
+
     LocationData("Ruins 4 - Nola",                           address=1, key="Ruins_001_Zone_004.BP_Trigger_Event_C_0",              group=LocationGroup.Event,        content=items["Nola"]),
     LocationData("Ruins 5 - Charmed Fragment",               address=2, key="Ruins_001_Zone_005.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Charmed Fragment"]),
     LocationData("Ruins 12 - Subterranean Testing Site Key", address=3, key="Ruins_001_Zone_012.BP_Interactable_AddItem_Skill_C_0", group=LocationGroup.Interactable, content=items["Subterranean Testing Site Key"]),
@@ -34,14 +34,13 @@ locations: Dict[str, LocationData] = {location.name: location for location in [
     LocationData("Ruins 14 - Worn Experiment Log",           address=6, key="Ruins_001_Zone_014.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Worn Experiment Log"]),
     LocationData("Ruins 15 - Healing Ward",                  address=7, key="Ruins_001_Zone_015.BP_Trigger_Event_C_0",              group=LocationGroup.Event,        content=items["Healing Ward"]),
 
-# New checks
-    LocationData("Crossroad 2 - Charmed Fragment",           address=8, key="Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Charmed Fragment"]),
-    LocationData("Crossroad 5 - Aerial Jump",                address=9, key="Crossroad_001_Zone_005.BP_Trigger_Event_C_0",       group=LocationGroup.Interactable, content=items["Aerial Jump"]),
-    LocationData("Crossroad 5 - Dodge",                      address=10,key="Crossroad_001_Zone_005.BP_Trigger_Event_C_0.1",       group=LocationGroup.Interactable, content=items["Dodge"]),
-    LocationData("Slum 1 - Tattered Letter",                 address=11,key="Slum_001_Zone_001.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable, content=items["Tattered Letter"]),
+    LocationData("Ruins 7 - Lever",                                                                                                 group=LocationGroup.Event,        content=events["Ruins 7 Lever"]),
 
 
-# event locations
-    LocationData("Goal", content=items["Victory"]),
-    LocationData("Ruins 7 - Lever", content=items["Ruins 7 Lever"]),
+    LocationData("Crossroad 2 - Charmed Fragment",           address=8, key="Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1",  group=LocationGroup.Interactable,  content=items["Charmed Fragment"]),
+    LocationData("Crossroad 5 - Aerial Jump",                address=9, key="Crossroad_001_Zone_005.BP_Trigger_Event_C_0",         group=LocationGroup.Event,         content=items["Aerial Jump"]),
+    LocationData("Crossroad 5 - Dodge",                      address=10,key="Crossroad_001_Zone_005.BP_Trigger_Event_C_0.1",       group=LocationGroup.Event,         content=items["Dodge"]),
+
+    LocationData("Slum 1 - Tattered Letter",                 address=11,key="Slum_001_Zone_001.BP_Interactable_AddItem_C_1",       group=LocationGroup.Interactable,  content=items["Tattered Letter"]),
+    LocationData("Slum 1 - Eye of the Homunculus",           address=12,key="Slum_001_Zone_001.BP_Interactable_AddItem_C_2",       group=LocationGroup.Interactable,  content=items["Eye of the Homunculus"]),
 ]}

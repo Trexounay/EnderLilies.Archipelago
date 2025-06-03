@@ -8,29 +8,35 @@ from worlds.generic.Rules import add_item_rule, add_rule, set_rule
 
 from .Locations import LocationData, LocationGroup, locations
 from .Regions import regions
-from .Items import ItemGroup, items
+from .Items import ItemGroup, items, pool
 from .Rules import get_entrances_rules, get_locations_rules
 
 ENDERMAGNOLIA = "Ender Magnolia"
 
 class EnderMagnoliaItem(Item):
     game = ENDERMAGNOLIA
+    
+    @classmethod
+    def from_name(cls, name, player):
+        if name in items:
+            return cls.from_data(items[name], player)
+        return cls(name, ItemClassification.progression, None, player)
+
+    @classmethod
+    def from_data(cls, data, player):
+        return cls(data.name, data.classification, data.code, player)
 
 class EnderMagnoliaLocation(Location):
     game = ENDERMAGNOLIA
     data : LocationData
 
-    def __init__(self, player: int, name: str = '', data: Optional[LocationData] = None, parent: Optional[Region] = None):
-        address = None
-        if data:
-            address = data.address
+    def __init__(self, player: int, name: str, data: LocationData, parent: Optional[Region] = None):
+        address = data.address
         super().__init__(player, name, address, parent)
         self.data = data
 
     def key(self):
-        if self.data:
-            return self.data.key
-        return self.name
+        return self.data.key
 
 class EnderMagnoliaWorld(World):
     """
@@ -41,25 +47,20 @@ class EnderMagnoliaWorld(World):
 
     # items
     item_name_to_id = {name: data.code for name, data in items.items()}
-    item_name_groups = {item_group.name : {name for name, data in items.items() if data.item_group == item_group} for item_group in ItemGroup}
+    item_name_groups = {group.name : {name for name, data in items.items() if data.group == group} for group in ItemGroup}
     
     # locations
     location_name_to_id = {name: data.address for name, data in locations.items()}
-    location_name_groups = {location_group.name : {name for name, data in locations.items() if data.location_group == location_group} for location_group in LocationGroup}
+    location_name_groups = {group.name : {name for name, data in locations.items() if data.group == group} for group in LocationGroup}
 
     def create_item(self, item: str) -> EnderMagnoliaItem:
-        if item in items:
-            return EnderMagnoliaItem(item, items[item].classification, items[item].code, self.player)
-        # event
-        return EnderMagnoliaItem(item, ItemClassification.progression, None, self.player)
+        return EnderMagnoliaItem.from_name(item, self.player)
 
     def create_items(self) -> None:
         items_pool : List[Item] = []
-        for name, data in items.items():
-            if not data.code:
-                continue
-            for i in range(data.count):
-                items_pool.append(self.create_item(name))
+        print("Pool contains", len(pool));
+        for data in pool:
+            items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
         self.multiworld.itempool += items_pool
 
     def create_region(self, name: str, checks: Optional[List[LocationData]] = []) -> Region:
@@ -67,12 +68,12 @@ class EnderMagnoliaWorld(World):
         self.multiworld.regions.append(region)
         for location in checks:
             self.create_location(location.name, region)
+        for _ in range(len(locations), len(pool)):
+            self.create_location(location.name, region)
         return region
 
     def create_location(self, name: str, parent_region: Optional[Region] = None) -> EnderMagnoliaLocation:
-        data = None
-        if name in locations:
-            data = locations[name]
+        data = locations[name]
         location = EnderMagnoliaLocation(self.player, name, data, parent_region)
         if not data.address and data.content:
             location.place_locked_item(self.create_item(data.content.name))
