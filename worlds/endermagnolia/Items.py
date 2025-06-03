@@ -55,7 +55,7 @@ class DataTable():
         for entry in self.rows:
             yield self[entry]
 
-aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, code=1000,rows = 
+aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, classification=IC.progression, code=1000,rows = 
 {
     "Crouch"                 : "Crouch",
     "Hook"                   : "Motley's Magic Strands",
@@ -150,7 +150,7 @@ equipments = DataTable("DT_ItemEquipments", group=ItemGroup.Equipment, code=5000
     "shield_009" : "Luiseach's Carapace",
 })
 
-quests = DataTable("DT_ItemQuests", group=ItemGroup.Quest, code=6000,rows = 
+quests = DataTable("DT_ItemQuests", group=ItemGroup.Quest, classification=IC.progression, code=6000,rows = 
 {
     "quest_amulet"     : "Faintly Glowing Aegis Curio",
     "quest_artifact"   : "Mutated Mineral",
@@ -162,7 +162,7 @@ quests = DataTable("DT_ItemQuests", group=ItemGroup.Quest, code=6000,rows =
     "quest_stone"      : "Frost Vestige",
 })
 
-keys = DataTable("DT_ItemKeys", group=ItemGroup.Key, code=7000,rows = 
+keys = DataTable("DT_ItemKeys", group=ItemGroup.Key, classification=IC.progression, code=7000,rows = 
 {
     "key_higher_a"   : "Frost Lord's Mark",
     "key_higher_b"   : "Milius Lord's Mark",

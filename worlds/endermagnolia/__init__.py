@@ -68,8 +68,6 @@ class EnderMagnoliaWorld(World):
         self.multiworld.regions.append(region)
         for location in checks:
             self.create_location(location.name, region)
-        for _ in range(len(locations), len(pool)):
-            self.create_location(location.name, region)
         return region
 
     def create_location(self, name: str, parent_region: Optional[Region] = None) -> EnderMagnoliaLocation:
@@ -95,6 +93,18 @@ class EnderMagnoliaWorld(World):
                 destination = self.multiworld.get_region(connection.destination, self.player)
                 region.connect(destination, connection.name, rules.get(connection.name))
 
+        # TMP
+        # create fake locations to fill pool
+        address = 1000
+        region = self.get_region("Menu")
+        for _ in range(len(locations), len(pool)):
+            l = Location(self.player, str(address), address, region)
+            self.location_name_to_id[str(address)] = address;
+            add_rule(l, lambda s : s.has("Victory", self.player))
+            region.locations.append(l)
+            address += 1
+
+
     def set_rules(self) -> None:
         rules = get_locations_rules(self.player)
 
@@ -113,7 +123,7 @@ class EnderMagnoliaWorld(World):
         output = ""
         locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations();
         for location in locations:
-            if location.item and location.key() and location.item.name and location.item.name in items:
+            if isinstance(location, EnderMagnoliaLocation) and location.item and location.key() and location.item.name and location.item.name in items:
                 s = f"{location.key()}:{items[location.item.name].key}"
                 print(s)
                 output += f"{s}\n"
