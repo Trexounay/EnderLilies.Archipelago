@@ -8,7 +8,7 @@ from worlds.generic.Rules import add_item_rule, add_rule, set_rule
 
 from .Locations import LocationData, LocationGroup, locations
 from .Regions import regions
-from .Items import ItemGroup, items, pool
+from .Items import ItemData, ItemGroup, items, pool
 from .Rules import get_entrances_rules, get_locations_rules
 
 ENDERMAGNOLIA = "Ender Magnolia"
@@ -17,13 +17,13 @@ class EnderMagnoliaItem(Item):
     game = ENDERMAGNOLIA
     
     @classmethod
-    def from_name(cls, name, player):
+    def from_name(cls, name: str, player: int):
         if name in items:
             return cls.from_data(items[name], player)
         return cls(name, ItemClassification.progression, None, player)
 
     @classmethod
-    def from_data(cls, data, player):
+    def from_data(cls, data: ItemData, player: int):
         return cls(data.name, data.classification, data.code, player)
 
 class EnderMagnoliaLocation(Location):
@@ -61,7 +61,7 @@ class EnderMagnoliaWorld(World):
         print("Pool contains", len(pool));
         for data in pool:
             items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
-        self.multiworld.itempool += items_pool
+        self.multiworld.itempool.extend(items_pool)
 
     def create_region(self, name: str, checks: Optional[List[LocationData]] = []) -> Region:
         region = Region(name, self.player, self.multiworld)
@@ -130,4 +130,3 @@ class EnderMagnoliaWorld(World):
 
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(output)
-        return super().generate_output(output_directory)

@@ -25,8 +25,11 @@ class ItemData():
     code: Optional[int] = None
     group: Optional[ItemGroup] = None
     classification: IC = IC.filler
-
+    
     def __rmul__(self, other):
+        return [self for _ in range(other)]
+
+    def __mul__(self, other):
         return [self for _ in range(other)]
 
 @dataclass()
@@ -57,18 +60,18 @@ class DataTable():
 
 aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, classification=IC.progression, code=1000,rows = 
 {
-    "Crouch"                 : "Crouch",
+#    "Crouch"                 : "Crouch",
+#    "Jump"                   : "Jump",
+#    "dash"                   : "Sprint",
+#    "dodge_weak"             : "Roll",
+#    "fast_travel"            : "Fast Travel",
     "Hook"                   : "Motley's Magic Strands",
-    "Jump"                   : "Jump",
     "SP"                     : "Attuner Arts",
-    "dash"                   : "Sprint",
     "dash_charge"            : "Hati's Charge",
     "dash_charge_underwater" : "Motley's Torrent",
     "dive"                   : "Dive",
     "dodge"                  : "Dodge",
-    "dodge_weak"             : "Roll",
     "double_jump"            : "Aerial Jump",
-    "fast_travel"            : "Fast Travel",
     "heal"                   : "Healing Ward",
     "high_jump"              : "Garm's Ascent",
     "pile_attack"            : "Garm's Iron Stake",
@@ -353,40 +356,34 @@ tips = DataTable("DT_ItemTips", group=ItemGroup.Tip, code=13000,rows =
     "tip_yoransdiary_02"          : "Joran's Notes 2",
 })
 
+# items data and 
 items : Dict[str, ItemData] = {item.name: item for item in [ 
-    *aptitudes,*assists, *costumes, *currencies, *equipments, *quests, *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
+    *aptitudes,*assists, *costumes, *currencies, *equipments, *quests,
+    *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
 }
 
+# items and quantity in the pool
 pool = [
-    aptitudes["Hook"],
-    aptitudes["SP"],
-    aptitudes["dash_charge"],
-    aptitudes["dash_charge_underwater"],
-    aptitudes["dive"],
-    aptitudes["dodge"],
-    aptitudes["double_jump"],
-    aptitudes["heal"],
-    aptitudes["high_jump"],
-    aptitudes["pile_attack"],
-    aptitudes["wall_charge"],
-    aptitudes["wall_grab"],
+    # TODO: costume -> not yet handled by the client
+    # TODO: currencies -> need to hand pack of items
+    # TODO: shop
+
+    *aptitudes,
     *assists,
-    # costume events are not yet handled by the client
-    # currencies need some additional work to create packs
     *equipments,
     *quests,
     *keys,
-    *2 * materials["parts_lv2_b"],
-    *2 * materials["parts_lv3_b"],
-    *2 * materials["parts_lv4_a"],
-    *4 * materials["parts_lv4_b"],
-    *3 * materials["parts_lv5_a"],
-    *4 * materials["parts_lv5_b"],
-    *7 * materials["parts_lv6_a"],
-    *9 * materials["parts_lv6_b"],
-    *3 * materials["parts_s5000_a"],
-    *3 * materials["parts_s5000_b"],
-    *3 * materials["parts_s5000_c"],
+    *materials["parts_lv2_b"]   * 2,
+    *materials["parts_lv3_b"]   * 3,
+    *materials["parts_lv4_a"]   * 2,
+    *materials["parts_lv4_b"]   * 4,
+    *materials["parts_lv5_a"]   * 3,
+    *materials["parts_lv5_b"]   * 4,
+    *materials["parts_lv6_a"]   * 7,
+    *materials["parts_lv6_b"]   * 9,
+    *materials["parts_s5000_a"] * 3,
+    *materials["parts_s5000_b"] * 3,
+    *materials["parts_s5000_c"] * 3,
     *passives,
     *skills,
     *tips,
