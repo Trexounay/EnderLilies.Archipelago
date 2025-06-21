@@ -369,7 +369,7 @@ items : Dict[str, ItemData] = {item.name: item for item in [
 # items and quantity in the pool
 pool = [
     # TODO: currencies -> need to handle pack of items
-    # TODO: shop
+    # TODO: shop 
     assists["assist_001"],
     assists["assist_006"],
     assists["assist_009"],
@@ -408,7 +408,7 @@ pool = [
     *stats["passive_slot_s"] * 10,
     *stats["shop_line_up"] * 12,
     *skills, # +20
-    *[*tips][:-24], #-24
+    *[*tips][:-24], # -24
 ]
 
 events : Dict[str, ItemData] = {item.name: item for item in [ 

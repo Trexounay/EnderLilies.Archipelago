@@ -74,10 +74,13 @@ class EnderMagnoliaWorld(World):
         self.multiworld.regions.append(region)
         return region
 
-    def create_location(self, name: str, parent_region: Optional[Region] = None) -> EnderMagnoliaLocation:
+    def create_location(self, name: str) -> EnderMagnoliaLocation:
+        parent_region = None
         if name in locations:
+            parent_region = self.multiworld.get_region(locations[name].region, self.player)
             location = EnderMagnoliaLocation(self.player, name, locations[name], parent_region)
         elif name in event_locations:
+            parent_region = self.multiworld.get_region(event_locations[name].region, self.player)
             location = EnderMagnoliaEvent(self.player, name, parent_region)
             location.place_locked_item(EnderMagnoliaItem.from_data(event_locations[name].content, self.player))
         else:
@@ -90,30 +93,23 @@ class EnderMagnoliaWorld(World):
         rules = get_entrances_rules(self.player)
 
         # create regions
-        for region_data in regions:
-            self.create_region(region_data.name)
+        for name in regions:
+            self.create_region(name)
 
         # connect regions together (needs to happens after region creation)
-        for region_data in regions:
-            region = self.multiworld.get_region(region_data.name, self.player)
+        for name, region_data in regions.items():
+            region = self.multiworld.get_region(name, self.player)
             for connection in region_data.connections:
                 destination = self.multiworld.get_region(connection.destination, self.player)
                 region.connect(destination, connection.name, rules.get(connection.name))
-            for location in region_data.locations:
-                self.create_location(location.name, region)
-        total = self.multiworld.get_locations(self.player)
 
-        # TMP
-        # create fake locations to fill pool
-        address = 1000
-        region = self.get_region("Menu")
-        for _ in range(len(total), len(pool)):
-            l = Location(self.player, str(address), address, region)
-            self.location_name_to_id[str(address)] = address;
-            add_rule(l, lambda s : s.has("Victory", self.player))
-            region.locations.append(l)
-            address += 1
+        # add locations
+        for name in locations:
+            location = self.create_location(name)
 
+        # add events
+        for name in event_locations:
+            location = self.create_location(name)
 
     def set_rules(self) -> None:
         rules = get_locations_rules(self.player)
