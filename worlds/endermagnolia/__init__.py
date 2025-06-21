@@ -38,6 +38,11 @@ class EnderMagnoliaLocation(Location):
     def key(self):
         return self.data.key
 
+class EnderMagnoliaEvent(Location):
+    game = ENDERMAGNOLIA
+    def __init__(self, player: int, name: str, parent: Optional[Region] = None):
+        super().__init__(player, name, None, parent)
+
 class EnderMagnoliaWorld(World):
     """
     Ender Magnolia: BLOOM IN THE MIST
@@ -59,6 +64,7 @@ class EnderMagnoliaWorld(World):
     def create_items(self) -> None:
         items_pool : List[Item] = []
         print("Pool contains", len(pool));
+
         for data in pool:
             items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
         self.multiworld.itempool.extend(items_pool)
@@ -69,11 +75,10 @@ class EnderMagnoliaWorld(World):
         return region
 
     def create_location(self, name: str, parent_region: Optional[Region] = None) -> EnderMagnoliaLocation:
-        print(name)
         if name in locations:
             location = EnderMagnoliaLocation(self.player, name, locations[name], parent_region)
         elif name in event_locations:
-            location = Location(self.player, name, None, parent_region)
+            location = EnderMagnoliaEvent(self.player, name, parent_region)
             location.place_locked_item(EnderMagnoliaItem.from_data(event_locations[name].content, self.player))
         else:
             raise Exception(f"Could not create location {name}")
@@ -93,10 +98,11 @@ class EnderMagnoliaWorld(World):
             region = self.multiworld.get_region(region_data.name, self.player)
             for connection in region_data.connections:
                 destination = self.multiworld.get_region(connection.destination, self.player)
-                region.connect(destination, connection.name, rules.get(connection.name))            
+                region.connect(destination, connection.name, rules.get(connection.name))
             for location in region_data.locations:
                 self.create_location(location.name, region)
         total = self.multiworld.get_locations(self.player)
+
         # TMP
         # create fake locations to fill pool
         address = 1000
@@ -104,12 +110,14 @@ class EnderMagnoliaWorld(World):
         for _ in range(len(total), len(pool)):
             l = Location(self.player, str(address), address, region)
             self.location_name_to_id[str(address)] = address;
+            add_rule(l, lambda s : s.has("Victory", self.player))
             region.locations.append(l)
             address += 1
 
 
     def set_rules(self) -> None:
         rules = get_locations_rules(self.player)
+        rules = {}
 
         # set location rules
         for location_name, rule in rules.items():

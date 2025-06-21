@@ -32,6 +32,10 @@ class ItemData():
     def __mul__(self, other):
         return [self for _ in range(other)]
 
+class EventData(ItemData):
+    def __init__(self, name):
+        super().__init__(name, classification=IC.progression)
+
 @dataclass()
 class DataTable():
     name: str
@@ -364,32 +368,50 @@ items : Dict[str, ItemData] = {item.name: item for item in [
 
 # items and quantity in the pool
 pool = [
-    # TODO: costume -> not yet handled by the client
-    # TODO: currencies -> need to hand pack of items
+    # TODO: currencies -> need to handle pack of items
     # TODO: shop
-
+    assists["assist_001"],
+    assists["assist_006"],
+    assists["assist_009"],
+    assists["assist_010"],
     *aptitudes,
-    *assists,
-    *equipments,
-    *quests,
+    costumes["p0030"],
+    costumes["p0040"],
+    costumes["p0050"],
+    *currencies["Default"] * 35,
+    *currencies["rare"] * 13,
+    equipments["armor_007"],
+    equipments["armor_008"],
+    equipments["armor_014"],
+    equipments["armor_015"],
+    equipments["armor_020"],
+    equipments["armor_021"],
+    equipments["shield_008"],
+    equipments["shield_009"],
     *keys,
     *materials["parts_lv2_b"]   * 2,
-    *materials["parts_lv3_b"]   * 3,
+    *materials["parts_lv3_b"]   * 2,
     *materials["parts_lv4_a"]   * 2,
-    *materials["parts_lv4_b"]   * 4,
+    *materials["parts_lv4_b"]   * 3,
     *materials["parts_lv5_a"]   * 3,
-    *materials["parts_lv5_b"]   * 4,
+    *materials["parts_lv5_b"]   * 2,
     *materials["parts_lv6_a"]   * 7,
     *materials["parts_lv6_b"]   * 9,
     *materials["parts_s5000_a"] * 3,
     *materials["parts_s5000_b"] * 3,
     *materials["parts_s5000_c"] * 3,
-    *passives,
-    *skills,
-    *tips,
+    *quests,
+    *passives, # +4
+    *stats["hp_up_l"] * 3,
+    *stats["hp_up_s"] * 44,
+    stats["passive_slot_l"],
+    *stats["passive_slot_s"] * 10,
+    *stats["shop_line_up"] * 12,
+    *skills, # +20
+    *[*tips][:-24], #-24
 ]
 
 events : Dict[str, ItemData] = {item.name: item for item in [ 
-    ItemData("Ruins 7 Lever"),
-    ItemData("Victory"),
+    EventData("Ruins 7 Lever"),
+    EventData("Victory"),
 ]}
