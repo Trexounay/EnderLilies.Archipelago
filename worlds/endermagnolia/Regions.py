@@ -1,4 +1,6 @@
 from typing import List
+
+from worlds.endermagnolia import event_locations
 from .Locations import LocationData, locations
 
 
@@ -12,9 +14,6 @@ class ExitData:
 
 
 class RegionData:
-    name: str
-    locations: List[LocationData] = []
-    connections: List[ExitData] = []
 
     def __init__(self, name, content: List[LocationData | ExitData] = []):
         self.name = name
@@ -28,7 +27,7 @@ ruins_regions: List[RegionData] = [
     RegionData(
         "Menu",
         [
-            locations["Goal"],
+            event_locations["Goal"],
             ExitData("Start", "Ruins 14"),
         ]
     ),
@@ -80,7 +79,7 @@ ruins_regions: List[RegionData] = [
     RegionData(
         "Ruins 7",
         [
-            locations["Ruins 7 - Lever"],
+            event_locations["Ruins 7 - Lever"],
             ExitData("Ruins 7 to Ruins 6", "Ruins 6"),
             ExitData("Ruins 7 to Ruins 2", "Ruins 2"),
             ExitData("Ruins 7 to Ruins 8", "Ruins 8"),
@@ -205,9 +204,8 @@ slum_regions: List[RegionData] = [
     )
 ]
 
-regions: List[RegionData] = []
-regions.extend(ruins_regions)
-regions.extend(crossroad_regions)
-regions.extend(slum_regions)
-
-
+regions: List[RegionData] = [
+    *ruins_regions,
+    *crossroad_regions,
+    *slum_regions
+]

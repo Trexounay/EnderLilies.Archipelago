@@ -6,7 +6,7 @@ from BaseClasses import Item, ItemClassification, Location, Region
 from worlds.AutoWorld import World
 from worlds.generic.Rules import add_item_rule, add_rule, set_rule
 
-from .Locations import LocationData, LocationGroup, locations
+from .Locations import LocationData, LocationGroup, locations, event_locations
 from .Regions import regions
 from .Items import ItemData, ItemGroup, items, pool
 from .Rules import get_entrances_rules, get_locations_rules
@@ -63,18 +63,20 @@ class EnderMagnoliaWorld(World):
             items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
         self.multiworld.itempool.extend(items_pool)
 
-    def create_region(self, name: str, checks: Optional[List[LocationData]] = []) -> Region:
+    def create_region(self, name: str) -> Region:
         region = Region(name, self.player, self.multiworld)
         self.multiworld.regions.append(region)
-        for location in checks:
-            self.create_location(location.name, region)
         return region
 
     def create_location(self, name: str, parent_region: Optional[Region] = None) -> EnderMagnoliaLocation:
-        data = locations[name]
-        location = EnderMagnoliaLocation(self.player, name, data, parent_region)
-        if not data.address and data.content:
-            location.place_locked_item(self.create_item(data.content.name))
+        print(name)
+        if name in locations:
+            location = EnderMagnoliaLocation(self.player, name, locations[name], parent_region)
+        elif name in event_locations:
+            location = Location(self.player, name, None, parent_region)
+            location.place_locked_item(EnderMagnoliaItem.from_data(event_locations[name].content, self.player))
+        else:
+            raise Exception(f"Could not create location {name}")
         if parent_region:
             parent_region.locations.append(location)
         return location
@@ -84,23 +86,24 @@ class EnderMagnoliaWorld(World):
 
         # create regions
         for region_data in regions:
-            self.create_region(region_data.name, checks=region_data.locations)
+            self.create_region(region_data.name)
 
         # connect regions together (needs to happens after region creation)
         for region_data in regions:
             region = self.multiworld.get_region(region_data.name, self.player)
             for connection in region_data.connections:
                 destination = self.multiworld.get_region(connection.destination, self.player)
-                region.connect(destination, connection.name, rules.get(connection.name))
-
+                region.connect(destination, connection.name, rules.get(connection.name))            
+            for location in region_data.locations:
+                self.create_location(location.name, region)
+        total = self.multiworld.get_locations(self.player)
         # TMP
         # create fake locations to fill pool
         address = 1000
         region = self.get_region("Menu")
-        for _ in range(len(locations), len(pool)):
+        for _ in range(len(total), len(pool)):
             l = Location(self.player, str(address), address, region)
             self.location_name_to_id[str(address)] = address;
-            add_rule(l, lambda s : s.has("Victory", self.player))
             region.locations.append(l)
             address += 1
 
