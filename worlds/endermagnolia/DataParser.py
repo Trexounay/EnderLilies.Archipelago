@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 import pathlib
-from typing import List, Set, Dict, Tuple
+from typing import List, Set, Dict, Tuple, Optional
 
 import re
 import csv
+
 
 TOKEN_REGEX = re.compile(r'\s*([A-Za-z0-9_]+|\+|\||\(|\))')
 
@@ -21,6 +22,9 @@ class Symbol(Expr):
     name: str
 
     def __repr__(self) -> str:
+        return f"{self.name}"
+
+    def __str__(self) -> str:
         return f"{self.name}"
 
 @dataclass(frozen=True)
@@ -75,7 +79,7 @@ class Parser:
             self.consume()
             expr = self.parse_or()
             if self.consume() != ')':
-                raise SyntaxError("missing closing parenthesis")
+                raise SyntaxError(f"missing closing parenthesis")
             return expr
 
         if tok is None:
@@ -103,8 +107,8 @@ def to_dnf(expr: Expr) -> DNF:
 root = pathlib.Path(__file__).parent.resolve()
 nodes : Dict[str, DNF] = {}
 with open(f"{root}/Data/Transitions Logic.csv", newline="", encoding="utf-8") as f:
-    reader = csv.reader(f)
-    for row_num, cols in enumerate(reader, start=1):
+    reader = list(csv.reader(f))
+    for row_num, cols in enumerate(reader[1:], start=2):
         if len(cols) < 4:
             print("invalid line", len(cols), cols)
             continue
@@ -117,15 +121,19 @@ with open(f"{root}/Data/Transitions Logic.csv", newline="", encoding="utf-8") as
             dnf = to_dnf(ast)
             nodes[node] = dnf
         except SyntaxError as e:
-            print(f"{row_num}: error parsing {e}")
+            print(f"{row_num}:{logic}")
+            print(f"error parsing {e}")
 
 node_to_node : Dict[Tuple[str, str], DNF] = {}
 
+ignored = (0,0)
 # extracts node from DNF to create rules from node to node
 for node, dnfs in nodes.items():
     for term in dnfs:
         nodes_in_term = {s.name for s in term if s.name in nodes}
         items_in_term = frozenset({s for s in term if s.name not in nodes})
+        if len(items_in_term) == 1 and list(items_in_term)[0].name == "None":
+            continue
         if len(nodes_in_term) == 1:
             src = nodes_in_term.pop()
             key = (src, node)
@@ -133,9 +141,11 @@ for node, dnfs in nodes.items():
                 node_to_node[key] = set()
             node_to_node[key].add(items_in_term)
         elif len(nodes_in_term) == 0:
-            pass#print(f"{node} rule {i}: no other nodes, only items {r}")
+            ignored = (ignored[0] + 1, ignored[1])
+            print(f"{node} rule: no other nodes, only items {set(items_in_term)}")
+            break
         elif len(nodes_in_term) > 1:
-            pass#print(f"{node} rule {i}: multiple nodes {r['nodes']}, items {r['items']}")
+            ignored = (ignored[0], ignored[1] + 1)
 
 def find_redundant_rules(rules: Dict[Tuple[str, str], DNF]):
     for key, clauses in rules.items():
@@ -144,29 +154,51 @@ def find_redundant_rules(rules: Dict[Tuple[str, str], DNF]):
                 if i == j:
                     continue
                 if b.issubset(a):
-                    print(f"{key} as a duplicate {a} {b}")
-print("")
+                    plop1 = "+".join([str(s) for s in a])
+                    plop2 = "+".join([str(s) for s in b])
+                    print(f"{key[1]} as a useless rule: {key[0]} + {plop1} because it already has: {key[0]} + {plop2}")
 
 find_redundant_rules(node_to_node)
 
-print("")
+
+connections : Dict[str, Set[str]] = {}
+logic : Dict[Tuple[str, str], DNF] = {}
 count = (0, 0)
 for (src, dst), rules in node_to_node.items():
-    for rule in rules:
-        if len(rule) > 0:
-            #print(f"'{src} to {dst}' : lambda s : {rules}")
-            count = (count[0], count[1] + 1)
-        else:
-            count = (count[0] + 1, count[1])
-        break
-print(count)
+    if src not in connections:
+        connections[src] = set()
+    connections[src].add(dst)
+    logic[(src, dst)] = rules
+    if len(list(rules)[0]) > 0:
+        count = (count[0], count[1] + 1)
+    else:
+        count = (count[0] + 1, count[1])
 
 with open(f"{root}/TransitionsRules.gen.py", "w", encoding="utf-8") as f:
-    f.write("rules = {\n")
-    for (src, dst), rules in node_to_node.items():
-        lambda_expr = " or ".join(
-            " and ".join(f'has("{x}", s)' for x in clause) if clause else "True"
-            for clause in rules
-        )
-        f.write(f'    "{src} to {dst}": lambda s: {lambda_expr},\n')
+
+#    f.write("def s(*items : str):\n")
+#    f.write("\tfrozenset(items)\n\n")
+    f.write("connections = {\n")
+    for src, dsts in connections.items():
+        f.write(f"\t'{src}' : {{")
+        for dst in dsts:
+            f.write(f"'{dst}',")
+        f.write("},\n")
+    f.write("},\n")
+
+    f.write("rules = {\n")    
+    for (src, dst), rules in logic.items():
+        lambda_expr = 'None'
+        if len(list(rules)[0]) > 0:
+            lambda_expr = "{" + ",".join(
+                "(" + ",".join(f"'{item.name}'" for item in clause) + ")"
+                for clause in rules
+            ) + "}"
+        #lambda_expr = ",".join(",".join(f"'{item}'" for item in clause) for clause in rules)
+        #lambda_expr = f"{{{[for x in clause for clause for clause in rules]}}}"
+            
+        #lambda_expr = " or ".join(" and ".join(f'has("{x}")' for x in clause) for clause in rules)
+        #lambda_expr = f"lambda s : {lambda_expr}"
+            f.write(f"\t'{src} to {dst}' : {lambda_expr},\n")
     f.write("}\n")
+

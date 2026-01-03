@@ -61,7 +61,7 @@ Estate 12,Estate12Right,Estate11Left,(Estate12Left | Estate12Upper) + swim,Done,
 Estate 12,Estate12Upper,Estate07Lower,(Estate12Left | Estate12Right) + swim,Done,
 Factory 1,Factory01Left,Factory02UpperRight,None,Done,
 Factory 2,Factory02HiddenCenterRight,Factory19UpperLeft,"((Factory02UpperRight | Factory02UpperCenterRight | Factory02UpperLeft) + (hook | wall_grab))
-| ((Factory02LowerLeft | Factory02LowerRight) + high_jump | (hook + wall_grab))",Done,
+| ((Factory02LowerLeft | Factory02LowerRight) + (high_jump | hook + wall_grab))",Done,
 Factory 2,Factory02LowerLeft,Factory04Right,"(Factory02UpperLeft | Factory02LowerRight | Factory02HiddenRight | Factory02UpperCenterRight | Factory02UpperRight) 
 + dive",Done,
 Factory 2,Factory02LowerRight,Factory19LowerLeft,"(Factory02UpperLeft | Factory02LowerLeft | Factory02HiddenRight | Factory02UpperCenterRight | Factory02UpperRight) 
@@ -71,7 +71,7 @@ Factory 2,Factory02UpperCenterRight,Factory03Left,"((Factory02LowerLeft | Factor
 Factory 2,Factory02UpperLeft,Factory05Right,"((Factory02LowerLeft | Factory02LowerRight | Factory02HiddenRight | Factory02UpperLeft | Factory02UpperRight) + (high_jump | hook)) 
 | (Factory01Left + (double_jump + dodge + WALL_DASH))",Unsure,Can WALL_DASH from Factory01
 Factory 2,Factory02UpperRight,Factory01Left,"((Factory02UpperLeft + ((wall_grab + double_jump) | high_jump) | WALL_DASH) 
-| ((Factory02LowerLeft | Factory02LowerRight) + ((hook + wall_grab + double_jump) | high_jump 
+| ((Factory02LowerLeft | Factory02LowerRight) + ((hook + wall_grab + double_jump) | high_jump))
 | (Factory02UpperCenterRight + (double_jump + wall_grab) | high_jump))",Done,
 Factory 3,Factory03Left,Factory02UpperCenterRight,Factory03Right,Done,
 Factory 3,Factory03Right,Garden14Left,Factory03Left + (double_jump | high_jump | wall_grab),Done,
@@ -85,7 +85,7 @@ Factory 5,Factory05Upper,Factory12Lower,"(Factory05Left
 Factory 6,Factory06LowerLeft,Factory10Right,Factory06Right | Factory06UpperLeft | Factory06Upper,Done,
 Factory 6,Factory06Right,Factory04Left,"(Factory06Left + (double_jump | dodge)) 
 | ((Factory06UpperLeft | Factory06Upper) + (double_jump | dodge | wall_grab | dash_charge))",Done,Should we include dash_charge from upper platforms to reach the lower right?
-Factory 6,Factory06Upper,Factory09Lower,"((Factory06Left | Factory06Right) + (double_jump + dodge + (high_jump | hook) | (high_jump | WALL_DASH + (double_jump | dodge))) 
+Factory 6,Factory06Upper,Factory09Lower,"((Factory06Left | Factory06Right) + (double_jump + dodge + (high_jump | hook) | (high_jump | WALL_DASH + (double_jump | dodge)))) 
 | (Factory06UpperLeft + (hook + (double_jump | dodge)) | (WALL_DASH + (dodge | double_jump)) | high_jump)",Done,
 Factory 6,Factory06UpperLeft,Factory07Right,"((Factory06Left | Factory06Right) + ((double_jump + dodge) | high_jump)) 
 | Factory06Upper",Done,
@@ -104,7 +104,7 @@ Factory 11,Factory11Right,Factory12Left,Factory11Lower,Done,
 Factory 12,Factory12Left,Factory11Right,"(Factory12Upper | Factory12Right) 
 + (high_jump | hook | (WALL_DASH + double_jump))",Done,
 Factory 12,Factory12Lower,Factory05Upper,None,Done,
-Factory 12,Factory12Right,Factory13LowerLeft,(Factory12Left | Factory12Upper) + high_jump | (wall_grab + double_jump + (wall_charge | (dodge + hook)),Done,Factory12Upper could skip some requirements but I have tested using a straight fall (dodge | djump could get us to right exit)
+Factory 12,Factory12Right,Factory13LowerLeft,(Factory12Left | Factory12Upper) + high_jump | (wall_grab + double_jump + (wall_charge | (dodge + hook))),Done,Factory12Upper could skip some requirements but I have tested using a straight fall (dodge | djump could get us to right exit)
 Factory 12,Factory12Upper,Factory15Lower,Factory12Left | Factory12Right + high_jump,Done,
 Factory 13,Factory13LowerLeft,Factory12Right,"(Factory13UpperLeft | Factory13Right) 
 + (wall_grab | high_jump)",Done,
@@ -115,7 +115,7 @@ Factory 15,Factory15Lower,Factory12Upper,Factory15LowerLeft | Factory15UpperLeft
 Factory 15,Factory15LowerLeft,Factory21Right,Factory12Right + high_jump + wall_dash,Unsure,Can only dash from a platform reached from the room below
 Factory 15,Factory15Right,Factory13UpperLeft,"(Factory15UpperLeft 
 | (Factory15LowerLeft + high_jump) 
-+ hook",Done,
++ hook)",Done,
 Factory 15,Factory15UpperLeft,Factory16Right,"(Factory15Right + (WALL_DASH | ( hook + (high_jump | (double_jump + dodge))))) 
 | (Factory15LowerLeft + high_jump + (double_jump | hook))",Done,
 Factory 16,Factory16Left,Factory17Right,Factory16Right,Done,
@@ -129,11 +129,11 @@ Factory 19,Factory19LowerLeft,Factory02LowerRight,None,Done,
 Factory 19,Factory19UpperLeft,Factory02HiddenCenterRight,None,Done,
 Factory 21,Factory21Right,Factory15LowerLeft,None,Done,
 Forest 1,Forest01Left,Tower17Right,Forest01RightDoor | Forest01UpperDoor,Done,
-Forest 1,Forest01RightDoor,Forest02LowerLeftDoor,Forest01UpperDoor | (Forest01Left + (high_jump | double_jump | wall_grab),Done,
+Forest 1,Forest01RightDoor,Forest02LowerLeftDoor,Forest01UpperDoor | (Forest01Left + (high_jump | double_jump | wall_grab)),Done,
 Forest 1,Forest01UpperDoor,Forest12LeftDoor,None,Done,
 Forest 2,Forest02LowerDoor,Forest04UpperCenterDoor,Forest02LowerLeftDoor | Forest02UpperLeftDoor | Forest02Right | Forest02UpperRightDoor,Done,
 Forest 2,Forest02LowerLeftDoor,Forest01RightDoor,Forest02LowerDoor | Forest02UpperLeftDoor | Forest02Right | Forest02UpperRightDoor,Done,
-Forest 2,Forest02Right,Forest03Left,(Forest02LowerLeftDoor | Forest02UpperLeftDoor | Forest02LowerDoor | Forest02UpperRight Door) + Forest02Right_Lever,Done,
+Forest 2,Forest02Right,Forest03Left,(Forest02LowerLeftDoor | Forest02UpperLeftDoor | Forest02LowerDoor | Forest02UpperRightDoor) + Forest02Right_Lever,Done,
 Forest 2,Forest02UpperLeftDoor,Forest06CenterDoor,Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperRightDoor | Forest02Right,Done,
 Forest 2,Forest02UpperRightDoor,Forest05CenterLowerDoor,Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperLeftDoor | Forest02Right,Done,
 Forest 2,Forest02Right_Lever,,Forest02Right,Done,
@@ -166,7 +166,7 @@ Forest 4,Forest04UpperLeftDoor,Forest12LowerRightDoor,"(Forest04LowerLeftDoor + 
 + (high_jump | wall_grab))",Done,
 Forest 4,Forest04UpperRightDoor,Forest18CenterLeftDoor,"Forest04UpperCenterDoor | 
 ((Forest04UpperLeftDoor | Forest04LowerLeftDoor) 
-+ (wall_grab + double_jump) | high_jump))",Done,
++ (wall_grab + double_jump) | high_jump)",Done,
 Forest 5,Forest05CenterLowerDoor,Forest02UpperRightDoor,Forest05CenterUpperDoor | Forest05RightDoor | Forest05LeftDoor,Done,
 Forest 5,Forest05CenterUpperDoor,Forest06CenterDoor,(Forest05CenterLowerDoor | Forest05RightDoor | Forest05LeftDoor) + ((double_jump + wall_grab + (dodge | wall_charge)) | high_jump),Done,
 Forest 5,Forest05LeftDoor,Forest12UpperRightDoor,Forest05CenterUpperDoor | Forest05RightDoor | Forest05LowerCenterDoor,Done,
@@ -174,21 +174,21 @@ Forest 5,Forest05RightDoor,Forest10LowerLeftDoor,Forest05CenterUpperDoor | Fores
 Forest 6,Forest06CenterDoor,Forest02UpperLeftDoor,"Forest06Left + (Forest11Right + dash_charge) 
 | Forest06LowerLeftDoor + (double_jump | high_jump | WALL_DASH)",Done,
 Forest 6,Forest06HiddenRight,Forest07Left,"(Forest06Left + (Forest11Right + dash_charge) + (double_jump + (dodge | WALL_DASH)) | high_jump) 
-| (Forest06LowerLeftDoor + ((double_jump + dodge) | high_jump | WALL_DASH) 
-| (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high-jump) 
+| (Forest06LowerLeftDoor + ((double_jump + dodge) | high_jump | WALL_DASH))
+| (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump)) 
 | (Forest06LowerRight + high_jump)",Done,not entirely sure
 Forest 6,Forest06Left,Forest11Right,(Forest06LowerLeftDoor | Forest06CenterDoor) + (double_jump + dash_charge),Done,
-Forest 6,Forest06LowerLeftDoor,Forest12UpperDoor,"(Forest06Left + (Forest11Right + dash_charge) 
+Forest 6,Forest06LowerLeftDoor,Forest12UpperDoor,"(Forest06Left + (Forest11Right + dash_charge))
 | (Forest06CenterDoor + (double_jump | high_jump))",Done,
 Forest 6,Forest06LowerRightDoor,Forest05CenterUpperDoor,"Forest06HiddenRight 
-| (Forest06LowerLeftDoor + ((double_jump + dodge) | high_jump | WALL_DASH) 
+| (Forest06LowerLeftDoor + ((double_jump + dodge) | high_jump | WALL_DASH))
 | (Forest06Left + (Forest11Right + dash_charge) + (double_jump + dodge) | high_jump | WALL_DASH) 
-| (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high-jump)",Done,
+| (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump))",Done,
 Forest 7,Forest07CenterDoor,Forest10UpperLeftDoor,"(Forest07LeftDoor + (wall_grab | high_jump)) 
 | Forest07Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump)",Done,
 Forest 7,Forest07Left,Forest06HiddenRight,None,Done,
 Forest 7,Forest07Right,Forest08Left,"(Forest07CenterDoor + (double_jump | high_jump | WALL_DASH)) 
-| (Forest07LeftDoor + (wall_grab + (double_jump | wall_charge) | high_jump)",Done,
+| (Forest07LeftDoor + (wall_grab + (double_jump | wall_charge) | high_jump))",Done,
 Forest 7,Forest07LeftDoor,Forest04UpperCenterDoor,"Forest07CenterDoor 
 | (Forest07Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump))",Done,
 Forest 8,Forest08Left,Forest07Right,Forest08LowerDoor + (high_jump | WALL_DASH + double_jump),Done,
@@ -208,7 +208,7 @@ Forest 9,Forest09CenterRightDoor,Forest03LowerRightDoor,"(Forest09UpperRightDoor
 | (Forest09CenterLeftDoor + (dodge | double_jump | high_jump))",Done,
 Forest 9,Forest09LeftDoor,Forest04LowerLeftDoor,"(Forest09LowerRight + TORRENT + wall_grab + (dodge | double_jump)) 
 | (Forest09UpperRightDoor + (dodge | double_jump) | WALL_DASH) 
-| (Forest09CenterRightDoor + (wall_grab | (high_jump + (dodge | double_jump))) 
+| (Forest09CenterRightDoor + (wall_grab | (high_jump + (dodge | double_jump))))
 | (Forest09CenterDoor | Forest09CenterLeftDoor) + (double_jump | dodge | wall_grab)",Done,
 Forest 9,Forest09LowerRight,Estate12Left,"((Forest09UpperRightDoor + (double_jump | dodge | WALL_DASH)) 
 | ((Forest09LeftDoor | Forest09CenterDoor) + (WALL_DASH | high_jump)) 
@@ -218,7 +218,7 @@ Forest 9,Forest09LowerRight,Estate12Left,"((Forest09UpperRightDoor + (double_jum
 Forest 9,Forest09UpperRightDoor,Forest18LowerCenterDoor,"((Forest09LeftDoor | Forest09CenterDoor) + (WALL_DASH | high_jump)) 
 | (Forest09CenterLeftDoor + (dodge | double_jump | high_jump)) 
 | (Forest09CenterRightDoor + ((wall_grab | high_jump) + (dodge | double_jump)))",Done,
-Forest 10,Forest10CenterDoor,Forest18UpperLeftDoor,"((Forest10RightDoor | Forest10LowerLeftDoor) + (high_jump | double_jump) 
+Forest 10,Forest10CenterDoor,Forest18UpperLeftDoor,"((Forest10RightDoor | Forest10LowerLeftDoor) + (high_jump | double_jump))
 | (Forest10UpperLeftDoor + (dodge + (double_jump | wall_grab)) | high_jump | WALL_DASH)",Done,
 Forest 10,Forest10LowerLeftDoor,Forest05RightDoor,Forest10UpperLeftDoor | (Forest10CenterDoor | Forest10RightDoor) + (high_jump | double_jump),Done,
 Forest 10,Forest10RightDoor,Forest08LowerDoor,None,Done,
@@ -324,11 +324,11 @@ Kowloon 6,Kowloon06LowerLeft,Kowloon03Right,"(Kowloon06LowerRight + wall_grab)
 Kowloon 6,Kowloon06LowerRight,Kowloon07Left,"((Kowloon06LowerLeft | Kowloon06CenterRight | Kowloon06UpperRight | Kowloon06UpperLeft) 
 + (double_jump | dodge | wall_grab)) ",Done,
 Kowloon 6,Kowloon06UpperLeft,Kowloon05Right,"((Kowloon06LowerLeft | Kowloon06CenterRight) + (high_jump | double_jump))
-| (Kowloon06LowerRight + (double_jump + (wall_grab | high_jump) | (dodge + high_jump))
+| (Kowloon06LowerRight + (double_jump + (wall_grab | high_jump) | (dodge + high_jump)))
 | (Kowloon06UpperRight + (dodge | double_jump | high_jump))",Done,
-Kowloon 6,Kowloon06UpperRight,Kowloon16Left,"((Kowloon06LowerLeft | Kowloon06CenterRight) + ((high_jump + (double_jump | dodge)) | (double_jump + hook)) 
+Kowloon 6,Kowloon06UpperRight,Kowloon16Left,"((Kowloon06LowerLeft | Kowloon06CenterRight) + ((high_jump + (double_jump | dodge)) | (double_jump + hook)))
 | (Kowloon06LowerRight + (high_jump + (double_jump | dodge)) | (wall_grab + hook + double_jump)) 
-| (Kowloon06UpperLeft + ((high_jump + (double_jump | dodge | WALL_DASH)) | (hook + (dodge | double_jump))) ",Done,
+| (Kowloon06UpperLeft + ((high_jump + (double_jump | dodge | WALL_DASH)) | (hook + (dodge | double_jump))))",Done,
 Kowloon 6,Kowloon06Right_Lever,,Kowloon06CenterRight,Done,
 Kowloon 7,Kowloon07Left,Kowloon06LowerRight,Kowloon07Right | (Kowloon07Lower + Kowloon09Upper_Lever),Done,
 Kowloon 7,Kowloon07Lower,Kowloon09Upper,Kowloon09Upper_Lever,Done,Needs access to 09 to hit a Lever
@@ -339,14 +339,14 @@ Kowloon 9,Kowloon09HiddenRight,Kowloon14Left,Kowloon09Upper + Kowloon09UpperRigh
 Kowloon 9,Kowloon09Upper,Kowloon07Lower,Kowloon09HiddenRight + wall_grab + (double_jump | high_jump),Done,
 Kowloon 9,Kowloon09Upper_Lever,,Kowloon09HiddenRight + wall_grab + (double_jump | high_jump),Done,
 Kowloon 10,Kowloon10Left,Kowloon07Right,Kowloon10Right + (hook | (WALL_DASH + (double_jump | high_jump))),Done,
-Kowloon 10,Kowloon10Lower,Kowloon13UpperLeft,"((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH))) 
+Kowloon 10,Kowloon10Lower,Kowloon13UpperLeft,"((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH))))
 + pile_attack",Done,
 Kowloon 10,Kowloon10Right,Kowloon15LowerLeft,Kowloon10Left + (hook | (double_jump + (high_jump | WALL_DASH))),Done,
 Kowloon 13,Kowloon13HiddenLower,Kowloon14HiddenUpper,"(Kowloon13UpperLeft + (wall_grab | double_jump | high_jump | (hook + dodge))) 
 | Kowloon13UpperRight",Done,
 Kowloon 13,Kowloon13UpperLeft,Kowloon10Lower,(Kowloon13UpperRight | Kowloon13HiddenRight) + (high_jump | (double_jump + wall_grab)),Done,
-Kowloon 13,Kowloon13UpperRight,Kowloon15Lower,"(Kowloon13UpperLeft + (high_jump | (wall_grab + ((dodge + double_jump) | double_jump + (hook | wall_charge))))
-| (Kowloon13HiddenRight + (high_jump | (wall_grab + (hook | (double_jump + (dodge | wall_charge))))))",In Progress,
+Kowloon 13,Kowloon13UpperRight,Kowloon15Lower,"(Kowloon13UpperLeft + (high_jump | (wall_grab + ((dodge + double_jump) | double_jump + (hook | wall_charge)))))
+| (Kowloon13HiddenRight + (high_jump | (wall_grab + (hook | (double_jump + (dodge | wall_charge))))))",Done,
 Kowloon 14,Kowloon14HiddenUpper,Kowloon13HiddenLower,Kowloon14Left + (hook + double_jump + dodge + (wall_grab | high_jump)),Done,
 Kowloon 14,Kowloon14Left,Kowloon09HiddenRight,Kowloon14HiddenUpper + hook + (dodge | double_jump | WALL_DASH),Done,
 Kowloon 15,Kowloon15CenterLeft,Kowloon08Right,"((Kowloon15Lower | Kowloon15LowerLeft) + (high_jump | (wall_grab + (dodge | wall_charge)))) 
@@ -401,7 +401,7 @@ Kowloon 30,Kowloon30CenterRight,Kowloon33Left,"((Kowloon30LowerLeft | Kowloon30C
 | (Kowloon30UpperRight + (double_jump | hook | dodge)) 
 | (Kowloon30Lower + hook) ",Done,
 Kowloon 30,Kowloon30Lower,Kowloon24Upper,"(Kowloon30LowerLeft + Kowloon30CenterLeft) + (hook | (double_jump + high_jump + (dodge | WALL_DASH)))
-| (Kowloon30LowerRight + ((wall_grab + double_jump + (hook | wall_dash)) | (high_jump + (hook | double_jump)))
+| (Kowloon30LowerRight + ((wall_grab + double_jump + (hook | wall_dash)) | (high_jump + (hook | double_jump))))
 | (Kowloon30CenterRight + (hook | (double_jump + dodge) | (high_jump + double_jump)))
 | (Kowloon30UpperLeft + (dodge | hook | high_jump | WALL_DASH))
 | (Kowloon30UpperRight + (double_jump | dodge | hook | WALL_DASH | high_jump))",Done,
@@ -430,11 +430,11 @@ Kowloon 32,Kowloon32Left,Kowloon30UpperRight,None,Done,
 Kowloon 33,Kowloon33Left,Kowloon30CenterRight,Kowloon33Right + Kowloon34Lower_Lever,Done,
 Kowloon 33,Kowloon33Right,Kowloon34LowerLeft,Kowloon33Left + Kowloon34Lower_Lever,Done,
 Kowloon 34,Kowloon34CenterLeft,Kowloon46Right,"(Kowloon34Right | Kowloon34UpperLeft) 
-| (Kowloon34LowerLeft + Kowloon34Lower_Lever) + (high_jump | double_jump)) ",In Progress,
+| (Kowloon34LowerLeft + Kowloon34Lower_Lever) + (high_jump | double_jump)",In Progress,
 Kowloon 34,Kowloon34LowerLeft,Kowloon33Right,Kowloon34LowerRight | Kowloon34CenterLeft | Kowloon34UpperLeft,Done,
 Kowloon 34,Kowloon34Right,Kowloon35Left,(Kowloon34CenterLeft | Kowloon34UpperLeft) | (Kowloon34LowerLeft + Kowloon34Lower_Lever),Done,
 Kowloon 34,Kowloon34UpperLeft,Kowloon28Right,"(Kowloon34Right | Kowloon34UpperLeft) 
-| (Kowloon34LowerLeft + Kowloon34Lower_Lever) + (high_jump | double_jump)) ",In Progress,
+| (Kowloon34LowerLeft + Kowloon34Lower_Lever) + (high_jump | double_jump)",In Progress,
 Kowloon 34,Kowloon34Lower_Lever,,Kowloon34CenterLeft | Kowloon34UpperLeft | Kowloon34Right,Done,
 Kowloon 35,Kowloon35CenterLowerRight,Kowloon48Right,Kowloon35CenterRight,Done,
 Kowloon 35,Kowloon35CenterRight,Kowloon49Left,Kowloon35CenterLowerRight,Done,
@@ -456,7 +456,7 @@ Kowloon 37,Kowloon37Right,Kowloon36LowerLeft,Kowloon37Left,Done,
 Kowloon 38,Kowloon38CenterRight,Kowloon44Left,"(Kowloon38Left + (hook | double_jump | dodge | WALL_DASH))
 | Kowloon38UpperRight 
 | (Kowloon38Lower + (high_jump | (wall_grab + (double_jump + dodge) | (hook + (double_jump | dodge)))))",Unsure,
-Kowloon 38,Kowloon38Left,Kowloon40Right,"((Kowloon38UpperRight + (Kowloon42Left + WALL_DASH))
+Kowloon 38,Kowloon38Left,Kowloon40Right,"((Kowloon38UpperRight + (Kowloon42Left + WALL_DASH)))
 | (Kowloon38CenterRight + (high_jump | (hook + (dodge | double_jump)) | (wall_grab + double_jump + dodge)))
 | (Kowloon38LowerRight + (high_jump | (hook + wall_grab + (dodge | double_jump) | (wall_grab + dodge + double_jump)))
 + Kowloon40Right_Lever)",Unsure,Can be reached from 44 with wall dash and djump
@@ -527,7 +527,7 @@ Labo 6,Labo06Lower,Garden08Upper,Labo06UpperLeft | Labo06LowerLeft | Labo06Cente
 Labo 6,Labo06LowerLeft,Labo07Right,Labo06Lower | Labo06UpperrLeft | Labo06CenterLeft | (Labo06Upper + pile_attack),Done,
 Labo 6,Labo06Upper,Labo19LowerRight,None,Done,
 Labo 6,Labo06UpperLeft,Labo24Right,"((Labo06LowerLeft | Labo06Lower) + high_jump) 
-| (Labo06CenterLeft + (high_jump | wall_grab + (double_jump (dodge | WALL_DASH))
+| (Labo06CenterLeft + (high_jump | wall_grab + (double_jump + (dodge | WALL_DASH))))
 | (Labo06Upper + pile_attack + (WALL_DASH | wall_grab + double_jump + dodge))",Done,
 Labo 7,Labo07Left,Labo08LowerRight,Labo07Right | Labo07Upper,Done,
 Labo 7,Labo07Right,Labo06LowerLeft,Labo07Left | Labo07Upper,Done,
@@ -594,7 +594,7 @@ Labo 18,Labo18Right_Lever,,Labo18Right,Done,
 Labo 19,Labo19Left,Labo13Right,None,Done,
 Labo 19,Labo19LowerCenter,Labo24Upper,"(Labo19Right + (high_jump + dodge + double_jump)) 
 | (Labo18 + double_jump + WALL_DASH) ",Unsure,
-Labo 19,Labo19LowerLeft,Labo08Upper,"(Labo19CenterLeft | (Labo19Right + high_jump + double_jump + dodge) | (Labo18 + double_jump + WALL_DASH)
+Labo 19,Labo19LowerLeft,Labo08Upper,"(Labo19CenterLeft | (Labo19Right + high_jump + double_jump + dodge) | (Labo18 + double_jump + WALL_DASH))
 + Labo19Left_Lever + pile_attack",Unsure,WALLDASH needs access to Labo18
 Labo 19,Labo19LowerRight,Labo06Upper,"(Labo19Right | 
 (Labo19LowerCenter + (high_jump | (double_jump + WALL_DASH))) 
@@ -681,14 +681,14 @@ Paradise 2,Paradise02CenterRight,Paradise04LowerLeft,(Paradise02Left | Paradise0
 Paradise 2,Paradise02Left,Paradise01UpperRight,"((Paradise02LowerRight | Paradise02UpperRight | (Paradise02CenterRight + Paradise04Left_Lever)) 
 + (dive | dodge | double_jump | high_jump))",Done,
 Paradise 2,Paradise02LowerRight,Paradise19Left,(Paradise02Left | Paradise02UpperRight | (Paradise02CenterRight + Paradise04Left_Lever)) + dive,Done,
-Paradise 2,Paradise02UpperRight,Paradise04UpperLeft,((Paradise02Left | Paradise02LowerRight | (Paradise02CenterRight + Paradise04Left_Lever)) + (high_jump | (double_jump + wall_grab)),Done,
+Paradise 2,Paradise02UpperRight,Paradise04UpperLeft,((Paradise02Left | Paradise02LowerRight | (Paradise02CenterRight + Paradise04Left_Lever)) + (high_jump | (double_jump + wall_grab))),Done,
 Paradise 3,Paradise03Lower,Paradise33Upper,Paradise03UpperLeft,Done,
 Paradise 3,Paradise03LowerLeft,Paradise08LowerRight,"(Paradise03UpperLeft 
 | (Paradise03Lower + (high_jump | wall_grab)) 
 + key_owner)",Done,
 Paradise 3,Paradise03UpperLeft,Paradise08UpperRight,Paradise03Lower + (high_jump | (wall_grab + double_jump)),Done,
 Paradise 4,Paradise04CenterRight,Paradise10Left,(Paradise04LowerRight | Paradise04Lower) + (high_jump |  (double_jump + (dodge | WALL_DASH))),Done,
-Paradise 4,Paradise04Lower,Paradise12Upper,Paradise04CenterRight | Paradise04LowerRight,Done,NOT LABELED HIDDEN AHHHHH
+Paradise 4,Paradise04Lower,Paradise12Upper,Paradise04CenterRight | Paradise04LowerRight,Done,Transition not labeled as Hidden
 Paradise 4,Paradise04LowerLeft,Paradise02CenterRight,Paradise04CenterRight | Paradise04LowerRight | Paradise04Lower,Done,
 Paradise 4,Paradise04LowerRight,Paradise07Left,Paradise04CenterRight | (Paradise04Lower + (high_jump | double_jump)),Done,
 Paradise 4,Paradise04UpperLeft,Paradise02UpperRight,Paradise04UpperRight,Done,
@@ -719,9 +719,9 @@ Paradise 19,Paradise19Left,Paradise02LowerRight,Paradise19Upper + TORRENT,Done,
 Paradise 19,Paradise19Lower,Paradise32HiddenUpper,None,Done,
 Paradise 19,Paradise19Upper,Paradise18Lower,Paradise19Left + TORRENT + Paradise19Center_Lever,Done,
 Paradise 19,Paradise19Center_Lever,,Paradise19Upper,Done,
-Paradise 20,Paradise20CenterLeft,Paradise05Right,"((Paradise20LowerLeft | Paradise20LowerRight) + (high_jump | (wall_grab + dodge))) 
+Paradise 20,Paradise20CenterLeft,Paradise05Right,"((Paradise20LowerLeft | Paradise20LowerRight) + (high_jump | (wall_grab + dodge)))
 | (Paradise20CenterRight + (high_jump | double_jump | dodge | WALL_DASH)) 
-| (Paradise20UpperRight + (high_jump | wall_grab | dodge | double_jump)
+| (Paradise20UpperRight + (high_jump | wall_grab | dodge | double_jump))
 | Paradise20UpperLeft",Done,
 Paradise 20,Paradise20CenterRight,Paradise24Left,"((Paradise20LowerLeft | Paradise20LowerRight | Paradise20CenterLeft) + (high_jump | (wall_grab + double_jump + (dodge | wall_charge)))) 
 | (Paradise20UpperLeft + (high_jump | double_jump | dodge | wall_grab))
@@ -763,10 +763,10 @@ Paradise 29,Paradise29Left,Paradise28UpperRight,None,Done,
 Paradise 30,Paradise30Left,Paradise28LowerRight,None,Done,
 Paradise 31,Paradise31Left,Paradise28CenterRight,Paradise31Right,Done,
 Paradise 31,Paradise31Right,Paradise32Left,Paradise31Left,Done,
-Paradise 32,Paradise32HiddenUpper,Paradise19Lower,((Paradise32Left | Paradise32Lower | Paradise32Right) + (high_jump | (hook + dodge)) ,Done,
+Paradise 32,Paradise32HiddenUpper,Paradise19Lower,((Paradise32Left | Paradise32Lower | Paradise32Right) + (high_jump | (hook + dodge))),Done,
 Paradise 32,Paradise32Left,Paradise31Right,Paradise32HiddenUpper | Paradise32Lower | Paradise32Right,Done,
 Paradise 32,Paradise32Lower,Paradise34Upper,(Paradise32HiddenUpper | Paradise32Left | Paradise32Right) + TORRENT,Done,
-Paradise 32,Paradise32Right,Paradise33Left,(Paradise32HiddenUpper | Paradise32Lower | Paradise32Left) + (high_jump + dodge + double_jump) | (hook + (double_jump | dodge),Done,
+Paradise 32,Paradise32Right,Paradise33Left,(Paradise32HiddenUpper | Paradise32Lower | Paradise32Left) + (high_jump + dodge + double_jump) | (hook + (double_jump | dodge)),Done,
 Paradise 33,Paradise33Left,Paradise32Right,Paradise33Upper,Done,
 Paradise 33,Paradise33Upper,Paradise03Lower,Paradise33Left + (high_jump + dodge) | (wall_grab + dodge + double_jump),Done,
 Paradise 34,Paradise34Upper,Paradise32Lower,None,Done,
@@ -785,7 +785,7 @@ Quarry 4,Quarry04Upper,Quarry02LowerRight,None,Done,
 Quarry 5,Quarry05Lower,Quarry13Upper,None,Done,
 Quarry 7,Quarry07Left,Quarry13Right,"(Quarry07Upper | Quarry07Lower 
 |  (Quarry07Right + Quarry04Left + dash_charge))
- + ((double_jump + (dodge | wall_grab)) | high_jump))",Unsure,Multiple connections are required for dash_charge
+ + ((double_jump + (dodge | wall_grab)) | high_jump)",Unsure,Multiple connections are required for dash_charge
 Quarry 7,Quarry07Lower,Quarry15Upper,Quarry07Upper | Quarry07Left | (Quarry07Right + Quarry04Left + dash_charge),Done,
 Quarry 7,Quarry07Right,Quarry04Left,"(Quarry07Left 
 | (Quarry07Upper | Quarry07Lower + (wall_grab | dodge | high_jump)))
@@ -800,7 +800,7 @@ Quarry 9,Quarry09Right,Quarry18LowerLeft,Quarry09Left,Done,
 Quarry 10,Quarry10HiddenRight,Quarry11Left,"Quarry10UpperRight 
 | Quarry10Lower + (dodge | double_jump | high_jump)",Done,
 Quarry 10,Quarry10Lower,Quarry12Upper,Quarry10UpperRight | Quarry10HiddenRight,Done,
-Quarry 10,Quarry10UpperRight,Quarry08Left,(Quarry10HiddenRight | Quarry10Left) + ((wall_grab + (dodge | wall_charge) | high_jump | double_jump),Done,
+Quarry 10,Quarry10UpperRight,Quarry08Left,(Quarry10HiddenRight | Quarry10Left) + ((wall_grab + (dodge | wall_charge) | high_jump | double_jump)),Done,
 Quarry 11,Quarry11Left,Quarry10HiddenRight,None,Done,
 Quarry 12,Quarry12Left,Quarry21Right,Quarry12Right + dash_charge,Unsure,Multiple connections are required for dash_charge
 Quarry 12,Quarry12Lower,Quarry18Upper,Quarry12Upper | ((Quarry12Left | Quarry12Right) + dash_charge),Unsure,Multiple connections are required for dash_charge
@@ -815,7 +815,7 @@ Quarry 15,Quarry15Left,Quarry22Right,"(Quarry15Upper + Quarry15Upper_Lever + (hi
 | (Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + high_jump) ",Done,
 Quarry 15,Quarry15LowerLeft,Quarry24Upper,"(Quarry15Upper + Quarry15Upper_Lever + (dodge | double_jump | WALL_DASH)) 
 | (Quarry15LowerRight + (wall_grab | high_jump)) 
-| (Quarry15Left + (wall_grab | high_jump | double_jump))",Done,This is Hidden lmao
+| (Quarry15Left + (wall_grab | high_jump | double_jump))",Done,Transition not labeled as Hidden
 Quarry 15,Quarry15LowerRight,Quarry31Upper,"(Quarry15Upper + Quarry15Upper_Lever) 
 | Quarry15Left + (wall_grab | double_jump | high_jump) 
 | Quarry15LowerLeft",Done,
@@ -829,7 +829,7 @@ Quarry 18,Quarry18LowerLeft,Quarry09Right,Quarry18Upper | Quarry18HiddenLeft,Don
 Quarry 18,Quarry18Upper,Quarry12Lower,(Quarry18LowerLeft | Quarry18HiddenLeft) + (double_jump | high_jump),Done,
 Quarry 19,Quarry19LowerRight,Quarry09Left,Quarry19UpperRight,Done,
 Quarry 19,Quarry19UpperRight,Quarry23LowerLeft,Quarry19LowerRight + (double_jump | wall_grab | high_jump),Done,
-Quarry 20,Quarry20Left,Quarry12Right,Quarry20RIght,Done,
+Quarry 20,Quarry20Left,Quarry12Right,Quarry20Right,Done,
 Quarry 20,Quarry20Right,Quarry22Left,Quarry20Left,Done,
 Quarry 21,Quarry21HiddenLeft,Quarry17Right,(Quarry21Right | Quarry21Lower) + (double_jump + dash_charge),Done,
 Quarry 21,Quarry21Lower,Quarry14Upper,Quarry21Right | (Quarry21HiddenLeft + Quarry17Right + dash_charge),Unsure,Multiple connections are required for dash_charge
@@ -853,35 +853,35 @@ Roots 5,Roots05Right,Roots12LowerLeft,Roots05Upper,Done,
 Roots 5,Roots05Upper,Roots09Lower,Roots05Right + high_jump,Done,
 Roots 6,Roots06Lower,Roots07Upper,Roots06Right + pile_attack + wall_grab + dash_charge,Done,
 Roots 6,Roots06Right,Sewer09Left,None,Done,
-Roots 7,Roots07HiddenRight,Roots08Left,"(Roots07Left + Roots11Right + dash_charge + double_jump) 
+Roots 7,Roots07Right,Roots08Left,"(Roots07Left + Roots11Right + dash_charge + double_jump) 
 | (Roots07Upper + (double_jump | wall_grab | high_jump))",Done,
 Roots 7,Roots07Left,Roots11Right,"(Roots07Right | Roots07Upper) 
 + (dash_charge + double_jump)",Done,
 Roots 7,Roots07Upper,Roots06Lower,"(Roots07Left + Roots11Right + dash_charge + double_jump + (wall_grab | high_jump)) 
 | (Roots07Right + (high_jump | (double_jump + wall_grab)))",Done,
-Roots 8,Roots08Left,Roots07HiddenRight,None,Done,
+Roots 8,Roots08Left,Roots07Right,None,Done,
 Roots 9,Roots09Lower,Roots05Upper,None,Done,
 Roots 9,Roots09Right,Roots12UpperLeft,"(Roots09Lower + high_jump) 
 | (Roots09Upper + dash_charge)",Done,
 Roots 9,Roots09Upper,Roots10LowerLeft,"Roots09Right + (high_jump | (double_jump + wall_grab)) 
 + dash_charge",Done,
-Roots 10,Roots10LowerLeft,Roots09Upper,RootsLowerRight + (high_jump | (double_jump + wall_grab)),Done,
+Roots 10,Roots10LowerLeft,Roots09Upper,Roots10LowerRight + (high_jump | (double_jump + wall_grab)),Done,
 Roots 10,Roots10LowerRight,Roots11HiddenUpper,None,Done,
 Roots 11,Roots11HiddenUpper,Roots10LowerRight,"Roots11Right | Roots11Lower 
 + (high_jump | (double_jump + wall_grab)) ",Done,
 Roots 11,Roots11Lower,Roots12Upper,"(Roots11HiddenUpper | Roots11Right) 
 + Roots11Lower_Lever",Done,
 Roots 11,Roots11Right,Roots07Left,"(Roots11HiddenUpper + (dodge | high_jump | WALL_DASH | (double_jump + wall_grab))) 
-| (Roots11Lower + (high_jump | (double_jump + wall_grab))",Done,
+| (Roots11Lower + (high_jump | (double_jump + wall_grab)))",Done,
 Roots 12,Roots12LowerLeft,Roots05Right,"(Roots12Upper | Roots12UpperLeft) 
 + (Roots09Right + (double_jump | high_jump) + WALL_DASH)",Unsure,wall_dash requires roots09
 Roots 12,Roots12Upper,Roots11Lower,Roots12UpperLeft + (high_jump | (double_jump + wall_grab)),Done,
 Roots 12,Roots12UpperLeft,Roots09Right,Roots12Upper,Done,
 Roots 13,Roots13Lower,Roots20Upper,Roots13LowerLeft | Roots13UpperLeft | Roots13Right,Done,
 Roots 13,Roots13LowerLeft,Roots14Right,Roots13UpperLeft | Roots13Lower | Roots13Right,Done,
-Roots 13,Roots13Right,Roots23Left,"(Roots13Lower | Roots13LowerLeft) + (high_jump | (double_jump + wall_grab)))
+Roots 13,Roots13Right,Roots23Left,"(Roots13Lower | Roots13LowerLeft) + (high_jump | (double_jump + wall_grab))
 | (Roots13UpperLeft + (high_jump + (wall_grab + (double_jump | wall_charge))))",Done,
-Roots 13,Roots13UpperLeft,Roots16Right,"(Roots13Lower | Roots13LowerLeft) + (high_jump | (double_jump + wall_grab)))
+Roots 13,Roots13UpperLeft,Roots16Right,"(Roots13Lower | Roots13LowerLeft) + (high_jump | (double_jump + wall_grab))
 | (Roots13Right + (high_jump + (wall_grab + (double_jump | wall_charge))))",Done,
 Roots 14,Roots14Left,Roots15Right,Roots14Right + wall_grab + (double_jump | dodge | wall_charge),Done,
 Roots 14,Roots14Right,Roots13LowerLeft,Roots14Left + wall_grab + double_jump,Done,
@@ -894,7 +894,7 @@ Roots 17,Roots17Left,Quarry31Right,"Roots17Right + (dodge | double_jump)
 Roots 17,Roots17Right,Roots16Left,"Roots17Left + (double_jump | dodge) 
 + hook",Done,
 Roots 18,Roots18LowerRight,Roots19Left,Roots18UpperRight + (dodge | double_jump | WALL_DASH),Done,
-Roots 18,Roots18UpperRight,Roots15Left,Roots18LowerRight  + (high_jump | (dodge + double_jump),Done,
+Roots 18,Roots18UpperRight,Roots15Left,Roots18LowerRight  + (high_jump | (dodge + double_jump)),Done,
 Roots 19,Roots19Left,Roots18LowerRight,Roots19Right,Done,
 Roots 19,Roots19Right,Roots21Left,Roots19Left,Done,
 Roots 20,Roots20Lower,Roots04Upper,Roots20Upper + Roots20Upper_Lever,Done,
@@ -908,10 +908,10 @@ Roots 21,Roots21Right,Roots04Left,"(Roots21Lower + (WALL_DASH | dodge | double_j
 Roots 22,Roots22Upper,Roots21Lower,None,Done,
 Roots 23,Roots23Left,Roots13Right,None,Done,
 Roots 24,Roots24HiddenLeft,Roots30Right,"(Roots24Left | Roots24LowerLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24UpperRight) 
-+ (high_jump + (dodge | double_jump)) | (dive + WALL_DASH + double_jump)",Done,
-Roots 24,Roots24Left,Roots03Right,"( Roots24HiddenLeft 
-| ((Roots24LowerLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24UpperRight) + (wall_grab | dodge | double_jump) 
-+ dive) ",Done,
++ (high_jump + (dodge | double_jump) | dive + WALL_DASH + double_jump)",Done,
+Roots 24,Roots24Left,Roots03Right,"(Roots24HiddenLeft 
+| ((Roots24LowerLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24UpperRight) + (wall_grab | dodge | double_jump)) 
++ dive)",Done,
 Roots 24,Roots24LowerLeft,Roots29Upper,"((Roots24Left | Roots24HiddenLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24UpperRight) 
 + (dodge | wall_grab | double_jump) 
 + dive)",Done,
@@ -919,7 +919,7 @@ Roots 24,Roots24LowerRight,Roots26Upper,"(Roots24UpperRight
 | (Roots24Left | Roots24HiddenLeft | Roots24Right | Roots24UpperLeft | Roots24LowerLeft) 
 + (dodge | wall_grab | double_jump) 
 + dive)",Done,
-Roots 24,Roots24Right,Roots25Left,"((Roots24UpperRight | Roots21LowerRight)
+Roots 24,Roots24Right,Roots25Left,"((Roots24UpperRight | Roots24LowerRight)
 | (Roots24Left | Roots24HiddenLeft | Roots24UpperLeft | Roots24LowerLeft) 
 + (dodge | wall_grab | double_jump) 
 + dive)",Done,
@@ -977,8 +977,8 @@ Sewer 2,Sewer02Lower,Sewer04Upper,(Sewer02UpperLeft + Sewer02LowerLeft) + swim,D
 Sewer 2,Sewer02LowerLeft,Sewer03CenterRight,(Sewer02UpperLeft + Sewer02Lower) + swim,Done,
 Sewer 2,Sewer02UpperLeft,Sewer03UpperRight,(Sewer02LowerLeft + Sewer02Lower) + swim,Done,
 Sewer 3,Sewer03CenterRight,Sewer02LowerLeft,"(Sewer03UpperLeft | Sewer03UpperRight)
-| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter) + (double_jump + (wall_grab | high_jump)
-| (Sewer03HiddenLeft + (double_jump + (high_jump | wall_grab))",Done,
+| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter) + (double_jump + (wall_grab | high_jump))
+| (Sewer03HiddenLeft + (double_jump + (high_jump | wall_grab)))",Done,
 Sewer 3,Sewer03HiddenLeft,Sewer05Right,"(Sewer03UpperLeft | Sewer03UpperRight) + (wall_grab | double_jump + high_jump | dodge)
 | (Sewer03LowerLeft | Sewer03LowerRight | Sewer03LowerCenter)  + (double_jump + wall_grab)
 | (Sewer03CenterRight) + (double_jump | dodge | high_jump + wall_grab)",Done,
@@ -990,7 +990,7 @@ Sewer 3,Sewer03UpperLeft,Sewer01Right,"Sewer03HiddenLeft + (double_jump + wall_g
 | (Sewer03UpperRight + (double_jump | WALL_DASH | high_jump))",Done,
 Sewer 3,Sewer03UpperRight,Sewer02UpperLeft,"Sewer03UpperLeft + wall_grab
 | (Sewer03LowerLeft | Sewer03UpperRight | Sewer03LowerRight | Sewer03LowerCenter) + (double_jump + wall_grab | high_jump)
-| (Sewer03HiddenLeft + (double_jump + wall_grab | high_jump)",Done,
+| (Sewer03HiddenLeft + (double_jump + wall_grab | high_jump))",Done,
 Sewer 4,Sewer04Left,Sewer03LowerRight,Sewer04Right | Sewer04Upper | Sewer04Lower,Done,
 Sewer 4,Sewer04Lower,Sewer13Upper,(Sewer04Right | Sewer04Upper | Sewer04Left) + swim,Done,
 Sewer 4,Sewer04Right,Sewer14UpperLeft,Sewer04Left | Sewer04Upper | Sewer04Lower,Done,
@@ -1015,7 +1015,7 @@ Sewer 12,Sewer12Lower,Sewer09UpperRight,Sewer12Upper + swim,Done,
 Sewer 12,Sewer12Upper,Sewer03LowerCenter,Sewer12Lower + swim,Done,
 Sewer 13,Sewer13Right,Sewer14CenterLeft,Sewer13Upper + swim,Done,
 Sewer 13,Sewer13Upper,Sewer04Lower,Sewer13Right + swim,Done,
-Sewer 14,Sewer14CenterLeft,Sewer13Right,"(Sewer14UpperLeft | Sewer14HiddenRight) + (dodge | wall_grab | double_jump | high_jump))
+Sewer 14,Sewer14CenterLeft,Sewer13Right,"(Sewer14UpperLeft | Sewer14HiddenRight) + (dodge | wall_grab | double_jump | high_jump)
 | (Sewer14LowerLeft + (double_jump | wall_grab | high_jump))",Done,
 Sewer 14,Sewer14HiddenRight,Sewer17Left,(Sewer14CenterLeft | Sewer14UpperLeft | Sewer14LowerLeft) + (double_jump | high_jump | wall_grab),Done,
 Sewer 14,Sewer14LowerLeft,Sewer11UpperRight,Sewer14CenterLeft | Sewer14HiddenRight | Sewer14UpperLeft,Done,
@@ -1024,7 +1024,7 @@ Sewer 15,Sewer15Left,Sewer11LowerRight,Sewer15Lower + (high_jump + (dodge | (dou
 Sewer 15,Sewer15Lower,Swamp18Upper,Sewer15Left + Sewer15Lower_Lever,Done,
 Sewer 15,Sewer15Lower_Lever,,Sewer15Lower + (high_jump + (dodge | (double_jump + wall_grab)) | hook),Done,
 Sewer 17,Sewer17Left,Sewer14HiddenRight,None,Done,
-Slum 1,Slum01Left,Crossroad02Right,Slum01Right | Slow01Lower,Done,
+Slum 1,Slum01Left,Crossroad02Right,Slum01Right | Slum01Lower,Done,
 Slum 1,Slum01Lower,Slum02Upper,Slum01Left | Slum01Right,Done,
 Slum 1,Slum01Right,Street01Left,Slum01Left | Slum01Lower,Done,
 Slum 2,Slum02Lower,Sewer01Upper,Slum02Upper + pile_attack,Done,
@@ -1035,7 +1035,7 @@ Street 1,Street01Right,Street06Left,Street01Left | Street01Door,Done,
 Street 2,Street02Left,Street18Right,Street02Right,Done,
 Street 2,Street02Left_Lever,,Street02Right,Done,
 Street 2,Street02Right,Street04Left,Street02Left + Street02Left_Lever,Done,
-Street 3,Street03Door,Street10Door,Street03Left | Street03UpperLeft,Done,
+Street 3,Street03Door,Street10Door,Street03LowerLeft | Street03UpperLeft,Done,
 Street 3,Street03LowerLeft,Street05LowerRight,(Street03Door  | Street03UpperLeft) + Street05LowerRight_Lever,Done,
 Street 3,Street03Right,Street11Left,(Street03Door | Street03UpperLeft | Street03LowerLeft) + key_lower,Done,
 Street 3,Street03UpperLeft,Street05UpperRight,(Street03Door | Street03LowerLeft) + (double_jump + wall_grab | high_jump),Done,
@@ -1065,7 +1065,7 @@ Street 10,Street10Lower,Street09Upper,Street10Door | Street10Left,Done,
 Street 11,Street11Left,Street03Right,Street11Right,Done,
 Street 11,Street11Right,Street12Left,Street11Left,Done,
 Street 11,Street11Upper,Center01Lower,(Street11Right | Street11Left) + EVT_ev_s_0180_StreetElevatorFix,Unsure,Elevator fix requires meeting all 3 attuners (Mine09Right | Mine09Upper) + (Swamp17Left + hook) + ((Quarry31Upper | Quarry31Right) + EVT_ev_s_e6050_Master_Defeat)
-Street 12,Street12Door,Street13Door,Street12Left + (double_jump | high_jump | double_jump + WALL_DASH),Done,
+Street 12,Street12Door,Street13Door,Street12Left + (double_jump | high_jump),Unsure,you probably meant double_jump + high_jump cause here wall_dash is redundant (FIXED)
 Street 12,Street12Left,Street11Right,Street12LowerRight + (double_jump | high_jump | wall_grab) | Street12UpperRight,Done,
 Street 12,Street12LowerRight,Street19LowerLeft,Street12UpperRight | Street12Left + (double_jump | high_jump),Done,
 Street 12,Street12UpperRight,Street19UpperLeft,"((Street12Left | Street12LowerRight) + high_jump) 
@@ -1077,7 +1077,7 @@ Street 13,Street13LowerHidden,Street14UpperHidden,((Street13LowerLeft | Street13
 Street 13,Street13LowerLeft,Street14UpperLeft,"((Street13LowerHidden | Street13LowerRight) + (double_jump | high_jump | dodge))
 | (Street13Left | Street13Door)",Done,
 Street 13,Street13LowerRight,Street14UpperRight,"((Street13Left | Street13LowerLeft) + (double_jump | high_jump | dodge))
-| (Street13Hidden | Street13Door)",Done,
+| (Street13LowerHidden | Street13Door)",Done,
 Street 14,Street14Right,Street15Left,Street14UpperRight | Street14UpperLeft,Done,
 Street 14,Street14UpperHidden,Street13LowerHidden,None,Done,
 Street 14,Street14UpperLeft,Street13LowerLeft,Street14UpperRight | Street14Right,Done,
@@ -1096,19 +1096,19 @@ Summit 1,Summit01RightDoor,Kowloon04LeftDoor,Summit01UpperLeft,Not Labbed,
 Summit 1,Summit01UpperLeft,Summit02UpperRight,Summit01RightDoor,Not Labbed,
 Summit 2,Summit02Left,Summit03Right,Summit02LowerRight | Summit02UpperRight,Not Labbed,
 Summit 2,Summit02LowerRight,Summit01LowerLeft,Summit02UpperRight | Summit02Left,Not Labbed,
-Summit 2,Summit02UpperRight,Summit01UpperLeft,(Summit02Left | Summit02LowerRight) + (high_jump | (double_jump + WALL_DASH),Not Labbed,
+Summit 2,Summit02UpperRight,Summit01UpperLeft,(Summit02Left | Summit02LowerRight) + (high_jump | (double_jump + WALL_DASH)),Not Labbed,
 Summit 3,Summit03HiddenLeft,Summit04Right,(Summit03Right | Summit03UpperLeft) + (dodge | (wall_grab + (double_jump | wall_charge))),Not Labbed,
 Summit 3,Summit03Right,Summit02Left,"Summit03UpperLeft 
-| (Summit03HiddenLeft + (double_jump + dodge + (high_jump | wall_grab)) | WALL_DASH)",Not Labbed,
-Summit 3,Summit03UpperLeft,Summit06Right,"(Summit03Right + (high_jump | double_jump | WALL_DASH) |(dodge + wall_grab)))
-| (Summit03HiddenLeft + (double_jump + dodge + (high_jump | wall_grab)) | WALL_DASH)",Not Labbed,
-Summit 4,Summit04Left,Summit05HiddenRight,Summit04Right + (double_jump + dodge + (high_jump | wall_grab)) | (double_jump + WALL_DASH),Not Labbed,
-Summit 4,Summit04Right,Summit03HiddenLeft,Summit04Left + (double_jump + dodge + (high_jump | wall_grab)) | (double_jump + WALL_DASH),Not Labbed,
+| (Summit03HiddenLeft + (double_jump + dodge + (high_jump | wall_grab) | WALL_DASH))",Not Labbed,
+Summit 3,Summit03UpperLeft,Summit06Right,"(Summit03Right + (high_jump | double_jump | WALL_DASH) | (dodge + wall_grab))
+| (Summit03HiddenLeft + (double_jump + dodge + (high_jump | wall_grab) | WALL_DASH))",Not Labbed,
+Summit 4,Summit04Left,Summit05HiddenRight,Summit04Right + (double_jump + dodge + (high_jump | wall_grab) | (double_jump + WALL_DASH)),Not Labbed,
+Summit 4,Summit04Right,Summit03HiddenLeft,Summit04Left + (double_jump + dodge + (high_jump | wall_grab) | (double_jump + WALL_DASH)),Not Labbed,
 Summit 5,Summit05HiddenRight,Summit04Left,(Summit05UpperRight | Summit05Left) + (dodge | (wall_grab + (double_jump | wall_charge))),Not Labbed,
 Summit 5,Summit05Left,Summit07Right,"Summit05UpperRight 
-| (Summit05HiddenRight + (double_jump + dodge) | WALL_DASH)",Not Labbed,
-Summit 5,Summit05UpperRight,Summit06Left,"(Summit05Left + (high_jump | double_jump | WALL_DASH) |(dodge + wall_grab)))
-| (Summit05HiddenRight + (double_jump + dodge + (high_jump | wall_grab)) | WALL_DASH)",Not Labbed,
+| Summit05HiddenRight + (double_jump + dodge | WALL_DASH)",Not Labbed,
+Summit 5,Summit05UpperRight,Summit06Left,"(Summit05Left + (high_jump | double_jump | WALL_DASH) | (dodge + wall_grab))
+| (Summit05HiddenRight + (double_jump + dodge + (high_jump | wall_grab) | WALL_DASH))",Not Labbed,
 Summit 6,Summit06CenterDoor,Summit12LeftDoor,Summit06Right | Summit06Left,Not Labbed,
 Summit 6,Summit06Left,Summit05UpperRight,Summit06Right | Summit06CenterDoor,Not Labbed,
 Summit 6,Summit06Right,Summit03UpperLeft,Summit06Left | Summit06CenterDoor,Not Labbed,
@@ -1131,14 +1131,14 @@ Summit 8,Summit08UpperRight,Summit07UpperLeft,"Summit08RightDoor
 | (Summit08LowerRight + dash_charge + (dodge | double_jump))",Unsure,Can be reached from Summit19 using wall dash
 Summit 8,Summit08LowerRight_Lever,,(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + double_jump,,
 Summit 9,Summit09LowerLeft,Summit15HiddenRight,Summit09Right + dive + (high_jump | double_jump),Not Labbed,
-Summit 9,Summit09Right,Summit14Left,Summit09Left + dive + (double_jump + wall_grab) | (high_jump + (dodge | double_jump)),Not Labbed,
+Summit 9,Summit09Right,Summit14Left,Summit09Left + dive + (double_jump + wall_grab | high_jump + (dodge | double_jump)),Not Labbed,
 Summit 9,Summit09UpperLeft,Summit15Right,None,Not Labbed,
 Summit 10,Summit10Right,Summit11Left,None,Not Labbed,
 Summit 11,Summit11CenterDoor,Summit08LeftDoor,Summit11Right | Summit11Left,Not Labbed,
 Summit 11,Summit11Left,Summit10Right,Summit11Right | Summit11CenterDoor,Not Labbed,
 Summit 11,Summit11Right,Summit16Left,Summit11Left | Summit11CenterDoor,Not Labbed,
 Summit 12,Summit12LeftDoor,Summit06CenterDoor,"Summit12LowerLeft 
-| ((Summit12Right | Summit12RightDoor) + (high_jump | wall_grab)",Not Labbed,
+| ((Summit12Right | Summit12RightDoor) + (high_jump | wall_grab))",Not Labbed,
 Summit 12,Summit12LowerLeft,Summit13LowerRight,"Summit12LeftDoor 
 | ((Summit12Right | Summit12RightDoor) + (high_jump | wall_grab))",Not Labbed,
 Summit 12,Summit12Right,Summit18Left,"Summit12RightDoor 
@@ -1152,9 +1152,9 @@ Summit 13,Summit13UpperRight,Summit12UpperLeft,None,Not Labbed,
 Summit 14,Summit14CenterDoor,Summit20CenterDoor,Summit14Left | Summit14Right,Not Labbed,
 Summit 14,Summit14Left,Summit09Right,Summit14Right | Summit14CenterDoor,Not Labbed,
 Summit 14,Summit14Right,Summit13Left,Summit14Left | Summit14CenterDoor,Not Labbed,
-Summit 15,Summit15CenterDoor,Summit08RightDoor,"(Summit15HiddenRight | Center15Right) 
+Summit 15,Summit15CenterDoor,Summit08RightDoor,"(Summit15HiddenRight | Summit15Right) 
 | (Summit15Left + Summit16Right_Lever)",Not Labbed,
-Summit 15,Summit15HiddenRight,Summit09LowerLeft,((Summit15Right | Summit15CenterDoor | (Summit15Left + Summit16Right_Lever)) + (high_jump | (double_jump + wall_grab)),Not Labbed,
+Summit 15,Summit15HiddenRight,Summit09LowerLeft,((Summit15Right | Summit15CenterDoor | (Summit15Left + Summit16Right_Lever))) + (high_jump | (double_jump + wall_grab)),Not Labbed,
 Summit 15,Summit15Left,Summit16Right,(Summit15Right | Summit15HiddenRight | Summit15CenterDoor) + Summit16Right_Lever,Not Labbed,
 Summit 15,Summit15Right,Summit09UpperLeft,Summit15HiddenRight | Summit15CenterDoor | (Summit15Left + Summit16Right_Lever),Not Labbed,
 Summit 16,Summit16CenterDoor,Summit24CenterDoor,Summit16Left + (high_jump | (double_jump + wall_grab)),Not Labbed,
@@ -1176,16 +1176,16 @@ Summit 22,Summit22CenterLeft,Summit25UpperRight,(Summit22CenterRight + Summit23U
 Summit 22,Summit22CenterRight,Summit23CenterLeft,((Summit22UpperLeft | Summit22CenterLeft + Summit22UpperRight) + Summit23Upper_Lever) + (WALL_DASH | (double_jump + wall_grab)),In Progress,
 Summit 22,Summit22LowerLeft,Summit21Right,Summit22UpperLeft,In Progress,
 Summit 22,Summit22LowerRight,Summit23LowerLeft,(Summit22LowerLeft + Summit21Right) + WALL_DASH,In Progress,
-Summit 22,Summit22UpperLeft,Summit24UpperRight,"Summit22LowerLeft + high_jump | double_jump + wall_grab
+Summit 22,Summit22UpperLeft,Summit24UpperRight,"Summit22LowerLeft + (high_jump | double_jump + wall_grab)
 | Summit22UpperRight + WALL_DASH",In Progress,
 Summit 22,Summit22UpperRight,Summit23UpperLeft,(Summit22UpperLeft + Summit25UpperRight) + WALL_DASH,In Progress,
-Summit 23,Summit23CenterLeft,Summit22CenterRight,(Summit23LowerRight + Summit23Left_Lever) + high_jump | (wall_grab + double_jump + (dodge | wall_charge),Not Labbed,
-Summit 23,Summit23LowerLeft,Summit22LowerRight,(Summit21Left | Summit21CenterDoor | Summit21Right) + WALL_DASH,Unsure,Dash from summit21
+Summit 23,Summit23CenterLeft,Summit22CenterRight,Summit23LowerRight + Summit23Left_Lever + (high_jump | wall_grab + double_jump + (dodge | wall_charge)),Not Labbed,
+Summit 23,Summit23LowerLeft,Summit22LowerRight,(Summit21Left | Summit21Lower | Summit21Right) + WALL_DASH,Unsure,Dash from summit21
 Summit 23,Summit23LowerRight,Summit17LowerLeft,(Summit23CenterLeft + Summit23Upper_Lever + Summit23Left_Lever),Not Labbed,
 Summit 23,Summit23UpperLeft,Summit22UpperRight,None,Not Labbed,
 Summit 23,Summit23UpperRight,Summit17UpperLeft,None,Not Labbed,
-Summit 23,Summit23Upper_Lever,,(Summit23LowerRight + Summit23Left_Lever) + (high_jump | (wall_grab + double_jump + (dodge | wall_charge)),,
-Summit 23,Summit23Left_Lever,,(Summit21Left | Summit21CenterDoor | Summit21Right) + WALL_DASH,Unsure,Dash from summit21
+Summit 23,Summit23Upper_Lever,,(Summit23LowerRight + Summit23Left_Lever) + (high_jump | (wall_grab + double_jump + (dodge | wall_charge))),In Progress,
+Summit 23,Summit23Left_Lever,,(Summit21Left | Summit21Lower | Summit21Right) + WALL_DASH,Unsure,Dash from summit21
 Summit 24,Summit24CenterDoor,Summit16CenterDoor,"Summit24UpperLeft + (dodge + double_jump | wall_charge) + wall_grab 
 | (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH",Done,
 Summit 24,Summit24CenterLeft,Summit27CenterRight," ((Summit24CenterDoor | Summit24CenterRight | Summit24HiddenRight) + ((double_jump + dodge | wall_charge) + wall_grab)
@@ -1198,10 +1198,10 @@ Summit 24,Summit24HiddenRight,Summit25LowerLeft,"Summit24UpperLeft + (double_jum
 | Summit24CenterRight",Done,
 Summit 24,Summit24LowerLeft,Summit27LowerRight,(Summit24UpperLeft | Summit24CenterRight | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Done,
 Summit 24,Summit24LowerRight,Summit21Left,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Done,
-Summit 24,Summit24UpperLeft,Summit27UpperRight,"(Summit24CenterDoor + (dodge + double_jump | wall_charge) + wall_grab
+Summit 24,Summit24UpperLeft,Summit27UpperRight,"(Summit24CenterDoor + (dodge + double_jump | wall_charge) + wall_grab)
 | (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH ",Unsure,Not sure to count high_jump + dodge interaction from Center door
 Summit 24,Summit24UpperRight,Summit26Left,(Summit24CenterRight + Summit25UpperLeft)  + (high_jump | double_jump) + WALL_DASH,Done,
-Summit 25,Summit25Lower,Summit28Upper,Summit25LowerRight + (high_jump | (double_jump | dodge) + wall_grab)) + pile_attack,Done,
+Summit 25,Summit25Lower,Summit28Upper,(Summit25LowerRight + (high_jump | (double_jump | dodge) + wall_grab)) + pile_attack,Done,
 Summit 25,Summit25LowerLeft,Summit24HiddenRight,None,Done,
 Summit 25,Summit25LowerRight,Summit22CenterLeft,None,Done,
 Summit 25,Summit25UpperLeft,Summit24CenterRight,(Summit25LowerRight + Summit25Upper_Lever) + ((high_jump | double_jump) + wall_grab),Done,
@@ -1210,7 +1210,7 @@ Summit 25,Summit25Upper_Lever,,Summit25LowerRight + (high_jump | double_jump + d
 Summit 25,Summit25Right_Lever,,Summit25LowerRight + (high_jump | double_jump + wall_grab),Done,
 Summit 26,Summit26CenterDoor,Summit30CenterDoor,Summit26Left,Done,
 Summit 26,Summit26Left,Summit24UpperRight,Summit26CenterDoor,Done,
-Summit 27,Summit27CenterRight,Summit24CenterLeft,(Summit27LowerRight + Summit27Upper_Lever) + (dive + (dodge | dash_underwater_charge)) | (double_jump + WALL_DASH),Done,
+Summit 27,Summit27CenterRight,Summit24CenterLeft,Summit27LowerRight + Summit27Upper_Lever + (dive + (dodge | dash_underwater_charge) | double_jump + WALL_DASH),Done,
 Summit 27,Summit27LowerRight,Summit24LowerLeft,None,Done,
 Summit 27,Summit27UpperRight,Summit24UpperLeft,None,Done,
 Summit 27,Summit27Upper_Lever,,Summit27LowerRight + (dive + (dodge | dash_underwater_charge)) | (double_jump + WALL_DASH),Done,
@@ -1225,13 +1225,13 @@ Swamp 2,Swamp02Left,Swamp03Right,Swamp02Upper,Done,
 Swamp 2,Swamp02Upper,Swamp01LowerLeft,Swamp02Left + dive,Done,
 Swamp 3,Swamp03Left,Swamp04Right,Swamp03Right,Done,
 Swamp 3,Swamp03Right,Swamp02Left,Swamp03Left,Done,
-Swamp 4,Swamp04HiddenLeft,Swamp19Right,"((Swamp04Right | Swamp04Lower) + (double_jump | wall_grab) | (dive + dodge)) 
+Swamp 4,Swamp04HiddenLeft,Swamp19Right,"(Swamp04Right | Swamp04Lower) + (double_jump | wall_grab | dive + dodge) 
 | (Swamp04Upper + (dodge | double_jump | wall_grab))",Done,
 Swamp 4,Swamp04Lower,Swamp13Upper,(Swamp04Right | Swamp04HiddenLeft | Swamp04Upper) + dive,Done,
 Swamp 4,Swamp04Right,Swamp03Left,Swamp04Lower | Swamp04Upper | Swamp04HiddenLeft,Done,
 Swamp 4,Swamp04Upper,Swamp05Lower,(Swamp04Lower | Swamp04Upper | Swamp04HiddenLeft) + dive,Done,
-Swamp 5,Swamp05Left,Swamp06Right,"((Swamp05Lower + (double_jump | high_jump)) 
-| (Swamp05Right + (hook + wall_grab) | (double_jump | high_jump))
+Swamp 5,Swamp05Left,Swamp06Right,"(Swamp05Lower + (double_jump | high_jump)) 
+| (Swamp05Right + ((hook + wall_grab) | (double_jump | high_jump))
 + dive)",Done,
 Swamp 5,Swamp05Lower,Swamp04Upper,"(Swamp05Right 
 | (Swamp05Left + (double_jump | high_jump | wall_grab)) + dive)",Done,
@@ -1247,8 +1247,8 @@ Swamp 8,Swamp08Upper,Swamp07Lower,(Swamp08Right | Swamp08Lower) + dive,Done,
 Swamp 9,Swamp09Left,Swamp08Right,(Swamp09Right | Swamp09Lower) + (double_jump | high_jump),Done,
 Swamp 9,Swamp09Lower,Swamp10UpperRight,(Swamp09Right | Swamp09Left) + dive,Done,
 Swamp 9,Swamp09Right,Swamp11UpperLeft,Swamp09Left | Swamp09Lower,Done,
-Swamp 10,Swamp10Left,Roots25Right,((Swamp10UpperLeft | Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever)) + TORRENT,Done,
-Swamp 10,Swamp10Right,Swamp11LowerLeft,(Swamp10UpperLeft + dive) | (SwampLeft + TORRENT) | (Swamp10UpperRight + Swamp10Upper_Lever + dive),Done,
+Swamp 10,Swamp10Left,Roots25Right,((Swamp10UpperLeft | Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever))) + TORRENT,Done,
+Swamp 10,Swamp10Right,Swamp11LowerLeft,(Swamp10UpperLeft + dive) | (Swamp10Left + TORRENT) | (Swamp10UpperRight + Swamp10Upper_Lever + dive),Done,
 Swamp 10,Swamp10UpperLeft,Swamp08Lower,"((Swamp10Left + TORRENT) 
 | (Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever))
 + dive)",Done,
@@ -1257,7 +1257,7 @@ Swamp 10,Swamp10UpperRight,Swamp09Lower,"((Swamp10Left + TORRENT)
 + dive)",Done,
 Swamp10,Swamp10Upper_Lever,,"(Swamp10Left + TORRENT) 
 | ((Swamp10UpperLeft | Swamp10Right) + dive)",Done,
-Swamp 11,Swamp11Lower,Swamp14Upper,"(Swamp11Left | Swamp11Right) 
+Swamp 11,Swamp11Lower,Swamp14Upper,"(Swamp11LowerLeft | Swamp11LowerRight) 
 + (Swamp11Left_Lever + Swamp11Right_Lever) 
 + pile_attack + dive",Done,
 Swamp 11,Swamp11LowerLeft,Swamp10Right,None,Done,
@@ -1266,7 +1266,7 @@ Swamp 11,Swamp11UpperLeft,Swamp09Right,Swamp10UpperRight,Done,
 Swamp 11,Swamp11UpperRight,Swamp12UpperLeft,Swamp10UpperLeft,Done,
 Swamp 11,Swamp11Left_Lever,,"Swamp11LowerLeft 
 + (double_jump | wall_grab)",Done,
-Swamp 11,Swamp11_Right_Lever,,Swamp11LowerRight,Done,
+Swamp 11,Swamp11Right_Lever,,Swamp11LowerRight,Done,
 Swamp 12,Swamp12LowerLeft,Swamp12LowerLeft,"(Swamp12UpperLeft | Swamp12Upper) 
 + Swamp12Left_Lever ",Done,
 Swamp 12,Swamp12Upper,Swamp13Lower,"Swamp12Left 
@@ -1290,7 +1290,7 @@ Swamp 16,Swamp16Right,Swamp17Left,"Swamp16Left
 Swamp 17,Swamp17Left,Swamp16Right,None,Done,
 Swamp 18,Swamp18Left,Swamp05Right,Swamp18Upper,Done,
 Swamp 18,Swamp18Upper,Sewer15Lower,"Swamp18Left 
-+ (hook + (double_jump | (dodge + high_jump))) | (wall_grab + double_jump)",Done,
++ (hook + (double_jump | (dodge + high_jump)) | (wall_grab + double_jump))",Done,
 Swamp 19,Swamp19Right,Swamp04HiddenLeft,None,Done,
 Swamp 20,Swamp20Upper,Swamp01LowerRight,None,Done,
 Tower 1,Tower01CenterRight,Tower02CenterLeft,(Tower01Left + Tower01LowerRight + Tower01UpperRight) + Tower01CenterRight_Lever,Done,
@@ -1348,8 +1348,8 @@ Tower 16,Tower16Right,Tower17Left,Tower16Left,Done,
 Tower 17,Tower17Left,Tower16Right,Tower17Right,Done,
 Tower 17,Tower17Right,Forest01Left,Tower17Left,Done,
 Tower 18,Tower18HiddenLeft,Tower06Right,Tower18UpperRight | Tower18Lower | (Tower18LowerRight + (high_jump | double_jump + dodge)),Done,
-Tower 18,Tower18Lower,Swamp01Upper,(Tower18HiddenLeft | Tower18UpperRight | (Tower18LowerRight + (high_jump | double_jump + dodge)) + swim,Done,
-Tower 18,Tower18LowerRight,Tower19LowerLeft,(Tower18HiddenLeft + double_jump | Tower18UpperRight | (Tower18Lower + swim + double_jump),Done,
+Tower 18,Tower18Lower,Swamp01Upper,(Tower18HiddenLeft | Tower18UpperRight | (Tower18LowerRight + (high_jump | double_jump + dodge))) + swim,Done,
+Tower 18,Tower18LowerRight,Tower19LowerLeft,(Tower18HiddenLeft + double_jump) | Tower18UpperRight | (Tower18Lower + swim + double_jump),Done,
 Tower 18,Tower18UpperRight,Tower19UpperLeft,(Tower18HiddenLeft | Tower18Lower) + double_jump | (Tower18LowerRight + (high_jump | double_jump + dodge)),Done,
 Tower 19,Tower19LowerLeft,Tower18LowerRight,Tower19LowerRight | Tower19Upper | Tower19UpperLeft | Tower19UpperRight,Done,
 Tower 19,Tower19LowerRight,Tower14LowerLeft,Tower19LowerLeft | Tower19Upper | Tower19UpperLeft | Tower19UpperRight,Done,
