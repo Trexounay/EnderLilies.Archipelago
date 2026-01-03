@@ -7,7 +7,7 @@ from worlds.AutoWorld import World
 from worlds.generic.Rules import add_item_rule, add_rule, set_rule
 
 from .Locations import LocationData, LocationGroup, locations, event_locations
-from .Regions import regions
+from .Regions import regions, room_connections
 from .Items import ItemData, ItemGroup, items, pool
 from .Rules import get_entrances_rules, get_locations_rules
 
@@ -76,17 +76,30 @@ class EnderMagnoliaWorld(World):
 
     def create_location(self, name: str) -> EnderMagnoliaLocation:
         parent_region = None
+        room = None
         if name in locations:
-            parent_region = self.multiworld.get_region(locations[name].region, self.player)
+            room = locations[name].region
+            #parent_region = self.multiworld.get_region(locations[name].region, self.player)
+            parent_region = self.create_region(name)
             location = EnderMagnoliaLocation(self.player, name, locations[name], parent_region)
+            parent_region.locations.append(location)
         elif name in event_locations:
-            parent_region = self.multiworld.get_region(event_locations[name].region, self.player)
+            room = event_locations[name].region
+            #parent_region = self.multiworld.get_region(event_locations[name].region, self.player)
+            parent_region = self.create_region(name)
             location = EnderMagnoliaEvent(self.player, name, parent_region)
             location.place_locked_item(EnderMagnoliaItem.from_data(event_locations[name].content, self.player))
+            parent_region.locations.append(location)
         else:
             raise Exception(f"Could not create location {name}")
-        if parent_region:
-            parent_region.locations.append(location)
+        if room in room_connections:
+            for (name, _) in room_connections[room]:
+                entrance = self.get_region(name)
+                entrance.connect(parent_region)
+        else:
+            entrance = self.get_region(room)
+            entrance.connect(parent_region)
+
         return location
 
     def create_regions(self) -> None:
@@ -98,9 +111,10 @@ class EnderMagnoliaWorld(World):
 
         # connect regions together (needs to happens after region creation)
         for name, region_data in regions.items():
-            region = self.multiworld.get_region(name, self.player)
+            region = self.get_region(name)
+            #region.add_exits(region_data.get_exits())
             for connection in region_data.connections:
-                destination = self.multiworld.get_region(connection.destination, self.player)
+                destination = self.get_region(connection.destination)
                 region.connect(destination, connection.name, rules.get(connection.name))
 
         # add locations
@@ -110,6 +124,10 @@ class EnderMagnoliaWorld(World):
         # add events
         for name in event_locations:
             location = self.create_location(name)
+
+        from Utils import visualize_regions
+        visualize_regions(self.get_region("Menu"), "EM.puml")
+            
 
     def set_rules(self) -> None:
         rules = get_locations_rules(self.player)
