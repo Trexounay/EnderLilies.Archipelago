@@ -1,6 +1,7 @@
+from collections import Counter
 from dataclasses import dataclass
 import pathlib
-from typing import List, Set, Dict, Tuple, Optional
+from typing import List, Set, Dict, Tuple
 
 import re
 import csv
@@ -8,8 +9,18 @@ import csv
 
 TOKEN_REGEX = re.compile(r'\s*([A-Za-z0-9_]+|\+|\||\(|\))')
 
+error : List[Tuple[str, str]] = []
+
 def tokenize(text: str):
-    tokens = TOKEN_REGEX.findall(text)
+    tokens = []
+    pos = 0
+    for m in TOKEN_REGEX.finditer(text):
+        if m.start() != pos:
+            raise ValueError(f"unexpected character at {pos} in : {text}")
+        tokens.append(m.group(1))
+        pos = m.end()
+    if pos != len(text.rstrip()):
+        raise ValueError(f"unexpected character at {pos} in : {text}")
     if not tokens:
         raise ValueError(f"couldn't tokenize : {text}")
     return tokens
@@ -109,20 +120,31 @@ nodes : Dict[str, DNF] = {}
 with open(f"{root}/Data/Transitions Logic.csv", newline="", encoding="utf-8") as f:
     reader = list(csv.reader(f))
     for row_num, cols in enumerate(reader[1:], start=2):
-        if len(cols) < 4:
+        if len(cols) < 9:
             print("invalid line", len(cols), cols)
             continue
         node = cols[1]
-        logic = cols[3]
-        if not cols[3]:
-            continue
+        logic = cols[8]
+        if not cols[8]:
+            logic = "None"
         try:
             ast = Parser(tokenize(logic)).parse()
             dnf = to_dnf(ast)
             nodes[node] = dnf
-        except SyntaxError as e:
+        except (SyntaxError, ValueError) as e:
+            error.append((node, f"error: {row_num}:[{logic}], {e}"))
             print(f"{row_num}:{logic}")
             print(f"error parsing {e}")
+
+used_symbols : Counter = Counter()
+for dnfs in nodes.values():
+    for term in dnfs:
+        for s in term:
+            if s.name not in nodes and s.name != "None":
+                used_symbols[s.name] += 1
+
+used_items = {s: used_symbols[s] for s in sorted(used_symbols) if not s.isupper()}
+used_macros = {s: used_symbols[s] for s in sorted(used_symbols) if s.isupper()}
 
 node_to_node : Dict[Tuple[str, str], DNF] = {}
 
@@ -143,6 +165,8 @@ for node, dnfs in nodes.items():
         elif len(nodes_in_term) == 0:
             ignored = (ignored[0] + 1, ignored[1])
             print(f"{node} rule: no other nodes, only items {set(items_in_term)}")
+            
+            error.append((node, f"missing a node in condition: {set(items_in_term)}"))
             break
         elif len(nodes_in_term) > 1:
             ignored = (ignored[0], ignored[1] + 1)
@@ -157,6 +181,7 @@ def find_redundant_rules(rules: Dict[Tuple[str, str], DNF]):
                     plop1 = "+".join([str(s) for s in a])
                     plop2 = "+".join([str(s) for s in b])
                     print(f"{key[1]} as a useless rule: {key[0]} + {plop1} because it already has: {key[0]} + {plop2}")
+                    error.append((key[1], f"redundant rule: {key[0]} + {plop1} (already in {key[0]} + {plop2})"))
 
 find_redundant_rules(node_to_node)
 
@@ -167,38 +192,38 @@ count = (0, 0)
 for (src, dst), rules in node_to_node.items():
     if src not in connections:
         connections[src] = set()
-    connections[src].add(dst)
-    logic[(src, dst)] = rules
     if len(list(rules)[0]) > 0:
         count = (count[0], count[1] + 1)
+        connections[src].add(dst)
+        logic[(src, dst)] = rules
     else:
         count = (count[0] + 1, count[1])
 
-with open(f"{root}/TransitionsRules.gen.py", "w", encoding="utf-8") as f:
+with open(f"{root}/TransitionsRules_gen.py", "w", encoding="utf-8") as f:
+    f.write("items = {\n")
+    for item, n in used_items.items():
+        f.write(f"\t'{item}' : {n},\n")
+    f.write("}\n\n")
 
-#    f.write("def s(*items : str):\n")
-#    f.write("\tfrozenset(items)\n\n")
-    f.write("connections = {\n")
-    for src, dsts in connections.items():
-        f.write(f"\t'{src}' : {{")
-        for dst in dsts:
-            f.write(f"'{dst}',")
-        f.write("},\n")
-    f.write("},\n")
+    f.write("macros = {\n")
+    for macro, n in used_macros.items():
+        f.write(f"\t'{macro}' : {n},\n")
+    f.write("}\n\n")
+
+    f.write("errors = {\n")
+    error.sort()
+    for a, b in error:
+        f.write(f"\t'{a}' : '{b}',\n")
+    f.write("}\n\n")
 
     f.write("rules = {\n")    
     for (src, dst), rules in logic.items():
         lambda_expr = 'None'
         if len(list(rules)[0]) > 0:
             lambda_expr = "{" + ",".join(
-                "(" + ",".join(f"'{item.name}'" for item in clause) + ")"
+                "(" + ",".join(f"'{item.name}'" for item in clause) + ",)"
                 for clause in rules
             ) + "}"
-        #lambda_expr = ",".join(",".join(f"'{item}'" for item in clause) for clause in rules)
-        #lambda_expr = f"{{{[for x in clause for clause for clause in rules]}}}"
-            
-        #lambda_expr = " or ".join(" and ".join(f'has("{x}")' for x in clause) for clause in rules)
-        #lambda_expr = f"lambda s : {lambda_expr}"
-            f.write(f"\t'{src} to {dst}' : {lambda_expr},\n")
+            f.write(f"\t('{src}', '{dst}') : {lambda_expr},\n")
     f.write("}\n")
 
