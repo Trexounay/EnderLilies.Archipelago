@@ -6,6 +6,21 @@ from typing import List, Set, Dict, Tuple
 import re
 import csv
 
+from Items import (aptitudes, assists, costumes, currencies, equipments,
+                   quests, keys, materials, passives, skills, spirits, stats,
+                   tips, events)
+
+
+root = pathlib.Path(__file__).parent.resolve()
+
+id_to_item : Dict[str, str] = {}
+for table in (aptitudes, assists, costumes, currencies, equipments, quests,
+              keys, materials, passives, skills, spirits, stats, tips):
+    for entry, name in table.rows.items():
+        id_to_item[entry] = name
+for event in events.values():
+    id_to_item[event.key] = event.name
+
 
 TOKEN_REGEX = re.compile(r'\s*([A-Za-z0-9_]+|\+|\||\(|\))')
 
@@ -115,7 +130,6 @@ def to_dnf(expr: Expr) -> DNF:
     else:
         raise TypeError(f"Type inconnu: {type(expr)}")
 
-root = pathlib.Path(__file__).parent.resolve()
 nodes : Dict[str, DNF] = {}
 with open(f"{root}/Data/Transitions Logic.csv", newline="", encoding="utf-8") as f:
     reader = list(csv.reader(f))
@@ -143,12 +157,14 @@ for dnfs in nodes.values():
             if s.name not in nodes and s.name != "None":
                 used_symbols[s.name] += 1
 
-used_items = {s: used_symbols[s] for s in sorted(used_symbols) if not s.isupper()}
-used_macros = {s: used_symbols[s] for s in sorted(used_symbols) if s.isupper()}
+used_items = {s: used_symbols[s] for s in sorted(used_symbols) if s in id_to_item}
+used_macros = {s: used_symbols[s] for s in sorted(used_symbols) if s not in id_to_item and s.isupper()}
+used_unknown = {s: used_symbols[s] for s in sorted(used_symbols) if s not in id_to_item and not s.isupper()}
 
 node_to_node : Dict[Tuple[str, str], DNF] = {}
 
 ignored = (0,0)
+multi_node_seen : Set[Tuple[str, str]] = set()
 # extracts node from DNF to create rules from node to node
 for node, dnfs in nodes.items():
     for term in dnfs:
@@ -170,6 +186,12 @@ for node, dnfs in nodes.items():
             break
         elif len(nodes_in_term) > 1:
             ignored = (ignored[0], ignored[1] + 1)
+            names = ", ".join(sorted(nodes_in_term))
+            msg = (node, f"ignored, multiple nodes in condition: {names}")
+            if msg not in multi_node_seen:
+                multi_node_seen.add(msg)
+                print(f"{node} rule: ignored, multiple nodes {names}")
+                error.append(msg)
 
 def find_redundant_rules(rules: Dict[Tuple[str, str], DNF]):
     for key, clauses in rules.items():
@@ -199,7 +221,50 @@ for (src, dst), rules in node_to_node.items():
     else:
         count = (count[0] + 1, count[1])
 
+def is_macro(symbol: str) -> bool:
+    return symbol not in id_to_item and symbol.isupper()
+
+def item_arg(symbol: str) -> str:
+    name = id_to_item.get(symbol, symbol)
+    return repr(name)
+
+used_macro_names : Set[str] = set()
+
+def clause_expr(clause) -> str:
+    macros = sorted(s.name for s in clause if is_macro(s.name))
+    names = sorted(item_arg(s.name) for s in clause if not is_macro(s.name))
+    used_macro_names.update(macros)
+    parts = list(macros)
+    if len(names) == 1:
+        parts.append(f"Has({names[0]})")
+    elif len(names) > 1:
+        parts.append("HasAll(" + ", ".join(names) + ")")
+    return " & ".join(parts)
+
+def rule_expr(clauses) -> str:
+    return " | ".join(clause_expr(clause) for clause in clauses)
+
+rule_entries = []
+for (src, dst), rules in logic.items():
+    if len(list(rules)[0]) > 0:
+        src_repr = f"'{src}',"
+        dst_repr = f"'{dst}')"
+        rule_entries.append((src_repr, dst_repr, rule_expr(rules)))
+
+src_width = max((len(src_repr) for src_repr, _, _ in rule_entries), default=0)
+key_width = max((len("(" + src_repr.ljust(src_width) + " " + dst_repr)
+                 for src_repr, dst_repr, _ in rule_entries), default=0)
+rule_lines = []
+for src_repr, dst_repr, expr in rule_entries:
+    key = "(" + src_repr.ljust(src_width) + " " + dst_repr
+    rule_lines.append(f"\t{key.ljust(key_width)} : {expr},\n")
+
 with open(f"{root}/TransitionsRules_gen.py", "w", encoding="utf-8") as f:
+    f.write("from rule_builder.rules import Has, HasAll\n")
+    if used_macro_names:
+        f.write(f"from .Macros import {', '.join(sorted(used_macro_names))}\n")
+    f.write("\n")
+
     f.write("items = {\n")
     for item, n in used_items.items():
         f.write(f"\t'{item}' : {n},\n")
@@ -210,20 +275,22 @@ with open(f"{root}/TransitionsRules_gen.py", "w", encoding="utf-8") as f:
         f.write(f"\t'{macro}' : {n},\n")
     f.write("}\n\n")
 
-    f.write("errors = {\n")
-    error.sort()
-    for a, b in error:
-        f.write(f"\t'{a}' : '{b}',\n")
+    f.write("unknown = {\n")
+    for symbol, n in used_unknown.items():
+        f.write(f"\t'{symbol}' : {n},\n")
     f.write("}\n\n")
 
-    f.write("rules = {\n")    
-    for (src, dst), rules in logic.items():
-        lambda_expr = 'None'
-        if len(list(rules)[0]) > 0:
-            lambda_expr = "{" + ",".join(
-                "(" + ",".join(f"'{item.name}'" for item in clause) + ",)"
-                for clause in rules
-            ) + "}"
-            f.write(f"\t('{src}', '{dst}') : {lambda_expr},\n")
+    f.write("errors = {\n")
+    error.sort()
+    errors_by_node : Dict[str, List[str]] = {}
+    for a, b in error:
+        errors_by_node.setdefault(a, []).append(b)
+    for a, msgs in errors_by_node.items():
+        f.write(f"\t{a!r} : {' ; '.join(msgs)!r},\n")
+    f.write("}\n\n")
+
+    f.write("rules = {\n")
+    for line in rule_lines:
+        f.write(line)
     f.write("}\n")
 

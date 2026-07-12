@@ -228,7 +228,7 @@ room_connections = {
     "Forest 3": [
         ("Forest03Left", "Forest02Right"),
         ("Forest03LowerRightDoor", "Forest09CenterRightDoor"),
-        ("Forest03UpperDoor", "Forsest07LowerDoor"),
+        ("Forest03UpperDoor", "Forest07LeftDoor"),
         ("Forest03UpperRightDoor", "Forest19LeftDoor"),
     ],
     "Forest 4": [
@@ -242,7 +242,7 @@ room_connections = {
     ],
     "Forest 5": [
         ("Forest05CenterLowerDoor", "Forest02UpperRightDoor"),
-        ("Forest05CenterUpperDoor", "Forest06CenterDoor"),
+        ("Forest05CenterUpperDoor", "Forest06LowerRightDoor"),
         ("Forest05LeftDoor", "Forest12UpperRightDoor"),
         ("Forest05RightDoor", "Forest10LowerLeftDoor"),
     ],
@@ -256,6 +256,7 @@ room_connections = {
     "Forest 7": [
         ("Forest07CenterDoor", "Forest10UpperLeftDoor"),
         ("Forest07Left", "Forest06HiddenRight"),
+        ("Forest07LeftDoor", "Forest03UpperDoor"),
         ("Forest07Right", "Forest08Left"),
     ],
     "Forest 8": [
@@ -293,8 +294,8 @@ room_connections = {
         ("Forest18UpperRightDoor", "Forest19LowerDoor"),
     ],
     "Forest 19": [
-        ("Forest19LeftDoor", "Forest18UpperRightDoor"),
-        ("Forest19LowerDoor", "Forest03UpperRightDoor"),
+        ("Forest19LeftDoor", "Forest03UpperRightDoor"),
+        ("Forest19LowerDoor", "Forest18UpperRightDoor"),
         ("Forest19Right", "Forest20Left"),
     ],
     "Forest 20": [
@@ -311,9 +312,6 @@ room_connections = {
     ],
     "Forest 23": [
         ("Forest23Left", "Forest22Right"),
-    ],
-    "Forsest 7": [
-        ("Forsest07LowerDoor", "Forest04UpperCenterDoor"),
     ],
     "Garden 1": [
         ("Garden01Left", "Garden09Right"),
@@ -503,7 +501,7 @@ room_connections = {
         ("Kowloon34UpperLeft", "Kowloon28Right"),
     ],
     "Kowloon 35": [
-        ("Kowloon35CenterLowerRight", "Kowloon48Right"),
+        ("Kowloon35CenterLowerRight", "Kowloon48Left"),
         ("Kowloon35CenterRight", "Kowloon49Left"),
         ("Kowloon35CenterUpperRight", "Kowloon50Left"),
         ("Kowloon35Left", "Kowloon34Right"),
@@ -629,15 +627,16 @@ room_connections = {
     ],
     "Labo 9": [
         ("Labo09Left", "Labo10LowerRight"),
-        ("Labo09Lower", "Labo02Right"),
+        ("Labo09Lower", "Labo01Upper"),
         ("Labo09LowerRight", "Labo05LowerLeft"),
         ("Labo09Upper", "Labo23Lower"),
         ("Labo09UpperRight", "Labo05UpperLeft"),
     ],
     "Labo 10": [
-        ("Labo10Left", "Labo25Right"),
+        ("Labo10CenterLeft", "Labo25LowerRight"),
+        ("Labo10UpperLeft", "Labo25UpperRight"),
         ("Labo10LowerRight", "Labo09Left"),
-        ("Labo10Right", "Labo23Left"),
+        ("Labo10CenterRight", "Labo23Left"),
         ("Labo10UpperRight", "Labo11Left"),
     ],
     "Labo 11": [
@@ -695,11 +694,11 @@ room_connections = {
         ("Labo21UpperLeft", "Labo20UpperRight"),
     ],
     "Labo 22": [
-        ("Labo22LowerRight", "Labo25LowerLeft1"),
-        ("Labo22UpperRight", "Labo25LowerLeft2"),
+        ("Labo22LowerRight", "Labo25LowerLeft"),
+        ("Labo22UpperRight", "Labo25CenterLowerLeft"),
     ],
     "Labo 23": [
-        ("Labo23Left", "Labo10Right"),
+        ("Labo23Left", "Labo10CenterRight"),
         ("Labo23Lower", "Labo09Upper"),
         ("Labo23Right", "Labo20Left"),
     ],
@@ -710,11 +709,12 @@ room_connections = {
         ("Labo24Upper", "Labo19LowerCenter"),
     ],
     "Labo 25": [
-        ("Labo25LowerLeft1", "Labo22LowerRight"),
-        ("Labo25LowerLeft2", "Labo22UpperRight"),
-        ("Labo25UpperLeft1", "Labo27LowerRight"),
-        ("Labo25UpperLeft2", "Labo27UpperRight"),
-        ("Labo25Right", "Labo10Left"),
+        ("Labo25LowerLeft", "Labo22LowerRight"),
+        ("Labo25CenterLowerLeft", "Labo22UpperRight"),
+        ("Labo25CenterUpperLeft", "Labo27LowerRight"),
+        ("Labo25UpperLeft", "Labo27UpperRight"),
+        ("Labo25LowerRight", "Labo10CenterLeft"),
+        ("Labo25UpperRight", "Labo10UpperLeft"),
     ],
     "Labo 26": [
         ("Labo26Left", "Labo11LowerRight"),
@@ -722,8 +722,8 @@ room_connections = {
         ("Labo26Upper", "Labo12Lower"),
     ],
     "Labo 27": [
-        ("Labo27UpperRight", "Labo25UpperLeft2"),
-        ("Labo27LowerRight", "Labo25UpperLeft1"),
+        ("Labo27UpperRight", "Labo25UpperLeft"),
+        ("Labo27LowerRight", "Labo25CenterUpperLeft"),
     ],
     "Mine 1": [
         ("Mine01Left", "Mine13Right"),
@@ -1055,16 +1055,16 @@ room_connections = {
         ("Roots06Right", "Sewer09Left"),
     ],
     "Roots 7": [
-        ("Roots07HiddenRight", "Roots08Left"),
+        ("Roots07Right", "Roots08Left"),
         ("Roots07Left", "Roots11Right"),
         ("Roots07Upper", "Roots06Lower"),
     ],
     "Roots 8": [
-        ("Roots08Left", "Roots07HiddenRight"),
+        ("Roots08Left", "Roots07Right"),
     ],
     "Roots 9": [
         ("Roots09Lower", "Roots05Upper"),
-        ("Roots09Right", "Roots12UppwrLeft"),
+        ("Roots09Right", "Roots12UpperLeft"),
         ("Roots09Upper", "Roots10LowerLeft"),
     ],
     "Roots 10": [
@@ -1079,7 +1079,7 @@ room_connections = {
     "Roots 12": [
         ("Roots12LowerLeft", "Roots05Right"),
         ("Roots12Upper", "Roots11Lower"),
-        ("Roots12UppwrLeft", "Roots09Right"),
+        ("Roots12UpperLeft", "Roots09Right"),
     ],
     "Roots 13": [
         ("Roots13Lower", "Roots20Upper"),
@@ -1429,14 +1429,14 @@ room_connections = {
     "Summit 7": [
         ("Summit07LowerLeft", "Summit08LowerRight"),
         ("Summit07Right", "Summit05Left"),
-        ("Summit07UpperLeft", "Summit08UpperRighy"),
+        ("Summit07UpperLeft", "Summit08UpperRight"),
     ],
     "Summit 8": [
         ("Summit08Left", "Summit19Right"),
         ("Summit08LeftDoor", "Summit11CenterDoor"),
         ("Summit08LowerRight", "Summit07LowerLeft"),
         ("Summit08RightDoor", "Summit15CenterDoor"),
-        ("Summit08UpperRighy", "Summit07UpperLeft"),
+        ("Summit08UpperRight", "Summit07UpperLeft"),
     ],
     "Summit 9": [
         ("Summit09LowerLeft", "Summit15HiddenRight"),
@@ -1501,11 +1501,11 @@ room_connections = {
         ("Summit21Right", "Summit22LowerLeft"),
     ],
     "Summit 22": [
-        ("Summit22CenterLeft", "Summit25UpperRight"),
+        ("Summit22CenterLeft", "Summit25LowerRight"),
         ("Summit22CenterRight", "Summit23CenterLeft"),
         ("Summit22LowerLeft", "Summit21Right"),
         ("Summit22LowerRight", "Summit23LowerLeft"),
-        ("Summit22UpperLeft", "Summit24UpperRight"),
+        ("Summit22UpperLeft", "Summit25UpperRight"),
         ("Summit22UpperRight", "Summit23UpperLeft"),
     ],
     "Summit 23": [
@@ -1530,7 +1530,7 @@ room_connections = {
         ("Summit25LowerLeft", "Summit24HiddenRight"),
         ("Summit25LowerRight", "Summit22CenterLeft"),
         ("Summit25UpperLeft", "Summit24CenterRight"),
-        ("Summit25UpperRight", "Summit24CenterRight"),
+        ("Summit25UpperRight", "Summit22UpperLeft"),
     ],
     "Summit 26": [
         ("Summit26CenterDoor", "Summit30CenterDoor"),
@@ -1603,7 +1603,7 @@ room_connections = {
         ("Swamp11UpperRight", "Swamp12UpperLeft"),
     ],
     "Swamp 12": [
-        ("Swamp12LowerLeft", "Swamp12LowerLeft"),
+        ("Swamp12LowerLeft", "Swamp11LowerRight"),
         ("Swamp12Upper", "Swamp13Lower"),
         ("Swamp12UpperLeft", "Swamp11UpperRight"),
     ],

@@ -302,7 +302,7 @@ locations_data = [
     ("Swamp 10",    "Swamp 10 - Grimoire",                               "Swamp_001_Zone_010.BP_Interactable_TreasureBox_C_1",        stats["shop_line_up"]),
     ("Swamp 12",    "Swamp 12 - Charmed Fragment",                       "Swamp_001_Zone_012.BP_Interactable_AddItem_C_1",            stats["hp_up_s"]),
     ("Swamp 13",    "Swamp 13 - Charmed Fragment",                       "Swamp_001_Zone_013.BP_Interactable_AddItem_C_0",            stats["hp_up_s"]),
-    ("Swamp 15",    "Swamp 15 - Motley",                                 "Swamp_001_Zone_015.EVT_ev_s_e6010_Cluster_Defeat",          aptitudes["Hook"]),
+    ("Swamp 15",    "Swamp 15 - Motley",                                 "Swamp_001_Zone_015.EVT_ev_s_e6010_Cluster_Defeat",          aptitudes["hook"]),
     ("Swamp 18",    "Swamp 18 - Charmed Fragment",                       "Swamp_001_Zone_018.BP_Interactable_AddItem_C_1",            stats["hp_up_s"]),
     ("Swamp 19",    "Swamp 19 - Materials",                              "Swamp_001_Zone_019.BP_Interactable_AddItem_C_1",            currencies["Default"]),
     ("Swamp 20",    "Swamp 20 - Cleaner's Tag",                          "Swamp_001_Zone_020.BP_Interactable_AddItem_C_1",            passives["damage_up_targetstunned_1"]),
@@ -325,10 +325,58 @@ locations_data = [
     ("Tower 19",    "Tower 19 - Eye of the Ancients",                    "Tower_001_Zone_019.BP_Interactable_TreasureBox_C_1",        passives["reduce_skill_cooldown_1"]),
 ]
 
-event_locations: Dict[str, LocationData] = {location.name: location for location in [
-    LocationData("Goal", content=events["Victory"]),
-    LocationData("Ruins 7 - Lever", content=events["Ruins 7 Lever"], region="Ruins 7"),
-]}
+event_data = [
+    ("Menu",        "Goal",                        events["Victory"]),
+    ("Center 5",    "Center 5 - Lever",            events["Center 5 Lever"]),
+    ("Estate 6",    "Estate 6 - Lever",            events["Estate 6 Lever"]),
+    ("Forest 19",   "Forest 19 - Lever",           events["Forest 19 Lever"]),
+    ("Forest 2",    "Forest 2 - Lever",            events["Forest 2 Lever"]),
+    ("Forest 3",    "Forest 3 - Lever",            events["Forest 3 Lever"]),
+    ("Garden 2",    "Garden 2 - Left Lever",       events["Garden 2 Left Lever"]),
+    ("Garden 2",    "Garden 2 - Lower Left Lever", events["Garden 2 Lower Left Lever"]),
+    ("Garden 2",    "Garden 2 - Right Left Lever", events["Garden 2 Lower Right Left Lever"]),
+    ("Garden 2",    "Garden 2 - Right Right Lever",events["Garden 2 Lower Right Right Lever"]),
+    ("Kowloon 15",  "Kowloon 15 - Lever",          events["Kowloon 15 Lever"]),
+    ("Kowloon 34",  "Kowloon 34 - Lever",          events["Kowloon 34 Lever"]),
+    ("Kowloon 36",  "Kowloon 36 - Lever",          events["Kowloon 36 Lever"]),
+    ("Kowloon 40",  "Kowloon 40 - Lever",          events["Kowloon 40 Lever"]),
+    ("Kowloon 42",  "Kowloon 42 - Lever",          events["Kowloon 42 Lever"]),
+    ("Kowloon 9",   "Kowloon 9 - Lever",           events["Kowloon 9 Lever"]),
+    ("Labo 18",     "Labo 18 - Lever",             events["Labo 18 Lever"]),
+    ("Labo 19",     "Labo 19 - Lever",             events["Labo 19 Lever"]),
+    ("Labo 3",      "Labo 3 - Left Lever",         events["Labo 3 Left Lever"]),
+    ("Labo 3",      "Labo 3 - Right Lever",        events["Labo 3 Right Lever"]),
+    ("Labo 5",      "Labo 5 - Lower Lever",        events["Labo 5 Lower Lever"]),
+    ("Labo 5",      "Labo 5 - Upper Lever",        events["Labo 5 Upper Lever"]),
+    ("Mine 13",     "Mine 13 - Lever",             events["Mine 13 Lever"]),
+    ("Mine 4",      "Mine 4 - Lever",              events["Mine 4 Lever"]),
+    ("Mine 8",      "Mine 8 - Lever",              events["Mine 8 Lever"]),
+    ("Paradise 19", "Paradise 19 - Lever",         events["Paradise 19 Lever"]),
+    ("Paradise 4",  "Paradise 4 - Lever",          events["Paradise 4 Lever"]),
+    ("Quarry 15",   "Quarry 15 - Lever",           events["Quarry 15 Lever"]),
+    ("Roots 11",    "Roots 11 - Lever",            events["Roots 11 Lever"]),
+    ("Roots 20",    "Roots 20 - Lever",            events["Roots 20 Lever"]),
+    ("Ruins 7",     "Ruins 7 - Lever",             events["Ruins 7 Lever"]),
+    ("Sewer 15",    "Sewer 15 - Lever",            events["Sewer 15 Lever"]),
+    ("Street 2",    "Street 2 - Lever",            events["Street 2 Lever"]),
+    ("Street 5",    "Street 5 - Lever",            events["Street 5 Lever"]),
+    ("Summit 16",   "Summit 16 - Lever",           events["Summit 16 Lever"]),
+    ("Summit 20",   "Summit 20 - Lever",           events["Summit 20 Lever"]),
+    ("Summit 23",   "Summit 23 - Left Lever",      events["Summit 23 Left Lever"]),
+    ("Summit 23",   "Summit 23 - Upper Lever",     events["Summit 23 Upper Lever"]),
+    ("Summit 25",   "Summit 25 - Right Lever",     events["Summit 25 Right Lever"]),
+    ("Summit 25",   "Summit 25 - Upper Lever",     events["Summit 25 Upper Lever"]),
+    ("Summit 27",   "Summit 27 - Lever",           events["Summit 27 Lever"]),
+    ("Summit 8",    "Summit 8 - Lever",            events["Summit 8 Lever"]),
+    ("Swamp 10",    "Swamp 10 - Lever",            events["Swamp 10 Lever"]),
+    ("Swamp 11",    "Swamp 11 - Left Lever",       events["Swamp 11 Left Lever"]),
+    ("Swamp 11",    "Swamp 11 - Right Lever",      events["Swamp 11 Right Lever"]),
+    ("Swamp 12",    "Swamp 12 - Lever",            events["Swamp 12 Lever"]),
+    ("Tower 1",     "Tower 1 - Lever",             events["Tower 1 Lever"]),
+]
+
+event_locations: Dict[str, LocationData] = {name: LocationData(name, content=content, region=region)
+    for region, name, content in event_data}
 
 locations: Dict[str, LocationData] = {location.name: location for location in 
     [LocationData(name, index, key, content, region) for index, (region, name, key, content) in enumerate(locations_data)]}

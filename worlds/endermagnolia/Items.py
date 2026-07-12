@@ -1,7 +1,17 @@
 from typing import List, Optional, Dict
-from enum import Enum
-from BaseClasses import ItemClassification as IC
+from enum import Enum, IntFlag
 from dataclasses import dataclass, field
+
+try:
+    from BaseClasses import ItemClassification as IC
+except ImportError:
+    class IC(IntFlag):
+        filler = 0
+        progression = 1
+        useful = 2
+        trap = 4
+        skip_balancing = 8
+        deprioritized = 16
 
 class   ItemGroup(Enum):
     Aptitude = 1
@@ -33,8 +43,8 @@ class ItemData():
         return [self for _ in range(other)]
 
 class EventData(ItemData):
-    def __init__(self, name):
-        super().__init__(name, classification=IC.progression)
+    def __init__(self, key, name):
+        super().__init__(name, key, classification=IC.progression)
 
 @dataclass()
 class DataTable():
@@ -69,7 +79,7 @@ aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, classificati
 #    "dash"                   : "Sprint",
 #    "dodge_weak"             : "Roll",
     "fast_travel"            : "Fast Travel",
-    "Hook"                   : "Motley's Magic Strands",
+    "hook"                   : "Motley's Magic Strands",
     "SP"                     : "Attuner Arts",
     "dash_charge"            : "Hati's Charge",
     "dash_charge_underwater" : "Motley's Torrent",
@@ -411,7 +421,58 @@ pool = [
     *[*tips][:-24], # -24
 ]
 
-events : Dict[str, ItemData] = {item.name: item for item in [ 
-    EventData("Ruins 7 Lever"),
-    EventData("Victory"),
-]}
+events : Dict[str, ItemData] = {name: EventData(key, name) for key, name in {
+    "EVT_ev_n_LilyEvent_Forest_001"    : "Lily in Crimson Forest",
+    "EVT_ev_n_LilyEvent_Garden_001"    : "Lily in Sorcerer Academy",
+    "EVT_ev_s_0180_StreetElevatorFix"  : "Street Elevator Fixed",
+    "EVT_ev_s_e6050_Master_Defeat"     : "Gilroy Defeated",
+
+    "center05right_lever"              : "Center 5 Lever",
+    "estate06right_lever"              : "Estate 6 Lever",
+    "forest02right_lever"              : "Forest 2 Lever",
+    "forest03right_lever"              : "Forest 3 Lever",
+    "forest19right_lever"              : "Forest 19 Lever",
+    "garden02left_lever"               : "Garden 2 Left Lever",
+    "garden02lowerleft_lever"          : "Garden 2 Lower Left Lever",
+    "garden02lowerrightleft_lever"     : "Garden 2 Lower Right Left Lever",
+    "garden02lowerrightright_lever"    : "Garden 2 Lower Right Right Lever",
+    "kowloon09upper_lever"             : "Kowloon 9 Lever",
+    "kowloon15lower_lever"             : "Kowloon 15 Lever",
+    "kowloon34lower_lever"             : "Kowloon 34 Lever",
+    "kowloon36left_lever"              : "Kowloon 36 Lever",
+    "kowloon40right_lever"             : "Kowloon 40 Lever",
+    "kowloon42upper_lever"             : "Kowloon 42 Lever",
+    "labo03left_lever"                 : "Labo 3 Left Lever",
+    "labo03right_lever"                : "Labo 3 Right Lever",
+    "labo05lower_lever"                : "Labo 5 Lower Lever",
+    "labo05upper_lever"                : "Labo 5 Upper Lever",
+    "labo18right_lever"                : "Labo 18 Lever",
+    "labo19left_lever"                 : "Labo 19 Lever",
+    "mine04right_lever"                : "Mine 4 Lever",
+    "mine08right_lever"                : "Mine 8 Lever",
+    "mine13right_lever"                : "Mine 13 Lever",
+    "paradise04left_lever"             : "Paradise 4 Lever",
+    "paradise19center_lever"           : "Paradise 19 Lever",
+    "quarry15upper_lever"              : "Quarry 15 Lever",
+    "roots11lower_lever"               : "Roots 11 Lever",
+    "roots20upper_lever"               : "Roots 20 Lever",
+    "ruins07upperright_lever"          : "Ruins 7 Lever",
+    "sewer15lower_lever"               : "Sewer 15 Lever",
+    "street02left_lever"               : "Street 2 Lever",
+    "street05lowerright_lever"         : "Street 5 Lever",
+    "summit08lowerright_lever"         : "Summit 8 Lever",
+    "summit16right_lever"              : "Summit 16 Lever",
+    "summit20upper_lever"              : "Summit 20 Lever",
+    "summit23left_lever"               : "Summit 23 Left Lever",
+    "summit23upper_lever"              : "Summit 23 Upper Lever",
+    "summit25right_lever"              : "Summit 25 Right Lever",
+    "summit25upper_lever"              : "Summit 25 Upper Lever",
+    "summit27upper_lever"              : "Summit 27 Lever",
+    "swamp10upper_lever"               : "Swamp 10 Lever",
+    "swamp11left_lever"                : "Swamp 11 Left Lever",
+    "swamp11right_lever"               : "Swamp 11 Right Lever",
+    "swamp12left_lever"                : "Swamp 12 Lever",
+    "tower01centerright_lever"         : "Tower 1 Lever",
+    
+    "Victory"                          : "Victory",
+}.items()}
