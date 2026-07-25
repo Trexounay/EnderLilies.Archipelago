@@ -394,7 +394,6 @@ pool = [
     assists["assist_010"],
 
     assists["assist_012"], # +1 because progress
-    spirits["s5110_gunman"], # +1 because progress
     
     *aptitudes,
     costumes["p0030"],
@@ -430,7 +429,7 @@ pool = [
     *stats["passive_slot_s"] * 10,
     *stats["shop_line_up"] * 12,
     *skills, # +20
-    *[*tips][:-25], # -24
+    *[*tips][:-24], # -24
 ]
 
 events : Dict[str, ItemData] = {name: EventData(key, name) for key, name in {

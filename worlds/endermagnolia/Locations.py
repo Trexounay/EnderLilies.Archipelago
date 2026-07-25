@@ -325,7 +325,7 @@ locations_data = [
     ("Tower 18",    "Tower 18 - Homunculus Research Log 2",              "Tower_001_Zone_018.BP_Interactable_AddItem_C_0",            tips["tip_homunculusrecord_02"]),
     ("Tower 19",    "Tower 19 - Eye of the Ancients",                    "Tower_001_Zone_019.BP_Interactable_TreasureBox_C_1",        passives["reduce_skill_cooldown_1"]),
 
-    ("Menu",        "Starting Skill",                    "",        None),
+    ("Menu",        "Starting Skill",                                    "starting_skill",        None),
 ]
 
 event_data = [
