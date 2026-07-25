@@ -1,9 +1,6 @@
 from dataclasses import dataclass
 from typing import Dict, List
 
-from worlds.endermagnolia import event_locations
-from .Locations import LocationData, locations
-
 
 @dataclass
 class ExitData:
@@ -18,7 +15,7 @@ class RegionData:
     def get_exits(self):
         return {e.destination: e.name for e in self.connections}
 
-room_connections = {
+room_connections_data = {
     "Center 1": [
         ("Center01LeftDoor", "Center05CenterDoor"),
         ("Center01Lower",    "Street11Upper"),
@@ -1733,24 +1730,9 @@ room_connections = {
     ],
 }
 
-regions : Dict[str, RegionData] = {}
-for room, connections in room_connections.items():
+room_connections: Dict[str, RegionData] = {}
+for room, connections in room_connections_data.items():
     for (src, dst) in connections:
-        exits = [ExitData(src, dst)]
-        for (other, _) in connections:
-            if src != other:
-                exits.append(ExitData(f"{src} to {other}", other))
-        regions[src] = RegionData(src, exits)
+        room_connections[src] = RegionData(src, [ExitData(src, dst)])
 
-#regions : Dict[str, RegionData]  = {
-#**{
-#    region : RegionData(region, [ExitData(src, src) for (src, dst) in connections])
-#    for region, connections in room_connections.items()
-#},
-#**{
-#    src : RegionData(src, [ExitData(f"{src} to {dst}", dst), ExitData(f"{src} to {region}", region)])
-#    for region, connections in room_connections.items()
-#    for (src, dst) in connections
-#}}
-
-regions["Menu"] = RegionData("Menu", [ExitData("Start", "Ruins14Right")])
+room_connections["Menu"] = RegionData("Menu", [ExitData("Start", "Ruins14Right")])

@@ -18,11 +18,12 @@ Center 5,Center05CenterDoor,Center01LeftDoor,Center05LeftDoor | Center05RightDoo
 Center 5,Center05LeftDoor,Center03CenterLeftDoor,Center05CenterDoor | Center05RightDoor,Done,,,,Center05CenterDoor | Center05RightDoor
 Center 5,Center05Right,Center04Left,Center05CenterDoor | Center05LeftDoor | Center05RightDoor,Done,,,,Center05CenterDoor | Center05LeftDoor | Center05RightDoor
 Center 5,Center05RightDoor,Center03CenterRightDoor,Center05CenterDoor | Center05LeftDoor,Done,,,,Center05CenterDoor | Center05LeftDoor
-,,,,,,,,
 Crossroad 1,Crossroad01Lower,Ruins13Upper,Crossroad01Right,Done,,,,Crossroad01Right
 Crossroad 1,Crossroad01Right,Crossroad04LowerLeft,Crossroad01Lower,Done,,,,Crossroad01Lower
 Crossroad 2,Crossroad02Left,Crossroad05Right,Crossroad02Right + (double_jump | high_jump | wall_grab),Done,,,,Crossroad02Right + (double_jump | high_jump | wall_grab)
-Crossroad 2,Crossroad02Right,Slum01Left,Crossroad02Left + (double_jump + dodge | high_jump),Done,,,,Crossroad02Left + (double_jump + dodge | high_jump)
+Crossroad 2,Crossroad02Right,Slum01Left,"Crossroad02Left + (double_jump + dodge | high_jump)
+| Crossroad01Right + WALL_DASH",Done,,,,"Crossroad02Left + (double_jump + dodge | high_jump)
+| Crossroad01Right + WALL_DASH"
 Crossroad 3,Crossroad03Left,Mine01Right,Crossroad03Right,Done,,,,Crossroad03Right
 Crossroad 3,Crossroad03Right,Crossroad04UpperLeft,Crossroad03Left,Done,,,,Crossroad03Left
 Crossroad 4,Crossroad04LowerLeft,Crossroad01Right,Crossroad04Right,Done,,,,Crossroad04Right
@@ -79,12 +80,14 @@ Factory 2,Factory02UpperCenterRight,Factory03Left,"Factory02UpperLeft | Factory0
 | (Factory02LowerLeft | Factory02LowerRight) + (high_jump | hook)",Done,"separated hiddenRight out, doesnt need any logic (combined with UpperLeft/Right)",,"((Factory02LowerLeft | Factory02LowerRight | Factory02HiddenRight) + (high_jump | hook)) 
 | (Factory02UpperLeft | Factory02UpperRight)","Factory02UpperLeft | Factory02UpperRight | Factory02HiddenCenterRight 
 | (Factory02LowerLeft | Factory02LowerRight) + (high_jump | hook)"
-Factory 2,Factory02UpperLeft,Factory05Right,"(Factory02LowerLeft | Factory02LowerRight | Factory02HiddenCenterRight | Factory02UpperLeft | Factory02UpperRight) + (high_jump | hook) 
+Factory 2,Factory02UpperLeft,Factory05Right,"(Factory02LowerLeft | Factory02LowerRight) + (high_jump | hook)
+| (Factory02HiddenCenterRight | Factory02UpperLeft | Factory02UpperRight) + (high_jump | hook | WALL_DASH + double_jump + dodge)
 | Factory01Left + WALL_DASH + double_jump",Unsure,Can WALL_DASH from Factory01,"Factory01Left can also be double_jump (no dodge)
 
 Removed high_jump from Factory01Left since it is not unique to the main room's logic requirements","((Factory02LowerLeft | Factory02LowerRight | Factory02HiddenRight | Factory02UpperLeft | Factory02UpperRight) + (high_jump | hook)) 
-| (Factory01Left + (double_jump + dodge + WALL_DASH))","((Factory02LowerLeft | Factory02LowerRight | Factory02HiddenCenterRight | Factory02UpperLeft | Factory02UpperRight) + (high_jump | hook)) 
-| (Factory01Left + (WALL_DASH + double_jump))"
+| (Factory01Left + (double_jump + dodge + WALL_DASH))","(Factory02LowerLeft | Factory02LowerRight) + (high_jump | hook)
+| (Factory02HiddenCenterRight | Factory02UpperLeft | Factory02UpperRight) + (high_jump | hook | WALL_DASH + double_jump + dodge)
+| Factory01Left + WALL_DASH + double_jump"
 Factory 2,Factory02UpperRight,Factory01Left,"Factory02UpperLeft + (wall_grab + double_jump | high_jump | WALL_DASH) 
 | (Factory02LowerLeft | Factory02LowerRight) + (hook + wall_grab + double_jump | high_jump)
 | (Factory02UpperCenterRight | Factory02HiddenCenterRight) + (double_jump + wall_grab | high_jump)",Done,"Added Missing Factory02HiddenCenterRight
@@ -177,12 +180,12 @@ This might be cooking a little too much","(Factory15UpperLeft
 | Factory15Lower + high_jump + (double_jump | dodge | hook)
 | Factory16Right + high_jump + WALL_DASH
 | Factory17Right + WALL_DASH"
-Factory 15,Factory15UpperLeft,Factory16Right,"(Factory15Right + (WALL_DASH | ( hook + (high_jump | (double_jump + dodge))))) 
-| (Factory15Lower + high_jump + (double_jump + dodge | hook))",Done,,"LowerLeft is blocked in base state, updating to Lower;
+Factory 15,Factory15UpperLeft,Factory16Right,"Factory15Right + (WALL_DASH | hook + (high_jump | double_jump + dodge)) 
+| Factory15Lower + high_jump + (double_jump + dodge | hook)",Done,,"LowerLeft is blocked in base state, updating to Lower;
 Although TBH, it might be something very exact, not sure if double_jump + dodge reach? at least not without wall_grab as well
 If actually intending to route from LowerLeft, then high_jump + double_jump suffices","(Factory15Right + (WALL_DASH | ( hook + (high_jump | (double_jump + dodge))))) 
-| (Factory15LowerLeft + high_jump + (double_jump | hook))","(Factory15Right + (WALL_DASH | ( hook + (high_jump | (double_jump + dodge))))) 
-| (Factory15Lower + high_jump + (double_jump + dodge | hook))"
+| (Factory15LowerLeft + high_jump + (double_jump | hook))","Factory15Right + (WALL_DASH | hook + (high_jump | double_jump + dodge)) 
+| Factory15Lower + high_jump + (double_jump + dodge | hook)"
 Factory 16,Factory16Left,Factory17Right,Factory16Right,Done,,,,Factory16Right
 Factory 16,Factory16Right,Factory15UpperLeft,Factory16Left,Done,,,,Factory16Left
 Factory 17,Factory17LowerLeft,Factory18UpperLeft,Factory17Right | Factory17LowerRight,Done,,,,Factory17Right | Factory17LowerRight
@@ -266,7 +269,7 @@ Forest 6,Forest06CenterDoor,Forest02UpperLeftDoor,"Forest06Left + (Forest11Right
 Need to add dodge + wall_grab to lowerLeftDoor","I could be not understanding the logic;
 
 Added Logic to Forest06Left (Should Forest06Left even be included?)","Forest06Left + (Forest11Right + dash_charge) 
-| Forest06LowerLeftDoor + (double_jump | high_jump | WALL_DASH)","Forest06Left + (Forest11Right + dash_charge) + (double_jump | high_jump | WALL_DASH | dodge)
+| Forest06LowerLeftDoor + (double_jump | high_jump | WALL_DASH)","Forest06Left + (double_jump | high_jump | WALL_DASH | dodge)
 | Forest06LowerLeftDoor + (double_jump | high_jump | WALL_DASH | dodge + wall_grab)"
 Forest 6,Forest06HiddenRight,Forest07Left,"(Forest06Left + (Forest11Right + dash_charge) + (double_jump | dodge | high_jump | WALL_DASH)) 
 | (Forest06LowerLeftDoor + (((wall_grab | double_jump) + dodge) | high_jump | WALL_DASH))
@@ -276,7 +279,7 @@ From 06Left, dodge is enough alone; double_jump works alone (while dash_charging
 (Should Forest06Left even be included?)","(Forest06Left + (Forest11Right + dash_charge) + (double_jump + (dodge | WALL_DASH)) | high_jump) 
 | (Forest06LowerLeftDoor + ((double_jump + dodge) | high_jump | WALL_DASH))
 | (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump)) 
-| (Forest06LowerRightDoor + high_jump)","(Forest06Left + (Forest11Right + dash_charge) + (double_jump | dodge | high_jump | WALL_DASH)) 
+| (Forest06LowerRightDoor + high_jump)","(Forest06Left + (double_jump | dodge | high_jump | WALL_DASH)) 
 | (Forest06LowerLeftDoor + (((wall_grab | double_jump) + dodge) | high_jump | WALL_DASH))
 | (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump)) 
 | (Forest06LowerRightDoor + high_jump)"
@@ -286,7 +289,7 @@ from LowerLeftDoor, can also wall_grab
 (can hit the bottom of the wall's hitbox from lower platform single jump; there might be a way from higher platform as well, untested)",(Forest06LowerLeftDoor | Forest06CenterDoor) + (double_jump + dash_charge),"(Forest06LowerLeftDoor + (wall_grab | high_jump | double_jump)
 | Forest06CenterDoor + (high_jump | double_jump)) + dash_charge"
 Forest 6,Forest06LowerLeftDoor,Forest12UpperDoor,"(Forest06Left + (Forest11Right + dash_charge))
-| (Forest06CenterDoor + (double_jump | high_jump))",Done,,,,"(Forest06Left + (Forest11Right + dash_charge))
+| (Forest06CenterDoor + (double_jump | high_jump))",Done,,,,"Forest06Left
 | (Forest06CenterDoor + (double_jump | high_jump))"
 Forest 6,Forest06LowerRightDoor,Forest05CenterUpperDoor,"Forest06HiddenRight 
 | (Forest06Left + (Forest11Right + dash_charge) + (double_jump | dodge | high_jump | WALL_DASH))
@@ -295,7 +298,7 @@ Forest 6,Forest06LowerRightDoor,Forest05CenterUpperDoor,"Forest06HiddenRight
 | (Forest06LowerLeftDoor + ((double_jump + dodge) | high_jump | WALL_DASH))
 | (Forest06Left + (Forest11Right + dash_charge) + (double_jump + dodge) | high_jump | WALL_DASH) 
 | (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump))","Forest06HiddenRight 
-| (Forest06Left + (Forest11Right + dash_charge) + (double_jump | dodge | high_jump | WALL_DASH))
+| (Forest06Left + (double_jump | dodge | high_jump | WALL_DASH))
 | (Forest06LowerLeftDoor + (((double_jump | wall_grab) + dodge) | high_jump | WALL_DASH))
 | (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump))"
 Forest 7,Forest07CenterDoor,Forest10UpperLeftDoor,"(Forest07LeftDoor + (wall_grab | high_jump)) 
@@ -827,7 +830,7 @@ Kowloon 38,Kowloon38Left,Kowloon40Right,"(Kowloon38UpperRight + (Kowloon42Left +
 More logic from UpperRight to add? (hook + (double_jump | dodge)) | high_jump | ((WALL_DASH | dodge) + double_jump)","this UpperRight logic conflicts with other entrances; those assume the WALL_DASH wall is already broken, this one does not?","((Kowloon38UpperRight + (Kowloon42Left + WALL_DASH)))
 | (Kowloon38CenterRight + (high_jump | (hook + (dodge | double_jump)) | (wall_grab + double_jump + dodge)))
 | (Kowloon38LowerRight + (high_jump | (hook + wall_grab + (dodge | double_jump) | (wall_grab + dodge + double_jump)))
-+ Kowloon40Right_Lever)","(Kowloon38UpperRight + (Kowloon42Left + WALL_DASH))
++ Kowloon40Right_Lever)","(Kowloon42Left + WALL_DASH)
 | (Kowloon38CenterRight + (high_jump | (hook + (dodge | double_jump)) | (wall_grab + double_jump + dodge)))
 | (Kowloon38LowerRight + (high_jump | (hook + wall_grab + (dodge | double_jump) | (wall_grab + dodge + double_jump)))
 + Kowloon40Right_Lever)"
@@ -836,7 +839,7 @@ Kowloon 38,Kowloon38LowerRight,Kowloon26Left,"(Kowloon38Left + (high_jump | hook
 | (Kowloon38CenterRight | Kowloon38UpperRight)"
 Kowloon 38,Kowloon38UpperRight,Kowloon42Left,Kowloon40Right + WALL_DASH,Unsure,"Need to break wall from 40 using wall dash
 
-Might need to include Kowloon38Left?",,,Kowloon40Right + WALL_DASH
+Might need to include Kowloon38Left?",,Kowloon40Right + WALL_DASH,Kowloon40Right + WALL_DASH
 Kowloon 39,Kowloon39LowerRight,Kowloon02UpperLeft,Kowloon39UpperRight,Done,,,,Kowloon39UpperRight
 Kowloon 39,Kowloon39UpperRight,Kowloon40Left,Kowloon39LowerRight + (high_jump + hook + (double_jump | dodge)),Done,,,,Kowloon39LowerRight + (high_jump + hook + (double_jump | dodge))
 Kowloon 40,Kowloon40Left,Kowloon39UpperRight,Kowloon40Right,Done,,,,Kowloon40Right
@@ -974,8 +977,9 @@ Labo 10,Labo10UpperRight,Labo11Left,"(Labo10LowerRight | Labo10CenterRight) + hi
 | (Labo10UpperLeft + (high_jump | (wall_grab + (double_jump | dodge))))",Done,"Removed LowerLeft, CenterRight can use double_jump + WALL_DASH",,"(Labo10LowerRight | Labo10CenterRight) + high_jump
 | (Labo10UpperLeft + (high_jump | (wall_grab + (double_jump | dodge))))","(Labo10LowerRight | Labo10CenterRight) + high_jump
 | (Labo10UpperLeft + (high_jump | (wall_grab + (double_jump | dodge))))"
-Labo 10,Labo10CenterLeft,Labo25LowerRight,Labo10CenterRight + Labo23Left + WALL_DASH,Unsure,Requires wall dash from labo21,Labo25 to 22 does not require WALL_DASH,Previously was empty,Labo10CenterRight + Labo23Left + WALL_DASH
-Labo 11,Labo11Left,Labo10UpperRight,Labo11UpperRight + (high_jump | double_jump + WALL_DASH + Labo12Left),Unsure,Needs access to Labo12 for WALL_DASH,,,Labo11UpperRight + (high_jump | double_jump + WALL_DASH + Labo12Left)
+Labo 10,Labo10CenterLeft,Labo25LowerRight,Labo10CenterRight + Labo23Left + WALL_DASH,Unsure,Requires wall dash from labo21,CenterLeft should be renamed to LowerLeft,Previously was empty,Labo23Left + WALL_DASH
+Labo 11,Labo11Left,Labo10UpperRight,Labo11UpperRight + (high_jump | double_jump + WALL_DASH + Labo12Left),Unsure,Needs access to Labo12 for WALL_DASH,,,"Labo11UpperRight + high_jump 
+| Labo12Left + double_jump + WALL_DASH"
 Labo 11,Labo11LowerRight,Labo26Left,None,Done,,,,None
 Labo 11,Labo11UpperRight,Labo12Left,Labo11Left + (high_jump | (wall_grab + double_jump)),Done,,,,Labo11Left + (high_jump | (wall_grab + double_jump))
 Labo 12,Labo12Left,Labo11UpperRight,Labo12Lower | Labo12Right,Done,,,,Labo12Lower | Labo12Right
@@ -1277,9 +1281,9 @@ Quarry 7,Quarry07Left,Quarry13Right,"(Quarry07Upper | Quarry07Lower
  + ((double_jump | (dodge + wall_grab)) | high_jump)",Unsure,Multiple connections are required for dash_charge,"its precise, but double_jump is enough to reach","(Quarry07Upper | Quarry07Lower 
 |  (Quarry07Right + Quarry04Left + dash_charge))
  + ((double_jump + (dodge | wall_grab)) | high_jump)","(Quarry07Upper | Quarry07Lower 
-|  (Quarry07Right + Quarry04Left + dash_charge))
+|  (Quarry04Left + dash_charge))
  + ((double_jump | (dodge + wall_grab)) | high_jump)"
-Quarry 7,Quarry07Lower,Quarry15Upper,Quarry07Upper | Quarry07Left | (Quarry07Right + Quarry04Left + dash_charge),Done,,,,Quarry07Upper | Quarry07Left | (Quarry07Right + Quarry04Left + dash_charge)
+Quarry 7,Quarry07Lower,Quarry15Upper,Quarry07Upper | Quarry07Left | (Quarry07Right + Quarry04Left + dash_charge),Done,,,,Quarry07Upper | Quarry07Left | (Quarry04Left + dash_charge)
 Quarry 7,Quarry07Right,Quarry04Left,(Quarry07Left | Quarry07Upper | Quarry07Lower) + (dash_charge + double_jump),Done,"its precise, but double_jump is enough to reach - making wall_grab | dodge | high_jump unnecessary
 I dont mind being overruled",,"(Quarry07Left 
 | (Quarry07Upper | Quarry07Lower + (wall_grab | dodge | high_jump)))
@@ -1287,7 +1291,7 @@ I dont mind being overruled",,"(Quarry07Left
 Quarry 7,Quarry07Upper,Quarry03Lower,"(Quarry07Left | Quarry07Lower 
 | (Quarry07Right + Quarry04Left + dash_charge))
 + (double_jump | high_jump |  (dodge + wall_grab))",Done,,,,"(Quarry07Left | Quarry07Lower 
-| (Quarry07Right + Quarry04Left + dash_charge))
+| (Quarry04Left + dash_charge))
 + (double_jump | high_jump |  (dodge + wall_grab))"
 Quarry 8,Quarry08Left,Quarry10UpperRight,Quarry08Right,Done,,,,Quarry08Right
 Quarry 8,Quarry08Right,Quarry13Left,Quarry08Left,Done,,,,Quarry08Left
@@ -1335,8 +1339,8 @@ Quarry 19,Quarry19UpperRight,Quarry23LowerLeft,Quarry19LowerRight + (double_jump
 Quarry 20,Quarry20Left,Quarry12Right,Quarry20Right,Done,,,,Quarry20Right
 Quarry 20,Quarry20Right,Quarry22Left,Quarry20Left,Done,,,,Quarry20Left
 Quarry 21,Quarry21HiddenLeft,Quarry17Right,(Quarry21Right | Quarry21Lower) + (double_jump + dash_charge),Done,,,,(Quarry21Right | Quarry21Lower) + (double_jump + dash_charge)
-Quarry 21,Quarry21Lower,Quarry14Upper,Quarry21Right | (Quarry21HiddenLeft + Quarry17Right + dash_charge),Unsure,Multiple connections are required for dash_charge,,,Quarry21Right | (Quarry21HiddenLeft + Quarry17Right + dash_charge)
-Quarry 21,Quarry21Right,Quarry12Left,(Quarry21Lower | (Quarry21HiddenLeft + Quarry17Right + dash_charge)) + (high_jump + (dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH))),Done,"I dont think double_jump is enough in first block, adding some parenthesis",,(Quarry21Lower | (Quarry21HiddenLeft + Quarry17Right + dash_charge)) + ((high_jump + dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH))),(Quarry21Lower | (Quarry21HiddenLeft + Quarry17Right + dash_charge)) + (high_jump + (dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH)))
+Quarry 21,Quarry21Lower,Quarry14Upper,Quarry21Right | (Quarry21HiddenLeft + Quarry17Right + dash_charge),Unsure,Multiple connections are required for dash_charge,,,Quarry21Right | (Quarry17Right + dash_charge)
+Quarry 21,Quarry21Right,Quarry12Left,(Quarry21Lower | (Quarry21HiddenLeft + Quarry17Right + dash_charge)) + (high_jump + (dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH))),Done,"I dont think double_jump is enough in first block, adding some parenthesis",,(Quarry21Lower | (Quarry21HiddenLeft + Quarry17Right + dash_charge)) + ((high_jump + dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH))),(Quarry21Lower | (Quarry17Right + dash_charge)) + (high_jump + (dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH)))
 Quarry 22,Quarry22Left,Quarry20Right,Quarry22Right ,Done,,,,Quarry22Right 
 Quarry 22,Quarry22Right,Quarry15Left,Quarry22Left,Done,,,,Quarry22Left
 Quarry 23,Quarry23LowerLeft,Quarry19UpperRight,Quarry23UpperLeft,Done,,,,Quarry23UpperLeft
@@ -1359,12 +1363,12 @@ Roots 5,Roots05Upper,Roots09Lower,Roots05Right + high_jump,Done,,,,Roots05Right 
 Roots 6,Roots06Lower,Roots07Upper,Roots06Right + pile_attack + (wall_grab | high_jump) + dash_charge,Done,"wall_grab is certainly easier, high_jump works as well",,Roots06Right + pile_attack + wall_grab + dash_charge,Roots06Right + pile_attack + (wall_grab | high_jump) + dash_charge
 Roots 6,Roots06Right,Sewer09Left,None,Done,,,,None
 Roots 7,Roots07Right,Roots08Left,"(Roots07Left + Roots11Right + dash_charge + double_jump) 
-| (Roots07Upper + (double_jump | wall_grab | high_jump))",Done,,,,"(Roots07Left + Roots11Right + dash_charge + double_jump) 
+| (Roots07Upper + (double_jump | wall_grab | high_jump))",Done,,,,"(Roots11Right + dash_charge + double_jump) 
 | (Roots07Upper + (double_jump | wall_grab | high_jump))"
 Roots 7,Roots07Left,Roots11Right,(Roots07Right | Roots07Upper) + dash_charge,Done,"I might be crazy, double_jump is not required",,"(Roots07Right | Roots07Upper) 
 + (dash_charge + double_jump)",(Roots07Right | Roots07Upper) + dash_charge
 Roots 7,Roots07Upper,Roots06Lower,"(Roots07Left + Roots11Right + dash_charge + double_jump + (wall_grab | high_jump)) 
-| (Roots07Right + (high_jump | (double_jump + wall_grab)))",Done,Roots07Left block can prob be reorganized (similar to 07Right),,,"(Roots07Left + Roots11Right + dash_charge + double_jump + (wall_grab | high_jump)) 
+| (Roots07Right + (high_jump | (double_jump + wall_grab)))",Done,Roots07Left block can prob be reorganized (similar to 07Right),,,"(Roots11Right + dash_charge + double_jump + (wall_grab | high_jump)) 
 | (Roots07Right + (high_jump | (double_jump + wall_grab)))"
 Roots 8,Roots08Left,Roots07Right,None,Done,,,,None
 Roots 9,Roots09Lower,Roots05Upper,None,Done,,,,None
@@ -1390,8 +1394,7 @@ Roots 11,Roots11Right,Roots07Left,"(Roots11HiddenUpper + (dodge | high_jump | WA
 Roots 12,Roots12LowerLeft,Roots05Right,"(Roots12Upper | Roots12UpperLeft) 
 + (Roots09Right + (double_jump | high_jump) + WALL_DASH) + pile_attack",Unsure,"WALL_DASH requires roots09
 Added pile_attack",,"(Roots12Upper | Roots12UpperLeft) 
-+ (Roots09Right + (double_jump | high_jump) + WALL_DASH)","(Roots12Upper | Roots12UpperLeft) 
-+ (Roots09Right + (double_jump | high_jump) + WALL_DASH) + pile_attack"
++ (Roots09Right + (double_jump | high_jump) + WALL_DASH)",(Roots12Upper | Roots12UpperLeft) + ((double_jump | high_jump) + WALL_DASH) + pile_attack
 Roots 12,Roots12Upper,Roots11Lower,Roots12UpperLeft + (high_jump | (double_jump + wall_grab)),Done,,,,Roots12UpperLeft + (high_jump | (double_jump + wall_grab))
 Roots 12,Roots12UpperLeft,Roots09Right,Roots12Upper,Done,,,,Roots12Upper
 Roots 13,Roots13Lower,Roots20Upper,Roots13LowerLeft | Roots13UpperLeft | Roots13Right,Done,,,,Roots13LowerLeft | Roots13UpperLeft | Roots13Right
@@ -1800,7 +1803,7 @@ Summit 21,Summit21Lower,Summit20Upper,Summit21Left | Summit21Right,Not Labbed,,,
 Summit 21,Summit21Right,Summit22LowerLeft,(Summit21Lower | Summit21Left) + (high_jump | wall_grab),Not Labbed,,,,(Summit21Lower | Summit21Left) + (high_jump | wall_grab)
 Summit 22,Summit22CenterLeft,Summit25LowerRight,(Summit22CenterRight + Summit23CenterLeft) + WALL_DASH,In Progress,"""Intended"" WALL_DASH from summit21 thru summit22lowerleft, hit switch in summit23 and walldash from summit23 thru summit22centerright , hit switch in summit22 and walldash","you can technically break the wall by dashing away from just above and dashing back; i believe this kind of thing is used in speedrun, is this something we'd want as well?
 
-in that case, would add: Summit22LowerLeft + (double_jump | high_jump) + WALL_DASH",Pending clarification,(Summit22CenterRight + Summit23CenterLeft) + WALL_DASH
+in that case, would add: Summit22LowerLeft + (double_jump | high_jump) + WALL_DASH",Pending clarification,Summit23CenterLeft + WALL_DASH
 Summit 22,Summit22CenterRight,Summit23CenterLeft,"((Summit22UpperLeft | Summit22CenterLeft | Summit22UpperRight) + (WALL_DASH | high_jump | (double_jump + wall_grab))
 | (Summit22LowerLeft | Summit22LowerRight) + (high_jump | (double_jump + wall_grab))) 
 + Summit23Upper_Lever",In Progress,,"I dont think having + location logic was intended in this case, changed it to an | 
@@ -1811,11 +1814,11 @@ Added Summit22LowerRight & Summit22LowerLeft",((Summit22UpperLeft | Summit22Cent
 Summit 22,Summit22LowerLeft,Summit21Right,Summit22UpperLeft | Summit22UpperRight + WALL_DASH,In Progress,,"Added UpperRight + WALL_DASH (technically is only other entrance not blocked in base-game state)
 
 (if being super technical though, all the entrances are technically ""blocked"".......)",Summit22UpperLeft,Summit22UpperLeft | Summit22UpperRight + WALL_DASH
-Summit 22,Summit22LowerRight,Summit23LowerLeft,(Summit22LowerLeft + Summit21Right) + WALL_DASH,In Progress,,"if this is how multi-room transitions are supposed to be set, then good? Pending clarification",Pending clarification from 878 (also applies here),(Summit22LowerLeft + Summit21Right) + WALL_DASH
+Summit 22,Summit22LowerRight,Summit23LowerLeft,(Summit22LowerLeft + Summit21Right) + WALL_DASH,In Progress,,"if this is how multi-room transitions are supposed to be set, then good? Pending clarification",Pending clarification from 878 (also applies here),Summit21Right + WALL_DASH
 Summit 22,Summit22UpperLeft,Summit25UpperRight,"Summit22LowerLeft + (high_jump | double_jump + wall_grab)
 | Summit22UpperRight + WALL_DASH",In Progress,,,,"Summit22LowerLeft + (high_jump | double_jump + wall_grab)
 | Summit22UpperRight + WALL_DASH"
-Summit 22,Summit22UpperRight,Summit23UpperLeft,(Summit22UpperLeft + Summit25UpperRight) + WALL_DASH,In Progress,,,,(Summit22UpperLeft + Summit25UpperRight) + WALL_DASH
+Summit 22,Summit22UpperRight,Summit23UpperLeft,(Summit22UpperLeft + Summit25UpperRight) + WALL_DASH,In Progress,,,,Summit25UpperRight + WALL_DASH
 Summit 23,Summit23CenterLeft,Summit22CenterRight,Summit23LowerRight + Summit23Left_Lever + wall_grab + (high_jump | double_jump + (dodge | wall_charge)),Done,Updated to match logic with UpperLever,,Summit23LowerRight + Summit23Left_Lever + (high_jump | wall_grab + double_jump + (dodge | wall_charge)),Summit23LowerRight + Summit23Left_Lever + wall_grab + (high_jump | double_jump + (dodge | wall_charge))
 Summit 23,Summit23LowerLeft,Summit22LowerRight,None,Done,,,Thinking none,None
 Summit 23,Summit23LowerRight,Summit17LowerLeft,Summit23CenterLeft + Summit23Upper_Lever + Summit23Left_Lever,Done,,,,Summit23CenterLeft + Summit23Upper_Lever + Summit23Left_Lever
@@ -1845,12 +1848,12 @@ Summit 24,Summit24HiddenRight,Summit25LowerLeft,"Summit24UpperLeft + (double_jum
 | Summit24CenterDoor + (WALL_DASH | high_jump + double_jump + dodge + wall_grab)
 | Summit24CenterRight"
 Summit 24,Summit24LowerLeft,Summit27LowerRight,(Summit24UpperLeft | Summit24CenterRight | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Done,,,,(Summit24UpperLeft | Summit24CenterRight | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH
-Summit 24,Summit24LowerRight,Summit21Left,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Done,Does this need Lever?,,,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH
+Summit 24,Summit24LowerRight,Summit21Left,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Done,,,,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH
 Summit 24,Summit24UpperLeft,Summit27UpperRight,"(Summit24CenterDoor + (high_jump + double_jump + (wall_grab | dodge) | wall_charge))
 | (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH ",Unsure,Not sure to count high_jump + dodge interaction from Center door,"Updated CenterDoor, I do not think double_jump + dodge + wall_grab combination is sufficient","(Summit24CenterDoor + (dodge + double_jump | wall_charge) + wall_grab)
 | (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH ","(Summit24CenterDoor + (high_jump + double_jump + (wall_grab | dodge) | wall_charge))
 | (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH "
-Summit 24,Summit24UpperRight,Summit26Left,(Summit24CenterRight + Summit25UpperLeft)  + (high_jump | double_jump | dodge) + WALL_DASH,Done,"Intended to WALL_DASH from CenterRight, added Dodge option",,(Summit24CenterRight + Summit25UpperLeft)  + (high_jump | double_jump) + WALL_DASH,(Summit24CenterRight + Summit25UpperLeft)  + (high_jump | double_jump | dodge) + WALL_DASH
+Summit 24,Summit24UpperRight,Summit26Left,(Summit24CenterRight + Summit25UpperLeft)  + (high_jump | double_jump | dodge) + WALL_DASH,Done,"Intended to WALL_DASH from CenterRight, added Dodge option",,(Summit24CenterRight + Summit25UpperLeft)  + (high_jump | double_jump) + WALL_DASH,Summit25UpperLeft + (high_jump | double_jump | dodge) + WALL_DASH
 Summit 25,Summit25Lower,Summit28Upper,(Summit25LowerRight + (high_jump | (double_jump | dodge) + wall_grab)) + pile_attack,Done,or WALL_DASH? need to lab (cannot cancel WALL_DASH without double_jump into pile_attack),,,(Summit25LowerRight + (high_jump | (double_jump | dodge) + wall_grab)) + pile_attack
 Summit 25,Summit25LowerLeft,Summit24HiddenRight,None,Done,,,,None
 Summit 25,Summit25LowerRight,Summit22CenterLeft,None,Done,,,,None
@@ -1974,7 +1977,7 @@ Swamp 18,Swamp18Upper,Sewer15Lower,"Swamp18Left
 + (hook + (double_jump | (dodge + high_jump)) | (wall_grab + double_jump))"
 Swamp 19,Swamp19Right,Swamp04HiddenLeft,None,Done,,,,None
 Swamp 20,Swamp20Upper,Swamp01LowerRight,None,Done,,,,None
-Tower 1,Tower01CenterRight,Tower02CenterLeft,(Tower01Left + Tower01LowerRight + Tower01UpperRight) + Tower01CenterRight_Lever,Done,,,,(Tower01Left + Tower01LowerRight + Tower01UpperRight) + Tower01CenterRight_Lever
+Tower 1,Tower01CenterRight,Tower02CenterLeft,(Tower01Left | Tower01LowerRight | Tower01UpperRight) + Tower01CenterRight_Lever,Done,,,,(Tower01Left | Tower01LowerRight | Tower01UpperRight) + Tower01CenterRight_Lever
 Tower 1,Tower01Left,Street15Right,Tower01UpperRight | Tower01LowerRight | Tower01CenterRight,Done,to add CenterRight_Lever?,,,Tower01UpperRight | Tower01LowerRight | Tower01CenterRight
 Tower 1,Tower01LowerRight,Tower02LowerLeft,Tower01Left | Tower01UpperRight | Tower01CenterRight,Done,needs Lever?,,,Tower01Left | Tower01UpperRight | Tower01CenterRight
 Tower 1,Tower01UpperRight,Tower02UpperLeft,Tower01Left | Tower01CenterRight | Tower01LowerRight,Done,needs Lever?,,,Tower01Left | Tower01CenterRight | Tower01LowerRight

@@ -1,15 +1,18 @@
 from typing import Callable, Dict, Optional
 from BaseClasses import CollectionState, MultiWorld
-from worlds.generic.Rules import CollectionRule
+from worlds.generic.Rules import CollectionRule, ItemRule
 from .Items import ItemGroup, items
+from .Types import EnderMagnoliaItem
 
 
 keys = {items[name].key.rsplit('.', 1)[-1] : name for name in items}
+
 class macros:
     DJUMP = lambda s, p: True
     FLOWER = lambda s, p: True
 
-#(Crossroad05Right + (high_jump | SNOW)
+def is_skill(player : int, item: EnderMagnoliaItem) -> bool:
+    return item.player == player and item.group == ItemGroup.Skill
 
 def get_entrances_rules(p: int) -> Dict[str, CollectionRule]:
     return {
@@ -27,7 +30,12 @@ def get_entrances_rules(p: int) -> Dict[str, CollectionRule]:
 
 def get_locations_rules(p: int) -> Dict[str, CollectionRule]:
     return {
-        "Goal": lambda s: s.can_reach("Slum 1 - Tattered Letter", p),
+        "Goal": lambda s: s.can_reach("Slum 1 - Tattered Letter", None, p),
         "Ruins 5 - Charmed Fragment": lambda s: s.has("Aerial Jump", p) and s.has("Hati's Charge", p),
         "Crossroad 2 - Charmed Fragment": lambda s: s.has("Aerial Jump", p) and s.has("Dodge", p),
+    }
+
+def get_items_rules(p: int) -> Dict[str, ItemRule]:
+    return {
+        "Starting Skill": lambda i : is_skill(p, i),
     }

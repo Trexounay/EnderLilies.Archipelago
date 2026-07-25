@@ -54,16 +54,20 @@ class DataTable():
     rows: Dict[str, str]
     classification: IC = IC.filler
     codes: Dict[str, int] = field(init=False)
+    _items: Dict[str, ItemData] = field(init=False)
 
     def __post_init__(self):
         code = self.code
         self.codes = {}
+        self._items = {}
         for entry in self.rows:
             self.codes[entry] = code
             code += 1
 
     def __getitem__(self, entry) -> ItemData:
-        return ItemData(self.rows[entry], self.name + "." + entry, self.codes[entry], self.group, self.classification)
+        if entry not in self._items:
+            self._items[entry] = ItemData(self.rows[entry], self.name + "." + entry, self.codes[entry], self.group, self.classification)
+        return self._items[entry]
 
     def __len__(self) -> int:
         return len(self.rows)
@@ -261,7 +265,7 @@ passives = DataTable("DT_ItemPassives", group=ItemGroup.Passive, code=9000,rows 
 skills = DataTable("DT_ItemSkills", group=ItemGroup.Skill, code=10000,rows = 
 {
     "s5000_sword"   : "Nola Spirit Piercer",
-    "s5001_scythe"  : "Nola Soul Harverster",
+    "s5001_scythe"  : "Nola Soul Harvester",
     "s5002_axe"     : "Nola Vanquisher",
     "s5010_blaster" : "Reibolg Magic Tracer",
     "s5011_lazer"   : "Reibolg Piercing Beam",
@@ -371,10 +375,14 @@ tips = DataTable("DT_ItemTips", group=ItemGroup.Tip, code=13000,rows =
 })
 
 # items data and 
-items : Dict[str, ItemData] = {item.name: item for item in [ 
+items : Dict[str, ItemData] = {item.name: item for item in [
     *aptitudes,*assists, *costumes, *currencies, *equipments, *quests,
     *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
 }
+
+# items required by logic
+assists["assist_012"].classification = IC.progression
+spirits["s5110_gunman"].classification = IC.progression
 
 # items and quantity in the pool
 pool = [
@@ -384,6 +392,10 @@ pool = [
     assists["assist_006"],
     assists["assist_009"],
     assists["assist_010"],
+
+    assists["assist_012"], # +1 because progress
+    spirits["s5110_gunman"], # +1 because progress
+    
     *aptitudes,
     costumes["p0030"],
     costumes["p0040"],
@@ -418,24 +430,42 @@ pool = [
     *stats["passive_slot_s"] * 10,
     *stats["shop_line_up"] * 12,
     *skills, # +20
-    *[*tips][:-24], # -24
+    *[*tips][:-25], # -24
 ]
 
 events : Dict[str, ItemData] = {name: EventData(key, name) for key, name in {
     "EVT_ev_n_LilyEvent_Forest_001"    : "Lily in Crimson Forest",
     "EVT_ev_n_LilyEvent_Garden_001"    : "Lily in Sorcerer Academy",
-    "EVT_ev_s_0180_StreetElevatorFix"  : "Street Elevator Fixed",
-    "EVT_ev_s_e6050_Master_Defeat"     : "Gilroy Defeated",
+	'EVT_ev_s_LilyEvent_Roots_002'     : "Lily in Land of Origin",
+    "EVT_ev_s_0180_StreetElevatorFix"  : "Fix Street Elevator",
+    "EVT_ev_s_e6050_Master_Defeat"     : "Defeat Gilroy",
+	'EVT_ev_s_0080_FrostAndOwl'        : "Heath Mine",
+	'EVT_ev_s_e0030_Guard_Defeat'      : "Defeat City Stratum Guard",
+	'EVT_ev_s_e0122_Wheeler_Defeat'    : "Defeat Miner Unit",
+	'EVT_ev_s_e0233_Researcher_Defeat' : "Defeat Eliza",
+	'EVT_ev_s_n0233_RescueSuccess_001' : "Save Students",
+    'EVT_ev_s_n7043_Quarry_Tuner'      : "Joran Intro",
+    'EVT_ev_s_e5110_Gunman_Defeat'     : "Defeat Yolvan",
+    'EVT_ev_s_n7042_Swamp_Tuner'       : "Unlock Relic Refinery",
+    'EVT_ev_s_e6010_Cluster_Defeat'    : "Defeat Motley",
+    
+    "EVT_ev_n_Student_a_001"           : "Garden 2 Student 1",
+    "EVT_ev_n_Student_b_001"           : "Garden 2 Student 2",
+    "EVT_ev_n_Student_c_001"           : "Garden 2 Student 3",
+    "EVT_ev_n_Student_d_001"           : "Garden 6 Student 1",
+    "EVT_ev_n_Student_e_001"           : "Garden 6 Student 2",
 
     "center05right_lever"              : "Center 5 Lever",
     "estate06right_lever"              : "Estate 6 Lever",
     "forest02right_lever"              : "Forest 2 Lever",
     "forest03right_lever"              : "Forest 3 Lever",
     "forest19right_lever"              : "Forest 19 Lever",
+    "garden02center_lever"             : "Garden 2 Center Lever",
     "garden02left_lever"               : "Garden 2 Left Lever",
     "garden02lowerleft_lever"          : "Garden 2 Lower Left Lever",
     "garden02lowerrightleft_lever"     : "Garden 2 Lower Right Left Lever",
     "garden02lowerrightright_lever"    : "Garden 2 Lower Right Right Lever",
+    "kowloon06right_lever"             : "Kowloon 6 Lever",
     "kowloon09upper_lever"             : "Kowloon 9 Lever",
     "kowloon15lower_lever"             : "Kowloon 15 Lever",
     "kowloon34lower_lever"             : "Kowloon 34 Lever",
@@ -474,5 +504,5 @@ events : Dict[str, ItemData] = {name: EventData(key, name) for key, name in {
     "swamp12left_lever"                : "Swamp 12 Lever",
     "tower01centerright_lever"         : "Tower 1 Lever",
     
-    "Victory"                          : "Victory",
+    "Ending"                           : "Ending",
 }.items()}

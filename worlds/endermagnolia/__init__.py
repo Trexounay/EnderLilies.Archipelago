@@ -1,47 +1,22 @@
 import os
-from typing import Dict, List, Optional, TextIO
+from typing import List
 from Utils import output_path
 import settings
-from BaseClasses import Item, ItemClassification, Location, Region
+from BaseClasses import Item, Region
 from worlds.AutoWorld import World
 from worlds.generic.Rules import add_item_rule, add_rule, set_rule
+from rule_builder.rules import True_
 
-from .Locations import LocationData, LocationGroup, locations, event_locations
-from .Regions import regions, room_connections
-from .Items import ItemData, ItemGroup, items, pool
-from .Rules import get_entrances_rules, get_locations_rules
+from .Locations import LocationGroup, locations, event_locations
+from .Options import EnderMagnoliaOptions
+from .Regions import room_connections
+from .Items import ItemGroup, items, pool
+from .Rules import get_entrances_rules, get_items_rules, get_locations_rules
+from .Types import ENDERMAGNOLIA, EnderMagnoliaItem, EnderMagnoliaLocation, EnderMagnoliaEvent
+from .gen.TransitionsRules import rules as transitions_rules
+from .gen.LocationsRules import rules as locations_rules
+from .gen.EventsRules import rules as events_rules
 
-ENDERMAGNOLIA = "Ender Magnolia"
-
-class EnderMagnoliaItem(Item):
-    game = ENDERMAGNOLIA
-    
-    @classmethod
-    def from_name(cls, name: str, player: int):
-        if name in items:
-            return cls.from_data(items[name], player)
-        return cls(name, ItemClassification.progression, None, player)
-
-    @classmethod
-    def from_data(cls, data: ItemData, player: int):
-        return cls(data.name, data.classification, data.code, player)
-
-class EnderMagnoliaLocation(Location):
-    game = ENDERMAGNOLIA
-    data : LocationData
-
-    def __init__(self, player: int, name: str, data: LocationData, parent: Optional[Region] = None):
-        address = data.address
-        super().__init__(player, name, address, parent)
-        self.data = data
-
-    def key(self):
-        return self.data.key
-
-class EnderMagnoliaEvent(Location):
-    game = ENDERMAGNOLIA
-    def __init__(self, player: int, name: str, parent: Optional[Region] = None):
-        super().__init__(player, name, None, parent)
 
 class EnderMagnoliaWorld(World):
     """
@@ -49,6 +24,10 @@ class EnderMagnoliaWorld(World):
     """
 
     game = ENDERMAGNOLIA
+
+    # options
+    options_dataclass = EnderMagnoliaOptions
+    options: EnderMagnoliaOptions
 
     # items
     item_name_to_id = {name: data.code for name, data in items.items()}
@@ -62,10 +41,13 @@ class EnderMagnoliaWorld(World):
         return EnderMagnoliaItem.from_name(item, self.player)
 
     def create_items(self) -> None:
-        items_pool : List[Item] = []
-        print("Pool contains", len(pool));
+        starting_skill = self.options.starting_skill.get_skill_name()
+        self.get_location("Starting Skill").place_locked_item(self.create_item(starting_skill))
 
-        for data in pool:
+        items_pool : List[Item] = []
+        remaining = list(pool)
+        remaining.remove(items[starting_skill])
+        for data in remaining:
             items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
         self.multiworld.itempool.extend(items_pool)
 
@@ -75,47 +57,40 @@ class EnderMagnoliaWorld(World):
         return region
 
     def create_location(self, name: str) -> EnderMagnoliaLocation:
-        parent_region = None
-        room = None
-        if name in locations:
-            room = locations[name].region
-            #parent_region = self.multiworld.get_region(locations[name].region, self.player)
-            parent_region = self.create_region(name)
-            location = EnderMagnoliaLocation(self.player, name, locations[name], parent_region)
-            parent_region.locations.append(location)
-        elif name in event_locations:
-            room = event_locations[name].region
-            #parent_region = self.multiworld.get_region(event_locations[name].region, self.player)
-            parent_region = self.create_region(name)
-            location = EnderMagnoliaEvent(self.player, name, parent_region)
-            location.place_locked_item(EnderMagnoliaItem.from_data(event_locations[name].content, self.player))
-            parent_region.locations.append(location)
-        else:
-            raise Exception(f"Could not create location {name}")
-        if room in room_connections:
-            for (name, _) in room_connections[room]:
-                entrance = self.get_region(name)
-                entrance.connect(parent_region)
-        else:
-            entrance = self.get_region(room)
-            entrance.connect(parent_region)
+        data = locations[name]
+        parent_region = self.create_region(name)
+        location = EnderMagnoliaLocation(self.player, name, data, parent_region)
+        parent_region.locations.append(location)
+        if data.event:
+            event_location = EnderMagnoliaEvent(self.player, f"{data.region} - {data.event.name}", parent_region)
+            event_location.place_locked_item(EnderMagnoliaItem.from_data(data.event, self.player))
+            parent_region.locations.append(event_location)
+        return location
 
+    def create_event_location(self, name: str) -> EnderMagnoliaLocation:
+        data = event_locations[name]
+        parent_region = self.create_region(name)
+        location = EnderMagnoliaEvent(self.player, name, parent_region)
+        location.place_locked_item(EnderMagnoliaItem.from_data(data.content, self.player))
+        parent_region.locations.append(location)
         return location
 
     def create_regions(self) -> None:
         rules = get_entrances_rules(self.player)
 
-        # create regions
-        for name in regions:
+        # For each room entrances we create a region (need to happen first)
+        for name in room_connections:
             self.create_region(name)
 
-        # connect regions together (needs to happens after region creation)
-        for name, region_data in regions.items():
+        # connect transitions together (room1 <-> room2)
+        for name, region_data in room_connections.items():
             region = self.get_region(name)
-            #region.add_exits(region_data.get_exits())
-            for connection in region_data.connections:
-                destination = self.get_region(connection.destination)
-                region.connect(destination, connection.name, rules.get(connection.name))
+            region.add_exits(region_data.get_exits())
+
+        # connect rooms entrances (room1left <-> room1right)
+        for (src, dst), rule in transitions_rules.items():
+            region = self.get_region(src)
+            region.add_exits([dst], {dst: rule});
 
         # add locations
         for name in locations:
@@ -123,22 +98,31 @@ class EnderMagnoliaWorld(World):
 
         # add events
         for name in event_locations:
-            location = self.create_location(name)
+            location = self.create_event_location(name)
+        
+        # connect locations to rooms entrances
+        for (src, dst), rule in locations_rules.items():
+            region = self.get_region(src)
+            region.add_exits([dst], {dst: rule});
 
-        from Utils import visualize_regions
-        visualize_regions(self.get_region("Menu"), "EM.puml")
-            
+        # connect events to rooms entrances
+        for (src, dst), rule in events_rules.items():
+            region = self.get_region(src)
+            region.add_exits([dst], {dst: rule});
+
+        # Starting weapon
+        self.get_region("Menu").add_exits(["Starting Skill"])
 
     def set_rules(self) -> None:
-        rules = get_locations_rules(self.player)
-        rules = {}
+        player = self.player
+        items_rules = get_items_rules(player)
 
-        # set location rules
-        for location_name, rule in rules.items():
-            add_rule(self.multiworld.get_location(location_name, self.player), rule)
+        # set items rules
+        for location_name, rule in items_rules.items():
+            add_item_rule(self.multiworld.get_location(location_name, player), rule)
 
-        # Goal is to get the "Victory" event
-        self.multiworld.completion_condition[self.player] = lambda s: s.has("Victory", self.player)
+        # Goal
+        self.multiworld.completion_condition[player] = lambda state: state.has("Ending", player)
 
     def get_filler_item_name(self) -> str:
         return "nothing"

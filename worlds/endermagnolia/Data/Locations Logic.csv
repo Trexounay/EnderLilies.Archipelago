@@ -1,0 +1,883 @@
+Room,Name,Actor,Item,Logic,Status,Comment,Aloha Comment,Aloha Suggested,Final Logic?
+Center 1,Center 1 - Origin Gem Core,Center_001_Zone_001.BP_Interactable_AddItem_C_1,"materials[""parts_lv6_a""]",Center02Right + WALL_DASH,Done,Need wall dash from center02,Center02Right  -> Center02UpperRight?,Center02UpperRight + WALL_DASH,Center02UpperRight + WALL_DASH
+Center 1,Center 1 - Huginn,Center_001_Zone_001.EVT_ev_n_Levy_Treasure3_002,"spirits[""s5080_hawk""]","(Center01Lower | Center01LowerLeft | Center01UpperLeft | Center01LeftDoor | Center01RightDoor) 
++ (EVT_ev_s_0080_FrostAndOwl + EVT_ev_s_e6050_Master_Defeat + quest_bird)",Done,"Defeat Gilroy in center, meet tuner in Mines and have avian remains",,,"(Center01Lower | Center01LowerLeft | Center01UpperLeft | Center01LeftDoor | Center01RightDoor) 
++ (EVT_ev_s_0080_FrostAndOwl + EVT_ev_s_e6050_Master_Defeat + quest_bird)"
+Center 1,Center 1 - Gilroy,Center_001_Zone_001.EVT_ev_s_e6050_Master_Defeat,"aptitudes[""SP""]",Center01LowerLeft | Center01UpperLeft | Center01Lower | Center01RightDoor | Center01LeftDoor,Done,,,,Center01LowerLeft | Center01UpperLeft | Center01Lower | Center01RightDoor | Center01LeftDoor
+Center 2,Center 2 - Mantle of Milius,Center_001_Zone_002.EVT_ev_n_Center_costume_001,"costumes[""p0030""]",Center02LowerRight + EVT_ev_s_e0030_Guard_Defeat + EVT_ev_s_e6050_Master_Defeat,Done,Defeat Gilroy in Center and save lil sis in Streets,,,Center02LowerRight + EVT_ev_s_e0030_Guard_Defeat + EVT_ev_s_e6050_Master_Defeat
+Center 3,Center 3 - Charmed Fragment,Center_001_Zone_003.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""hp_up_s""]",Center03LeftDoor | Center03CenterLeftDoor,Done,,good,,Center03LeftDoor | Center03CenterLeftDoor
+Center 4,Center 4 - Faintly Glowing Aegis Curio,Center_001_Zone_004.EVT_ev_n_Levy_Treasure6_002,"quests[""quest_amulet""]",(Center04Left | Center04RightDoor) + Roots02Right + quest_eye + quest_lithograph + ,Done,"Need to see Lily in Roots 2, have blighted eye and stele to get curio
+
+EVT_ev_s_LilyEvent_Roots_002 ",unsure if Roots02Right is the right representation of the requirement,,(Center04Left | Center04RightDoor) + EVT_ev_s_LilyEvent_Roots_002 + quest_eye + quest_lithograph
+Crossroad 2,Crossroad 2 - Charmed Fragment,Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Crossroad03Left + dodge + double_jump) 
+| (CrossroadRight + (double_jump | WALL_DASH))",Done,,"Added a parenthesis to fix red...
+CrossroadRight -> Crossroad03Right ?
+
+high_jump from either?
+
+Are these supposed to be Crossroad02?","Crossroad02Left + (high_jump | dodge + double_jump) 
+| Crossroad02Right + (high_jump | double_jump | WALL_DASH)","Crossroad02Left + (high_jump | dodge + double_jump) 
+| Crossroad02Right + (high_jump | double_jump | WALL_DASH)"
+Crossroad 3,Crossroad 3 - Subterranean Laborer's Code,Crossroad_001_Zone_003.BP_Interactable_AddItem_C_1,"tips[""tip_workerscode_01""]",Crossroad03Left | Crossroad03Right,Done,,good,,Crossroad03Left | Crossroad03Right
+Crossroad 5,Crossroad 5 - Aerial Jump,Crossroad_001_Zone_005.EVT_ev_s_0050_LevyMeeting,"aptitudes[""double_jump""]",Crossroad05Left | Crossroad05Right,Done,,,,Crossroad05Left | Crossroad05Right
+Crossroad 5,Crossroad 5 - Dodge,Crossroad_001_Zone_005.EVT_ev_s_0050_LevyMeeting.1,"aptitudes[""dodge""]",Crossroad05Left | Crossroad05Right,Done,,,,Crossroad05Left | Crossroad05Right
+Estate 2,Estate 2 - Lorna 1,Estate_001_Zone_002.EVT_ev_s_n5040_Maiden_Defeat,"spirits[""s5040_maiden""]",Estate02Left | Estate02Upper | Estate02UpperRight | Estate02LowerRight,Done,,,,Estate02Left | Estate02Upper | Estate02UpperRight | Estate02LowerRight
+Estate 2,Estate 2 - Lorna 2,Estate_001_Zone_002.EVT_ev_s_n5040_Maiden_Defeat.1,"keys[""key_higher_a""]",Estate02Left | Estate02Upper | Estate02UpperRight | Estate02LowerRight,Done,,,,Estate02Left | Estate02Upper | Estate02UpperRight | Estate02LowerRight
+Estate 3,Estate 3 - Special Alloy Core,Estate_001_Zone_003.BP_Interactable_AddItem_C_0,"materials[""parts_lv5_a""]",Estate03UpperLeft | Estate03HiddenRight,Done,,good,,Estate03UpperLeft | Estate03HiddenRight
+Estate 4,Estate 4 - Abelia's Bracelet,Estate_001_Zone_004.BP_Interactable_AddItem_C_0,"equipments[""armor_014""]",Estate04Left,Done,,good,,Estate04Left
+Estate 5,Estate 5 - Scrap,Estate_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Estate05Lower,Done,,good,,Estate05Lower
+Estate 6,Estate 6 - Frost Confidential Records 2,Estate_001_Zone_006.BP_Interactable_AddItem_C_0,"tips[""tip_frostsrecord_02""]",Estate06Lower | Estate06Right,Done,,good,,Estate06Lower | Estate06Right
+Estate 7,Estate 7 - Charmed Fragment,Estate_001_Zone_007.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Estate07UpperRight,Done,,good,,Estate07UpperRight
+Estate 7,Estate 7 - Materials,Estate_001_Zone_007.BP_Interactable_AddItem_C_1,"currencies[""Default""]",(Estate07Lower | Estate07LowerRight) + (high_jump | (dive + (WALL_DASH | (hook + (dodge | double_jump))))),In Progress,,"don't think high_jump is enough alone if im reading logic correctly; still need double_jump | dive
+double_jump + hook + wall_grab also sufficient ahh","(Estate07Lower | Estate07LowerRight) + (high_jump + (dive | double_jump) 
+| double_jump + wall_grab + hook 
+| dive + (WALL_DASH | (hook + (dodge | double_jump))))","(Estate07Lower | Estate07LowerRight) + (high_jump + (dive | double_jump) 
+| double_jump + wall_grab + hook 
+| dive + (WALL_DASH | (hook + (dodge | double_jump))))"
+Estate 7,Estate 7 - Levy,Estate_001_Zone_007.BP_Trigger_Event_LevyTreasure_C_1,"quests[""quest_artifact""]",(Estate07Lower | Estate07LowerRight) + double_jump,In Progress,,dive up the waterfall?,(Estate07Lower | Estate07LowerRight) + (double_jump | dive),(Estate07Lower | Estate07LowerRight) + (double_jump | dive)
+Estate 8,Estate 8 - Scrap,Estate_001_Zone_008.BP_Interactable_AddItem_C_1,"currencies[""rare""]",(Estate08Upper | Estate08Left | Estate08Right) + dive,Done,,good,,(Estate08Upper | Estate08Left | Estate08Right) + dive
+Estate 10,Estate 10 - Grimoire,Estate_001_Zone_010.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Estate10Left + TORRENT,Done,,good,,Estate10Left + TORRENT
+Estate 11,Estate 11 - Special Alloy Core,Estate_001_Zone_011.BP_Interactable_AddItem_C_0,"materials[""parts_lv5_a""]",(Estate11Left | Estate11Right) + TORRENT,Done,,good,,(Estate11Left | Estate11Right) + TORRENT
+Estate 12,Estate 12 - Frost Confidential Records 1,Estate_001_Zone_012.BP_Interactable_AddItem_C_0,"tips[""tip_frostsrecord_01""]",(Estate12Left | Estate12Upper | Estate12Right) + dive,Done,,good,,(Estate12Left | Estate12Upper | Estate12Right) + dive
+Factory 1,Factory 1 - Special Alloy Core,Factory_001_Zone_001.BP_Interactable_AddItem_C_0,"materials[""parts_lv5_a""]","(Factory02LowerLeft | Factory02HiddenCenterRight | Factory02UpperRight | Factory02UpperLeft | Factory02LowerRight | Factory02UpperCenterRight) 
++ (high_jump + WALL_DASH)",Unsure,Dash Wall needs access from Factory02,seems good... should it just be Factory02UpperRight then? or Factory01Left?,,"(Factory02LowerLeft | Factory02HiddenCenterRight | Factory02UpperRight | Factory02UpperLeft | Factory02LowerRight | Factory02UpperCenterRight) 
++ (high_jump + WALL_DASH)"
+Factory 1,Factory 1 - Mysterious Glowing Can,Factory_001_Zone_001.BP_Interactable_AddItem_C_1,"passives[""stamina_damage_up_b_1""]",Factory01Left + (high_jump | (WALL_CHARGE + dodge + double_jump)),Done,,"Added parenthesis to fix red... wall_charge ->  wall_grab
+
+I dont think you need dodge for this",Factory01Left + (high_jump | (wall_grab + double_jump)),Factory01Left + (high_jump | (wall_grab + double_jump))
+Factory 2,Factory 2 - Worker's Surveillance Records,Factory_001_Zone_002.BP_Interactable_AddItem_C_0,"tips[""tip_surveillancerecord_01""]","(Factory02UpperLeft + (WALL_DASH | high_jump |  (wall_grab + double_jump + dodge) | (wall_grab + hook + (dodge | double_jump)))) 
+| ((Factory02UpperRight | Factory02UpperCenterRight | Factory02LowerLeft | Factory02LowerRight | Factory02HiddenCenterRight) 
++ (high_jump | (hook + wall_grab + (dodge | double_jump)))) ",Unsure,"this could be gotten from Factory01Right using dodge + double_jump + WALL_DASH
+
+don't even need dodge; just Factory01Right + double_jump + WALL_DASH",Added parenthesis to fix red... ,,"Factory02UpperLeft + (WALL_DASH | high_jump |  wall_grab + double_jump + dodge | wall_grab + hook + (dodge | double_jump)) 
+| (Factory02UpperRight | Factory02UpperCenterRight | Factory02LowerLeft | Factory02LowerRight | Factory02HiddenCenterRight) 
++ (high_jump | hook + wall_grab + (dodge | double_jump | wall_charge) | WALL_DASH + double_jump + dodge) "
+Factory 5,Factory 5 - Scrap,Factory_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""rare""]","(Factory05Left | Factory05Upper) 
+| (Factory05Right + (wall_grab | high_jump | (double_jump + dodge)))",Done,,good,,"(Factory05Left | Factory05Upper) 
+| (Factory05Right + (wall_grab | high_jump | (double_jump + dodge)))"
+Factory 6,Factory 6 - Labourer's Tag,Factory_001_Zone_006.BP_Interactable_TreasureBox_C_0,"passives[""damage_cut_debuff_down_1""]","((Factory06Right | Factory06LowerLeft) + (high_jump + (wall_grab + (double_jump | dodge)) | WALL_DASH)) 
+| (Factory06UpperLeft + (WALL_DASH + (dodge | double_jump)) | (high_jump + wall_grab + (dodge | double_jump)))
+| (Factory06Upper + WALL_DASH | (high_jump + wall_grab + (dodge | double_jump)))",Done,,"small parenthesis change for Upper
+double_jump + dodge + wall_grab for all
+there is a WALL_DASH + double_jump from Right/LowerLeft, might need to refactor","((Factory06Right | Factory06LowerLeft) + (double_jump + dodge + wall_grab | high_jump + (wall_grab + (double_jump | dodge)) | WALL_DASH)) 
+| (Factory06UpperLeft + (double_jump + dodge + wall_grab | WALL_DASH + (dodge | double_jump)) | (high_jump + wall_grab + (dodge | double_jump)))
+| (Factory06Upper + (double_jump + dodge + wall_grab | WALL_DASH | (high_jump + wall_grab + (dodge | double_jump))))","(Factory06Right | Factory06LowerLeft) + (double_jump + dodge + wall_grab | high_jump + (wall_grab + (double_jump | dodge)) | WALL_DASH) 
+| Factory06UpperLeft + (double_jump + dodge + wall_grab | WALL_DASH + (dodge | double_jump) | high_jump + wall_grab + (dodge | double_jump))
+| Factory06Upper + (double_jump + dodge + wall_grab | WALL_DASH | high_jump + wall_grab + (dodge | double_jump))"
+Factory 7,Factory 7 - Factory Management Records,Factory_001_Zone_007.BP_Interactable_AddItem_C_0,"tips[""tip_administrationrecord_01""]",Factory07Left | Factory07Right,Done,,good,,Factory07Left | Factory07Right
+Factory 8,Factory 8 - Scrap,Factory_001_Zone_008.BP_Interactable_AddItem_C_1,"currencies[""rare""]",(Factory08UpperRight | Factory08LowerRight) + (hook + (double_jump | dodge)) | (double_jump + dodge),Done,,"from upper, WALL_DASH + (double_jump | dodge)
+ie. its interchangable with hook
+
+really funny tech from lower.. dive + dodge + WALL_DASH (ie. using dive momentum at the surface of the water can allow single jump to reach)
+
+yes, swimming in lava","Factory08UpperRight + ((hook | WALL_DASH) + (double_jump | dodge) | double_jump + dodge)
+| Factory08LowerRight + (hook + (double_jump | dodge) | double_jump + dodge)","Factory08UpperRight + ((hook | WALL_DASH) + (double_jump | dodge) | double_jump + dodge)
+| Factory08LowerRight + (hook + (double_jump | dodge) | double_jump + dodge)"
+Factory 9,Factory 9 - Charmed Fragment,Factory_001_Zone_009.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","Factory09Upper 
+| ((Factory09Lower | Factory09Right) + high_jump | (double_jump + wall_grab))",Unsure,Can be gotten using a high_jump In Factory05 then WALL_DASH from Factory12 (This also applies for transition logic to get to Factory09Upper),"climbing from lower/right requires dodge | WALL_DASH
+
+technically it doesnt....... but that is precise. transition logic for upper currently expects dodge | wall_charge","Factory09Upper 
+| ((Factory09Lower | Factory09Right) + high_jump | (double_jump + wall_grab + (dodge | wall_charge)))","Factory09Upper 
+| (Factory09Lower | Factory09Right) + (high_jump | double_jump + wall_grab)"
+Factory 10,Factory 10 - Velnest,Factory_001_Zone_010.EVT_ev_s_e2030_Sector_Defeat,"materials[""parts_lv5_b""]",Factory10Left | Factory10Right,Done,,,,Factory10Left | Factory10Right
+Factory 12,Factory 12 - Scrap,Factory_001_Zone_012.BP_Interactable_AddItem_C_1,"currencies[""rare""]","(Factory12Left + (high_jump | wall_grab + double_jump + (wall_charge | (dodge + hook)))) 
+| (Factory12Right + high_jump | (WALL_DASH + (dodge | double_jump)) | (wall_grab + (dodge + double_jump) | (hook + (dodge | double_jump))))",Unsure,Can be gotten from falling from Factory15 (factory 15 access can also be granted here with high_jump),"from left: double_jump + dodge + wall_grab works (no hook)
+
+im not really seeing a hook specific option that isnt covered
+
+from right: there is also a hook + wall_charge option (no double | dodge required)
+is technically WALL_DASH only accessible
+
+to add a simple factory15Lower then?","Factory12Left + (high_jump | wall_grab + double_jump + (wall_charge | dodge)) 
+| Factory12Right + (high_jump | WALL_DASH | wall_grab + (dodge + double_jump) | hook + (dodge | double_jump))
+| Factory15Lower","Factory12Left + (high_jump | wall_grab + double_jump + (wall_charge | dodge)) 
+| Factory12Right + (high_jump | WALL_DASH | wall_grab + (dodge + double_jump) | hook + (dodge | double_jump))
+| Factory15Lower"
+Factory 12,Factory 12 - Cain's Ring,Factory_001_Zone_012.BP_Interactable_TreasureBox_C_1,"passives[""onattack_restorehp_damage_1""]","(Factory05Left | (Factory05Right + (wall_grab | (double_jump + dodge))) 
++ high_jump)",Done,Requires access from Factory05,"should these be factory05Left/Right or 05Upper? or Factory12Lower?
+
+maybe not reading parenthesis right, double_jump + dodge is nowhere near enough?
+
+is accessible with WALL_DASH from factory09 -> factory05, wall_grab into factory12 and another WALL_DASH
+
+ideally i'd simplify to Factory05Upper + (WALL_DASH | high_jump)
+or Factory12Lower? -> if youre able to transition into it, technically ""should"" be able to access this",Factory05Upper + (WALL_DASH | high_jump),Factory05Upper + (WALL_DASH | high_jump)
+Factory 13,Factory 13 - Charmed Fragment,Factory_001_Zone_013.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",((Factory13LowerLeft | Factory13UpperLeft | Factory13Right) + hook + (double_jump | dodge)),Done,,"from UpperLeft, does not require hook (dodge | double_jump suffice)
+
+from right, does not need requirements
+
+from lowerLeft, there is also a high_jump + double_jump + dodge","Factory13UpperLeft + (double_jump | dodge)
+| Factory13LowerLeft + (high_jump + double_jump + dodge | hook + (double_jump | dodge))
+| Factory13Right","Factory13UpperLeft + (double_jump | dodge)
+| Factory13LowerLeft + (high_jump + double_jump + dodge | hook + (double_jump | dodge))
+| Factory13Right"
+Factory 14,Factory 14 - Grimoire,Factory_001_Zone_014.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Factory14Left,Done,,good,,Factory14Left
+Factory 15,Factory 15 - Charmed Fragment,Factory_001_Zone_015.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Factory12Right | Factory12Left) + high_jump,Done,,"should this be Factory12Upper?
+if you can reach the little wall above the Factory21 entrance, can also WALL_DASH + double_jump :(
+(falling from Factory15UpperLeft + double_jump is enough)","Factory15Lower + high_jump
+| (Factory15UpperLeft | Factory15Right) + WALL_DASH + double_jump","Factory15Lower + high_jump
+| (Factory15UpperLeft | Factory15Right) + WALL_DASH + double_jump"
+Factory 15,Factory 15 - Magic Vial,Factory_001_Zone_015.BP_Interactable_AddItem_C_1,"stats[""passive_slot_s""]","Factory15Right + (high_jump | hook + dodge + double_jump) 
+| Factory15UpperLeft + (hook + (dodge | double_jump))",Unsure,Also doable from Factory12Upper + dodge | hook | double_jump,"hook + high_jump from UpperLeft
+
+I feel like factory15Lower may be worth mentioning with high_jump + (double_jump | dodge) 
+
+there is also WALL_DASH from factory17 | factory16 + high_jump :)
+
+NOTE, technically wall dashing from 17 is also wall dashing from 16?
+
+This might be cooking a little too much - I think that it it will logically boil down to; from UpperLeft, you can WALL_DASH to other side, always, from Factory17","Factory15Right + (high_jump | hook + (dodge + double_jump | WALL_DASH)) 
+| Factory15UpperLeft + hook + (high_jump | dodge | double_jump | WALL_DASH)
+| Factory15Lower + high_jump + (double_jump | dodge | hook)
+| Factory16Right + high_jump + WALL_DASH
+| Factory17Right + WALL_DASH + (high_jump | hook) ","Factory15Right + (high_jump | hook + (dodge + double_jump | WALL_DASH)) 
+| Factory15UpperLeft + hook + (high_jump | dodge | double_jump | WALL_DASH)
+| Factory15Lower + high_jump + (double_jump | dodge | hook)
+| Factory16Right + high_jump + WALL_DASH
+| Factory17Right + WALL_DASH + (high_jump | hook) "
+Factory 18,Factory 18 - Miner Enchancement Project,Factory_001_Zone_018.BP_Interactable_AddItem_C_1,"tips[""tip_enhancementplan_01""]",Factory18UpperLeft + high_jump,Done,,good,,Factory18UpperLeft + high_jump
+Factory 18,Factory 18 - Garm's Ascent,Factory_001_Zone_018.EVT_ev_s_5200_Pounder_Upgrade,"aptitudes[""high_jump""]",Factory18UpperLeft,Done,,,,Factory18UpperLeft
+Factory 19,Factory 19 - Scrap,Factory_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""rare""]",Factory19UpperLeft,Done,,good,,Factory19UpperLeft
+Factory 19,Factory 19 - Levy,Factory_001_Zone_019.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_stone""]",Factory19LowerLeft + hook + (double_jump | dodge),Done,,good,,Factory19LowerLeft + hook + (double_jump | dodge)
+Factory 21,Factory 21 - Milius Lord's Mark,Factory_001_Zone_021.EVT_ev_s_0250_KeyFactory,"keys[""key_higher_b""]",Factory21Right,Done,,"need double_jump | wall_grab | high_jump
+Note, requires WALL_DASH for transition to even enter; requirements a little moot",Factory21Right + (double_jump | wall_grab | high_jump),Factory21Right + (double_jump | wall_grab | high_jump)
+Factory 21,Factory 21 - Document on the Empyrean Parasol,Factory_001_Zone_021.EVT_ev_s_0250_KeyFactory.1,"tips[""tip_towerumbrella_01""]",Factory21Right,Done,,"need double_jump | wall_grab | high_jump
+Note, requires WALL_DASH for transition to even enter; requirements a little moot",Factory21Right + (double_jump | wall_grab | high_jump),Factory21Right + (double_jump | wall_grab | high_jump)
+Forest 1,Forest 1 - Crimson Bangle,Forest_001_Zone_001.BP_Interactable_AddItem_C_1,"equipments[""armor_008""]",Forest01UpperDoor,Not Labbed,,good,,Forest01UpperDoor
+Forest 2,Forest 2 - Obsolete Core,Forest_001_Zone_002.BP_Interactable_AddItem_C_1,"materials[""parts_lv3_b""]","Forest02UpperRightDoor 
+| ((Forest02Right | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | double_jump)) 
+| (Forest02UpperLeftDoor + (WALL_DASH | high_jump | double_jump))",Not Labbed,,UpperLeftDoor is accessible without any additional movement; combined with other door logic (ie. WALL_DASH is an option for those as well),"Forest02UpperRightDoor 
+| ((Forest02Right | Forest02UpperLeftDoor | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | WALL_DASH | double_jump)) ","Forest02UpperRightDoor 
+| ((Forest02Right | Forest02UpperLeftDoor | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | WALL_DASH | double_jump)) "
+Forest 2,Forest 2 - Words Etched into Stone,Forest_001_Zone_002.BP_Interactable_AddTutorial_C_1,"tips[""tip_tombstone_01""]",Forest02UpperRightDoor |  Forest02Right | Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperLeftDoor,Not Labbed,,"good, does Right need to mention Lever?",,Forest02UpperRightDoor |  Forest02Right | Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperLeftDoor
+Forest 4,Forest 4 - Charmed Fragment,Forest_001_Zone_004.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","((Forest04LowerLeft | Forest04UpperLeft) + (WALL_DASH | high_jump | double_jump)) 
+| ((Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab))",Not Labbed,,"update LowerLeft -> LowerLeftDoor
+update UpperLeft -> UpperLeftDoor
+
+LowerLeftDoor can also wall_grab + dodge
+
+UpperLeftDoor WALL_DASH is excessive, can be reduced to wall_grab","(Forest04LowerLeftDoor + (wall_grab + (dodge | wall_charge) | high_jump | double_jump)) 
+| (Forest04UpperLeftDoor + (wall_grab | high_jump | double_jump)) 
+| ((Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab))","(Forest04LowerLeftDoor + (wall_grab + (dodge | wall_charge) | high_jump | double_jump)) 
+| (Forest04UpperLeftDoor + (wall_grab | high_jump | double_jump)) 
+| ((Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab))"
+Forest 7,Forest 7 - Chain Belt,Forest_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""damage_up_grounded_1""]",Forest07Left,Done,,good,,Forest07Left
+Forest 9,Forest 9 - Charmed Fragment,Forest_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor ) 
+| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) 
+| (Forest09CenterRightDoor + (high_jump | wall_grab)) 
++ dive)",Not Labbed,,good,,"(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor ) 
+| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) 
+| (Forest09CenterRightDoor + (high_jump | wall_grab)) 
++ dive)"
+Forest 9,Forest 9 - Materials,Forest_001_Zone_009.BP_Interactable_AddItem_C_3,"currencies[""Default""]","(Forest09LowerRight + TORRENT) 
+| (Forest09CenterRightDoor 
+| (Forest09UpperRightDoor + (double_jump | dodge | WALL_CHARGE)) 
+| (Forest09CenterLeftDoor + (dodge | high_jump | WALL_CHARGE)) 
+| ((Forest09LeftDoor | Forest09CenterDoor) + (high_jump | WALL_DASH)) 
++ dive)",Not Labbed,,"replaced wall_charge with WALL_DASH? 
+added double_jump from CenterLeftDoor
+parenthesis seemed incorrect","Forest09LowerRight + TORRENT 
+| (Forest09CenterRightDoor 
+| (Forest09UpperRightDoor + (double_jump | dodge | WALL_DASH)) 
+| (Forest09CenterLeftDoor + (double_jump | dodge | high_jump | WALL_DASH)) 
+| (Forest09LeftDoor | Forest09CenterDoor) + (high_jump | WALL_DASH)) 
++ dive","Forest09LowerRight + TORRENT 
+| (Forest09CenterRightDoor 
+| (Forest09UpperRightDoor + (double_jump | dodge | WALL_DASH)) 
+| (Forest09CenterLeftDoor + (double_jump | dodge | high_jump | WALL_DASH)) 
+| (Forest09LeftDoor | Forest09CenterDoor) + (high_jump | WALL_DASH)) 
++ dive"
+Forest 9,Forest 9 - Effigy,Forest_001_Zone_009.BP_Interactable_AddItem_C_5,"passives[""damage_cut_minhp_1""]","(Forest09LeftDoor | Forest09CenterDoor | Forest09CenterLeftDoor) 
+| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH))
+| ((Forest09LowerRight + TORRENT) | Forest09CenterRightDoor + (wall_grab | high_jump)) ",Not Labbed,,"Added extra parenthesis to fix red...
+otherwise good",,"(Forest09LeftDoor | Forest09CenterDoor | Forest09CenterLeftDoor) 
+| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH))
+| ((Forest09LowerRight + TORRENT) | Forest09CenterRightDoor + (wall_grab | high_jump)) "
+Forest 10,Forest 10 - Charmed Fragment,Forest_001_Zone_010.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",Forest10RightDoor,Done,,good,,Forest10RightDoor
+Forest 10,Forest 10 - Materials,Forest_001_Zone_010.BP_Interactable_AddItem_C_2,"currencies[""Default""]","Forest10CenterDoor 
+| ((Forest10RightDoor | Forest10LowerLeftDoor) + (high_jump | double_jump))
+| (Forest10UpperLeftDoor + ((wall_grab + (dodge | wall_charge)) | double_jump | high_jump))",Not Labbed,,"Added extra parenthesis to fix red...
+otherwise good",,"Forest10CenterDoor 
+| ((Forest10RightDoor | Forest10LowerLeftDoor) + (high_jump | double_jump))
+| (Forest10UpperLeftDoor + ((wall_grab + (dodge | wall_charge)) | double_jump | high_jump))"
+Forest 11,Forest 11 - Magic Vial,Forest_001_Zone_011.BP_Interactable_AddItem_C_1,"stats[""passive_slot_s""]",Forest11Right,Done,,good,,Forest11Right
+Forest 19,Forest 19 - Beast Horn Ornanment,Forest_001_Zone_019.BP_Interactable_AddItem_C_1,"passives[""damage_cut_maxhp_1""]",((Forest19LeftDoor | Forest19Right) + (high_jump | (wall_jump + double_jump + (dodge | wall_charge)))),Not Labbed,,"Added extra parenthesis to fix red...
+Changed wall_jump to wall_grab
+double_jump + dodge is enough without wall_grab; simplified the logic
+does Right require lever?
+otherwise good",((Forest19LeftDoor | Forest19Right) + (high_jump | (double_jump + (dodge | WALL_DASH)))),((Forest19LeftDoor | Forest19Right) + (high_jump | (double_jump + (dodge | WALL_DASH))))
+Forest 20,Forest 20 - Spy's Letter,Forest_001_Zone_020.BP_Interactable_AddItem_C_0,"tips[""tip_secretletter_01""]",((Forest20Left | Forest20Right) + (high_jump | double_jump)),Not Labbed,,"from left: there is a very precise dodge + WALL_DASH option 
+if there is, i cant recreate it anymore, i should have recorded it; it might be dependant upon invincibility and the wolf enemies?
+from right: dash_charge + WALL_DASH ","Forest20Left + (high_jump | double_jump)
+| Forest20Right + (dash_charge + WALL_DASH | high_jump | double_jump)","Forest20Left + (high_jump | double_jump)
+| Forest20Right + (dash_charge + WALL_DASH | high_jump | double_jump)"
+Forest 20,Forest 20 - Charmed Fragment,Forest_001_Zone_020.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",((Forest20Left | Forest20Right) + (high_jump | (double_jump + (dodge | WALL_DASH)))),Not Labbed,,"similar to above, dash_charge + WALL_DASH from right","Forest20Left + (high_jump | double_jump + (dodge | WALL_DASH)) 
+| Forest20Right + (high_jump | double_jump + (dodge | WALL_DASH) | dash_charge + WALL_DASH)","Forest20Left + (high_jump | double_jump + (dodge | WALL_DASH)) 
+| Forest20Right + (high_jump | double_jump + (dodge | WALL_DASH) | dash_charge + WALL_DASH)"
+Forest 20,Forest 20 - Grimoire,Forest_001_Zone_020.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",((Forest20Left + (high_jump | double_jump)) | Forest20Right) + dash_charge,Not Labbed,,"Warning: this does NOT work from Forest20Right + dodge + dash_charge , but I think its impossible to find yourself in this situation without random start",,((Forest20Left + (high_jump | double_jump)) | Forest20Right) + dash_charge
+Forest 23,Forest 23 - Materials,Forest_001_Zone_023.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Forest23Left + dash_charge + (high_jump | double_jump),Not Labbed,,can also WALL_DASH from 20 to bypass double_jump | high_jump req.,,Forest23Left + dash_charge + (high_jump | double_jump)
+Forest 23,Forest 23 - Cassia's Grimoire,Forest_001_Zone_023.BP_Interactable_AddItem_C_3,"tips[""tip_cassiabook_01""]",Forest23Left + dash_charge,Not Labbed,,good,,Forest23Left + dash_charge
+Forest 23,Forest 23 - Incomplete Gear,Forest_001_Zone_023.EVT_ev_n_Levy_Treasure2_002,"passives[""reduce_gravity""]",Forest23Left + quest_stone,Not Labbed,,,,Forest23Left + quest_stone
+Forest 23,Forest 23 - Hati's Charge,Forest_001_Zone_023.EVT_ev_s_5210_Fenris_Upgrade,"aptitudes[""dash_charge""]",Forest23Left,Done,,good,,Forest23Left
+Garden 1,Garden 1 - Charmed Fragment 1,Garden_001_Zone_001.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Garden01Right | Garden01Left) + (high_jump | (WALL_DASH + double_jump)),Not Labbed,,can WALL_DASH from garden02 thru garden09 without double_jump req.,,(Garden01Right | Garden01Left) + (high_jump | (WALL_DASH + double_jump))
+Garden 1,Garden 1 - Charmed Fragment 2,Garden_001_Zone_001.BP_Interactable_AddItem_C_2,"stats[""hp_up_s""]","(Garden01Right + (high_jump | (double_jump + wall_grab + dodge))) 
+| (Garden01Left + (high_jump | (double_jump + (dodge | WALL_DASH))))",Not Labbed,,"Added extra parenthesis to fix red...
+Right can also access with dodge | WALL_DASH (ie. same as left currently, however...)
+Left can access with just double_jump | dodge | WALL_DASH
+leap of faith!","(Garden01Right + (high_jump | (double_jump + wall_grab + (dodge | wall_charge)))) 
+| (Garden01Left + (high_jump | double_jump | dodge | WALL_DASH))","(Garden01Right + (high_jump | (double_jump + wall_grab + (dodge | wall_charge)))) 
+| (Garden01Left + (high_jump | double_jump | dodge | WALL_DASH))"
+Garden 1,Garden 1 - Materials,Garden_001_Zone_001.BP_Interactable_AddItem_C_4,"currencies[""Default""]","(Garden01Right + double_jump + wall_grab + pile_attack)
+| (Garden01Left + pile_attack + (wall_grab | double_jump | dodge))",Not Labbed,,or high_jump!,"(Garden01Right + (high_jump | double_jump + wall_grab) + pile_attack)
+| (Garden01Left + pile_attack + (high_jump | wall_grab | double_jump | dodge))","(Garden01Right + (high_jump | double_jump + wall_grab) + pile_attack)
+| (Garden01Left + pile_attack + (high_jump | wall_grab | double_jump | dodge))"
+Garden 1,Garden 1 - Bloodstained Stuffed Toy,Garden_001_Zone_001.BP_Interactable_TreasureBox_C_1,"passives[""damage_cut_debuffed_1""]","(Garden01Right + ((high_jump + (dodge | double_jump | (hook + wall_grab))) | (wall_grab + double_jump)) 
+| (Garden01Left + ((high_jump + (dodge | double_jump | (hook + wall_grab))) | (wall_grab + (hook | double_jump | dodge)))))",Not Labbed,,"Added extra parenthesis to fix red...
+Left can do it with just dodge | double_jump | (high_jump | hook) + wall_grab 
+If you technically fall perfectly, do not need high_jump | hook from Left either
+
+from right with high_jump + (dodge | double_jump | wall_grab)
+from right with double_jump + wall_grab?","(Garden01Right + (high_jump + (dodge | double_jump | wall_grab) | (wall_grab + double_jump)) 
+| (Garden01Left + (dodge | double_jump | ((high_jump | hook) + wall_grab))","Garden01Right + (high_jump + (dodge | double_jump | wall_grab) | wall_grab + double_jump) 
+| Garden01Left + (dodge | double_jump | (high_jump | hook) + wall_grab)"
+Garden 2,Garden 2 - Sorcerer's Gauntlet,Garden_001_Zone_002.BP_Interactable_TreasureBox_C_1,"passives[""debuff_damage_up_b_1""]","(Garden02Right + (high_jump | wall_grab))
+| (Garden02LowerRight + (garden02lowerrightright_lever | Garden02LowerRightLeft_Lever) + (high_jump | (wall_grab + double_jump))) 
+| ((Garden02Left | Garden02LowerLeft) + (Garden02LowerLeft_Lever + Garden02Left_Lever) + (high_jump | (hook + double_jump + wall_grab)))",Not Labbed,"There is a lever we could add that will skip hook requirement
+
+Added this ^ comment into suggested logic... hard to explain though; I've currently dubbed it Center_Lever for reference
+
+CenterLever may need to be defined somewhere if we expect it to be included in logic?
+
+CenterLever Logic:
+No requirements : Right
+No requirements : LowerRight + LowerRight_LeftLever
+LowerRight + LowerRight_RightLever + (high_jump | double_jump + wall_grab)
+Left + Left_Lever + (high_jump | double_jump + wall_grab)
+(Left | LowerLeft + LowerLeft_Lever) + Left_Lever + ((hook | wall_grab) + double_jump | hook + wall_grab + dodge)","Added Right Logic with wall_grab + (double_jump | dodge | WALL_DASH)
+Left WITHOUT LowerLeft does not need hook in any circumstances (high_jump | double_jump + wall_grab are required and sufficient for that room)
+Left WITH LowerLeft also supports hook + dodge + wall_grab
+slightly changed order/grouping of lever requirements; left does NOT always require LowerLeft_Lever, scenarios have been split
+
+NOTE, player is expected to return to respite; no pile_attack required","Shorthand Version:
+
+ALL Combined ((Left | LowerLeft + LowerLeft_Lever) + Left_Lever + Center_Lever) | Right | LowerRight + (Right_Lever | Left_Lever) + (high_jump | wall_grab + (double_jump | dodge | WALL_DASH)))
+Unique (Left with no Center_Lever): ((Left | LowerLeft) + LowerLeft_Lever + Left_Lever + (high_jump | ((hook + dodge | double_jump) + wall_grab)))
+Unique (Left ONLY): (Left + Left_Lever + (high_jump | (double_jump + wall_grab)))
+
+(((Garden02Left | Garden02LowerLeft + Garden02LowerLeft_Lever) + Garden02Left_Lever + Garden02Center_Lever) | Garden02Right | (Garden02LowerRight + (garden02lowerrightright_lever | Garden02LowerRightLeft_Lever)) + (high_jump | wall_grab + (double_jump | dodge | wall_charge)))
+| ((Garden02Left | Garden02LowerLeft) + Garden02LowerLeft_Lever + Garden02Left_Lever + (high_jump | ((hook + dodge | double_jump) + wall_grab)))
+| (Garden02Left + Garden02Left_Lever + (high_jump | (double_jump + wall_grab)))
+","(Garden02Right | Garden02LowerRight + (Garden02LowerRightRight_Lever | Garden02LowerRightLeft_Lever)) + (high_jump | wall_grab + (double_jump | dodge | wall_charge))
+| Garden02LowerLeft + Garden02LowerLeft_Lever + Garden02Left_Lever + (high_jump | (hook + dodge | double_jump) + wall_grab | Garden02Center_Lever)
+| Garden02Left + Garden02Left_Lever + (high_jump | double_jump + wall_grab | Garden02LowerLeft_Lever + hook + dodge + wall_grab | Garden02Center_Lever)
+"
+Garden 2,Garden 2 - Chiron,Garden_001_Zone_002.BP_Interactable_TreasureBox_C_3,"assists[""assist_009""]","(Garden02Right | ((Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever) | (Garden02LowerRight + (Garden02LowerRightRight_Lever)))
+ + (high_jump | (WALL_DASH + double_jump + dodge))",In Progress,,"Left & LowerLeft also require Left_Lever
+otherwise seems good","Sigh why I do this; LIST of Garden2 Levers
+C0 : is labeled 13 in screenshot; required for treasure box c1
+C1: lever for Student1 door
+C4 : lever to enter area for Student1 from vertical drop
+C5 : lever for LowerRight Right side
+C6 : dubbed ""CenterLever"" , supports unique Left scenarios
+C7 : lever for LowerRight Left side
+C8 : this lever required to enter from Left areas
+C10: lever for C8 access
+C11: lever for Student3 door
+C12: lever for exiting LowerLeft","(Garden02Right | ((Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever) | (Garden02LowerRight + (Garden02LowerRightRight_Lever)))
+ + (high_jump | (WALL_DASH + double_jump + dodge))"
+Garden 3,Garden 3 - Grimoire,Garden_001_Zone_003.BP_Interactable_AddItem_C_1,"stats[""shop_line_up""]","(Garden03LeftUpper + (high_jump | (double_jump + (WALL_DASH | dodge))))
+| (Garden03UpperLeft + (WALL_DASH | high_jump | (double_jump + dodge)))
+| ((Garden03UpperRight | Garden03LeftLower) + (high_jump | (double_jump + dodge)))",Not Labbed,,seems good - cleaned up tiny formatting error (extra character),,"(Garden03LeftUpper + (high_jump | (double_jump + (WALL_DASH | dodge))))
+| (Garden03UpperLeft + (WALL_DASH | high_jump | (double_jump + dodge)))
+| ((Garden03UpperRight | Garden03LeftLower) + (high_jump | (double_jump + dodge)))"
+Garden 3,Garden 3 - Arcane Smith's Musings,Garden_001_Zone_003.BP_Interactable_AddItem_C_2,"tips[""tip_engineermemoirs_01""]","Garden03UpperLeft 
+| ((Garden03UpperRight | Garden03LeftUpper | Garden03LeftLower) + (high_jump | double_jump))",Not Labbed,,seems good,,"Garden03UpperLeft 
+| ((Garden03UpperRight | Garden03LeftUpper | Garden03LeftLower) + (high_jump | double_jump))"
+Garden 3,Garden 3 - Chronicles of Milius,Garden_001_Zone_003.BP_Interactable_AddItem_C_3,"tips[""tip_miliusbook_01""]","((Garden03LeftLower | (Garden03UpperRight) + (double_jump | high_jump))
+| ((Garden03UpperLeft | Garden03LeftUpper) + ((WALL_DASH + dodge) | high_jump | double_jump)))",Not Labbed,,"WALL_DASH is sufficient from UpperLeft without dodge;
+dodge also sufficient from UpperLeft (intentionally fall onto a block for extra height)
+else seems good","(Garden03LeftLower | Garden03UpperRight) + (double_jump | high_jump)
+| Garden03LeftUpper + (WALL_DASH + dodge | high_jump | double_jump)
+| Garden03UpperLeft + (WALL_DASH | dodge | high_jump | double_jump)","(Garden03LeftLower | Garden03UpperRight) + (double_jump | high_jump)
+| Garden03LeftUpper + (WALL_DASH + dodge | high_jump | double_jump)
+| Garden03UpperLeft + (WALL_DASH | dodge | high_jump | double_jump)"
+Garden 3,Garden 3 - Words on Land's End,Garden_001_Zone_003.BP_Interactable_AddItem_C_4,"tips[""tip_landend_01""]","((Garden03LeftLower | Garden03UpperRight | Garden03LeftUpper) +  (high_jump | (double_jump + dodge)))
+| (Garden03UpperLeft + (dodge | double_jump | high_jump))",Not Labbed,,"Added extra parenthesis to fix red...
+LeftUpper can reach this also with double_jump + WALL_DASH (similar to C1)","(Garden03LeftLower | Garden03UpperRight) + (high_jump | (double_jump + dodge))
+| Garden03LeftUpper + (high_jump | (double_jump + (WALL_DASH | dodge)))
+| Garden03UpperLeft + (dodge | double_jump | high_jump)","(Garden03LeftLower | Garden03UpperRight) + (high_jump | (double_jump + dodge))
+| Garden03LeftUpper + (high_jump | (double_jump + (WALL_DASH | dodge)))
+| Garden03UpperLeft + (dodge | double_jump | high_jump)"
+Garden 3,Garden 3 - Battered Grimoire,Garden_001_Zone_003.BP_Interactable_AddItem_C_5,"passives[""damage_up_debuffed_1""]","((Garden03LeftLower | Garden03UpperRight | Garden03LeftUpper) + ((double_jump + dodge) | high_jump)) 
+| (Garden03UpperLeft + (double_jump | dodge | high_jump))",Not Labbed,,seems good,,"((Garden03LeftLower | Garden03UpperRight | Garden03LeftUpper) + ((double_jump + dodge) | high_jump)) 
+| (Garden03UpperLeft + (double_jump | dodge | high_jump))"
+Garden 5,Garden 5 - Tripartite Magic Vial,Garden_001_Zone_005.EVT_ev_n_Levy_Treasure5_002,"stats[""passive_slot_l""]",(Garden05Left | Garden05Right) + (EVT_ev_s_e0233_Researcher_Defeat + quest_perfume),Not Labbed,Teacher needs to be moved here by finding all students,,,(Garden05Left | Garden05Right) + (EVT_ev_s_e0233_Researcher_Defeat + quest_perfume)
+Garden 5,Garden 5 - Magic Amplifier,Garden_001_Zone_005.EVT_ev_s_0233_Researcher_002,"materials[""parts_lv4_b""]",Garden05Left | Garden05Right + EVT_ev_s_e0233_Researcher_Defeat + EVT_ev_s_n0233_RescueSuccess_001,Unsure,"Needs all students rescued, then speak to teacher in 09, move back to here and get item",,,Garden05Left | Garden05Right + EVT_ev_s_e0233_Researcher_Defeat + EVT_ev_s_n0233_RescueSuccess_001
+Garden 6,Garden 6 - Magic Vial,Garden_001_Zone_006.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""passive_slot_s""]","((Garden06Right + (high_jump | (double_jump + wall_grab))) 
+| (Garden06Left + (high_jump | (double_jump + (hook | WALL_DASH))))
+| Garden06UpperDoor) 
++ (dash_charge + pile_attack)",Not Labbed,,"bare minimum reqs (from UpperDoor example):
+height: ((dodge | double_jump) + wall_grab | high_jump) + dash_charge + pile_attack
+Right can also use these minimums sans dodge
+Garden06Left with dodge + hook + wall_grab
+NOTE, double_jump does not need wall_grab (until second area anyway), dodge with no double_jump does (if you go the long way with the lever)","(Garden06UpperDoor + (high_jump | ((dodge | double_jump) + wall_grab)) 
+| (Garden06Right + (high_jump | double_jump + wall_grab))
+| (Garden06Left + (high_jump | (double_jump + (wall_grab + (hook | dodge) | WALL_DASH) | wall_grab + hook + dodge)) 
++ (dash_charge + pile_attack)","(Garden06UpperDoor + (high_jump | (dodge | double_jump) + wall_grab) 
+| Garden06Right + (high_jump | double_jump + wall_grab)
+| Garden06Left + (high_jump | double_jump + (wall_grab + (hook | dodge) | WALL_DASH) | wall_grab + hook + dodge)) 
++ dash_charge + pile_attack"
+Garden 6,Garden 6 - Materials,Garden_001_Zone_006.BP_Interactable_AddItem_C_1,"currencies[""Default""]","Garden06UpperDoor 
+| (Garden06Right + (high_jump | (double_jump + wall_grab + hook)))
+| (Garden06Left + (high_jump | (double_jump + hook)))",Not Labbed,,"GardenLeft can also dodge + wall_grab + Lever(s) + hook (no double_jump req)
+","Garden06UpperDoor 
+| (Garden06Right + (high_jump | (double_jump + wall_grab + hook)))
+| (Garden06Left + (high_jump | (double_jump + hook) | hook + dodge + wall_grab))","Garden06UpperDoor 
+| (Garden06Right + (high_jump | (double_jump + wall_grab + hook)))
+| (Garden06Left + (high_jump | (double_jump + hook) | hook + dodge + wall_grab))"
+Garden 6,Garden 6 - Origin Gem Core,Garden_001_Zone_006.BP_Interactable_AddItem_C_2,"materials[""parts_lv6_a""]","(Garden02Right | ((Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever) | (Garden02LowerRight + (Garden02LowerRightRight_Lever)))
+ + (WALL_DASH + double_jump + dodge)",Unsure,Requires wall dash from garden02,"fixed red...
+any high_jump potential? - seems interchangable with dodge
+note, double_jump is always required to break out of the WALL_DASH
+
+also requires Researcher_Defeat, technically (otherwise the cutscene stops you! :) )","(Garden02Right | ((Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever) | (Garden02LowerRight + (Garden02LowerRightRight_Lever)))
+ + (WALL_DASH + double_jump + (dodge | high_jump))","(Garden02Right | ((Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever) | (Garden02LowerRight + (Garden02LowerRightRight_Lever)))
+ + (WALL_DASH + double_jump + (dodge | high_jump))"
+Garden 6,Garden 6 - Unidentified Amplifier,Garden_001_Zone_006.BP_Interactable_TreasureBox_C_1,"materials[""parts_s5000_b""]","((Garden06Right + (high_jump | (double_jump + wall_grab))) 
+| (Garden06Left + (high_jump | (double_jump + (hook | WALL_DASH))))
+| Garden06UpperDoor) 
++ (dash_charge + pile_attack)",Not Labbed,,"Same exact requirements / comments as Breakable_SpawnItem (line81), copied from there!","(Garden06UpperDoor + (high_jump | ((dodge | double_jump) + wall_grab)) 
+| ((Garden06Right + (high_jump | (double_jump + wall_grab))) 
+| (Garden06Left + (high_jump | (double_jump + (wall_grab + (hook | dodge) | WALL_DASH) | wall_grab + hook + dodge)))) 
++ (dash_charge + pile_attack)","(Garden06UpperDoor + (high_jump | (dodge | double_jump) + wall_grab) 
+| Garden06Right + (high_jump | double_jump + wall_grab)
+| Garden06Left + (high_jump | double_jump + (wall_grab + (hook | dodge) | WALL_DASH) | wall_grab + hook + dodge)) 
++ dash_charge + pile_attack"
+Garden 7,Garden 7 - Luiseach's Carapace,Garden_001_Zone_007.BP_Interactable_AddItem_C_1,"equipments[""shield_009""]",((Garden07LowerDoor | Garden07Upper) + (double_jump + dodge + (wall_grab | high_jump))),Not Labbed,,"double_jump + WALL_DASH also works
+high_jump + double_jump + wall_grab added",(Garden07LowerDoor | Garden07Upper) + (double_jump + dodge + (wall_grab | high_jump) | high_jump + double_jump + wall_grab | double_jump + WALL_DASH),(Garden07LowerDoor | Garden07Upper) + (double_jump + dodge + (wall_grab | high_jump) | high_jump + double_jump + wall_grab | double_jump + WALL_DASH)
+Garden 8,Garden 8 - Scrap,Garden_001_Zone_008.BP_Interactable_AddItem_C_1,"currencies[""rare""]",Garden08Right | Garden08Upper,Done,,good,,Garden08Right | Garden08Upper
+Garden 11,Garden 11 - Luiseach,Garden_001_Zone_011.EVT_ev_s_e5070_Witch_Defeat,"spirits[""s5070_witch""]",Garden11Right,Done,,,,Garden11Right
+Garden 14,Garden 14 - Charmed Fragment,Garden_001_Zone_014.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Garden14Right + dive) 
+| (Garden14Left + TORRENT)",Not Labbed,,good,,"(Garden14Right + dive) 
+| (Garden14Left + TORRENT)"
+Kowloon 5,Kowloon 5 - Mother's Note,Kowloon_001_Zone_005.BP_Interactable_AddItem_C_0,"tips[""tip_mothersnote_01""]","Kowloon05UpperLeft 
+| ((Kowloon05LowerLeft | Kowloon05Right) + (double_jump + wall_grab))",Not Labbed,,or high_jump,"Kowloon05UpperLeft 
+| ((Kowloon05LowerLeft | Kowloon05Right) + (high_jump | double_jump + wall_grab))","Kowloon05UpperLeft 
+| ((Kowloon05LowerLeft | Kowloon05Right) + (high_jump | double_jump + wall_grab))"
+Kowloon 8,Kowloon 8 - Chief Attuner's Ring,Kowloon_001_Zone_008.BP_Interactable_AddItem_C_1,"passives[""restore_sp_up_a_1""]",Kowloon08Left | Kowloon08Right,Done,,good,,Kowloon08Left | Kowloon08Right
+Kowloon 9,Kowloon 9 - Levy,Kowloon_001_Zone_009.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_bird""]",Kowloon09Right | (Kowloon09Upper + Kowloon09Upper_Lever),Not Labbed,,"This should be Kowloon09HiddenRight?
+Unsure on Item",Kowloon09HiddenRight | (Kowloon09Upper + Kowloon09Upper_Lever),Kowloon09HiddenRight | (Kowloon09Upper + Kowloon09Upper_Lever)
+Kowloon 13,Kowloon 13 - Scrap,Kowloon_001_Zone_013.BP_Interactable_AddItem_C_1,"currencies[""rare""]","Kowloon13UpperRight 
+| ((Kowloon13HiddenLower | Kowloon13UpperLeft) + (high_jump | wall_grab))",Not Labbed,,good,,"Kowloon13UpperRight 
+| ((Kowloon13HiddenLower | Kowloon13UpperLeft) + (high_jump | wall_grab))"
+Kowloon 18,Kowloon 18 - Charmed Fragment,Kowloon_001_Zone_018.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Kowloon18Left  + (wall_grab + (dodge | wall_charge)),Not Labbed,,good,,Kowloon18Left  + (wall_grab + (dodge | wall_charge))
+Kowloon 21,Kowloon 21 - Magic Amplifier,Kowloon_001_Zone_021.BP_Interactable_AddItem_C_1,"materials[""parts_lv4_b""]","Kowloon21UpperLeft 
+| (Kowloon21LowerLeft  + (high_jump | wall_grab))",Not Labbed,,I take it back - Entering from UpperLeft has a wall; must enter from LowerLeft and fight thru gauntlet,Kowloon21LowerLeft + (high_jump | wall_grab),Kowloon21LowerLeft + (high_jump | wall_grab)
+Kowloon 26,Kowloon 26 - Materials,Kowloon_001_Zone_026.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Kowloon26Left | Kowloon26Right,Done,,good,,Kowloon26Left | Kowloon26Right
+Kowloon 28,Kowloon 28 - Arena Tower Demon Mask,Kowloon_001_Zone_028.BP_Interactable_AddItem_C_0,"passives[""damage_up_skillcategory_defence_1""]",(Kowloon28Left | Kowloon28Right) + (high_jump | wall_grab),Not Labbed,,good,,(Kowloon28Left | Kowloon28Right) + (high_jump | wall_grab)
+Kowloon 28,Kowloon 28 - Magic Amplifier,Kowloon_001_Zone_028.BP_Interactable_AddItem_C_1,"materials[""parts_lv4_b""]",(Kowloon28Left | Kowloon28Right) + (high_jump | wall_grab),Not Labbed,,good,,(Kowloon28Left | Kowloon28Right) + (high_jump | wall_grab)
+Kowloon 29,Kowloon 29 - Scrap,Kowloon_001_Zone_029.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Kowloon29Left,Done,,good,,Kowloon29Left
+Kowloon 31,Kowloon 31 - Grimoire,Kowloon_001_Zone_031.BP_Interactable_TreasureBox_C_0,"stats[""shop_line_up""]",Kowloon31Right,Done,,good,,Kowloon31Right
+Kowloon 32,Kowloon 32 - Arena Tower Flyer,Kowloon_001_Zone_032.BP_Interactable_AddItem_C_0,"tips[""tip_fightingtower_01""]",Kowloon32Left,Done,,good,,Kowloon32Left
+Kowloon 33,Kowloon 33 - Fugitive Researcher's Notes,Kowloon_001_Zone_033.BP_Interactable_AddItem_C_0,"tips[""tip_researchersjournal_01""]","Kowloon33Left 
+| (Kowloon33Right + Kowloon34Lower_Lever)",Not Labbed,,good,,"Kowloon33Left 
+| (Kowloon33Right + Kowloon34Lower_Lever)"
+Kowloon 35,Kowloon 35 - Charmed Fragment,Kowloon_001_Zone_035.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Kowloon35Left | Kowloon35LowerRight) + (high_jump | (wall_grab + dodge + double_jump)),Not Labbed,,"updated Kowloon35Right -> Kowloon35LowerRight
+otherwise good",,(Kowloon35Left | Kowloon35LowerRight) + (high_jump | wall_grab + dodge + double_jump)
+Kowloon 36,Kowloon 36 - Magicite Hairpin,Kowloon_001_Zone_036.BP_Interactable_AddItem_C_0,"passives[""onkill_reduce_cooldowns_1""]",Kowloon36Right | Kowloon36UpperLeft | (Kowloon36LowerLeft + KowloonLeft_Lever),Not Labbed,,"or LowerCenterLeft :)
+Lever name",Kowloon36Right | Kowloon36UpperLeft | ((Kowloon36CenterLowerLeft | Kowloon36LowerLeft) + Kowloon36Left_Lever),Kowloon36Right | Kowloon36UpperLeft | ((Kowloon36CenterLowerLeft | Kowloon36LowerLeft) + Kowloon36Left_Lever)
+Kowloon 39,Kowloon 39 - Magic Vial,Kowloon_001_Zone_039.BP_Interactable_AddItem_C_0,"stats[""passive_slot_s""]","(Kowloon39LowerRight + high_jump + hook + (dodge | double_jump)) 
+| (Kowloon39UpperRight + high_jump + ((double_jump + dodge) | WALL_DASH | hook))",Not Labbed,,"Added extra parenthesis to fix red...
+UpperRight can reach with just high_jump + (dodge | double_jump | WALL_DASH | hook)","Kowloon39LowerRight + high_jump + hook + (dodge | double_jump) 
+| Kowloon39UpperRight + high_jump + (double_jump | dodge | WALL_DASH | hook)","Kowloon39LowerRight + high_jump + hook + (dodge | double_jump) 
+| Kowloon39UpperRight + high_jump + (double_jump | dodge | WALL_DASH | hook)"
+Kowloon 39,Kowloon 39 - Materials,Kowloon_001_Zone_039.BP_Interactable_AddItem_C_1,"currencies[""Default""]","(Kowloon39LowerRight + high_jump + hook + pile_attack + (dodge | double_jump))
+| (Kowloon39UpperRight + pile_attack + ((double_jump + dodge) | WALL_DASH | hook))",Not Labbed,,"Added extra parenthesis to fix red..
+there is also high_jump + (double_jump | dodge) most likely 
+heck, dodge + pile_attack is enough from upper","(Kowloon39LowerRight + high_jump + hook + (dodge | double_jump)
+| Kowloon39UpperRight + (high_jump | double_jump | dodge | WALL_DASH | hook))
++ pile_attack","(Kowloon39LowerRight + high_jump + hook + (dodge | double_jump)
+| Kowloon39UpperRight + (high_jump | double_jump | dodge | WALL_DASH | hook))
++ pile_attack"
+Kowloon 39,Kowloon 39 - Spica,Kowloon_001_Zone_039.BP_Interactable_TreasureBox_C_0,"assists[""assist_006""]",Kowloon39UpperRight | Kowloon39LowerRight,Done,,good,,Kowloon39UpperRight | Kowloon39LowerRight
+Kowloon 47,Kowloon 47 - Charmed Fragment,Kowloon_001_Zone_047.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Kowloon47Right + ((wall_grab + double_jump + dodge) | (WALL_DASH + (high_jump | double_jump))),Not Labbed,,"Need to add Kowloon47Lower?
+this is accessible with WALL_DASH alone
+also parenthesis fix",(Kowloon47Lower | Kowloon47Right) + (wall_grab + double_jump + dodge | WALL_DASH),(Kowloon47Lower | Kowloon47Right) + (wall_grab + double_jump + dodge | WALL_DASH)
+Kowloon 47,Kowloon 47 - Origin Gem Core,Kowloon_001_Zone_047.BP_Interactable_AddItem_C_2,"materials[""parts_lv6_a""]",Kowloon47Right + WALL_DASH + (double_jump | high_jump),Not Labbed,,"Need to add Kowloon47Lower?
+otherwise good",(Kowloon47Lower | Kowloon47Right) + WALL_DASH + (double_jump | high_jump),(Kowloon47Lower | Kowloon47Right) + WALL_DASH + (double_jump | high_jump)
+Kowloon 51,Kowloon 51 - No.7,Kowloon_001_Zone_051.EVT_ev_s_e5050_Ronin_Defeat,"spirits[""s5050_ronin""]",Kowloon51Left | Kowloon51Right,Done,,,,Kowloon51Left | Kowloon51Right
+Labo 1,Labo 1 - Lilia's Diary,Labo_001_Zone_001.BP_Interactable_AddItem_C_0,"tips[""tip_liliasdiary_01""]",Labo01Left | Labo01Upper | Labo01Right,Done,,good,,Labo01Left | Labo01Upper | Labo01Right
+Labo 3,Labo 3 - Aggressor,Labo_001_Zone_003.EVT_ev_s_e5003_Reaper_Defeat,"materials[""parts_s5000_a""]",Labo03Left | Labo03Right,Done,,,,Labo03Left | Labo03Right
+Labo 6,Labo 6 - Echo Device,Labo_001_Zone_006.BP_Interactable_TreasureBox_C_0,"passives[""damage_up_skillcategory_combo_1""]",Labo08CenterRight + WALL_DASH,Unsure,Need to wall dash from 08 through 16 and 15 into 06,"might need double_jump | high_jump | dodge to grab that wall
+can also go as far back as Labo09",Labo08CenterRight + WALL_DASH + (double_jump | high_jump | dodge),Labo08CenterRight + WALL_DASH + (double_jump | high_jump | dodge)
+Labo 7,Labo 7 - Materials,Labo_001_Zone_007.BP_Interactable_AddItem_C_1,"currencies[""Default""]","((Labo07Right | Labo07Left) + high_jump) 
+| (Labo07Upper + (wall_grab | double_jump | dodge | high_jump))",Not Labbed,,"Added extra parenthesis to fix red..
+Upper can actually make it without a single movement tech","(Labo07Right | Labo07Left) + high_jump
+| Labo07Upper","(Labo07Right | Labo07Left) + high_jump
+| Labo07Upper"
+Labo 8,Labo 8 - Charmed Fragment,Labo_001_Zone_008.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Labo08Upper + pile_attack,Not Labbed,,good,,Labo08Upper + pile_attack
+Labo 9,Labo 9 - Charmed Fragment,Labo_001_Zone_009.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Labo09Right | Labo09Left | (Labo09Upper + pile_attack)) + (high_jump | (wall_grab + double_jump)),Not Labbed,,"Added extra parenthesis to fix red...
+good",,(Labo09UpperRight | Labo09LowerRight | Labo09Left | Labo09Upper + pile_attack) + (high_jump | wall_grab + double_jump)
+Labo 10,Labo 10 - Magic Vial,Labo_001_Zone_010.BP_Interactable_TreasureBox_C_1,"stats[""passive_slot_s""]","(Labo06LowerLeft | Labo06Lower | Factory06CenterLeft | Factory06UpperLeft | Factory06Upper) 
++ WALL_DASH + Labo05Lower_Lever",Unsure,"Needs Access from Labo06 Through 07 08 05 09 into10
+Lever in Labo05Lower also needs be be active","also unsure! something seems very wrong , im assuming theyre all supposed to be Labo",,Labo06LowerLeft + WALL_DASH + Labo05Lower_Lever
+Labo 11,Labo 11 - Scrap,Labo_001_Zone_011.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Labo11Right + high_jump,Not Labbed,,Changed from Right -> LowerRight,Labo11LowerRight + high_jump,Labo11LowerRight + high_jump
+Labo 17,Labo 17 - Crystallised Fusion,Labo_001_Zone_017.BP_Interactable_AddItem_C_0,"passives[""damage_cut_sp_gauge_1""]",Labo17Left + dive + (wall_grab | double_jump | dodge),Not Labbed,,or high_jump!,Labo17Left + dive + (high_jump | wall_grab | double_jump | dodge),Labo17Left + dive + (high_jump | wall_grab | double_jump | dodge)
+Labo 18,Labo 18 - Charmed Fragment,Labo_001_Zone_018.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",((Labo18Left | Labo18RightDoor) + high_jump | (double_jump + wall_grab)) ,Not Labbed,,"think parenthesis need tweaking
+can also WALL_DASH from Labo19",,(Labo18Left | Labo18RightDoor) + (high_jump | double_jump + wall_grab)
+Labo 18,Labo 18 - Priestess' Tears,Labo_001_Zone_018.BP_Interactable_AddItem_C_2,"passives[""damage_up_sp_gauge_1""]","Labo18RightDoor 
+| (Labo18Left + Labo18Right_Lever)",Not Labbed,,good,,"Labo18RightDoor 
+| (Labo18Left + Labo18Right_Lever)"
+Labo 19,Labo 19 - Scrap,Labo_001_Zone_019.BP_Interactable_AddItem_C_0,"currencies[""rare""]","(Labo19Lower + (high_jump | (double_jump + wall_grab))) 
+| (Labo19Right + (dodge + double_jump + high_jump))",Unsure,"Can also be gotten using a wall dash from Labo18
+Labo19Lower -> LowerCenter","Added extra parenthesis to fix red..
+seems good aside from WALL_DASH comment",,"Labo19LowerCenter + (high_jump | double_jump + wall_grab) 
+| Labo19Right + (dodge + double_jump + high_jump)"
+Labo 21,Labo 21 - Lar's Swift Flight,Labo_001_Zone_021.EVT_ev_s_5230_Finder_Upgrade,"aptitudes[""wall_charge""]",Labo21LowerLeft | Labo21UpperLeft,Done,,technically cannot enter from UpperLeft base-state?,Labo21LowerLeft,Labo21LowerLeft
+Labo 22,Labo 22 - Gilroy Examination Record,Labo_001_Zone_022.BP_Interactable_AddItem_C_0,"tips[""tip_gilroyrecords_01""]",Labo22UpperRight,Done,,good,,Labo21LowerLeft | Labo21UpperLeft
+Labo 24,Labo 24 - Caladrius Records,Labo_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_caladriusrecord_01""]",((Labo24Left | Labo24Lower) + (high_jump | (double_jump + WALL_DASH))),Not Labbed,,From Left (wall_grab + double_jump + dodge),"Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH)
+| Labo24Lower + (high_jump | (double_jump + WALL_DASH))","Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH)
+| Labo24Lower + (high_jump | (double_jump + WALL_DASH))"
+Labo 24,Labo 24 - Grimoire,Labo_001_Zone_024.BP_Interactable_TreasureBox_C_0,"stats[""shop_line_up""]","(Labo24Left + (high_jump | (double_jump + WALL_DASH))) 
+| (Labo24Lower + high_jump)",Not Labbed,,"From Left (wall_grab + double_jump + dodge)
+Lower can also access with WALL_DASH option? (ie. same as one above?)
+you can, its just painful. ^","Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH)
+| Labo24Lower + (high_jump | (double_jump + WALL_DASH))","Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH)
+| Labo24Lower + (high_jump | (double_jump + WALL_DASH))"
+Labo 26,Labo 26 - Materials,Labo_001_Zone_026.BP_Interactable_AddItem_C_0,"currencies[""Default""]","(Labo26Upper + (high_jump + double_jump) | (wall_grab + dodge + double_jump)) 
+| ((Labo26Left | Labo26Right) + (double_jump + high_jump))",Not Labbed,,"high jump is enough by itself, no double_jump required; taking a closer look, fixed parenthesis as well","Labo26Upper + (high_jump | wall_grab + dodge + double_jump) 
+| ((Labo26Left | Labo26Right) + high_jump)","Labo26Upper + (high_jump | wall_grab + dodge + double_jump) 
+| ((Labo26Left | Labo26Right) + high_jump)"
+Labo 27,Labo 27 - Origin Gem Core,Labo_001_Zone_027.BP_Interactable_TreasureBox_C_1,"materials[""parts_lv6_a""]",Labo27UpperRight,Done,,good,,Labo27UpperRight
+Mine 2,Mine 2 - Helix Crystal,Mine_001_Zone_002.BP_Interactable_AddItem_C_1,"passives[""onkill_restorehp_1""]","Mine02Right 
+| ((Mine02LowerLeft | Mine02LowerRight) + (double_jump | high_jump))",Not Labbed,,"I thought this was good, but testing again, is unnecessary? Am i crazy?
+Also renamed Right -> UpperRight",Mine02UpperRight | Mine02LowerLeft | Mine02LowerRight,Mine02UpperRight | Mine02LowerLeft | Mine02LowerRight
+Mine 4,Mine 4 - Writing Etched Into the Wall,Mine_001_Zone_004.BP_Interactable_AddItem_C_1,"tips[""tip_writingwall_01""]",Mine04Right | Mine04Left,Done,,good,,Mine04Upper | Mine04Left
+Mine 4,Mine 4 - Miner Unit,Mine_001_Zone_004.EVT_ev_s_e0122_Wheeler_Defeat,"materials[""parts_lv2_b""]",Mine04Left,Done,,,,Mine04Left
+Mine 5,Mine 5 - Charmed Fragment,Mine_001_Zone_005.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Mine05Upper | Mine05Left) 
++ (high_jump | (double_jump + dodge)) ",Not Labbed,,good,,"(Mine05Upper | Mine05Left) 
++ (high_jump | (double_jump + dodge)) "
+Mine 5,Mine 5 - Materials,Mine_001_Zone_005.BP_Interactable_AddItem_C_2,"currencies[""Default""]",(Mine05Left | Mine05Upper) + (high_jump | (double_jump + dodge) | (wall_grab + (dodge | wall_charge))),Not Labbed,,"wall_grab + double_jump also reaches
+(left stick towards the item before first jump)",(Mine05Left | Mine05Upper) + (high_jump | (double_jump + dodge) | (wall_grab + (dodge | wall_charge | double_jump))),(Mine05Left | Mine05Upper) + (high_jump | (double_jump + dodge) | (wall_grab + (dodge | wall_charge | double_jump)))
+Mine 5,Mine 5 - Magic Vial,Mine_001_Zone_005.BP_Interactable_AddItem_C_3,"stats[""passive_slot_s""]","(Mine05Upper | Mine05Left) 
++ (double_jump | high_jump | dodge)
++ pile_attack",Not Labbed,,good,,"(Mine05Upper | Mine05Left) 
++ (double_jump | high_jump | dodge)
++ pile_attack"
+Mine 6,Mine 6 - Materials,Mine_001_Zone_006.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Mine06LowerLeft + (wall_grab | double_jump | high_jump),Not Labbed,,good,,Mine06Lower + (wall_grab | double_jump | high_jump)
+Mine 6,Mine 6 - Charmed Fragment,Mine_001_Zone_006.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Mine06UpperLeft | Mine06Right) 
++ (high_jump | (double_jump + (dodge | WALL_DASH)))",Not Labbed,,good,,"(Mine06Left | Mine06Right) 
++ (high_jump | (double_jump + (dodge | WALL_DASH)))"
+Mine 8,Mine 8 - Unidentified Amplifier,Mine_001_Zone_008.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_b""]",Mine08Upper + pile_attack + (high_jump | (double_jump + (dodge | WALL_DASH))),Not Labbed,,"double_jump is sufficient without dodge or WALL_DASH;
+there is also a WALL_DASH only option (break the pile_attack barrier without charging thru it)
+assuming no Mine08Right + Lever is needed?",Mine08Upper + pile_attack + (high_jump | double_jump | WALL_DASH),Mine08Upper + pile_attack + (high_jump | double_jump | WALL_DASH)
+Mine 9,Mine 9 - Muninn,Mine_001_Zone_009.EVT_ev_s_0080_FrostAndOwl,"spirits[""s5090_owl""]",Mine09Upper | Mine09Right,Done,,,,Mine09Upper | Mine09Right
+Mine 11,Mine 11 - Tarnished Tag,Mine_001_Zone_011.BP_Interactable_TreasureBox_C_1,"passives[""damage_cut_physic_1""]",Mine11Right,Done,,good,,Mine11Right
+Mine 12,Mine 12 - Charmed Fragment,Mine_001_Zone_012.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","(((Mine12Upper | Mine12Right) + (double_jump | high_jump)) 
+| Mine12Left) 
++ pile_attack",Not Labbed,,"Added extra parenthesis to fix red..
+Upper can also reach with dodge","((Mine12Right + (double_jump | high_jump)) 
+| (Mine12Upper + (double_jump | high_jump | dodge)) 
+| Mine12Left) 
++ pile_attack","((Mine12Right + (double_jump | high_jump)) 
+| (Mine12Upper + (double_jump | high_jump | dodge)) 
+| Mine12Left) 
++ pile_attack"
+Mine 13,Mine 13 - Materials,Mine_001_Zone_013.BP_Interactable_AddItem_C_1,"currencies[""Default""]","(Mine13Right + (double_jump | high_jump)) 
+| (Mine13Left + (double_jump | high_jump | wall_grab))",Not Labbed,,"Either this one needs to add Lever to Right, needs to be removed, or (next row)",,"(Mine13Right + (double_jump | high_jump)) 
+| (Mine13Left + (double_jump | high_jump | wall_grab))"
+Mine 13,Mine 13 - Grimoire,Mine_001_Zone_013.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Mine13Left,Done,,or This one needs Right as an option with Lever?,,Mine13Left
+Mine 14,Mine 14 - Notification of Restricted Areas,Mine_001_Zone_014.BP_Interactable_AddItem_C_0,"tips[""tip_tunerjournal_01""]",Mine14Left | Mine14Lower | Mine14Right,Done,,good,,Mine14Left | Mine14Lower | Mine14Right
+Mine 14,Mine 14 - Levy,Mine_001_Zone_014.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_board""]","(Mine14Left | Mine14Lower | Mine14Right) 
++ (hook + (double_jump | dodge)) | (high_jump + wall_grab + (wall_charge | (dodge + double_jump)))",Unsure,"Not sure why this is [quest board]
+This can be gotten with just high jump using the elevator if we wanted to reduce requirements","high_jump is enough on its own from standing on edge from Mine14Left, no moving elevator requirements; I would reduce the requirements.","(Mine14Left | Mine14Lower | Mine14Right) 
++ (hook + (double_jump | dodge) | high_jump)","(Mine14Left | Mine14Lower | Mine14Right) 
++ (hook + (double_jump | dodge) | high_jump)"
+Mine 17,Mine 17 - Garm,Mine_001_Zone_017.EVT_ev_s_e5200_Pounder_Defeat,"aptitudes[""pile_attack""]",Mine17Right,Done,,,,Mine17Right
+Paradise 1,Paradise 1 - Charmed Fragment 1,Paradise_001_Zone_001.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","((Paradise01Left | Paradise01LowerRight) + (high_jump | double_jump)) 
+| (Paradise01UpperRight + (double_jump | dodge | high_jump))",Not Labbed,,seems good,,"((Paradise01Left | Paradise01LowerRight) + (high_jump | double_jump)) 
+| (Paradise01UpperRight + (double_jump | dodge | high_jump))"
+Paradise 1,Paradise 1 - Charmed Fragment 2,Paradise_001_Zone_001.BP_Interactable_AddItem_C_2,"stats[""hp_up_s""]",(Paradise01Left | Paradise01LowerRight | Paradise01UpperRight) + high_jump,Unsure,Can be reached from 02 using a wall dash,agreed with WALL_DASH comment; good otherwise,,(Paradise01Left | Paradise01LowerRight | Paradise01UpperRight) + high_jump
+Paradise 2,Paradise 2 - Declan's Records,Paradise_001_Zone_002.BP_Interactable_AddItem_C_0,"tips[""tip_degrandsrecord_01""]","((Paradise02Left | Paradise02LowerRight) + (double_jump | dodge | high_jump)) 
+| Paradise02UpperLeft 
+| (Paradise02CenterLeft + Paradise04Left_Lever)",Not Labbed,,"Added extra parenthesis to fix red..
+Should UpperLeft & CenterLeft be UpperRight & CenterRight?","((Paradise02Left | Paradise02LowerRight) + (double_jump | dodge | high_jump)) 
+| Paradise02UpperRight 
+| (Paradise02CenterRight + Paradise04Left_Lever)","((Paradise02Left | Paradise02LowerRight) + (double_jump | dodge | high_jump)) 
+| Paradise02UpperRight 
+| (Paradise02CenterRight + Paradise04Left_Lever)"
+Paradise 3,Paradise 3 - Magic Vial,Paradise_001_Zone_003.BP_Interactable_AddItem_C_0,"stats[""passive_slot_s""]",((Paradise03UpperLeft | Paradise03LowerLeft | (Paradise03Lower + (high_jump | wall_grab)))) + TORRENT,Not Labbed,,"Added extra parenthesis to fix red...
+Seems good
+LowerLeft requires key?",,((Paradise03UpperLeft | Paradise03LowerLeft | (Paradise03Lower + (high_jump | wall_grab)))) + TORRENT
+Paradise 3,Paradise 3 - Grimoire,Paradise_001_Zone_003.BP_Interactable_TreasureBox_C_0,"stats[""shop_line_up""]","(Paradise03UpperLeft + (high_jump | (double_jump + WALL_DASH) | high_jump))) 
+| ((Paradise03LowerLeft | Paradise03Lower) + (high_jump | (double_jump + wall_grab + dodge))",Not Labbed,,"UpperLeft and LowerLeft can both reach with double_jump + dodge (no wall_grab)
+LowerLeft also requires key?
+high_jump duplicate","(Paradise03UpperLeft | Paradise03LowerLeft) + (high_jump | double_jump + (dodge | WALL_DASH)) 
+| Paradise03Lower + (high_jump | double_jump + wall_grab + (dodge | wall_charge))","(Paradise03UpperLeft | Paradise03LowerLeft) + (high_jump | double_jump + (dodge | WALL_DASH)) 
+| Paradise03Lower + (high_jump | double_jump + wall_grab + (dodge | wall_charge))"
+Paradise 5,Paradise 5 - Charmed Fragment,Paradise_001_Zone_005.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Paradise05UpperRight | Paradise05Right) + (high_jump | WALL_DASH),Not Labbed,,there is also wall_grab + double_jump + dodge,(Paradise05UpperRight | Paradise05Right) + (high_jump | WALL_DASH | wall_grab + double_jump + dodge),(Paradise05UpperRight | Paradise05Right) + (high_jump | WALL_DASH | wall_grab + double_jump + dodge)
+Paradise 8,Paradise 8 - No.47,Paradise_001_Zone_008.EVT_ev_s_e0289_Banshee_Defeat,"materials[""parts_lv5_b""]",Paradise08Lower | Paradise08LowerLeft | ParadiseLowerRight,Done,,Im assuming ParadiseLowerRight -> Paradise08LowerRight,Paradise08Lower | Paradise08LowerLeft | Paradise08LowerRight,Paradise08Lower | Paradise08LowerLeft | Paradise08LowerRight
+Paradise 11,Paradise 11 - Bloodstained Diary,Paradise_001_Zone_011.BP_Interactable_AddItem_C_0,"tips[""tip_bloodstaineddiary_01""]",Paradise11Upper,Done,,good,,Paradise11Upper
+Paradise 12,Paradise 12 - Declan's Ring,Paradise_001_Zone_012.BP_Interactable_TreasureBox_C_0,"passives[""onattack_restorehp_1""]",Paradise12Upper,Done,,good,,Paradise12Upper
+Paradise 19,Paradise 19 - Scrap,Paradise_001_Zone_019.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Paradise19Lower,Done,,good,,Paradise19Lower
+Paradise 19,Paradise 19 - Materials,Paradise_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""Default""]",(Paradise19Upper | Paradise19Left) + TORRENT,Not Labbed,,good - unless you want to add Lever,,(Paradise19Upper | Paradise19Left) + TORRENT
+Paradise 19,Paradise 19 - Motley's Torrent,Paradise_001_Zone_019.EVT_ev_s_5220_Wirer_Upgrade,"aptitudes[""dash_charge_underwater""]",Paradise19Upper | (Paradise19Left + TORRENT),Not Labbed,,need to add Lever or remove Left,,Paradise19Upper | (Paradise19Left + TORRENT)
+Paradise 21,Paradise 21 - Materials,Paradise_001_Zone_021.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Paradise21Right,Done,,good,,Paradise21Right
+Paradise 24,Paradise 24 - Words Etched into Cell,Paradise_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_prisonwall_01""]",Paradise24Left,Done,,good,,Paradise24Left
+Paradise 26,Paradise 26 - Declan's Binds,Paradise_001_Zone_026.BP_Interactable_AddItem_C_0,"equipments[""armor_015""]",Paradise26Upper,Done,,good,,Paradise26Upper
+Paradise 30,Paradise 30 - Grand Sorcerer's Key,Paradise_001_Zone_030.EVT_ev_n_e0289_Banshee_KeyGet,"keys[""key_owner""]",Paradise30Left,Done,,,,Paradise30Left
+Paradise 32,Paradise 32 - Unidentified Transformer,Paradise_001_Zone_032.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_c""]","((Paradise32HiddenUpper | Paradise32Left | Paradise32Lower | Paradise32Right) + (high_jump | hook + (double_jump | dodge))
++ pile_attack)",Not Labbed,"Should Paradise32Lower be removed? Otherwise, it requires dive (technically torrent?)
+
+Can WALL_DASH from Paradise33Left, which would just be a simpler WALL_DASH + double_jump","SIGH there is also double_jump + dodge + WALL_DASH from Right, and double_jump + WALL_DASH from HiddenUpper","((Paradise32Left | Paradise32Lower + dive) + (high_jump | hook + (double_jump | dodge))
+| Paradise32HiddenUpper + (high_jump | double_jump + WALL_DASH | hook + (double_jump | dodge))
+| Paradise32Right + (high_jump | double_jump + dodge + WALL_DASH | hook + (double_jump | dodge)))
++ pile_attack","((Paradise32Left | Paradise32Lower + dive) + (high_jump | hook + (double_jump | dodge))
+| Paradise32HiddenUpper + (high_jump | double_jump + WALL_DASH | hook + (double_jump | dodge))
+| Paradise32Right + (high_jump | double_jump + dodge + WALL_DASH | hook + (double_jump | dodge)))
++ pile_attack"
+Paradise 33,Paradise 33 - Headless Gold Statue,Paradise_001_Zone_033.BP_Interactable_AddItem_C_0,"passives[""onkill_drops_1""]",Paradise33Upper | (Paradise33Left + (high_jump + dodge) | (wall_grab + dodge + double_jump)),Not Labbed,,"Added extra parenthesis to fix red...
+wall_grab + double_jump does not require dodge
+depends on how you fall from upper??
+can also WALL_DASH + dodge from Paradise32 (which also requires some way to get there; like hook) =/",Paradise33Upper | (Paradise33Left + (high_jump + (dodge | double_jump | WALL_DASH)) | (wall_grab + double_jump)),Paradise33Upper | Paradise33Left + (high_jump + (dodge | double_jump | WALL_DASH) | wall_grab + double_jump)
+Paradise 34,Paradise 34 - Cracked Magicite Dagger,Paradise_001_Zone_034.BP_Interactable_TreasureBox_C_1,"passives[""damage_up_skillcategory_special_1""]",Paradise34Upper,Done,,good,,Paradise34Upper
+Quarry 1,Quarry 1 - Survey Teams Notes,Quarry_001_Zone_001.BP_Interactable_AddTutorial_C_0,"tips[""tip_freeze_01""]",Quarry01Lower | Quarry01Right,Done,,"Should be Quarry01Left, not lower; also assumes door is unlocked or does it need to add key?
+Left requires double_jump | wall_grab | high_jump
+
+IMO Quarry01Left should be removed",Quarry01Left + (double_jump | wall_grab | high_jump) | Quarry01Right,Quarry01Left + (double_jump | wall_grab | high_jump) | Quarry01Right
+Quarry 2,Quarry 2 - Charmed Fragment,Quarry_001_Zone_002.BP_Interactable_AddItem_C_2,"stats[""hp_up_s""]","(Quarry02Right | Quarry02LowerLeft | Quarry02LowerRight) 
++ (double_jump + dash_charge)",Not Labbed,,good,,"(Quarry02Right | Quarry02LowerLeft | Quarry02LowerRight) 
++ (double_jump + dash_charge)"
+Quarry 3,Quarry 3 - Tattered Notice,Quarry_001_Zone_003.BP_Interactable_AddItem_C_0,"tips[""tip_raggedpastedown_01""]",Quarry03Upper | Quarry03Lower,Done,,good,,Quarry03Upper | Quarry03Lower
+Quarry 3,Quarry 3 - Levy,Quarry_001_Zone_003.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_perfume""]",Quarry03Upper | Quarry03Lower,Done,,good,,Quarry03Upper | Quarry03Lower
+Quarry 4,Quarry 4 - Materials,Quarry_001_Zone_004.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Quarry04Upper,Done,,this requires dash_charge,Quarry04Upper + dash_charge,Quarry04Upper + dash_charge
+Quarry 4,Quarry 4 - Grimoire,Quarry_001_Zone_004.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Quarry04Left + (high_jump | wall_grab | double_jump),Not Labbed,,good,,Quarry04Left + (high_jump | wall_grab | double_jump)
+Quarry 5,Quarry 5 - Materials,Quarry_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""Default""]",None,Unsure,not sure why I put None here,"not sure either!
+would expect something like Quarry05Lower at least.
+if you enter the room with wall_grab (wall_grab + double_jump more specifically) is one option, then you dont need any additional movement (not even double_jump | wall_grab). Other option to enter is high_jump, but again, high_jump isnt even required for the item
+in short, if you can enter the room, you can get the item.",Quarry05Lower,Quarry05Lower
+Quarry 7,Quarry 7 - Survey Team Gauntlet,Quarry_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""debuff_damage_up_a_1""]","(Quarry07Upper | Quarry07Lower | Quarry07Left) 
++ (high_jump | (double_jump + (WALL_DASH | dodge)))",Unsure,"Quarry07Right needs access to Quarry04
+
+Can WALL_DASH from Quarry10Right","Added extra parenthesis to fix red...
+Right is not included (assuming due to dash_charge barrier) as also noted by comment
+seems good otherwise",,"(Quarry07Upper | Quarry07Lower | Quarry07Left) 
++ (high_jump | (double_jump + (WALL_DASH | dodge)))"
+Quarry 10,Quarry 10 - New Model Core,Quarry_001_Zone_010.BP_Interactable_AddItem_C_1,"materials[""parts_lv4_a""]","(Quarry10UpperRight + (high_jump | double_jump | (wall_grab + (dodge | wall_charge))))
+| (Quarry10HiddenRight + (WALL_DASH | high_jump | double_jump)) 
+| (Quarry10Lower + (double_jump | high_jump))",Not Labbed,,"Added extra parenthesis to fix red... added extra | sign to fix logic...
+Merged Upper & Hidden Rights, Lower can also wall_grab + dodge","((Quarry10UpperRight | Quarry10HiddenRight) + (high_jump | double_jump | (wall_grab + (dodge | wall_charge))))
+| (Quarry10Lower + (double_jump | high_jump | wall_grab + dodge))","((Quarry10UpperRight | Quarry10HiddenRight) + (high_jump | double_jump | (wall_grab + (dodge | wall_charge))))
+| (Quarry10Lower + (double_jump | high_jump | wall_grab + dodge))"
+Quarry 11,Quarry 11 - Materials,Quarry_001_Zone_011.BP_Interactable_AddItem_C_0,"currencies[""Default""]",None,Unsure,not sure why I put none here,"Not sure either!
+would expect Quarry11Left",Quarry11Left,Quarry11Left
+Quarry 14,Quarry 14 - Magic Vial,Quarry_001_Zone_014.BP_Interactable_AddItem_C_1,"stats[""passive_slot_s""]","(Quarry14Upper | Quarry14Right) 
++ (double_jump + dash_charge)",Not Labbed,,good,,"(Quarry14Upper | Quarry14Right) 
++ (double_jump + dash_charge)"
+Quarry 15,Quarry 15 - Depths Survey Record,Quarry_001_Zone_015.BP_Interactable_AddItem_C_1,"tips[""tip_lowestrecord_01""]","Quarry15Upper 
+| ((Quarry15Lower | Quarry15Left) + (wall_grab + double_jump + (dodge + wall_charge)))",Not Labbed,"double_jump + wall_grab feels close to frame perfect, its annoyingly difficult","should basically be same as transition logic
+
+does this need to split LowerLeft & LowerRight?
+need to add high_jump option (think it may be simply alternative to double_jump?)
+wall_grab + double_jump is sufficient (utilize walls near C1)
+
+so i dont second guess myself again: high_jump is NOT required to get to C_3 (below), BUT is interchangable with double_jump in order to reach the upper area/lever.","Quarry15Upper 
+| (Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + wall_grab | high_jump + (dodge + wall_grab | WALL_DASH))","Quarry15Upper 
+| (Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + wall_grab | high_jump + (dodge + wall_grab | WALL_DASH))"
+Quarry 15,Quarry 15 - Charmed Fragment,Quarry_001_Zone_015.BP_Interactable_AddItem_C_3,"stats[""hp_up_s""]",((Quarry15Lower | Quarry15Left) + (wall_grab + (double_jump | dodge | wall_charge))),Not Labbed,,"added extra parenthesis to fix red..
+does this need to split LowerLeft & LowerRight?",(Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (wall_grab + (double_jump | dodge | wall_charge)),(Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (wall_grab + (double_jump | dodge | wall_charge))
+Quarry 15,Quarry 15 - Krios,Quarry_001_Zone_015.BP_Interactable_TreasureBox_C_1,"assists[""assist_001""]","Quarry15Upper 
+| ((Quarry15Lower | Quarry15Left) + (wall_grab + double_jump + (dodge | wall_charge)))",Not Labbed,"double_jump + wall_grab feels close to frame perfect, its annoyingly difficult","should basically be same as transition logic
+
+does this need to split LowerLeft & LowerRight?
+need to add high_jump option (think it may be simply alternative to double_jump?)
+should be same as 177","Quarry15Upper 
+| (Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + wall_grab | high_jump + (dodge + wall_grab | WALL_DASH))","Quarry15Upper 
+| (Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + wall_grab | high_jump + (dodge + wall_grab | WALL_DASH))"
+Quarry 16,Quarry 16 - Materials,Quarry_001_Zone_016.BP_Interactable_AddItem_C_0,"currencies[""Default""]",None,Unsure,,would expect Quarry16Right,Quarry16Right,Quarry16Right
+Quarry 17,Quarry 17 - Materials,Quarry_001_Zone_017.BP_Interactable_AddItem_C_0,"currencies[""Default""]",None,Unsure,,would expect Quarry17Right,Quarry17Right,Quarry17Right
+Quarry 18,Quarry 18 - Blighted Talisman,Quarry_001_Zone_018.BP_Interactable_AddItem_C_1,"passives[""stamina_damage_up_a_1""]","(Quarry18Upper + (wall_grab | high_jump | (double_jump + dodge))) 
+| ((Quarry18LowerLeft | Quarry18HiddenLeft) + high_jump | (double_jump + dodge) | (wall_grab + (dodge | wall_charge)))",Not Labbed,,"double_jump + wall_grab also works from Lefts
+not sure how wall_grab from Upper is enough by itself, maybe WALL_DASH intended?
+wall_grab + dodge also works from upper
+Combined everything.",(Quarry18Upper | Quarry18LowerLeft | Quarry18HiddenLeft) + (high_jump | double_jump + dodge | wall_grab + (double_jump | dodge | wall_charge)),(Quarry18Upper | Quarry18LowerLeft | Quarry18HiddenLeft) + (high_jump | double_jump + dodge | wall_grab + (double_jump | dodge | wall_charge))
+Quarry 21,Quarry 21 - Unidentified Core,Quarry_001_Zone_021.BP_Interactable_AddItem_C_1,"materials[""parts_s5000_a""]","((Quarry21Right | Quarry21Lower) 
++ high_jump | (double_jump + (dodge | WALL_DASH)))",Not Labbed,,dont think high_jump is enough from Lower; high_jump + (double_jump | dodge) maybe,"Quarry21Lower + (high_jump + (double_jump | dodge | WALL_DASH)) | (double_jump + (dodge | WALL_DASH)))
+| Quarry21Right + (high_jump | (double_jump + (dodge | WALL_DASH)))","Quarry21Lower + (high_jump + (double_jump | dodge | WALL_DASH) | double_jump + (dodge | WALL_DASH))
+| Quarry21Right + (high_jump | double_jump + (dodge | WALL_DASH))"
+Quarry 21,Quarry 21 - Jagged Crystal,Quarry_001_Zone_021.BP_Interactable_AddItem_C_2,"passives[""damage_up_minhp_1""]","((Quarry21Right | Quarry21Lower)
+ + high_jump | (double_jump + wall_grab + (dodge + wall_charge)))",Not Labbed,,"dont think high_jump is enough from Lower; high_jump + (double_jump | dodge) maybe
+this logic is weird, maybe a + is meant as an |
+dont need dodge | wall_charge from right","Quarry21Lower + ((high_jump + (double_jump | dodge | WALL_DASH)) | (double_jump + wall_grab + (dodge | wall_charge)))
+| Quarry21Right + (high_jump | (double_jump + wall_grab))","Quarry21Lower + ((high_jump + (double_jump | dodge | WALL_DASH)) | (double_jump + wall_grab + (dodge | wall_charge)))
+| Quarry21Right + (high_jump | (double_jump + wall_grab))"
+Quarry 24,Quarry 24 - Materials,Quarry_001_Zone_024.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry24Upper,Done,,good,,Quarry24Upper
+Quarry 31,Quarry 31 - Lar's Grip,Quarry_001_Zone_031.EVT_ev_s_n7043_Quarry_Tuner,"aptitudes[""wall_grab""]",Quarry31Upper,Done,,"do you have to enter from Upper? what about from Right?
+(story progression wise, ""should"" always enter from upper, but i dont see that is a hard and true restriction here?)",Quarry31Upper | Quarry31Right,Quarry31Upper | Quarry31Right
+Roots 1,Roots 1 - Reibolg 1,Roots_001_Zone_001.EVT_ev_s_e5012_RootsLancer_Defeat,"spirits[""s5010_lancer""]",Roots01Left,Done,,,,Roots01Left
+Roots 1,Roots 1 - Reibolg 2,Roots_001_Zone_001.EVT_ev_s_e5012_RootsLancer_Defeat.1,"quests[""quest_eye""]",Roots01Left,Done,,,,Roots01Left
+Roots 2,Roots 2 - Lilia's Blighted Ring,Roots_001_Zone_002.EVT_ev_s_FinalRelic,"passives[""ending_flag""]",Roots02Right + quest_amulet,Unsure,"are we going to be using the same requirements for ending b (need Blighted eye and stele to get curio from Lily to get Blighted Ring from Lilia, or will curio and Blighted Ring be shuffled???",,,Roots02Right + quest_amulet
+Roots 2,Roots 2 - White Priestess' Attire,Roots_001_Zone_002.EVT_ev_s_FinalRelic.1,"costumes[""p0050""]",Roots02Right + quest_amulet,Not Labbed,,,,Roots02Right + quest_amulet
+Roots 5,Roots 5 - Stele of the Land of Origin,Roots_001_Zone_005.EVT_ev_n_Levy_Treasure6_001,"quests[""quest_lithograph""]",Roots05Upper | Roots05Right,Done,,,,Roots05Upper | Roots05Right
+Roots 6,Roots 6 - Charmed Fragment,Roots_001_Zone_006.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Roots06Right + pile_attack + (wall_grab | high_jump)) ,Not Labbed,,good,,(Roots06Right + pile_attack + (wall_grab | high_jump)) 
+Roots 6,Roots 6 - Origin Gem Core,Roots_001_Zone_006.BP_Interactable_AddItem_C_3,"materials[""parts_lv6_a""]",(Roots06Right + pile_attack + dash_charge + (wall_grab | high_jump)) ,Not Labbed,,good,,(Roots06Right + pile_attack + dash_charge + (wall_grab | high_jump)) 
+Roots 8,Roots 8 - Charmed Ore,Roots_001_Zone_008.BP_Interactable_AddItem_C_1,"stats[""hp_up_l""]",Roots08Left + (wall_grab | high_jump | (dodge + double_jump)),Not Labbed,,"added extra parenthesis to fix red..
+good",,Roots08Left + (wall_grab | high_jump | (dodge + double_jump))
+Roots 9,Roots 9 - Materials,Roots_001_Zone_009.BP_Interactable_TreasureBox_C_1,"currencies[""Default""]",Roots09Lower,Done,,good,,Roots09Lower
+Roots 11,Roots 11 - Blighted Prophecy,Roots_001_Zone_011.BP_Interactable_AddItem_C_1,"tips[""tip_prophecybook_01""]",Roots11Right | Roots11HiddenUpper,Done,,Lower can reach with the Lever?,,Roots11Right | Roots11HiddenUpper
+Roots 12,Roots 12 - Typhon,Roots_001_Zone_012.BP_Interactable_AddItem_C_1,"assists[""assist_010""]",Roots09Right + WALL_DASH,Unsure,Needs access to Roots09 for WALL_DASH,"added an underscore for WALL_DASH;
+this might require high_jump | double_jump | dash_charge + dodge?",Roots09Right + WALL_DASH + (double_jump | high_jump | dash_charge + dodge),Roots09Right + WALL_DASH + (double_jump | high_jump | dash_charge + dodge)
+Roots 17,Roots 17 - Joran's Notes 1,Roots_001_Zone_017.BP_Interactable_AddItem_C_1,"tips[""tip_yoransdiary_01""]","Roots17Left 
+| (Roots17Right + (dodge | double_jump) + hook)",Not Labbed,,good,,"Roots17Left 
+| (Roots17Right + (dodge | double_jump) + hook)"
+Roots 18,Roots 18 - Joran's Notes 2,Roots_001_Zone_018.BP_Interactable_AddItem_C_0,"tips[""tip_yoransdiary_02""]","Roots18UpperRight 
+| Roots18LowerRight  + (high_jump | dodge + double_jump)",Not Labbed,,"changed parenthesis to fix red..
+good 
+(wall_grab / dash might make it easier, but still requires double_jump + dodge, so ultimately unnecessary)",,"Roots18UpperRight 
+| Roots18LowerRight  + (high_jump | dodge + double_jump)"
+Roots 20,Roots 20 - Primordial Heirloom,Roots_001_Zone_020.BP_Interactable_TreasureBox_C_0,"equipments[""shield_008""]",Roots20Lower + wall_grab + (double_jump + (dodge | wall_charge | high_jump)) | (high_jump + dodge) ,Not Labbed,,Im not sure if the parenthesis are right; the logic looks good... I think high_jump + dodge should be included?,Roots20Lower + wall_grab + ((double_jump + (dodge | wall_charge | high_jump)) | (high_jump + dodge)) ,Roots20Lower + wall_grab + ((double_jump + (dodge | wall_charge | high_jump)) | (high_jump + dodge)) 
+Roots 22,Roots 22 - Abelia's Ring,Roots_001_Zone_022.BP_Interactable_TreasureBox_C_1,"passives[""onattack_instantkill_1""]",Roots22Upper,Done,,good,,Roots22Upper
+Roots 23,Roots 23 - Origin Gem Core,Roots_001_Zone_023.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_a""]",Roots23Left + WALL_DASH + dodge + double_jump,Not Labbed,,good,,Roots23Left + WALL_DASH + dodge + double_jump
+Roots 27,Roots 27 - Ancient's Fury,Roots_001_Zone_027.BP_Interactable_TreasureBox_C_0,"equipments[""armor_020""]",Roots27Lower + TORRENT + assist_012,Unsure,This is that horrible swim section that needs a bunch of healing charms and totems. Can be done with just Cetus totem,"yes, horrible. couldnt agree more. im assuming assist_012 is the Cetus totem; im not sure if there need to be more health / heal / level requirements too?
+id love it if the yaml could simply exclude this check altogether i hate it so much",,Roots27Lower + TORRENT + assist_012
+Roots 28,Roots 28 - Origin Gem Core,Roots_001_Zone_028.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_a""]",Roots28Lower + TORRENT,Not Labbed,,good,,Roots28Lower + TORRENT
+Roots 29,Roots 29 - Charmed Ore,Roots_001_Zone_029.BP_Interactable_AddItem_C_0,"stats[""hp_up_l""]",Roots29 + TORRENT + (double_jump | dodge),Not Labbed,,"since torrent requires dodge, this might be able to be simplified
+
+updating Roots29 ->  Roots29Upper",Roots29Upper + TORRENT,Roots29Upper + TORRENT
+Roots 30,Roots 30 - Unidentified Amplifier,Roots_001_Zone_030.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_b""]",Roots30Right,Done,,good,,Roots30Right
+Ruins 4,Ruins 4 - Nola,Ruins_001_Zone_004.EVT_ev_s_0020_NoraMeeting,"spirits[""s5000_reaper""]",Ruins04LowerLeft | Ruins04UpperLeft,Done,we assume we spawn with a weapon that break walls,good,,Ruins04LowerLeft | Ruins04UpperLeft
+Ruins 5,Ruins 5 - Charmed Fragment,Ruins_001_Zone_005.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Ruins05Left | Ruins05Right) + dash_charge + double_jump,Done,,good,,(Ruins05Left | Ruins05Right) + dash_charge + double_jump
+Ruins 12,Ruins 12 - Subterranean Testing Site Key,Ruins_001_Zone_012.BP_Interactable_AddItem_Skill_C_0,"keys[""key_ruins_tuto""]",Ruins12Right,Done,,good,,Ruins12Right
+Ruins 12,Ruins 12 - Lito,Ruins_001_Zone_012.EVT_ev_s_e5030_Rogue_Defeat,"spirits[""s5030_rogue""]",Ruins12Right,Done,,good,,Ruins12Right
+Ruins 13,Ruins 13 - Homunculus Research Log 1,Ruins_001_Zone_013.BP_Interactable_AddItem_C_1,"tips[""tip_homunculusrecord_01""]",Ruins13Left | Ruins13Upper,Done,,good,,Ruins13Left | Ruins13Upper
+Ruins 14,Ruins 14 - Worn Experiment Log,Ruins_001_Zone_014.BP_Interactable_AddItem_C_1,"tips[""tip_ruinsrecords_01""]",Ruins14Right,Done,,"good (is also spawn? might be the only proper ""none""?)",,Ruins14Right
+Ruins 15,Ruins 15 - Healing Ward,Ruins_001_Zone_015.EVT_ev_s_0015_GetHeal,"aptitudes[""heal""]",Ruins15Left | Ruins15Right,Done,,good,,Ruins15Left | Ruins15Right
+Sewer 1,Sewer 1 - Corroded Warning Sign,Sewer_001_Zone_001.BP_Interactable_AddItem_C_0,"tips[""tip_corrosionboard_01""]",Sewer01Upper | Sewer01Right,Done,,good,,Sewer01Upper | Sewer01Right
+Sewer 2,Sewer 2 - Grimoire,Sewer_001_Zone_002.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]","Sewer02UpperLeft | 
+((Sewer02LowerLeft | Sewer02Lower) + dive)",Not Labbed,,good,,"Sewer02UpperLeft | 
+((Sewer02LowerLeft | Sewer02Lower) + dive)"
+Sewer 4,Sewer 4 - Materials,Sewer_001_Zone_004.BP_Interactable_AddItem_C_1,"currencies[""Default""]",(Sewer04Upper | Sewer04Left | Sewer04Right | Sewer04Lower) + (double_jump | dodge),Not Labbed,,good,,(Sewer04Upper | Sewer04Left | Sewer04Right | Sewer04Lower) + (double_jump | dodge)
+Sewer 5,Sewer 5 - Materials,Sewer_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Sewer05Right,Done,,good,,Sewer05Right
+Sewer 8,Sewer 8 - Eye of the Beast,Sewer_001_Zone_008.BP_Interactable_AddItem_C_0,"passives[""gold_up_1""]",(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab),Not Labbed,,"there is double_jump + dodge (doable from both entrances)
+its a little finnicky from Lower, but very doable; the important thing is to get as high on the water/waterfall as possible, dodge -> jump -> dodge",(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab | double_jump + dodge),(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab | double_jump + dodge)
+Sewer 9,Sewer 9 - Magic Strange Charm,Sewer_001_Zone_009.BP_Interactable_AddItem_C_0,"passives[""damage_up_maxhp_1""]","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook) 
+| Sewer09Left",Not Labbed,,"added a parenthesis to fix red...
+im not sure hook is enough by itself; also requires double_jump | dodge","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook + (double_jump | dodge)) 
+| Sewer09Left","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook + (double_jump | dodge)) 
+| Sewer09Left"
+Sewer 9,Sewer 9 - Materials,Sewer_001_Zone_009.BP_Interactable_AddItem_C_2,"currencies[""Default""]",(Sewer09Left | Sewer09UpperLeft | Sewer09UpperRight | Sewer09Right) + dive,Not Labbed,,good,,(Sewer09Left | Sewer09UpperLeft | Sewer09UpperRight | Sewer09Right) + dive
+Sewer 10,Sewer 10 - Blighted Note,Sewer_001_Zone_010.EVT_ev_s_0090_Sewer001,"tips[""tip_disposaljournal_01""]","Sewer10Left 
+| (Sewer10Right + (double_jump | high_jump | WALL_DASH))",Not Labbed,,good,,"Sewer10Left 
+| (Sewer10Right + (double_jump | high_jump | WALL_DASH))"
+Sewer 10,Sewer 10 - Dive,Sewer_001_Zone_010.EVT_ev_s_0090_Sewer001.1,"aptitudes[""dive""]","Sewer10Left 
+| (Sewer10Right + (double_jump | high_jump | WALL_DASH))",Not Labbed,,good,,"Sewer10Left 
+| (Sewer10Right + (double_jump | high_jump | WALL_DASH))"
+Sewer 11,Sewer 11 - Charmed Fragment,Sewer_001_Zone_011.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","(Sewer11Left | Sewer11UpperRight | Sewer11LowerRight) 
++ (high_jump | (hook + (double_jump | dodge)))",Not Labbed,,good,,"(Sewer11Left | Sewer11UpperRight | Sewer11LowerRight) 
++ (high_jump | (hook + (double_jump | dodge)))"
+Sewer 12,Sewer 12 - Attuner's Pendant,Sewer_001_Zone_012.BP_Interactable_AddItem_C_0,"passives[""damage_up_swimming_1""]",(Sewer12Lower | Sewer12Upper) + dive,Not Labbed,,good,,(Sewer12Lower | Sewer12Upper) + dive
+Sewer 13,Sewer 13 - Unidentified Core,Sewer_001_Zone_013.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_a""]",(Sewer13Upper | Sewer13Right) + dive,Not Labbed,,good,,(Sewer13Upper | Sewer13Right) + dive
+Sewer 15,Sewer 15 - Charmed Fragment,Sewer_001_Zone_015.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","Sewer15Left | 
+(Sewer15Lower + hook | (high_jump + (dodge | (double_jump + wall_grab))))",Not Labbed,,"might need to fix the parenthesis for Lower; hook is not always required but the + might bind to Lower first as written
+
+high_jump + double_jump is sufficient; high_jump position is hugging the wall","Sewer15Left | 
+Sewer15Lower + (hook | high_jump + (dodge | double_jump))","Sewer15Left | 
+Sewer15Lower + (hook | high_jump + (dodge | double_jump))"
+Sewer 17,Sewer 17 - Chloe's Bracelet,Sewer_001_Zone_017.BP_Interactable_TreasureBox_C_0,"equipments[""armor_007""]",Sewer17Left,Done,,good,,Sewer17Left
+Slum 1,Slum 1 - Tattered Letter,Slum_001_Zone_001.BP_Interactable_AddItem_C_1,"tips[""tip_tunerletter_01""]",Slum01Left | Slum01Right | Slum01Lower,Done,,good,,Slum01Left | Slum01Right | Slum01Lower
+Slum 1,Slum 1 - Eye of the Homunculus,Slum_001_Zone_001.BP_Interactable_AddItem_C_2,"passives[""junk_up_1""]",(Slum01Left | Slum01Lower | Slum01Right) + (high_jump | (hook + (double_jump | dodge))),Not Labbed,,good,,(Slum01Left | Slum01Lower | Slum01Right) + (high_jump | (hook + (double_jump | dodge)))
+Slum 1,Slum 1 - Charmed Ore,Slum_001_Zone_001.EVT_ev_n_Levy_Treasure1_002,"stats[""hp_up_l""]",(Slum01Left | Slum01Right | Slum01Lower) + quest_artifact + EVT_ev_s_e0122_Wheeler_Defeat,Unsure,Requires Blighted Mineral + defeating Miner Unit in Mines04,,,(Slum01Left | Slum01Right | Slum01Lower) + quest_artifact + EVT_ev_s_e0122_Wheeler_Defeat
+Slum 1,Slum 1 - Levy's Mantle,Slum_001_Zone_001.EVT_ev_n_Levy_Treasure4_002,"costumes[""p0040""]",(Slum01Left | Slum01Right | Slum01Lower) + quest_board,Not Labbed,,,,(Slum01Left | Slum01Right | Slum01Lower) + quest_board
+Slum 1,Slum 1 - Fast Travel,Slum_001_Zone_001.EVT_ev_s_0070_GordonReport,"aptitudes[""fast_travel""]",(Slum01Left | Slum01Right | Slum01Lower) + s5110_gunman,Unsure,are we going to require finding yolvan homuncli for Gordon report or defeating calidrius (boss yolvan)??,,,(Slum01Left | Slum01Right | Slum01Lower) + EVT_ev_s_e5110_Gunman_Defeat
+Slum 1,Slum 1 - Lower Stratum Key,Slum_001_Zone_001.EVT_ev_s_0070_GordonReport.1,"keys[""key_lower""]",(Slum01Left | Slum01Right | Slum01Lower) + s5110_gunman,Not Labbed,,,,(Slum01Left | Slum01Right | Slum01Lower) + EVT_ev_s_e5110_Gunman_Defeat
+Slum 2,Slum 2 - Charmed Fragment,Slum_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1,"stats[""hp_up_s""]",Slum02Upper,Done,,good,,Slum02Upper
+Street 2,Street 2 - Worries of a Sorcerer,Street_001_Zone_002.BP_Interactable_AddItem_C_0,"tips[""tip_painting_01""]","Street02Right 
+| (Street02Left + Street02Left_Lever)",Not Labbed,,good,,"Street02Right 
+| (Street02Left + Street02Left_Lever)"
+Street 3,Street 3 - Sanguinary Raven,Street_001_Zone_003.BP_Interactable_AddItem_C_0,"passives[""damage_up_airborne_1""]","(Street03LowerLeft | Street03Right | Street03Door) + (high_jump | double_jump) 
+| (Street03UpperLeft + (high_jump | dodge | double_jump))",Not Labbed,,"added a parenthesis to fix red...
+good - although LowerLeft requires lever from 05
+Same with Street03Right , needs a key unlock
+(or just remove Street03LowerLeft?)
+Can also WALL_DASH out of Street05UpperRight/Street03UpperLeft","(Street03LowerLeft + Street05LowerRight_Lever | Street03Right | Street03Door) + (high_jump | double_jump) 
+| Street03UpperLeft + (high_jump | dodge | double_jump)
+| Street05UpperRight + WALL_DASH","(Street03LowerLeft + Street05LowerRight_Lever | Street03Right | Street03Door) + (high_jump | double_jump) 
+| Street03UpperLeft + (high_jump | dodge | double_jump)
+| Street05UpperRight + WALL_DASH"
+Street 4,Street 4 - Yolvan,Street_001_Zone_004.EVT_ev_s_e5110_Gunman_Defeat,"spirits[""s5110_gunman""]",Street04Left | Street04Right,Not Labbed,,,,Street04Left | Street04Right
+Street 8,Street 8 - Charmed Fragment,Street_001_Zone_008.BP_Breakable_SpawnItem_Box_01_C_1,"stats[""hp_up_s""]",Street08Left | Street08Right,Done,,good,,Street08Left | Street08Right
+Street 9,Street 9 - Materials,Street_001_Zone_009.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Street09Left | Street09Right,Done,,good,,Street09Left | Street09Upper
+Street 12,Street 12 - Attuner's Earrings,Street_001_Zone_012.BP_Interactable_AddItem_C_0,"passives[""onkill_restoresp_1""]","(Street12Left + (high_jump | (wall_grab + double_jump))) 
+| ((Street12Door | Street12UpperRight | Street12LowerRight) + (high_jump | (wall_grab + (dodge | double_jump))))",Not Labbed,,"added a parenthesis to fix red...
+there is also WALL_DASH out of UpperRight :)
+i dont think dodge does anything for Door/UpperRight/LowerRight
+I concede there might be a wall_grab + dodge (to the above comment)... it is extremely difficult/annoying IMO; I could only do it 1 out of 40 tries? im gonna break my controller","(Street12Left + (high_jump | (wall_grab + double_jump))) 
+| ((Street12Door | Street12UpperRight | Street12LowerRight) + (high_jump | (wall_grab + double_jump)))
+| Street19UpperLeft + WALL_DASH","(Street12Left + (high_jump | (wall_grab + double_jump))) 
+| ((Street12Door | Street12UpperRight | Street12LowerRight) + (high_jump | (wall_grab + double_jump)))
+| Street19UpperLeft + WALL_DASH"
+Street 14,Street 14 - Crimson Ribbon,Street_001_Zone_014.BP_Interactable_AddItem_C_1,"passives[""debuff_cut_burn_1""]",Street14UpperHidden,Done,,good,,Street14UpperHidden
+Street 14,Street 14 - Homunculus Expedition Report,Street_001_Zone_014.BP_Interactable_AddTutorial_C_1,"tips[""tip_searchrecord_01""]",Street14Right | Street14UpperRight | Street14UpperLeft,Done,,good,,Street14Right | Street14UpperRight | Street14UpperLeft
+Street 17,Street 17 - City Stratum Guard,Street_001_Zone_017.EVT_ev_s_e0030_Guard_Defeat,"materials[""parts_s5000_c""]",Street17Right,Done,,,,Street17Right
+Street 18,Street 18 - Materials,Street_001_Zone_018.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Street18Right | Street18Door,Done,,"Street18Right requires lever? (or just remove)
+otherwise good",Street18Right + Street02Left_Lever | Street18Door,Street18Right + Street02Left_Lever | Street18Door
+Street 18,Street 18 - Charmed Fragment,Street_001_Zone_018.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Street18Right | Street18Door) + high_jump | (wall_grab + double_jump),Not Labbed,,"Street18Right requires lever?
+parenthesis might need tweaking.
+also WALL_DASH
+thinking + (high_jump | wall_grab + (double_jump | wall_charge))",(Street18Right + Street02Left_Lever | Street18Door) + (high_jump | (wall_grab + (double_jump | wall_charge))),(Street18Right + Street02Left_Lever | Street18Door) + (high_jump | (wall_grab + (double_jump | wall_charge)))
+Street 19,Street 19 - Charmed Fragment,Street_001_Zone_019.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Street19UpperLeft,Done,,good,,Street19UpperLeft
+Street 19,Street 19 - Broken Warning Sign,Street_001_Zone_019.BP_Interactable_AddItem_C_1,"tips[""tip_tornletter_01""]",Street19LowerLeft,Done,,good,,Street19LowerLeft
+Street 20,Street 20 - Tavern Bulletin Board,Street_001_Zone_020.BP_Interactable_AddItem_C_0,"tips[""tip_townboard_01""]",Street20Right,Done,,good,,Street20Right
+Street 21,Street 21 - Materials,Street_001_Zone_021.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Street21Right,Done,,good,,Street21Right
+Summit 1,Summit 1 - Upper Stratum Communication Device,Summit_001_Zone_001.BP_Interactable_AddItem_C_1,"tips[""tip_upperterminal_01""]",Summit01LowerLeft,Done,,good,,Summit01LowerLeft
+Summit 4,Summit 4 - Administrator's Amplifier,Summit_001_Zone_004.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","(Summit04Right + (dodge + high_jump) |  (double_jump + (high_jump | WALL_DASH)))
+| (Summit04Left + (dodge + high_jump) | (double_jump + WALL_DASH))
+",Done,,"there is also double_jump + dodge + wall_grab for either side
+seems ok otherwise","Summit04Right + (dodge + high_jump | double_jump + (high_jump | WALL_DASH) | double_jump + dodge + wall_grab)
+| Summit04Left + (dodge + high_jump | double_jump + WALL_DASH | double_jump + dodge + wall_grab)","Summit04Right + (dodge + high_jump | double_jump + (high_jump | WALL_DASH) | double_jump + dodge + wall_grab)
+| Summit04Left + (dodge + high_jump | double_jump + WALL_DASH | double_jump + dodge + wall_grab)"
+Summit 7,Summit 7 - Administrator's Amplifier,Summit_001_Zone_007.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","Summit07Right + (high_jump + double_jump) 
+| (Summit07UpperLeft | Summit07LowerLeft + Summit08LowerRight_Lever) + (dive + high_jump + double_jump)",In Progress,,"added a parenthesis to fix red...
+seems good",,"Summit07Right + (high_jump + double_jump) 
+| (Summit07UpperLeft | Summit07LowerLeft + Summit08LowerRight_Lever) + (dive + high_jump + double_jump)"
+Summit 8,Summit 8 - Administrator's Amplifier,Summit_001_Zone_008.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]",(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + double_jump,Not Labbed,,"can technically do this without double_jump, if we want to include this type of logic.",(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + (dodge | double_jump),(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + (dodge | double_jump)
+Summit 9,Summit 9 - Scrap,Summit_001_Zone_009.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Summit09UpperLeft,Done,,good,,Summit09UpperLeft
+Summit 10,Summit 10 - Celestial Bangle,Summit_001_Zone_010.BP_Interactable_TreasureBox_C_1,"equipments[""armor_021""]",Summit10Right + (high_jump | wall_grab),Not Labbed,,good,,Summit10Right + (high_jump | wall_grab)
+Summit 13,Summit 13 - Materials,Summit_001_Zone_013.BP_Breakable_SpawnItem_Box_01_C_1,"currencies[""Default""]",Summit13UpperRight,Done,,sadly requires double_jump | high_jump | wall_grab,Summit13UpperRight + (double_jump | high_jump | wall_grab),Summit13UpperRight + (double_jump | high_jump | wall_grab)
+Summit 18,Summit 18 - Unidentified Transformer,Summit_001_Zone_018.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_c""]",Summit18Left,Done,,good,,Summit18Left
+Summit 21,Summit 21 - Velius,Summit_001_Zone_021.EVT_ev_s_e0222_Security_Defeat,"materials[""parts_lv6_b""]",Summit21Lower | Summit21Right | Summit21Left,Not Labbed,,,,Summit21Lower | Summit21Right | Summit21Left
+Summit 22,Summit 22 - Administrator's Amplifier,Summit_001_Zone_022.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","((Summit22UpperLeft | Summit22UpperRight) + WALL_DASH) 
+| ((Summit22LowerLeft | Summit22CenterLeft | Summit22CenterRight | Summit22LowerRight) + ((high_jump | double_jump) + WALL_DASH))",Not Labbed,,"high_jump without anything else works
+from UpperLeft, even a simple double_jump + dodge works
+so lower could be high_jump | (double_jump + wall_grab + (dodge | wall_charge))
+NOTE UpperRight requires WALL_DASH to leave in default state, no point to add | conditions","Summit22UpperLeft + (WALL_DASH | double_jump + dodge | high_jump) 
+| Summit22UpperRight + WALL_DASH 
+| (Summit22LowerLeft | Summit22CenterLeft | Summit22CenterRight | Summit22LowerRight) + (high_jump | double_jump + wall_grab + (dodge | wall_charge))","Summit22UpperLeft + (WALL_DASH | double_jump + dodge | high_jump) 
+| Summit22UpperRight + WALL_DASH 
+| (Summit22LowerLeft | Summit22CenterLeft | Summit22CenterRight | Summit22LowerRight) + (high_jump | double_jump + wall_grab + (dodge | wall_charge))"
+Summit 22,Summit 22 - Charmed Fragment,Summit_001_Zone_022.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Summit22UpperLeft | Summit22CenterLeft | Summit22LowerLeft) 
+| (Summit22UpperRight + WALL_DASH)
+| ((Summit22CenterRight | Summit22LowerRight) + (dodge | double_jump | high_jump))",Not Labbed,,"Are CenterLeft / LowerRight / CenterRight real options as they are blocked origin/base state? - this comment applies to above as well
+UpperRight at least can unblock itself
+if those are removed, then good",,"(Summit22UpperLeft | Summit22CenterLeft | Summit22LowerLeft) 
+| (Summit22UpperRight + WALL_DASH)
+| ((Summit22CenterRight | Summit22LowerRight) + (dodge | double_jump | high_jump))"
+Summit 23,Summit 23 - Administrator's Amplifier,Summit_001_Zone_023.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]",Summit23UpperRight,Done,,good,,Summit23UpperRight
+Summit 23,Summit 23 - Gilroy's Communication Device,Summit_001_Zone_023.BP_Interactable_AddItem_C_1,"tips[""tip_gilroysterminal_01""]",Summit23UpperLeft,Done,,good,,Summit23UpperLeft
+Summit 23,Summit 23 - Nameless Priestess' Ring,Summit_001_Zone_023.BP_Interactable_TreasureBox_C_1,"passives[""restore_sp_up_b_1""]",Summit23UpperLeft + (wall_grab | double_jump | high_jump),Done,,good,,Summit23UpperLeft + (wall_grab | double_jump | high_jump)
+Summit 24,Summit 24 - Administrator's Amplifier 1,Summit_001_Zone_024.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]",((Summit24HiddenRight | Summit24CenterRight | Summit24UpperRight | Summit24UpperLeft | Summit24LowerRight | Summit24CenterLeft) + ((WALL_DASH | (high_jump + wall_grab)) + dodge + double_jump)),Not Labbed,,"Need to add CenterDoor?
+CenterLeft requires Lever
+otherwise I think the logic works - rewrote because parenthesis overkill hard to understand","(Summit24HiddenRight | Summit24CenterRight | Summit24UpperRight | Summit24CenterDoor | Summit24UpperLeft | Summit24LowerRight | Summit24CenterLeft + Summit27Upper_Lever) 
++ (dodge + double_jump + (WALL_DASH | high_jump + wall_grab))","(Summit24HiddenRight | Summit24CenterRight | Summit24UpperRight | Summit24CenterDoor | Summit24UpperLeft | Summit24LowerRight | Summit24CenterLeft + Summit27Upper_Lever) 
++ (dodge + double_jump + (WALL_DASH | high_jump + wall_grab))"
+Summit 24,Summit 24 - Administrator's Amplifier 2,Summit_001_Zone_024.BP_Interactable_AddItem_C_1,"materials[""parts_lv6_b""]",Summit25LowerLeft + WALL_DASH + (double_jump | dodge | high_jump),Unsure,Need wall dash from summit25,good; although not sure it needs to mention Summit24HiddenRight?,,Summit25LowerLeft + WALL_DASH + (double_jump | dodge | high_jump)
+Summit 24,Summit 24 - Administrator's Amplifier 3,Summit_001_Zone_024.BP_Interactable_AddItem_C_2,"materials[""parts_lv6_b""]",Summit27Upper_Lever + Summit27CenterRight + WALL_DASH,Unsure,Need wall dash from summit27,good; although not sure it needs to mention Summit24CenterLeft?,,Summit27Upper_Lever + Summit27CenterRight + WALL_DASH
+Summit 27,Summit 27 - Motley's Communication Device,Summit_001_Zone_027.BP_Interactable_AddItem_C_0,"tips[""tip_motleysterminal_01""]",Summit27UpperRight,Done,,good,,Summit27UpperRight
+Summit 28,Summit 28 - Charmed Fragment,Summit_001_Zone_028.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Summit28Upper,Done,,good,,Summit28Upper
+Summit 30,Summit 30 - Charmed Fragment,Summit_001_Zone_030.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Summit30CenterDoor,Done,Not sure why the requirements are empty here?,high_jump | wall_grab + double_jump? might be able to WALL_DASH from opposite side of the room (assuming not cutscene locked or something),Summit30CenterDoor + (high_jump | wall_grab + double_jump),Summit30CenterDoor + (high_jump | wall_grab + double_jump)
+Swamp 2,Swamp 2 - Materials,Swamp_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1,"currencies[""Default""]",(Swamp02Upper | Swamp02Left) + dive,Not Labbed,,good,,(Swamp02Upper | Swamp02Left) + dive
+Swamp 2,Swamp 2 - Letter in a Bottle,Swamp_001_Zone_002.BP_Interactable_AddItem_C_2,"tips[""tip_vials_01""]",(Swamp02Upper | Swamp02Left) + dive,Not Labbed,,good,,(Swamp02Upper | Swamp02Left) + dive
+Swamp 2,Swamp 2 - Vivid Claws,Swamp_001_Zone_002.BP_Interactable_AddItem_C_3,"passives[""damage_up_targetdebuffed_1""]",(Swamp02Upper | Swamp02Left) + dive + pile_attack,Not Labbed,,good,,(Swamp02Upper | Swamp02Left) + dive + pile_attack
+Swamp 4,Swamp 4 - Roller,Swamp_001_Zone_004.EVT_ev_s_e0203_Scarab_Defeat,"materials[""parts_lv4_a""]","(Swamp04Right | Swamp04Upper | Swamp04HiddenLeft)
+| (Swamp04Lower + dive)",Not Labbed,,good,,"(Swamp04Right | Swamp04Upper | Swamp04HiddenLeft)
+| (Swamp04Lower + dive)"
+Swamp 6,Swamp 6 - Obsolete Core,Swamp_001_Zone_006.BP_Interactable_AddItem_C_1,"materials[""parts_lv3_b""]",(Swamp06Right | (Swamp06Lower + dive)) + pile_attack + (high_jump | (double_jump + dodge)),Not Labbed,,"added parenthesis to fix red
+from Right, hook + pile_attack works... double_jump + wall_grab + pile_attack...
+double_jump not required for dodge either from Right
+can also WALL_DASH over to C2 item and then WALL_DASH back from there
+from Lower, no dodge required: pile_attack + (double_jump | high_jump)","(Swamp06Right + (hook | high_jump | dodge | wall_grab + (double_jump | wall_charge))
+| Swamp06Lower + dive + (high_jump | double_jump | hook + dodge + wall_grab)) 
++ pile_attack ","(Swamp06Right + (hook | high_jump | dodge | wall_grab + (double_jump | wall_charge))
+| Swamp06Lower + dive + (high_jump | double_jump | hook + dodge + wall_grab)) 
++ pile_attack "
+Swamp 6,Swamp 6 - Magic Vial,Swamp_001_Zone_006.BP_Interactable_AddItem_C_2,"stats[""passive_slot_s""]",(Swamp06Lower | Swamp08Right) + dive + (double_jump + hook) | (high_jump + dodge + double_jump) ,Not Labbed,,"should Swamp08Right be Swamp06Right?
+why does Right require dive?
+merged the logic a little
+There is also a WALL_DASH option from Right without any additional movement :)","Swamp06Lower + dive + (double_jump + (hook | (high_jump + dodge)) | (double_jump | high_jump) + WALL_DASH)
+| Swamp06Right + (WALL_DASH | double_jump + (hook | (high_jump + dodge)))","Swamp06Lower + dive + (double_jump + (hook | (high_jump + dodge)) | (double_jump | high_jump) + WALL_DASH)
+| Swamp06Right + (WALL_DASH | double_jump + (hook | (high_jump + dodge)))"
+Swamp 7,Swamp 7 - Silencing Light Documents,Swamp_001_Zone_007.BP_Interactable_AddItem_C_0,"tips[""tip_lightsilence_01""]","Swamp07Lower 
+| Swamp07Upper + dive",Not Labbed,,"fixed minor typo.
+Lower should also require dive
+Unless you are cheesing the respite point proximity and then teleporting???",(Swamp07Lower | Swamp07Upper) + dive,(Swamp07Lower | Swamp07Upper) + dive
+Swamp 8,Swamp 8 - Materials,Swamp_001_Zone_008.BP_Breakable_SpawnItem_Pod_01_C_1,"currencies[""Default""]","Swamp08Upper | Swamp08Right 
+| (Swamp08Lower + dive)",Not Labbed,,good,,"Swamp08Upper | Swamp08Right 
+| (Swamp08Lower + dive)"
+Swamp 9,Swamp 9 - Journal of an Attuner,Swamp_001_Zone_009.BP_Interactable_AddItem_C_0,"tips[""tip_tornjournal_01""]","(Swamp09Right | Swamp09Lower) + (double_jump | (dodge + dive)) 
+| Swamp09Left",Not Labbed,,"Right does not require dive
+Lower requires dive
+i dont particularly ""like"" not requiring dive for this check, since without being able to get out, it could be really annoying to miss","(Swamp09Right | Swamp09Lower + dive) + (double_jump | dodge | high_jump) 
+| Swamp09Left","(Swamp09Right | Swamp09Lower + dive) + (double_jump | dodge | high_jump) 
+| Swamp09Left"
+Swamp 10,Swamp 10 - House Milius Earrings,Swamp_001_Zone_010.BP_Interactable_AddItem_C_1,"passives[""damage_up_skillcategory_auto_1""]",((Swamp10Right  | Swamp10UpperLeft | (Swamp10UpperRight + swamp10upper_lever)) + dive) ,Not Labbed,,"should LowerLeft + TORRENT be included?
+a little overkill on parenthesis
+otherwise good",Swamp10Left + TORRENT | (Swamp10Right | Swamp10UpperLeft | Swamp10UpperRight + swamp10upper_lever) + dive,Swamp10Left + TORRENT | (Swamp10Right | Swamp10UpperLeft | Swamp10UpperRight + swamp10upper_lever) + dive
+Swamp 10,Swamp 10 - Grimoire,Swamp_001_Zone_010.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",((Swamp10Right  | Swamp10UpperLeft | Swamp10UpperRight) + dive) ,Not Labbed,,"does not require dive from UpperRight
+should LowerLeft + TORRENT be included?
+otherwise good","((Swamp10Right  | Swamp10UpperLeft) + dive) 
+| (Swamp10Left + TORRENT)
+| Swamp10UpperRight","((Swamp10Right  | Swamp10UpperLeft) + dive) 
+| (Swamp10Left + TORRENT)
+| Swamp10UpperRight"
+Swamp 12,Swamp 12 - Charmed Fragment,Swamp_001_Zone_012.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Swamp12Upper | Swamp12Left) + pile_attack + ((dodge + (high_jump | double_jump)) | WALL_DASH)  ,Not Labbed,,seems good,,(Swamp12Upper | Swamp12UpperLeft) + pile_attack + ((dodge + (high_jump | double_jump)) | WALL_DASH)  
+Swamp 13,Swamp 13 - Charmed Fragment,Swamp_001_Zone_013.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Swamp13Upper | Swamp13Lower) + dive,Not Labbed,,good,,(Swamp13Upper | Swamp13Lower) + dive
+Swamp 15,Swamp 15 - Motley,Swamp_001_Zone_015.EVT_ev_s_e6010_Cluster_Defeat,"aptitudes[""Hook""]",Swamp15Left | Swamp15Right,Done,,,,Swamp15Left | Swamp15Right
+Swamp 18,Swamp 18 - Charmed Fragment,Swamp_001_Zone_018.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Swamp18Upper 
+| (Swamp18Left + (wall_grab + (double_jump | (hook + dodge))) | (hook + (double_jump | dodge)))",Not Labbed,wall_grab is sufficient :),,"Swamp18Upper 
+| Swamp18Left + (wall_grab | hook + (double_jump | dodge))","Swamp18Upper 
+| Swamp18Left + (wall_grab | hook + (double_jump | dodge))"
+Swamp 19,Swamp 19 - Materials,Swamp_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Swamp19Right,Done,,good,,Swamp19Right
+Swamp 20,Swamp 20 - Cleaner's Tag,Swamp_001_Zone_020.BP_Interactable_AddItem_C_1,"passives[""damage_up_targetstunned_1""]",Swamp20Upper + (high_jump | double_jump | wall_grab),Not Labbed,,good,,Swamp20Upper + (high_jump | double_jump | wall_grab)
+Tower 1,Tower 1 - Charmed Fragment,Tower_001_Zone_001.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""hp_up_s""]",Tower01CenterRight,Done,,"assuming no Lever mention required, good",,Tower01CenterRight
+Tower 4,Tower 4 - Blighted Dice,Tower_001_Zone_004.BP_Breakable_SpawnItem_Box_01_C_2,"passives[""experience_up_1""]",Tower04Upper | Tower04Lower,Done,,good,,Tower04Upper | Tower04Lower
+Tower 4,Tower 4 - Magic Vial,Tower_001_Zone_004.BP_Breakable_SpawnItem_Pod_01_C_2,"stats[""passive_slot_s""]","(Tower04Upper + (high_jump | double_jump | wall_grab)) 
+| (Tower04Lower + (double_jump | high_jump))",Not Labbed,,"added parenthesis to fix red..
+good",,"(Tower04Upper + (high_jump | double_jump | wall_grab)) 
+| (Tower04Lower + (double_jump | high_jump))"
+Tower 6,Tower 6 - Materials,Tower_001_Zone_006.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Tower06Right,Done,,good,,Tower06Right
+Tower 7,Tower 7 - Chief Attuner's Journal,Tower_001_Zone_007.BP_Interactable_AddItem_C_1,"tips[""tip_chieftunerjournal_01""]",Tower07Upper | Tower07Lower,Done,,good,,Tower07Upper | Tower07Lower
+Tower 7,Tower 7 - Magicite Mining Record,Tower_001_Zone_007.BP_Interactable_AddTutorial_C_1,"tips[""tip_magicrecord_01""]",Tower07Upper | Tower07Lower,Done,,good,,Tower07Upper | Tower07Lower
+Tower 9,Tower 9 - Charmed Fragment,Tower_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Tower09UpperRight + dodge)
+| ((Tower09LowerRight | Tower09CenterRight | Tower09Lower | Tower09Upper) + high_jump)",Unsure,Can be done using rolls along the ground to keep up with platform,"you can just run with the platform? (not even sprint)
+ie. Tower09UpperRight does not need dodge
+there is also double_jump + wall dash option
+(this is a little moot with just going into Tower09CenterRight and double_jumping to Tower09UpperRight but alas)","Tower09UpperRight
+| ((Tower09LowerRight | Tower09CenterRight | Tower09Lower | Tower09Upper) + (high_jump | double_jump + WALL_DASH))","Tower09UpperRight
+| ((Tower09LowerRight | Tower09CenterRight | Tower09Lower | Tower09Upper) + (high_jump | double_jump + WALL_DASH))"
+Tower 10,Tower 10 - Steeple Executioner,Tower_001_Zone_010.EVT_ev_s_e0162_Gang_Defeat,"materials[""parts_lv2_b""]",Tower09UpperLeft | Tower09LowerLeft,Done,,should these be Tower10?,Tower10UpperLeft | Tower10LowerLeft,Tower10UpperLeft | Tower10LowerLeft
+Tower 12,Tower 12 - Materials,Tower_001_Zone_012.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Tower12Right,Done,,good,,Tower12Right
+Tower 14,Tower 14 - Book of the Blighted,Tower_001_Zone_014.BP_Interactable_AddItem_C_1,"tips[""tip_frostgrimoire_01""]","(Tower14UpperLeft + (double_jump + (dodge | WALL_DASH)) | (high_jump + (dodge | double_jump))) 
+| ((Tower14Lower | Tower14Right) + ((high_jump + (double_jump | dodge)) | (hook + wall_grab + double_jump + dodge) | (double_jump + WALL_DASH)))",Done,,"added parenthesis to fix red..
+keep in mind, same as line 298
+high_jump by itself is enough, no addtl movement required (for all scenarios)
+Upper can reach with WALL_DASH alone
+Lower -> LowerLeft","Tower14UpperLeft + (double_jump + (wall_grab | dodge) | high_jump | WALL_DASH) 
+| (Tower14LowerLeft | Tower14Right) + (high_jump | hook + wall_grab + double_jump + dodge | double_jump + WALL_DASH)","Tower14UpperLeft + (double_jump + (wall_grab | dodge) | high_jump | WALL_DASH) 
+| (Tower14LowerLeft | Tower14Right) + (high_jump | hook + wall_grab + double_jump + dodge | double_jump + WALL_DASH)"
+Tower 14,Tower 14 - Materials,Tower_001_Zone_014.BP_Interactable_AddItem_C_2,"currencies[""Default""]",Tower14Right | Tower14UpperLeft | Tower14LowerLeft,Done,,good,,Tower14Right | Tower14UpperLeft | Tower14LowerLeft
+Tower 14,Tower 14 - Grimoire,Tower_001_Zone_014.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]","(Tower14UpperLeft + (double_jump + (dodge | WALL_DASH)) | (high_jump + (dodge | double_jump))) 
+| ((Tower14Lower | Tower14Right) + ((high_jump + (double_jump | dodge)) | (hook + wall_grab + double_jump + dodge) | (double_jump + WALL_DASH)))",Done,,"added parenthesis to fix red..
+keep in mind, same as line 296
+high_jump by itself is enough, no addtl movement required (for all scenarios)
+Lower -> LowerLeft","Tower14UpperLeft + (double_jump + (wall_grab | dodge) | high_jump | WALL_DASH) 
+| (Tower14LowerLeft | Tower14Right) + (high_jump | hook + wall_grab + double_jump + dodge | double_jump + WALL_DASH)","Tower14UpperLeft + (double_jump + (wall_grab | dodge) | high_jump | WALL_DASH) 
+| (Tower14LowerLeft | Tower14Right) + (high_jump | hook + wall_grab + double_jump + dodge | double_jump + WALL_DASH)"
+Tower 14,Tower 14 - Pure Floral Necklace,Tower_001_Zone_014.BP_Interactable_TreasureBox_C_2,"passives[""damage_up_skillcategory_repeat_1""]",(Tower14LowerLeft | Tower14Right | Tower14UpperLeft) + (high_jump | double_jump + (hook | WALL_DASH)),Done,,"good, but that WALL_DASH + double_jump is annoying :)
+fixing parenthesis",(Tower14LowerLeft | Tower14Right | Tower14UpperLeft) + (high_jump | double_jump + (hook | WALL_DASH)),(Tower14LowerLeft | Tower14Right | Tower14UpperLeft) + (high_jump | double_jump + (hook | WALL_DASH))
+Tower 15,Tower 15 - Charmed Fragment,Tower_001_Zone_015.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Tower15Left | Tower15Right) + (high_jump | WALL_DASH) |  (hook + double_jump) | (wall_grab + double_jump + dodge),Not Labbed,,"added parenthesis to fix red..
+WALL_DASH by itself is annoying.
+otherwise good!",(Tower15Left | Tower15Right) + (high_jump | WALL_DASH | hook + double_jump | wall_grab + double_jump + dodge),(Tower15Left | Tower15Right) + (high_jump | WALL_DASH | hook + double_jump | wall_grab + double_jump + dodge)
+Tower 16,Tower 16 - Shackled Beast,Tower_001_Zone_016.EVT_ev_s_e5060_Beast_Defeat,"spirits[""s5060_beast""]",Tower16Left | Tower16Right,Done,,,,Tower16Left | Tower16Right
+Tower 18,Tower 18 - Homunculus Research Log 2,Tower_001_Zone_018.BP_Interactable_AddItem_C_0,"tips[""tip_homunculusrecord_02""]","(Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump)) 
+| (Tower18Left + (high_jump | double_jump)) 
+| (Tower18LowerRight + high_jump | (double_jump + (dodge |  WALL_DASH)))",Not Labbed,,"how does Left use high_jump?
+do we need to add Lower?
+changed Left -> HiddenLeft","(Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump)) 
+| ((Tower18Left | Tower18Lower) + double_jump) 
+| (Tower18LowerRight + high_jump | (double_jump + (dodge |  WALL_DASH)))","Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump) 
+| (Tower18Left | Tower18Lower) + double_jump 
+| Tower18LowerRight + (high_jump | double_jump + (dodge | WALL_DASH))"
+Tower 19,Tower 19 - Eye of the Ancients,Tower_001_Zone_019.BP_Interactable_TreasureBox_C_1,"passives[""reduce_skill_cooldown_1""]",(Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | (double_jump + dodge)),Not Labbed,,"Need to add Upper
+otherwise good",(Tower19Upper | Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | (double_jump + dodge)),(Tower19Upper | Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | (double_jump + dodge))
