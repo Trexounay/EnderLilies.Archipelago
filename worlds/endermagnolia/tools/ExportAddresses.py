@@ -27,25 +27,28 @@ else:
     locations = _load("Locations").locations
 
 
+OUTPUT_NAME = "EnderMagnolia.Randomizer.AP.txt"
+
+
 def export(output_dir: str) -> None:
     os.makedirs(output_dir, exist_ok=True)
 
-    loc_path = os.path.join(output_dir, "locations.txt")
-    with open(loc_path, "w", encoding="utf-8") as f:
+    path = os.path.join(output_dir, OUTPUT_NAME)
+    location_count = 0
+    item_count = 0
+    with open(path, "w", encoding="utf-8") as f:
         for data in sorted(locations.values(), key=lambda d: d.address):
             if data.address is None or data.key is None:
                 continue
             f.write(f"{data.address}:{data.key}\n")
-
-    item_path = os.path.join(output_dir, "items.txt")
-    with open(item_path, "w", encoding="utf-8") as f:
+            location_count += 1
         for data in sorted(items.values(), key=lambda d: d.code):
             if data.code is None or data.key is None:
                 continue
             f.write(f"{data.code}:{data.key}\n")
+            item_count += 1
 
-    print(f"Wrote {loc_path} ({len(locations)} locations)")
-    print(f"Wrote {item_path} ({len(items)} items)")
+    print(f"Wrote {path} ({location_count} locations, {item_count} items)")
 
 
 if __name__ == "__main__":

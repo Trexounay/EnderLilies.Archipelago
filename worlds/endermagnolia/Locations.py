@@ -401,4 +401,4 @@ event_locations: Dict[str, LocationData] = {name: LocationData(name, content=con
 
 locations: Dict[str, LocationData] = {location.name: location for location in
     [LocationData(name, index, key, content, region, event=rest[0] if rest else None)
-        for index, (region, name, key, content, *rest) in enumerate(locations_data)]}
+        for index, (region, name, key, content, *rest) in enumerate(locations_data, start=1)]}

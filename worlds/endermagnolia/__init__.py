@@ -2,8 +2,8 @@ import os
 from typing import List
 from Utils import output_path
 import settings
-from BaseClasses import Item, Region
-from worlds.AutoWorld import World
+from BaseClasses import Item, Region, Tutorial
+from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule, add_rule, set_rule
 from rule_builder.rules import True_
 
@@ -18,12 +18,25 @@ from .gen.LocationsRules import rules as locations_rules
 from .gen.EventsRules import rules as events_rules
 
 
+class EnderMagnoliaWebWorld(WebWorld):
+    game = ENDERMAGNOLIA
+    theme = "dirt"
+    tutorials = [Tutorial(
+        "Ender Magnolia Setup Guide",
+        "TODO",
+        "English",
+        "setup_en.md",
+        "",
+        [],
+    )]
+
 class EnderMagnoliaWorld(World):
     """
     Ender Magnolia: BLOOM IN THE MIST
     """
 
     game = ENDERMAGNOLIA
+    web = EnderMagnoliaWebWorld()
 
     # options
     options_dataclass = EnderMagnoliaOptions
@@ -31,11 +44,15 @@ class EnderMagnoliaWorld(World):
 
     # items
     item_name_to_id = {name: data.code for name, data in items.items()}
-    item_name_groups = {group.name : {name for name, data in items.items() if data.group == group} for group in ItemGroup}
+    item_name_groups = {group.name: {name for name, data in items.items() if data.group == group}
+                        for group in ItemGroup}
+    item_name_groups = {group: names for group, names in item_name_groups.items() if names}
     
     # locations
     location_name_to_id = {name: data.address for name, data in locations.items()}
-    location_name_groups = {group.name : {name for name, data in locations.items() if data.group == group} for group in LocationGroup}
+    location_name_groups = {group.name: {name for name, data in locations.items() if data.group == group}
+                            for group in LocationGroup}
+    location_name_groups = {group: names for group, names in location_name_groups.items() if names}
 
     def create_item(self, item: str) -> EnderMagnoliaItem:
         return EnderMagnoliaItem.from_name(item, self.player)
