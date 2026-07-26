@@ -60,7 +60,7 @@ jobs:
             Write-Error "setup.py failed!"
             exit 1
           }
-          $NAME="$(ls build | Select-String -Pattern 'exe')".Split('.',2)[1]
+          $NAME=(Get-ChildItem -Path build -Directory -Filter 'exe.*')[0].Name.Split('.',2)[1]
           $ZIP_NAME="Archipelago_$NAME.7z"
           echo "$NAME -> $ZIP_NAME"
           echo "ZIP_NAME=$ZIP_NAME" >> $Env:GITHUB_ENV
