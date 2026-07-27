@@ -1,17 +1,14 @@
 import os
 from typing import List
-from Utils import output_path
-import settings
 from BaseClasses import Item, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
-from worlds.generic.Rules import add_item_rule, add_rule, set_rule
-from rule_builder.rules import True_
+from worlds.generic.Rules import add_item_rule
 
-from .Locations import LocationGroup, locations, event_locations
+from .Locations import LocationData, LocationGroup, locations, event_locations
 from .Options import EnderMagnoliaOptions
 from .Regions import room_connections
 from .Items import ItemGroup, items, pool
-from .Rules import get_entrances_rules, get_items_rules, get_locations_rules
+from .Rules import get_items_rules, shop_rules, levy_rules
 from .Types import ENDERMAGNOLIA, EnderMagnoliaItem, EnderMagnoliaLocation, EnderMagnoliaEvent
 from .gen.TransitionsRules import rules as transitions_rules
 from .gen.LocationsRules import rules as locations_rules
@@ -73,28 +70,27 @@ class EnderMagnoliaWorld(World):
         self.multiworld.regions.append(region)
         return region
 
+    def get_parent_region(self, data: LocationData) -> Region:
+        if data.region:
+            return self.get_region(data.region)
+        return self.create_region(data.name)
+
     def create_location(self, name: str) -> EnderMagnoliaLocation:
         data = locations[name]
-        parent_region = self.create_region(name)
+        parent_region = self.get_parent_region(data)
         location = EnderMagnoliaLocation(self.player, name, data, parent_region)
         parent_region.locations.append(location)
-        if data.event:
-            event_location = EnderMagnoliaEvent(self.player, f"{data.region} - {data.event.name}", parent_region)
-            event_location.place_locked_item(EnderMagnoliaItem.from_data(data.event, self.player))
-            parent_region.locations.append(event_location)
         return location
 
     def create_event_location(self, name: str) -> EnderMagnoliaLocation:
         data = event_locations[name]
-        parent_region = self.create_region(name)
+        parent_region = self.get_parent_region(data)
         location = EnderMagnoliaEvent(self.player, name, parent_region)
         location.place_locked_item(EnderMagnoliaItem.from_data(data.content, self.player))
         parent_region.locations.append(location)
         return location
 
     def create_regions(self) -> None:
-        rules = get_entrances_rules(self.player)
-
         # For each room entrances we create a region (need to happen first)
         for name in room_connections:
             self.create_region(name)
@@ -108,6 +104,10 @@ class EnderMagnoliaWorld(World):
         for (src, dst), rule in transitions_rules.items():
             region = self.get_region(src)
             region.add_exits([dst], {dst: rule});
+
+        # the shop and one region per shop level
+        for name in {dst for _, dst in shop_rules}:
+            self.create_region(name)
 
         # add locations
         for name in locations:
@@ -127,8 +127,15 @@ class EnderMagnoliaWorld(World):
             region = self.get_region(src)
             region.add_exits([dst], {dst: rule});
 
-        # Starting weapon
-        self.get_region("Menu").add_exits(["Starting Skill"])
+        # connect the shop and its levels
+        for (src, dst), rule in shop_rules.items():
+            region = self.get_region(src)
+            region.add_exits([dst], {dst: rule});
+
+        # connect levy progressive locations
+        for (src, dst), rule in levy_rules.items():
+            region = self.get_region(src)
+            region.add_exits([dst], {dst: rule});
 
     def set_rules(self) -> None:
         player = self.player
@@ -145,7 +152,8 @@ class EnderMagnoliaWorld(World):
         return "nothing"
 
     def generate_output(self, output_directory):
-        out_path = os.path.join(output_directory, "EnderMagnolia.txt")
+        return
+        out_path = os.path.join(output_directory, "EnderMagnolia.Randomizer.Seed.txt")
         output = ""
         locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations();
         for location in locations:

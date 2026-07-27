@@ -374,65 +374,7 @@ tips = DataTable("DT_ItemTips", group=ItemGroup.Tip, code=13000,rows =
     "tip_yoransdiary_02"          : "Joran's Notes 2",
 })
 
-# items data and 
-items : Dict[str, ItemData] = {item.name: item for item in [
-    *aptitudes,*assists, *costumes, *currencies, *equipments, *quests,
-    *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
-}
-
-# items required by logic
-assists["assist_012"].classification = IC.progression
-spirits["s5110_gunman"].classification = IC.progression
-
-# items and quantity in the pool
-pool = [
-    # TODO: currencies -> need to handle pack of items
-    # TODO: shop 
-    assists["assist_001"],
-    assists["assist_006"],
-    assists["assist_009"],
-    assists["assist_010"],
-
-    assists["assist_012"], # +1 because progress
-    
-    *aptitudes,
-    costumes["p0030"],
-    costumes["p0040"],
-    costumes["p0050"],
-    *currencies["Default"] * 35,
-    *currencies["rare"] * 13,
-    equipments["armor_007"],
-    equipments["armor_008"],
-    equipments["armor_014"],
-    equipments["armor_015"],
-    equipments["armor_020"],
-    equipments["armor_021"],
-    equipments["shield_008"],
-    equipments["shield_009"],
-    *keys,
-    *materials["parts_lv2_b"]   * 2,
-    *materials["parts_lv3_b"]   * 2,
-    *materials["parts_lv4_a"]   * 2,
-    *materials["parts_lv4_b"]   * 3,
-    *materials["parts_lv5_a"]   * 3,
-    *materials["parts_lv5_b"]   * 2,
-    *materials["parts_lv6_a"]   * 7,
-    *materials["parts_lv6_b"]   * 9,
-    *materials["parts_s5000_a"] * 3,
-    *materials["parts_s5000_b"] * 3,
-    *materials["parts_s5000_c"] * 3,
-    *quests,
-    *passives, # +4
-    *stats["hp_up_l"] * 3,
-    *stats["hp_up_s"] * 44,
-    stats["passive_slot_l"],
-    *stats["passive_slot_s"] * 10,
-    *stats["shop_line_up"] * 12,
-    *skills, # +20
-    *[*tips][:-24], # -24
-]
-
-events : Dict[str, ItemData] = {name: EventData(key, name) for key, name in {
+events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     "EVT_ev_n_LilyEvent_Forest_001"    : "Lily in Crimson Forest",
     "EVT_ev_n_LilyEvent_Garden_001"    : "Lily in Sorcerer Academy",
 	'EVT_ev_s_LilyEvent_Roots_002'     : "Lily in Land of Origin",
@@ -504,4 +446,197 @@ events : Dict[str, ItemData] = {name: EventData(key, name) for key, name in {
     "tower01centerright_lever"         : "Tower 1 Lever",
     
     "Ending"                           : "Ending",
+
+    "levy_treasure"                    : "Levy Treasure",
 }.items()}
+
+# items required by logic
+assists["assist_012"].classification = IC.progression
+stats["shop_line_up"].classification = IC.progression
+
+# 297
+vanilla_pool = [
+    *aptitudes,
+    assists["assist_001"],
+    assists["assist_006"],
+    assists["assist_009"],
+    assists["assist_010"],
+    costumes["p0030"],
+    costumes["p0040"],
+    costumes["p0050"],
+    *currencies["Default"] * 35,
+    *currencies["rare"] * 13,
+    equipments["armor_007"],
+    equipments["armor_008"],
+    equipments["armor_014"],
+    equipments["armor_015"],
+    equipments["armor_020"],
+    equipments["armor_021"],
+    equipments["shield_008"],
+    equipments["shield_009"],
+    *keys,
+    *materials["parts_lv2_b"]   * 2,
+    *materials["parts_lv3_b"]   * 2,
+    *materials["parts_lv4_a"]   * 2,
+    *materials["parts_lv4_b"]   * 3,
+    *materials["parts_lv5_a"]   * 3,
+    *materials["parts_lv5_b"]   * 2,
+    *materials["parts_lv6_a"]   * 7,
+    *materials["parts_lv6_b"]   * 9,
+    *materials["parts_s5000_a"] * 3,
+    *materials["parts_s5000_b"] * 3,
+    *materials["parts_s5000_c"] * 3,
+    passives["damage_cut_debuff_down_1"],
+    passives["damage_cut_debuffed_1"],
+    passives["damage_cut_maxhp_1"],
+    passives["damage_cut_minhp_1"],
+    passives["damage_cut_physic_1"],
+    passives["damage_cut_sp_gauge_1"],
+    passives["damage_up_airborne_1"],
+    passives["damage_up_debuffed_1"],
+    passives["damage_up_grounded_1"],
+    passives["damage_up_maxhp_1"],
+    passives["damage_up_minhp_1"],
+    passives["damage_up_skillcategory_auto_1"],
+    passives["damage_up_skillcategory_combo_1"],
+    passives["damage_up_skillcategory_defence_1"],
+    passives["damage_up_skillcategory_repeat_1"],
+    passives["damage_up_skillcategory_special_1"],
+    passives["damage_up_sp_gauge_1"],
+    passives["damage_up_swimming_1"],
+    passives["damage_up_targetdebuffed_1"],
+    passives["damage_up_targetstunned_1"],
+    passives["debuff_cut_burn_1"],
+    passives["debuff_damage_up_a_1"],
+    passives["debuff_damage_up_b_1"],
+    passives["ending_flag"],
+    passives["experience_up_1"],
+    passives["gold_up_1"],
+    passives["junk_up_1"],
+    passives["onattack_instantkill_1"],
+    passives["onattack_restorehp_1"],
+    passives["onattack_restorehp_damage_1"],
+    passives["onkill_drops_1"],
+    passives["onkill_reduce_cooldowns_1"],
+    passives["onkill_restorehp_1"],
+    passives["onkill_restoresp_1"],
+    passives["reduce_gravity"],
+    passives["reduce_skill_cooldown_1"],
+    passives["restore_sp_up_a_1"],
+    passives["restore_sp_up_b_1"],
+    passives["stamina_damage_up_a_1"],
+    passives["stamina_damage_up_b_1"],
+    *quests,
+    *spirits,
+    *stats["hp_up_l"] * 3,
+    *stats["hp_up_s"] * 44,
+    stats["passive_slot_l"],
+    *stats["passive_slot_s"] * 10,
+    *stats["shop_line_up"] * 12,
+    *tips,
+]
+
+# 91
+shop_pool = [
+    assists["assist_002"],
+    assists["assist_003"],
+    assists["assist_004"],
+    assists["assist_005"],
+    assists["assist_007"],
+    assists["assist_008"],
+    assists["assist_011"],
+    assists["assist_012"],
+    equipments["armor_001"],
+    equipments["armor_002"],
+    equipments["armor_003"],
+    equipments["armor_004"],
+    equipments["armor_005"],
+    equipments["armor_006"],
+    equipments["armor_009"],
+    equipments["armor_010"],
+    equipments["armor_011"],
+    equipments["armor_012"],
+    equipments["armor_013"],
+    equipments["armor_016"],
+    equipments["armor_017"],
+    equipments["armor_018"],
+    equipments["armor_019"],
+    equipments["shield_001"],
+    equipments["shield_002"],
+    equipments["shield_003"],
+    equipments["shield_004"],
+    equipments["shield_005"],
+    equipments["shield_006"],
+    equipments["shield_007"],
+    *materials["parts_lv2_c"] * 2,
+    *materials["parts_lv3_c"] * 2,
+    *materials["parts_lv4_c"] * 4,
+    *materials["parts_lv5_c"] * 4,
+    *materials["parts_lv6_c"] * 9,
+    passives["heal_short"],
+    passives["higher_mobility"],
+    passives["dodge_long"],
+    passives["exploration_charge_short"],
+    stats["hp_up_l"],
+    *stats["passive_slot_s"] * 35,
+]
+
+# 20 upgrade materials required to unlock the skills, replaced by the skills themselves
+skills_materials = [
+    *materials["parts_lv2_b"]   * 2,
+    *materials["parts_lv2_c"]   * 2,
+    *materials["parts_lv3_b"]   * 2,
+    *materials["parts_lv3_c"]   * 2,
+    *materials["parts_lv4_b"]   * 1,
+    *materials["parts_lv4_c"]   * 2,
+    *materials["parts_lv5_b"]   * 2,
+    *materials["parts_lv5_c"]   * 2,
+    *materials["parts_lv6_b"]   * 2,
+    *materials["parts_lv6_c"]   * 1,
+    *materials["parts_s5000_b"] * 1,
+    *materials["parts_s5000_c"] * 1,
+]
+
+# computed pool (vanilla + shop - skills_materials + skills - spirits)
+# we remove 48/49 tips to flatten shop items
+pool = [
+    *aptitudes,
+    *assists,
+    *equipments,
+    *keys,
+    *passives,
+    *quests,
+    *skills,
+    *[*tips][:-48],
+
+    costumes["p0030"],
+    costumes["p0040"],
+    costumes["p0050"],
+
+    *currencies["Default"] * 35,
+    *currencies["rare"] * 13,
+
+    *materials["parts_lv4_a"]   * 2,
+    *materials["parts_lv4_b"]   * 2,
+    *materials["parts_lv4_c"]   * 2,
+    *materials["parts_lv5_a"]   * 3,
+    *materials["parts_lv5_c"]   * 2,
+    *materials["parts_lv6_a"]   * 7,
+    *materials["parts_lv6_b"]   * 7,
+    *materials["parts_lv6_c"]   * 8,
+    *materials["parts_s5000_a"] * 3,
+    *materials["parts_s5000_b"] * 2,
+    *materials["parts_s5000_c"] * 2,
+
+    *stats["hp_up_l"] * 4,
+    *stats["hp_up_s"] * 44,
+    stats["passive_slot_l"],
+    *stats["passive_slot_s"] * 45,
+    *stats["shop_line_up"] * 12,
+]
+
+# items for IDs
+items : Dict[str, ItemData] = {item.name: item for item in [
+    *aptitudes,*assists, *costumes, *currencies, *equipments, *quests,
+    *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
+}
