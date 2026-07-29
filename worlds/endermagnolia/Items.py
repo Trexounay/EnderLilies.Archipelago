@@ -396,6 +396,17 @@ events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     "EVT_ev_n_Student_d_001"           : "Garden 6 Student 1",
     "EVT_ev_n_Student_e_001"           : "Garden 6 Student 2",
 
+    
+	'EVT_ev_n_Levy_Treasure1_001'      : "Meet Levy 1 time",
+	'EVT_ev_n_Levy_Treasure2_001'      : "Meet Levy 2 times",
+	'EVT_ev_n_Levy_Treasure3_001'      : "Meet Levy 3 times",
+	'EVT_ev_n_Levy_Treasure4_001'      : "Meet Levy 4 times",
+	'EVT_ev_n_Levy_Treasure5_001'      : "Meet Levy 5 times",
+	'EVT_ev_n_Levy_Treasure6_001'      : "Meet Levy in Land of Origin",
+	'EVT_ev_s_e5012_RootsLancer_Defeat': "Defeat Reibolg",
+	'EVT_ev_s_e5200_Pounder_Defeat'    : "Defeat Garm",
+	'EVT_ev_s_e6000_Rider_Defeat'      : "Defeat Veol",
+
     "center05right_lever"              : "Center 5 Lever",
     "estate06right_lever"              : "Estate 6 Lever",
     "forest02right_lever"              : "Forest 2 Lever",
@@ -447,7 +458,7 @@ events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     
     "Ending"                           : "Ending",
 
-    "levy_treasure"                    : "Levy Treasure",
+    "levy_treasure"                    : "Meet Levy",
 }.items()}
 
 # items required by logic

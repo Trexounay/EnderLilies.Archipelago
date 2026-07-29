@@ -417,11 +417,11 @@ locations = LocationTable(address=1, rows={
     "Shop Level 13 - Slot 3":                        ("DT_Shop_Main.13.2",                                      materials["parts_lv6_c"],             "Shop Level 13"),
 
     # Levy
-    "Levy Treasure 1":                               ("EVT_ev_n_Levy_Treasure1_001",                            quests["quest_artifact"]),
-    "Levy Treasure 2":                               ("EVT_ev_n_Levy_Treasure2_001",                            quests["quest_stone"]),
-    "Levy Treasure 3":                               ("EVT_ev_n_Levy_Treasure3_001",                            quests["quest_bird"]),
-    "Levy Treasure 4":                               ("EVT_ev_n_Levy_Treasure4_001",                            quests["quest_board"]),
-    "Levy Treasure 5":                               ("EVT_ev_n_Levy_Treasure5_001",                            quests["quest_perfume"]),
+    "Levy Quest Reward 1":                           ("EVT_ev_n_Levy_Treasure1_001",                            quests["quest_artifact"]),
+    "Levy Quest Reward 2":                           ("EVT_ev_n_Levy_Treasure2_001",                            quests["quest_stone"]),
+    "Levy Quest Reward 3":                           ("EVT_ev_n_Levy_Treasure3_001",                            quests["quest_bird"]),
+    "Levy Quest Reward 4":                           ("EVT_ev_n_Levy_Treasure4_001",                            quests["quest_board"]),
+    "Levy Quest Reward 5":                           ("EVT_ev_n_Levy_Treasure5_001",                            quests["quest_perfume"]),
 
     # Extra
     "Starting Skill":                                ("starting_skill",                                         None,                                 "Menu"),
@@ -505,9 +505,20 @@ event_locations = LocationTable(event=True, rows={
     "Summit 30 - Ending":                                      (events["Ending"],                              "Summit 30 - Charmed Fragment"),
     "Swamp 15 - Defeat Motley":                                (events["EVT_ev_s_e6010_Cluster_Defeat"],       "Swamp 15 - Motley"),
 
+    "Roots 5 - Levy":                                          (events['EVT_ev_n_Levy_Treasure6_001'],         "Roots 5 - Stele of the Land of Origin"),
+	"Roots 1 - Defeat Reibolg":                                (events['EVT_ev_s_e5012_RootsLancer_Defeat'],   "Roots 1 - Reibolg 1"),
+	"Mine 17 - Defeat Garm":                                   (events['EVT_ev_s_e5200_Pounder_Defeat'],       "Mine 17 - Garm"),
+	"Forest 22 - Defeat Veol":                                 (events['EVT_ev_s_e6000_Rider_Defeat'],         "Forest22Left"),
+    
     "Estate 7 - Levy":                                         (events["levy_treasure"]),
     "Factory 19 - Levy":                                       (events["levy_treasure"]),
     "Kowloon 9 - Levy":                                        (events["levy_treasure"]),
     "Mine 14 - Levy":                                          (events["levy_treasure"]),
     "Quarry 3 - Levy":                                         (events["levy_treasure"]),
+
+    "Meet Levy 1 time":                                        (events["EVT_ev_n_Levy_Treasure1_001"],         "Levy Quest Reward 1"),
+    "Meet Levy 2 times":                                       (events["EVT_ev_n_Levy_Treasure2_001"],         "Levy Quest Reward 2"),
+    "Meet Levy 3 times":                                       (events["EVT_ev_n_Levy_Treasure3_001"],         "Levy Quest Reward 3"),
+    "Meet Levy 4 times":                                       (events["EVT_ev_n_Levy_Treasure4_001"],         "Levy Quest Reward 4"),
+    "Meet Levy 5 times":                                       (events["EVT_ev_n_Levy_Treasure5_001"],         "Levy Quest Reward 5"),
 })

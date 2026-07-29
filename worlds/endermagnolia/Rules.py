@@ -13,7 +13,7 @@ def get_items_rules(p: int) -> Dict[str, ItemRule]:
     }
 
 shop_rules: Dict[Tuple[str, str], Rule] = {
-	('Slum01Left',   'Shop')           : True_(),
+	('Slum01Left',   'Shop')           : Has('Defeat Yolvan'),
 
 	('Shop',         'Shop Level 1')   : True_(),
 	('Shop',         'Shop Level 2')   : Has('Grimoire', 1),
@@ -31,9 +31,9 @@ shop_rules: Dict[Tuple[str, str], Rule] = {
 }
 
 levy_rules: Dict[Tuple[str, str], Rule] = {
-	('Menu',         'Levy Treasure 1') : Has('Levy Treasure', 1),
-	('Menu',         'Levy Treasure 2') : Has('Levy Treasure', 2),
-	('Menu',         'Levy Treasure 3') : Has('Levy Treasure', 3),
-	('Menu',         'Levy Treasure 4') : Has('Levy Treasure', 4),
-	('Menu',         'Levy Treasure 5') : Has('Levy Treasure', 5),
+	('Menu',         'Levy Quest Reward 1') : Has('Meet Levy', 1),
+	('Menu',         'Levy Quest Reward 2') : Has('Meet Levy', 2),
+	('Menu',         'Levy Quest Reward 3') : Has('Meet Levy', 3),
+	('Menu',         'Levy Quest Reward 4') : Has('Meet Levy', 4),
+	('Menu',         'Levy Quest Reward 5') : Has('Meet Levy', 5),
 }
