@@ -436,6 +436,7 @@ event_locations = LocationTable(event=True, rows={
     "Street 11 - Street Elevator Fixed":                       (events["EVT_ev_s_0180_StreetElevatorFix"]),
     "Swamp 17 - Unlock Relic Refinery":                        (events["EVT_ev_s_n7042_Swamp_Tuner"]),
     "Garden 5 - Defeat Eliza":                                 (events["EVT_ev_s_e0233_Researcher_Defeat"]),
+    'Paradise 03 - Banshee Message':                           (events["EVT_ev_s_e0289_BansheeMessage"]),
 
     "Center 5 - Lever":                                        (events["center05right_lever"]),
     "Estate 6 - Lever":                                        (events["estate06right_lever"]),

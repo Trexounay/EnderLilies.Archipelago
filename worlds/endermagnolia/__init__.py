@@ -1,14 +1,14 @@
 import os
-from typing import List
+from typing import Any, List, Mapping
 from BaseClasses import Item, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
 from .Locations import LocationData, LocationGroup, locations, event_locations
-from .Options import EnderMagnoliaOptions
+from .Options import CentralElevatorFix, EnderMagnoliaOptions
 from .Regions import room_connections
-from .Items import ItemGroup, items, pool
-from .Rules import get_items_rules, shop_rules, levy_rules
+from .Items import ItemGroup, custom, items, pool, stats
+from .Rules import completion_rule, elevator_rules, items_rules, levy_rules, shop_rules, shop_item_rule
 from .Types import ENDERMAGNOLIA, EnderMagnoliaItem, EnderMagnoliaLocation, EnderMagnoliaEvent
 from .gen.TransitionsRules import rules as transitions_rules
 from .gen.LocationsRules import rules as locations_rules
@@ -61,6 +61,11 @@ class EnderMagnoliaWorld(World):
         items_pool : List[Item] = []
         remaining = list(pool)
         remaining.remove(items[starting_skill])
+
+        if self.options.central_elevator_fix == CentralElevatorFix.option_key:
+            remaining.remove(stats["hp_up_s"])
+            remaining.append(custom["Central Stratum Elevator Key"])
+
         for data in remaining:
             items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
         self.multiworld.itempool.extend(items_pool)
@@ -132,24 +137,36 @@ class EnderMagnoliaWorld(World):
             region = self.get_region(src)
             region.add_exits([dst], {dst: rule});
 
+
         # connect levy progressive locations
         for (src, dst), rule in levy_rules.items():
             region = self.get_region(src)
             region.add_exits([dst], {dst: rule});
 
     def set_rules(self) -> None:
-        player = self.player
-        items_rules = get_items_rules(player)
-
         # set items rules
         for location_name, rule in items_rules.items():
-            add_item_rule(self.multiworld.get_location(location_name, player), rule)
+            add_item_rule(self.get_location(location_name), rule)
+
+        for name in {dst for _, dst in shop_rules}:
+            for slot in self.get_region(name).locations:
+                add_item_rule(slot, shop_item_rule)
+
+        # central elevator requirements
+        rule = elevator_rules.get(self.options.central_elevator_fix.value)
+        if rule is not None:
+            location = self.get_location("Street 11 - Street Elevator Fixed")
+            for entrance in location.parent_region.entrances:
+                self.set_rule(entrance, rule)
 
         # Goal
-        self.multiworld.completion_condition[player] = lambda state: state.has("Ending", player)
+        self.set_completion_rule(completion_rule)
 
     def get_filler_item_name(self) -> str:
-        return "nothing"
+        return stats["hp_up_s"].name
+
+    def fill_slot_data(self) -> Mapping[str, Any]:
+        return self.options.as_dict("central_elevator_fix")
 
     def generate_output(self, output_directory):
         return

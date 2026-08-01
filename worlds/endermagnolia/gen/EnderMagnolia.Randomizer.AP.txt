@@ -579,3 +579,4 @@
 13046:DT_ItemTips.tip_writingwall_01
 13047:DT_ItemTips.tip_yoransdiary_01
 13048:DT_ItemTips.tip_yoransdiary_02
+14000:DT_ItemKeys.key_elevator

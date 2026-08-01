@@ -52,7 +52,7 @@ class DataTable():
     group: ItemGroup
     code: int
     rows: Dict[str, str]
-    classification: IC = IC.filler
+    classification: IC = IC.useful
     codes: Dict[str, int] = field(init=False)
     _items: Dict[str, ItemData] = field(init=False)
 
@@ -76,6 +76,29 @@ class DataTable():
         for entry in self.rows:
             yield self[entry]
 
+@dataclass()
+class CustomTable():
+    code: int
+    rows: Dict[str, tuple]
+    classification: IC = IC.progression
+    _items: Dict[str, ItemData] = field(init=False)
+
+    def __post_init__(self):
+        code = self.code
+        self._items = {}
+        for name, (key, group) in self.rows.items():
+            self._items[name] = ItemData(name, key, code, group, self.classification)
+            code += 1
+
+    def __getitem__(self, name) -> ItemData:
+        return self._items[name]
+
+    def __len__(self) -> int:
+        return len(self._items)
+
+    def __iter__(self):
+        return iter(self._items.values())
+        
 aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, classification=IC.progression, code=1000,rows = 
 {
 #    "Crouch"                 : "Crouch",
@@ -113,7 +136,7 @@ assists = DataTable("DT_ItemAssists", group=ItemGroup.Assist, code=2000,rows =
     "assist_012" : "Cetus",
 })
 
-costumes = DataTable("DT_ItemCostumes", group=ItemGroup.Costume, code=3000,rows = 
+costumes = DataTable("DT_ItemCostumes", group=ItemGroup.Costume, classification=IC.filler, code=3000,rows = 
 {
     "p0000" : "Sorcerer's Academy Uniform",
     "p0010" : "Azure Mantle",
@@ -130,7 +153,7 @@ costumes = DataTable("DT_ItemCostumes", group=ItemGroup.Costume, code=3000,rows 
     "p0060" : "Land's End Priestess Garb",
 })
 
-currencies = DataTable("DT_ItemCurrencies", group=ItemGroup.Currency, code=4000,rows = 
+currencies = DataTable("DT_ItemCurrencies", classification=IC.filler, group=ItemGroup.Currency, code=4000,rows = 
 {
     "Default" : "Materials",
     "grade"   : "Fragments",
@@ -310,7 +333,7 @@ spirits = DataTable("DT_ItemSpirits", group=ItemGroup.Spirit, code=11000,rows =
     "s5110_gunman" : "Yolvan",
 })
 
-stats = DataTable("DT_ItemStats", group=ItemGroup.Stat, code=12000,rows = 
+stats = DataTable("DT_ItemStats", classification=IC.filler, group=ItemGroup.Stat, code=12000,rows = 
 {
     "attack_up_s"    : "Attack Up",
     "defense_up_s"   : "Defense Up",
@@ -321,7 +344,7 @@ stats = DataTable("DT_ItemStats", group=ItemGroup.Stat, code=12000,rows =
     "shop_line_up"   : "Grimoire",
 })
 
-tips = DataTable("DT_ItemTips", group=ItemGroup.Tip, code=13000,rows = 
+tips = DataTable("DT_ItemTips", classification=IC.filler, group=ItemGroup.Tip, code=13000,rows = 
 {
     "tip_administrationrecord_01" : "Factory Management Records",
     "tip_bloodstaineddiary_01"    : "Bloodstained Diary",
@@ -374,6 +397,11 @@ tips = DataTable("DT_ItemTips", group=ItemGroup.Tip, code=13000,rows =
     "tip_yoransdiary_02"          : "Joran's Notes 2",
 })
 
+custom = CustomTable(code=14000, rows =
+{
+    "Central Stratum Elevator Key" : ("DT_ItemKeys.key_elevator", ItemGroup.Key),
+})
+
 events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     "EVT_ev_n_LilyEvent_Forest_001"    : "Lily in Crimson Forest",
     "EVT_ev_n_LilyEvent_Garden_001"    : "Lily in Sorcerer Academy",
@@ -389,6 +417,7 @@ events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     'EVT_ev_s_e5110_Gunman_Defeat'     : "Defeat Yolvan",
     'EVT_ev_s_n7042_Swamp_Tuner'       : "Unlock Relic Refinery",
     'EVT_ev_s_e6010_Cluster_Defeat'    : "Defeat Motley",
+    'EVT_ev_s_e0289_BansheeMessage'    : "Banshee Message",
     
     "EVT_ev_n_Student_a_001"           : "Garden 2 Student 1",
     "EVT_ev_n_Student_b_001"           : "Garden 2 Student 2",
@@ -649,5 +678,5 @@ pool = [
 # items for IDs
 items : Dict[str, ItemData] = {item.name: item for item in [
     *aptitudes,*assists, *costumes, *currencies, *equipments, *quests,
-    *keys, *materials, *passives, *skills, *spirits, *stats, *tips]
+    *keys, *materials, *passives, *skills, *spirits, *stats, *tips, *custom]
 }

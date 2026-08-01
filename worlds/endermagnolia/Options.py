@@ -49,13 +49,35 @@ class StartingSkill(Choice):
         return [*skills][self.value].name
 
 
+class CentralElevatorFix(Choice):
+    """
+    Determines requirements to fix the Central Stratum elevator.
+
+    vanilla: same as the original game
+    key: find a key shuffled into the item pool
+    free: the elevator is already fixed
+    """
+
+    display_name = "Central Elevator Fix"
+
+    option_vanilla = 0
+    option_key = 1
+    option_free = 2
+
+    default = option_vanilla
+
+
 @dataclass
 class EnderMagnoliaOptions(PerGameCommonOptions):
     starting_skill: StartingSkill
+    central_elevator_fix: CentralElevatorFix
 
 
 option_groups = [
     OptionGroup("Starting Setup", [
         StartingSkill,
+    ]),
+    OptionGroup("Logic", [
+        CentralElevatorFix,
     ]),
 ]

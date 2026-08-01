@@ -527,7 +527,7 @@ Paradise 19,Paradise 19 - Motley's Torrent,Paradise_001_Zone_019.EVT_ev_s_5220_W
 Paradise 21,Paradise 21 - Materials,Paradise_001_Zone_021.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Paradise21Right,Done,,good,,Paradise21Right
 Paradise 24,Paradise 24 - Words Etched into Cell,Paradise_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_prisonwall_01""]",Paradise24Left,Done,,good,,Paradise24Left
 Paradise 26,Paradise 26 - Declan's Binds,Paradise_001_Zone_026.BP_Interactable_AddItem_C_0,"equipments[""armor_015""]",Paradise26Upper,Done,,good,,Paradise26Upper
-Paradise 30,Paradise 30 - Grand Sorcerer's Key,Paradise_001_Zone_030.EVT_ev_n_e0289_Banshee_KeyGet,"keys[""key_owner""]",Paradise30Left,Done,,,,Paradise30Left
+Paradise 30,Paradise 30 - Grand Sorcerer's Key,Paradise_001_Zone_030.EVT_ev_n_e0289_Banshee_KeyGet,"keys[""key_owner""]",Paradise30Left,Done,,,"go to Paradise03 LowerLeft and talk to NPC, EVT_ev_s_e0289_BansheeMessage , then go to Paradise30 to trigger KeyGet",Paradise30Left + EVT_ev_s_e0289_BansheeMessage
 Paradise 32,Paradise 32 - Unidentified Transformer,Paradise_001_Zone_032.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_c""]","((Paradise32HiddenUpper | Paradise32Left | Paradise32Lower | Paradise32Right) + (high_jump | hook + (double_jump | dodge))
 + pile_attack)",Not Labbed,"Should Paradise32Lower be removed? Otherwise, it requires dive (technically torrent?)
 
