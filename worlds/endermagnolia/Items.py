@@ -399,8 +399,15 @@ tips = DataTable("DT_ItemTips", classification=IC.filler, group=ItemGroup.Tip, c
 
 custom = CustomTable(code=14000, rows =
 {
-    "Central Stratum Elevator Key" : ("DT_ItemKeys.key_elevator", ItemGroup.Key),
+    "Grand Lift Key"         : ("DT_ItemKeys.key_elevator", ItemGroup.Key),
+    "Progressive Dive"       : ("DT_ItemAptitudes.progressive_dive", ItemGroup.Aptitude),
+    "Progressive Lar's Grip" : ("DT_ItemAptitudes.progressive_wall_grab", ItemGroup.Aptitude),
 })
+
+progressive_chains: Dict[str, List[str]] = {
+    "Progressive Dive"       : [aptitudes["dive"].name, aptitudes["dash_charge_underwater"].name],
+    "Progressive Lar's Grip" : [aptitudes["wall_grab"].name, aptitudes["wall_charge"].name],
+}
 
 events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     "EVT_ev_n_LilyEvent_Forest_001"    : "Lily in Crimson Forest",

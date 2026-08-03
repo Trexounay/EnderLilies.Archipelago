@@ -3,14 +3,17 @@ from BaseClasses import Item
 from worlds.generic.Rules import ItemRule
 from rule_builder.rules import Has, Rule, True_
 from .Items import ItemGroup
-from .Options import CentralElevatorFix
+from .Options import CentralElevatorFix, Goal
 from .Types import EnderMagnoliaItem
 
 
 def is_item_group(item: Item, group: ItemGroup) -> bool:
     return isinstance(item, EnderMagnoliaItem) and item.group == group
 
-completion_rule: Rule = Has('Ending')
+completion_rules: Dict[int, Rule] = {
+	Goal.option_ending_a : Has('Ending'),
+	Goal.option_ending_b : Has('Ending') & Has("Lilia's Blighted Ring"),
+}
 
 # no mats in shop
 shop_item_rule: ItemRule = lambda i : not is_item_group(i, ItemGroup.Currency)
@@ -39,7 +42,7 @@ shop_rules: Dict[Tuple[str, str], Rule] = {
 }
 
 elevator_rules: Dict[int, Rule] = {
-	CentralElevatorFix.option_key  : Has('Central Stratum Elevator Key'),
+	CentralElevatorFix.option_key  : Has('Grand Lift Key'),
 	CentralElevatorFix.option_free : True_(),
 }
 

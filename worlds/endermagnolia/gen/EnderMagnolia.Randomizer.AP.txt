@@ -580,3 +580,5 @@
 13047:DT_ItemTips.tip_yoransdiary_01
 13048:DT_ItemTips.tip_yoransdiary_02
 14000:DT_ItemKeys.key_elevator
+14001:DT_ItemAptitudes.progressive_dive
+14002:DT_ItemAptitudes.progressive_wall_grab

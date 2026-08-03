@@ -1,14 +1,14 @@
 import os
-from typing import Any, List, Mapping
-from BaseClasses import Item, Region, Tutorial
+from typing import Any, List, Mapping, Optional
+from BaseClasses import Item, ItemClassification, Region, Tutorial
 from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
 from .Locations import LocationData, LocationGroup, locations, event_locations
-from .Options import CentralElevatorFix, EnderMagnoliaOptions
+from .Options import CentralElevatorFix, EnderMagnoliaOptions, Goal
 from .Regions import room_connections
-from .Items import ItemGroup, custom, items, pool, stats
-from .Rules import completion_rule, elevator_rules, items_rules, levy_rules, shop_rules, shop_item_rule
+from .Items import ItemGroup, currencies, custom, items, passives, pool, progressive_chains, quests, stats
+from .Rules import completion_rules, elevator_rules, items_rules, levy_rules, shop_rules, shop_item_rule
 from .Types import ENDERMAGNOLIA, EnderMagnoliaItem, EnderMagnoliaLocation, EnderMagnoliaEvent
 from .gen.TransitionsRules import rules as transitions_rules
 from .gen.LocationsRules import rules as locations_rules
@@ -62,13 +62,40 @@ class EnderMagnoliaWorld(World):
         remaining = list(pool)
         remaining.remove(items[starting_skill])
 
+        if self.options.goal == Goal.option_ending_b:
+            ending_flag = EnderMagnoliaItem.from_data(passives["ending_flag"], self.player)
+            ending_flag.classification = ItemClassification.progression
+            remaining.remove(passives["ending_flag"])
+            self.get_location("Roots 2 - Lilia's Blighted Ring").place_locked_item(ending_flag)
+
+            quest_amulet = EnderMagnoliaItem.from_data(quests["quest_amulet"], self.player)
+            remaining.remove(quests["quest_amulet"])
+            self.get_location("Center 4 - Faintly Glowing Aegis Curio").place_locked_item(quest_amulet)
+
         if self.options.central_elevator_fix == CentralElevatorFix.option_key:
             remaining.remove(stats["hp_up_s"])
-            remaining.append(custom["Central Stratum Elevator Key"])
+            remaining.append(custom["Grand Lift Key"])
+
+        if self.options.progressive_aptitudes:
+            for name, chain in progressive_chains.items():
+                for aptitude in chain:
+                    remaining.remove(items[aptitude])
+                remaining.extend(custom[name] * len(chain))
 
         for data in remaining:
             items_pool.append(EnderMagnoliaItem.from_data(data, self.player))
         self.multiworld.itempool.extend(items_pool)
+
+    def collect_item(self, state, item: Item, remove: bool = False) -> Optional[str]:
+        chain = progressive_chains.get(item.name)
+        if chain is None:
+            return super().collect_item(state, item, remove)
+        if remove:
+            chain = reversed(chain)
+        for name in chain:
+            if state.has(name, self.player) == remove:
+                return name
+        return None
 
     def create_region(self, name: str) -> Region:
         region = Region(name, self.player, self.multiworld)
@@ -160,13 +187,13 @@ class EnderMagnoliaWorld(World):
                 self.set_rule(entrance, rule)
 
         # Goal
-        self.set_completion_rule(completion_rule)
+        self.set_completion_rule(completion_rules[self.options.goal.value])
 
     def get_filler_item_name(self) -> str:
-        return stats["hp_up_s"].name
+        return currencies["Default"].name
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return self.options.as_dict("central_elevator_fix")
+        return self.options.as_dict("goal", "central_elevator_fix", "relic_cost_shuffle")
 
     def generate_output(self, output_directory):
         return
