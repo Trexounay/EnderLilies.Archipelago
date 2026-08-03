@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Toggle
+from Options import Choice, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range, Toggle
 
 from .Items import skills
 
@@ -49,6 +49,22 @@ class StartingSkill(Choice):
         return [*skills][self.value].name
 
 
+class StartWithFastTravel(DefaultOnToggle):
+    """
+    Start with Fast Travel instead of shuffling it into the item pool.
+    """
+
+    display_name = "Start With Fast Travel"
+
+
+class StartWithHeal(DefaultOnToggle):
+    """
+    Start with Healing Ward instead of shuffling it into the item pool.
+    """
+
+    display_name = "Start With Healing Ward"
+
+
 class Goal(Choice):
     """
     Determines the victory condition.
@@ -83,7 +99,7 @@ class CentralElevatorFix(Choice):
     default = option_vanilla
 
 
-class ProgressiveAptitudes(Toggle):
+class ProgressiveAptitudes(DefaultOnToggle):
     """
     Aptitudes are acquired in order.
     Dive -> Motley's Torrent
@@ -92,7 +108,31 @@ class ProgressiveAptitudes(Toggle):
 
     display_name = "Progressive Aptitudes"
 
-    default = 1
+
+class MinChapter(Range):
+    """
+    Lowest chapter value used to scale the game difficulty.
+    """
+
+    display_name = "Minimum Chapter"
+
+    range_start = 0
+    range_end = 16
+
+    default = 0
+
+
+class MaxChapter(Range):
+    """
+    Highest chapter value used to scale the game difficulty.
+    """
+
+    display_name = "Maximum Chapter"
+
+    range_start = 0
+    range_end = 16
+
+    default = 15
 
 
 class RelicCostShuffle(Toggle):
@@ -109,8 +149,12 @@ class RelicCostShuffle(Toggle):
 class EnderMagnoliaOptions(PerGameCommonOptions):
     goal: Goal
     starting_skill: StartingSkill
+    start_with_fast_travel: StartWithFastTravel
+    start_with_heal: StartWithHeal
     central_elevator_fix: CentralElevatorFix
     progressive_aptitudes: ProgressiveAptitudes
+    min_chapter: MinChapter
+    max_chapter: MaxChapter
     relic_cost_shuffle: RelicCostShuffle
 
 
@@ -120,12 +164,16 @@ option_groups = [
     ]),
     OptionGroup("Starting Setup", [
         StartingSkill,
+        StartWithFastTravel,
+        StartWithHeal,
     ]),
     OptionGroup("Logic", [
         CentralElevatorFix,
         ProgressiveAptitudes,
     ]),
     OptionGroup("Misc", [
+        MinChapter,
+        MaxChapter,
         RelicCostShuffle,
     ]),
 ]
