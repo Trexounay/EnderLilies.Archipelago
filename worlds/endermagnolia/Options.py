@@ -74,6 +74,7 @@ class Goal(Choice):
     """
 
     display_name = "Goal"
+    slot_data = True
 
     option_ending_a = 0
     option_ending_b = 1
@@ -91,6 +92,7 @@ class CentralElevatorFix(Choice):
     """
 
     display_name = "Central Elevator Fix"
+    slot_data = True
 
     option_vanilla = 0
     option_key = 1
@@ -107,6 +109,7 @@ class ProgressiveAptitudes(DefaultOnToggle):
     """
 
     display_name = "Progressive Aptitudes"
+    slot_data = True
 
 
 class MinChapter(Range):
@@ -115,6 +118,7 @@ class MinChapter(Range):
     """
 
     display_name = "Minimum Chapter"
+    slot_data = True
 
     range_start = 0
     range_end = 16
@@ -128,6 +132,7 @@ class MaxChapter(Range):
     """
 
     display_name = "Maximum Chapter"
+    slot_data = True
 
     range_start = 0
     range_end = 16
@@ -141,6 +146,17 @@ class RelicCostShuffle(Toggle):
     """
 
     display_name = "Relic Cost Shuffle"
+    slot_data = True
+
+    default = 0
+
+
+class GenerateSeedFile(Toggle):
+    """
+    Also generate a seed file for non-archipelago play.
+    """
+
+    display_name = "Generate Seed File"
 
     default = 0
 
@@ -156,6 +172,11 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     min_chapter: MinChapter
     max_chapter: MaxChapter
     relic_cost_shuffle: RelicCostShuffle
+    generate_seed_file: GenerateSeedFile
+
+
+slot_data_options = [name for name, option in EnderMagnoliaOptions.type_hints.items()
+                     if getattr(option, "slot_data", False)]
 
 
 option_groups = [
@@ -175,5 +196,6 @@ option_groups = [
         MinChapter,
         MaxChapter,
         RelicCostShuffle,
+        GenerateSeedFile,
     ]),
 ]

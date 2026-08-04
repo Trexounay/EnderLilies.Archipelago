@@ -5,7 +5,7 @@ from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
 from .Locations import LocationData, LocationGroup, locations, event_locations
-from .Options import CentralElevatorFix, EnderMagnoliaOptions, Goal
+from .Options import CentralElevatorFix, EnderMagnoliaOptions, Goal, slot_data_options
 from .Regions import room_connections
 from .Items import (ItemData, ItemGroup, aptitudes, currencies, custom, items, passives, pool,
                     progressive_chains, quests, stats)
@@ -210,18 +210,31 @@ class EnderMagnoliaWorld(World):
         return currencies["Default"].name
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return self.options.as_dict("goal", "central_elevator_fix", "min_chapter", "max_chapter", "relic_cost_shuffle")
+        return self.options.as_dict(*slot_data_options)
 
     def generate_output(self, output_directory):
-        return
+        if not self.options.generate_seed_file:
+            return
+
         out_path = os.path.join(output_directory, "EnderMagnolia.Randomizer.Seed.txt")
         output = ""
-        locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations();
+
+        for name, value in self.options.as_dict(*slot_data_options).items():
+            output += f"option.{name}:{int(value)}\n"
+
+        locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations(self.player);
         for location in locations:
-            if isinstance(location, EnderMagnoliaLocation) and location.item and location.key() and location.item.name and location.item.name in items:
-                s = f"{location.key()}:{items[location.item.name].key}"
-                print(s)
-                output += f"{s}\n"
+            if not isinstance(location, EnderMagnoliaLocation) or not location.item or not location.key():
+                continue
+            item = location.item
+            if item.player == self.player:
+                if item.name not in items:
+                    continue
+                value = items[item.name].key
+            else:
+                player_name = self.multiworld.get_player_name(item.player)
+                value = f"{item.name}|{player_name}|{self.multiworld.worlds[item.player].game}"
+            output += f"{location.key()}:{value}\n"
 
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(output)
