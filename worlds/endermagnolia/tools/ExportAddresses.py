@@ -27,7 +27,7 @@ else:
     locations = _load("Locations").locations
 
 
-OUTPUT_NAME = "EnderMagnolia.Randomizer.AP.txt"
+OUTPUT_NAME = "apids.txt"
 
 
 def export(output_dir: str) -> None:

@@ -216,8 +216,8 @@ class EnderMagnoliaWorld(World):
         if not self.options.generate_seed_file:
             return
 
-        out_path = os.path.join(output_directory, "EnderMagnolia.Randomizer.Seed.txt")
-        output = ""
+        out_path = os.path.join(output_directory, "seed.txt")
+        output = f"seed:{self.multiworld.seed}\n"
 
         for name, value in self.options.as_dict(*slot_data_options).items():
             output += f"option.{name}:{int(value)}\n"
