@@ -6,8 +6,8 @@ Removed LowerLeft as it is impossible to hit this lever from that entrance","Gar
 | Garden02LowerLeft","Garden02Right + (high_jump | double_jump + dodge + wall_grab)
 | (Garden02LowerRight + (Garden02LowerRightLeft_Lever | Garden02LowerRightRight_Lever)) + (high_jump | double_jump + dodge + wall_grab)",,,,,,,,,,,Garden 2 - Left Lever
 Garden 2,Garden 2 - Lower Left Lever,garden02lowerleft_lever,Garden02LowerLeft,Done,,,,Garden02LowerLeft,,,,,,,,,,,Garden 2 - Lower Left Lever
-Garden 2,Garden 2 - Lower Right Left Lever,garden02lowerrightleft_lever,Garden02LowerRight,Unsure,,"is this true? if anything, LowerRight is the only entrance that cant access these?",Pending clarification,Garden02LowerRight,,,,,,,,,,,Garden 2 - Lower Right Left Lever
-Garden 2,Garden 2 - Lower Right Right Lever,garden02lowerrightright_lever,Garden02LowerRight,Unsure,,"is this true? if anything, LowerRight is the only entrance that cant access these?",Pending clarification,Garden02LowerRight,"Naming convention of levers is like:
+Garden 2,Garden 2 - Lower Right Left Lever,garden02lowerrightleft_lever,Garden02LowerRight,Unsure,,"is this true? if anything, LowerRight is the only entrance that cant access these?",Pending clarification,Garden02Right,,,,,,,,,,,Garden 2 - Lower Right Left Lever
+Garden 2,Garden 2 - Lower Right Right Lever,garden02lowerrightright_lever,Garden02LowerRight,Unsure,,"is this true? if anything, LowerRight is the only entrance that cant access these?",Pending clarification,Garden02Right,"Naming convention of levers is like:
 BP_Interactable_Door_C_0
 
  LIST of Garden2 Levers

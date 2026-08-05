@@ -1735,4 +1735,3 @@ for room, connections in room_connections_data.items():
     for (src, dst) in connections:
         room_connections[src] = RegionData(src, [ExitData(src, dst)])
 
-room_connections["Menu"] = RegionData("Menu", [ExitData("Start", "Ruins14Right")])

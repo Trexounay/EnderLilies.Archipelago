@@ -1,6 +1,6 @@
 Room,Door,Lead to,Logic,Status,Notes,,Original (before Aloha edits),Final Logic ?
 Center 1,Center01LeftDoor,Center05CenterDoor,Center01LowerLeft | Center01Lower | Center01RightDoor | Center01UpperLeft,Done,,,,Center01LowerLeft | Center01Lower | Center01RightDoor | Center01UpperLeft
-Center 1,Center01Lower,Street11Upper,Center01LowerLeft | Center01LeftDoor | Center01RightDoor | Center01UpperLeft,Done,,,,Center01LowerLeft | Center01LeftDoor | Center01RightDoor | Center01UpperLeft
+Center 1,Center01Lower,Street11Upper,Center01LowerLeft | Center01LeftDoor | Center01RightDoor | Center01UpperLeft,Done,,,,(Center01LowerLeft | Center01LeftDoor | Center01RightDoor | Center01UpperLeft) + EVT_ev_s_0180_StreetElevatorFix
 Center 1,Center01LowerLeft,Center02LowerRight,Center01Lower | Center01LeftDoor | Center01RightDoor | Center01UpperLeft,Done,,,,Center01Lower | Center01LeftDoor | Center01RightDoor | Center01UpperLeft
 Center 1,Center01RightDoor,Center04RightDoor,Center01Lower | Center01LeftDoor | Center01LowerLeft | Center01UpperLeft,Done,,,,Center01Lower | Center01LeftDoor | Center01LowerLeft | Center01UpperLeft
 Center 1,Center01UpperLeft,Center02UpperRight,(Center01Lower | Center01LeftDoor | Center01LowerLeft | Center01RightDoor) + (double_jump + wall_grab | high_jump),Done,added double_jump + wall_grab | high_jump,"can WALL_DASH out of Central02LowerRight / Central01LowerLeft and then WALL_DASH back to UpperLeft
@@ -26,8 +26,8 @@ Crossroad 2,Crossroad02Right,Slum01Left,"Crossroad02Left + (double_jump + dodge 
 | Crossroad01Right + WALL_DASH"
 Crossroad 3,Crossroad03Left,Mine01Right,Crossroad03Right,Done,,,,Crossroad03Right
 Crossroad 3,Crossroad03Right,Crossroad04UpperLeft,Crossroad03Left,Done,,,,Crossroad03Left
-Crossroad 4,Crossroad04LowerLeft,Crossroad01Right,Crossroad04Right,Done,,,,Crossroad04Right
-Crossroad 4,Crossroad04Right,Crossroad05Left,Crossroad04LowerLeft,Done,,,,Crossroad04LowerLeft
+Crossroad 4,Crossroad04LowerLeft,Crossroad01Right,Crossroad04Right,Done,,,,Crossroad04Right | Crossroad04UpperLeft + key_lower
+Crossroad 4,Crossroad04Right,Crossroad05Left,Crossroad04LowerLeft,Done,,,,Crossroad04LowerLeft | Crossroad04UpperLeft + key_lower
 Crossroad 4,Crossroad04UpperLeft,Crossroad03Right,(Crossroad04LowerLeft | Crossroad04Right) + key_lower,Done,,,,(Crossroad04LowerLeft | Crossroad04Right) + key_lower
 Crossroad 5,Crossroad05Left,Crossroad04Right,Crossroad05Right + (double_jump | high_jump | wall_grab),Done,wall_grab is jank but works,,,Crossroad05Right + (double_jump | high_jump | wall_grab)
 Crossroad 5,Crossroad05Right,Crossroad02Left,Crossroad05Left + (double_jump | high_jump | wall_grab),Done,,,,Crossroad05Left + (double_jump | high_jump | wall_grab)
@@ -498,7 +498,7 @@ Garden 6,Garden06UpperDoor,Garden07LowerDoor,"Garden06Right + (((double_jump + w
 | Garden06Left + ((hook + wall_grab) + (double_jump | wall_charge + dodge) | high_jump)","Garden06Right + (hook + double_jump + wall_grab + (wall_charge | dodge) | high_jump)
 | Garden06Left + (double_jump + hook | high_jump | wall_grab + hook + dodge)"
 Garden 7,Garden07LowerDoor,Garden06UpperDoor,Garden07Upper,Done,,,,Garden07Upper
-Garden 7,Garden07Upper,Garden10Lower,Garden07LowerDoor + (high_jump + (dodge | double_jump)) | (double_jump + dodge + wall_grab),Done,,,,Garden07LowerDoor + (high_jump + (dodge | double_jump) | double_jump + dodge + wall_grab)
+Garden 7,Garden07Upper,Garden10Lower,Garden07LowerDoor + (high_jump + (dodge | double_jump)) | (double_jump + dodge + wall_grab),Done,technically doable with just high_jump and base dodge-roll,,,Garden07LowerDoor + (high_jump + (dodge | double_jump) | double_jump + dodge + wall_grab)
 Garden 8,Garden08Right,Garden06Left,Garden08Upper,Done,,,,Garden08Upper
 Garden 8,Garden08Upper,Labo06Lower,Garden08Right + high_jump,Done,,,,Garden08Right + high_jump
 Garden 9,Garden09Left,Garden02Right,Garden09Right,Done,,,,Garden09Right
@@ -585,7 +585,7 @@ Kowloon 10,Kowloon10Lower,Kowloon13UpperLeft,"((Kowloon10Left | Kowloon10Right) 
 + pile_attack",Done,Added double_jump + dodge also reaches,,"((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH))))
 + pile_attack","((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH | dodge))))
 + pile_attack"
-Kowloon 10,Kowloon10Right,Kowloon15LowerLeft,Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump),Done,basically same as 243 except wall_grab option is out of reach,,Kowloon10Left + (hook | (double_jump + (high_jump | WALL_DASH))),Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump)
+Kowloon 10,Kowloon10Right,Kowloon15LowerLeft,Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump),Done,basically same as 243 except wall_grab option is out of reach,double_jump + dodge also is sufficient WITH GRAV (8/1),Kowloon10Left + (hook | (double_jump + (high_jump | WALL_DASH))),Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump)
 Kowloon 13,Kowloon13HiddenLower,Kowloon14HiddenUpper,"(Kowloon13UpperLeft + (wall_grab | double_jump | high_jump | (hook + dodge))) 
 | Kowloon13UpperRight",Done,,,,"(Kowloon13UpperLeft + (wall_grab | double_jump | high_jump | (hook + dodge))) 
 | Kowloon13UpperRight"
@@ -1259,7 +1259,7 @@ Paradise 33,Paradise33Left,Paradise32Right,Paradise33Upper,Done,,,,Paradise33Upp
 Paradise 33,Paradise33Upper,Paradise03Lower,Paradise33Left + (high_jump + dodge | wall_grab + dodge + double_jump),Unsure,double_jump + wall_grab is enough as well;,double check comment to left,,Paradise33Left + (high_jump + dodge | wall_grab + dodge + double_jump)
 Paradise 34,Paradise34Upper,Paradise32Lower,None,Done,,,,None
 Quarry 1,Quarry01Left,Quarry02Right,Quarry01Right + key_lower,Done,,,,Quarry01Right + key_lower
-Quarry 1,Quarry01Right,Ruins08Left,None,Done,what do ya mean none - because of the locked door?,Quarry01Left + (high_jump | double_jump | wall_grab + (dodge | wall_charge),None,None
+Quarry 1,Quarry01Right,Ruins08Left,None,Done,what do ya mean none - because of the locked door?,Quarry01Left + (high_jump | double_jump | wall_grab + (dodge | wall_charge),None,Quarry01Left + (high_jump | double_jump | wall_grab + (dodge | wall_charge)) + key_lower
 Quarry 2,Quarry02LowerLeft,Quarry03Upper,(Quarry02Right | Quarry02LowerRight) + dash_charge + (double_jump | high_jump),Done,,,,(Quarry02Right | Quarry02LowerRight) + dash_charge + (double_jump | high_jump)
 Quarry 2,Quarry02LowerRight,Quarry04Upper,"Quarry02Right 
 | (Quarry02LowerLeft + dash_charge + (double_jump | high_jump | wall_grab))",Done,,,,"Quarry02Right 
@@ -1476,7 +1476,7 @@ Roots 24,Roots24UpperRight,Roots27Lower,"((Roots24Left | Roots24HiddenLeft | Roo
 + dive)",Done,,,,"((Roots24Left | Roots24HiddenLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24LowerLeft) 
 + (dodge | wall_grab | double_jump) 
 + dive)"
-Roots 25,Roots25Left,Roots24Right,Roots25Right + dive,Done,dive is not really required :),,,Roots25Right + dive
+Roots 25,Roots25Left,Roots24Right,Roots25Right + dive,Done,dive is not really required :),do we want to add heal to this requirement?,,Roots25Right + dive
 Roots 25,Roots25Right,Swamp10Left,Roots25Left + dive,Done,dive is not really required :),NOTE; the only way into this zone at large does require TORRENT from Swamp10Left,,Roots25Left + dive
 Roots 26,Roots26Upper,Roots24LowerRight,None,Done,"I feel like this should require dive, to exit this respite",,,None
 Roots 27,Roots27Lower,Roots24UpperRight,None,Done,,,,None
@@ -1504,9 +1504,9 @@ Ruins 8,Ruins08Left,Quarry01Right,Ruins08Right + dash_charge,Done,,,,Ruins08Righ
 Ruins 8,Ruins08Right,Ruins07LowerLeft,Ruins08Left,Done,,,,Ruins08Left
 Ruins 9,Ruins09Left,Ruins02UpperRight,Ruins09Right,Done,,,,Ruins09Right
 Ruins 9,Ruins09Right,Ruins10LowerLeft,Ruins09Left,Done,,,,Ruins09Left
-Ruins 10,Ruins10LowerLeft,Ruins09Right,Ruins10UpperLeft,Done,,,,Ruins10UpperLeft
+Ruins 10,Ruins10LowerLeft,Ruins09Right,Ruins10UpperLeft,Done,,,,Ruins10UpperLeft | Ruins10Right + key_ruins_tuto
 Ruins 10,Ruins10Right,Ruins13Left,(Ruins10LowerLeft | Ruins10UpperLeft) + key_ruins_tuto,Done,,,,(Ruins10LowerLeft | Ruins10UpperLeft) + key_ruins_tuto
-Ruins 10,Ruins10UpperLeft,Ruins11Right,Ruins10LowerLeft,Done,,,,Ruins10LowerLeft
+Ruins 10,Ruins10UpperLeft,Ruins11Right,Ruins10LowerLeft,Done,,,,Ruins10LowerLeft | Ruins10Right + key_ruins_tuto
 Ruins 11,Ruins11Left,Ruins12Right,Ruins11Right,Done,,,,Ruins11Right
 Ruins 11,Ruins11Right,Ruins10UpperLeft,Ruins11Left,Done,,,,Ruins11Left
 Ruins 12,Ruins12Right,Ruins11Left,None,Done,added None,,,None
@@ -1599,16 +1599,16 @@ Slum 1,Slum01Left,Crossroad02Right,Slum01Right | Slum01Lower,Done,,,,Slum01Right
 Slum 1,Slum01Lower,Slum02Upper,Slum01Left | Slum01Right,Done,,,,Slum01Left | Slum01Right
 Slum 1,Slum01Right,Street01Left,Slum01Left | Slum01Lower,Done,,,,Slum01Left | Slum01Lower
 Slum 2,Slum02Lower,Sewer01Upper,Slum02Upper + pile_attack,Done,,,,Slum02Upper + pile_attack
-Slum 2,Slum02Upper,Slum01Lower,Slum02Lower + (double_jump | wall_grab | high_jump),Done,should this be None? - original state you cannot progress past the pile_attack requirement,,,Slum02Lower + (double_jump | wall_grab | high_jump)
+Slum 2,Slum02Upper,Slum01Lower,Slum02Lower + (double_jump | wall_grab | high_jump),Done,should this be None? - original state you cannot progress past the pile_attack requirement,Slum02Lower + (double_jump | wall_grab | high_jump),,None
 Street 1,Street01Door,Street18Door,Street01Left | Street01Right,Done,,,,Street01Left | Street01Right
 Street 1,Street01Left,Slum01Right,Street01Right | Street01Door,Done,,,,Street01Right | Street01Door
 Street 1,Street01Right,Street06Left,Street01Left | Street01Door,Done,,,,Street01Left | Street01Door
 Street 2,Street02Left,Street18Right,Street02Right,Done,,,,Street02Right
 Street 2,Street02Right,Street04Left,Street02Left + Street02Left_Lever,Done,,,,Street02Left + Street02Left_Lever
-Street 3,Street03Door,Street10Door,Street03LowerLeft | Street03UpperLeft,Done,,"Street03 does not include any Street03Right , yet Street03LowerLeft is? is it because of where the lever/unlock position?",,Street03LowerLeft | Street03UpperLeft
-Street 3,Street03LowerLeft,Street05LowerRight,(Street03Door | Street03UpperLeft) + Street05LowerRight_Lever,Done,,,,(Street03Door | Street03UpperLeft) + Street05LowerRight_Lever
+Street 3,Street03Door,Street10Door,Street03LowerLeft | Street03UpperLeft,Done,,"Street03 does not include any Street03Right , yet Street03LowerLeft is? is it because of where the lever/unlock position?",,Street03LowerLeft | Street03UpperLeft | Street03Right + key_lower
+Street 3,Street03LowerLeft,Street05LowerRight,(Street03Door | Street03UpperLeft) + Street05LowerRight_Lever,Done,,,,(Street03Door | Street03UpperLeft | Street03Right + key_lower) + Street05LowerRight_Lever
 Street 3,Street03Right,Street11Left,(Street03Door | Street03UpperLeft | Street03LowerLeft) + key_lower,Done,,,,(Street03Door | Street03UpperLeft | Street03LowerLeft) + key_lower
-Street 3,Street03UpperLeft,Street05UpperRight,(Street03Door | Street03LowerLeft) + (double_jump | high_jump),Done,"wall_grab is not required, there are platforms that allow with only double_jump",,(Street03Door | Street03LowerLeft) + (double_jump + wall_grab | high_jump),(Street03Door | Street03LowerLeft) + (double_jump | high_jump)
+Street 3,Street03UpperLeft,Street05UpperRight,(Street03Door | Street03LowerLeft) + (double_jump | high_jump),Done,"wall_grab is not required, there are platforms that allow with only double_jump",,(Street03Door | Street03LowerLeft) + (double_jump + wall_grab | high_jump),(Street03Door | Street03LowerLeft | Street03Right + key_lower) + (double_jump | high_jump)
 Street 4,Street04Left,Street02Right,Street04Right + (double_jump | high_jump),Done,,,,Street04Right + (double_jump | high_jump)
 Street 4,Street04Right,Street05Left,Street04Left,Done,,,,Street04Left
 Street 5,Street05Left,Street04Right,Street05LowerRight | Street05UpperRight,Done,should lowerRight include Lever?,,,Street05LowerRight | Street05UpperRight
@@ -1633,8 +1633,8 @@ Street 9,Street09Upper,Street10Lower,Street09Left,Done,,,,Street09Left
 Street 10,Street10Door,Street03Door,Street10Left | Street10Lower,Done,,,,Street10Left | Street10Lower
 Street 10,Street10Left,Street08Right,Street10Door | Street10Lower,Done,,,,Street10Door | Street10Lower
 Street 10,Street10Lower,Street09Upper,Street10Door | Street10Left,Done,,,,Street10Door | Street10Left
-Street 11,Street11Left,Street03Right,Street11Right,Done,Need to add Upper?,,,Street11Right
-Street 11,Street11Right,Street12Left,Street11Left,Done,Need to add Upper?,,,Street11Left
+Street 11,Street11Left,Street03Right,Street11Right,Done,Need to add Upper?,,,Street11Right | Street11Upper
+Street 11,Street11Right,Street12Left,Street11Left,Done,Need to add Upper?,,,Street11Left | Street11Upper
 Street 11,Street11Upper,Center01Lower,(Street11Right | Street11Left) + EVT_ev_s_0180_StreetElevatorFix,Unsure,Elevator fix requires meeting all 3 attuners (Mine09Right | Mine09Upper) + (Swamp17Left + hook) + ((Quarry31Upper | Quarry31Right) + EVT_ev_s_e6050_Master_Defeat),,,(Street11Right | Street11Left) + EVT_ev_s_0180_StreetElevatorFix
 Street 12,Street12Door,Street13Door,Street12LowerRight | Street12UpperRight | Street12Left + (double_jump | high_jump),Unsure,you probably meant double_jump + high_jump cause here WALL_DASH is redundant (FIXED),Added Lower & UpperRight,Street12Left + (double_jump | high_jump),Street12LowerRight | Street12UpperRight | Street12Left + (double_jump | high_jump)
 Street 12,Street12Left,Street11Right,"Street12Door + (double_jump | high_jump | wall_grab)
@@ -1974,13 +1974,13 @@ Swamp 18,Swamp18Left,Swamp05Right,Swamp18Upper,Done,,,,Swamp18Upper
 Swamp 18,Swamp18Upper,Sewer15Lower,"Swamp18Left 
 + (hook + (double_jump | (dodge + high_jump)) | (wall_grab + double_jump))",Done,does not require hook; janky dive + wall_grab + double_jump works,,"Swamp18Left 
 + (hook + (double_jump | (dodge + high_jump)) | (wall_grab + double_jump))","Swamp18Left 
-+ (hook + (double_jump | (dodge + high_jump)) | (wall_grab + double_jump))"
++ (hook + (double_jump | dodge + high_jump) | wall_grab + double_jump)"
 Swamp 19,Swamp19Right,Swamp04HiddenLeft,None,Done,,,,None
 Swamp 20,Swamp20Upper,Swamp01LowerRight,None,Done,,,,None
 Tower 1,Tower01CenterRight,Tower02CenterLeft,(Tower01Left | Tower01LowerRight | Tower01UpperRight) + Tower01CenterRight_Lever,Done,,,,(Tower01Left | Tower01LowerRight | Tower01UpperRight) + Tower01CenterRight_Lever
-Tower 1,Tower01Left,Street15Right,Tower01UpperRight | Tower01LowerRight | Tower01CenterRight,Done,to add CenterRight_Lever?,,,Tower01UpperRight | Tower01LowerRight | Tower01CenterRight
-Tower 1,Tower01LowerRight,Tower02LowerLeft,Tower01Left | Tower01UpperRight | Tower01CenterRight,Done,needs Lever?,,,Tower01Left | Tower01UpperRight | Tower01CenterRight
-Tower 1,Tower01UpperRight,Tower02UpperLeft,Tower01Left | Tower01CenterRight | Tower01LowerRight,Done,needs Lever?,,,Tower01Left | Tower01CenterRight | Tower01LowerRight
+Tower 1,Tower01Left,Street15Right,Tower01UpperRight | Tower01LowerRight | Tower01CenterRight,Done,,,,Tower01UpperRight | Tower01LowerRight | Tower01CenterRight
+Tower 1,Tower01LowerRight,Tower02LowerLeft,Tower01Left | Tower01UpperRight | Tower01CenterRight,Done,,,,Tower01Left | Tower01UpperRight | Tower01CenterRight
+Tower 1,Tower01UpperRight,Tower02UpperLeft,Tower01Left | Tower01CenterRight | Tower01LowerRight,Done,,,,Tower01Left | Tower01CenterRight | Tower01LowerRight
 Tower 2,Tower02CenterLeft,Tower01CenterRight,"(Tower02UpperRight | Tower02UpperLeft) + (double_jump | high_jump | dodge)
 | (Tower02LowerLeft | Tower02LowerRight | Tower02Lower) + high_jump 
 | Tower02CenterRight ",Done,added high_jump | dodge from uppers,,"(Tower02UpperRight | Tower02UpperLeft) + double_jump 

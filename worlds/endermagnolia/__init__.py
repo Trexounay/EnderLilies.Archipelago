@@ -1,6 +1,7 @@
 import os
 from typing import Any, List, Mapping, Optional, Tuple
 from BaseClasses import Item, ItemClassification, Region, Tutorial
+from rule_builder.rules import False_
 from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
@@ -35,6 +36,7 @@ class EnderMagnoliaWorld(World):
 
     game = ENDERMAGNOLIA
     web = EnderMagnoliaWebWorld()
+    #topology_present = True
 
     # options
     options_dataclass = EnderMagnoliaOptions
@@ -51,6 +53,11 @@ class EnderMagnoliaWorld(World):
     location_name_groups = {group.name: {name for name, data in locations.items() if data.group == group}
                             for group in LocationGroup}
     location_name_groups = {group: names for group, names in location_name_groups.items() if names}
+
+    def generate_early(self) -> None:
+        if (self.options.starting_respite.requires_elevator()
+                and self.options.central_elevator_fix == CentralElevatorFix.option_vanilla):
+            self.options.central_elevator_fix.value = CentralElevatorFix.option_free
 
     def create_item(self, item: str) -> EnderMagnoliaItem:
         return EnderMagnoliaItem.from_name(item, self.player)
@@ -141,6 +148,7 @@ class EnderMagnoliaWorld(World):
 
     def create_regions(self) -> None:
         # For each room entrances we create a region (need to happen first)
+        menu = self.create_region("Menu")
         for name in room_connections:
             self.create_region(name)
 
@@ -148,6 +156,9 @@ class EnderMagnoliaWorld(World):
         for name, region_data in room_connections.items():
             region = self.get_region(name)
             region.add_exits(region_data.get_exits())
+ 
+        # connect the menu to the starting respite
+        menu.add_exits({self.options.starting_respite.get_region(): "Start"})
 
         # connect rooms entrances (room1left <-> room1right)
         for (src, dst), rule in transitions_rules.items():
@@ -181,7 +192,6 @@ class EnderMagnoliaWorld(World):
             region = self.get_region(src)
             region.add_exits([dst], {dst: rule});
 
-
         # connect levy progressive locations
         for (src, dst), rule in levy_rules.items():
             region = self.get_region(src)
@@ -199,9 +209,10 @@ class EnderMagnoliaWorld(World):
         # central elevator requirements
         rule = elevator_rules.get(self.options.central_elevator_fix.value)
         if rule is not None:
-            location = self.get_location("Street 11 - Street Elevator Fixed")
-            for entrance in location.parent_region.entrances:
-                self.set_rule(entrance, rule)
+            region = self.get_location("Street 11 - Street Elevator Fixed").parent_region
+            for entrance in region.entrances:
+                self.set_rule(entrance, False_())
+            self.get_region("Menu").add_exits([region.name], {region.name: rule})
 
         # Goal
         self.set_completion_rule(completion_rules[self.options.goal.value])

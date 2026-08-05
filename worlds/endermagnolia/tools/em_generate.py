@@ -14,8 +14,12 @@ TEMPLATES_DIR = "templates"
 ERROR_LOG = "generate_error.txt"
 
 
-def write_template(templates_dir: str) -> str:
-    """Regenerate the option template and return its path."""
+def find_template(templates_dir: str) -> str:
+    if os.path.isdir(templates_dir):
+        for name in sorted(os.listdir(templates_dir)):
+            if name.endswith(".yaml"):
+                return os.path.join(templates_dir, name)
+
     from Options import generate_yaml_templates
 
     generate_yaml_templates(templates_dir, False)
@@ -23,7 +27,7 @@ def write_template(templates_dir: str) -> str:
         if name.endswith(".yaml"):
             return os.path.join(templates_dir, name)
 
-    raise Exception(f"Could not generate an option template for {GAME}")
+    raise Exception(f"Could not find an option template for {GAME}")
 
 
 def main() -> None:
@@ -34,16 +38,19 @@ def main() -> None:
     settings.get_settings._cache = settings.Settings(None)
     settings.get_settings().general_options.output_path = target
 
-    template = write_template(os.path.join(here, TEMPLATES_DIR))
+    template = find_template(os.path.join(here, TEMPLATES_DIR))
 
     active_yaml = os.path.join(here, YAML_NAME)
     if not os.path.exists(active_yaml):
         shutil.copyfile(template, active_yaml)
         print(f"Created {YAML_NAME} with default options")
 
+    empty_dir = os.path.join(here, TEMPLATES_DIR, "Presets")
+    os.makedirs(empty_dir, exist_ok=True)
+
     args = Generate.mystery_argparse()
     args.weights_file_path = active_yaml
-    args.player_files_path = os.path.join(here, TEMPLATES_DIR, "Presets")
+    args.player_files_path = empty_dir
     args.multi = 1
     args.outputpath = target
 

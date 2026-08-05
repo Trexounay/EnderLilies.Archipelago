@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Dict, Tuple
 
 from Options import Choice, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range, Toggle
 
@@ -65,6 +66,81 @@ class StartWithHeal(DefaultOnToggle):
     display_name = "Start With Healing Ward"
 
 
+class StartingRespite(Choice):
+    """
+    Determines the respite you start the game at.
+    """
+
+    display_name = "Starting Respite"
+    slot_data = True
+
+    regions: Dict[int, Tuple[str, str]] = {
+        # work vanilla
+        0:  ("sys_init",          "Ruins14Right"),
+        1:  ("sys_post_event",    "Ruins04LowerLeft"),
+        2:  ("ruins_first",       "Ruins06Right"),
+        3:  ("ruins_lab",         "Ruins11Right"),
+        # work with 2 sided doors (ruins10, crossroad5, street3, quarry1)
+        4:  ("crossroad_camp",    "Crossroad05Left"),
+        5:  ("slum_camp",         "Slum01Left"),
+        6:  ("street_clocktower", "Street05Left"),
+        7:  ("street_towergate",  "Street15Left"),
+        8:  ("mine_room1",        "Mine03Lower"),
+        9:  ("mine_room2",        "Mine09Right"),
+        10: ("mine_room3",        "Mine16Left"),
+        12: ("tower_high",        "Tower05Lower"),
+        13: ("tower_low",         "Tower13Lower"),
+        14: ("tower_gate",        "Tower15Left"),
+        15: ("forest_tree",       "Forest02LowerDoor"),
+        18: ("swamp_lake",        "Swamp03Left"),
+        19: ("swamp_center",      "Swamp07Lower"),
+        21: ("quarry_room",       "Quarry13Left"),
+        41: ("estate_room",       "Estate06Lower"),
+        # work with elevator_key
+        24: ("center_bench",      "Center01LeftDoor"),
+        27: ("kowlon_room2",      "Kowloon37Left"),
+        29: ("garden_room",       "Garden09Left"),
+        35: ("paradice_room",     "Paradise10Left"),
+        37: ("paradice_room3",    "Paradise07Left"),
+
+        # dont work
+        #11: ("sewer_left",        "Sewer10Left"),
+        #17: ("forest_village",    "Forest21Left"),
+        #20: ("swamp_trash",       "Swamp14Right"),
+        #22: ("quarry_room2",      "Quarry09Left"),
+        #23: ("quarry_room3",      "Quarry20Left"),
+        #25: ("kowlon_room4",      "Kowloon03Left"),
+        #26: ("kowlon_room",       "Kowloon23Lower"),
+        #28: ("kowloon_room3",     "Kowloon43Left"),
+        #30: ("garden_room2",      "Garden04Left"),
+        #31: ("garden_room3",      "Garden10Left"),
+        #32: ("factory_room",      "Factory03Left"),
+        #33: ("factory_room2",     "Factory11Lower"),
+        #34: ("factory_room3",     "Factory16Left"),
+        #36: ("paradice_room2",    "Paradise31Left"),
+        #38: ("labo_room",         "Labo09Left"),
+        #39: ("labo_room2",        "Labo12Left"),
+        #40: ("labo_room3",        "Labo15Left"),
+        #42: ("summit_lobby",      "Summit20CenterDoor"),
+        #43: ("summit_last",       "Summit26CenterDoor"),
+        #44: ("roots_top",         "Roots07Left"),
+        #45: ("roots_left",        "Roots13Lower"),
+        #46: ("roots_right",       "Roots26Upper"),
+        
+        #16: ("forest_bridge",     ""),
+    }
+
+    vars().update({f"option_{name}": value for value, (name, _) in regions.items()})
+
+    default = 0
+
+    def get_region(self) -> str:
+        return self.regions[self.value][1]
+
+    def requires_elevator(self) -> bool:
+        return self.value in {24, 27, 29, 35, 37}
+
+
 class Goal(Choice):
     """
     Determines the victory condition.
@@ -98,7 +174,7 @@ class CentralElevatorFix(Choice):
     option_key = 1
     option_free = 2
 
-    default = option_vanilla
+    default = option_key
 
 
 class ProgressiveAptitudes(DefaultOnToggle):
@@ -165,6 +241,7 @@ class GenerateSeedFile(Toggle):
 class EnderMagnoliaOptions(PerGameCommonOptions):
     goal: Goal
     starting_skill: StartingSkill
+    starting_respite: StartingRespite
     start_with_fast_travel: StartWithFastTravel
     start_with_heal: StartWithHeal
     central_elevator_fix: CentralElevatorFix
@@ -185,6 +262,7 @@ option_groups = [
     ]),
     OptionGroup("Starting Setup", [
         StartingSkill,
+        StartingRespite,
         StartWithFastTravel,
         StartWithHeal,
     ]),
