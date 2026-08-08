@@ -497,6 +497,10 @@ events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     "levy_treasure"                    : "Meet Levy",
 }.items()}
 
+# items not required by logic
+aptitudes["SP"].classification = IC.useful
+aptitudes["fast_travel"].classification = IC.useful
+aptitudes["heal"].classification = IC.useful
 # items required by logic
 assists["assist_012"].classification = IC.progression
 stats["shop_line_up"].classification = IC.progression

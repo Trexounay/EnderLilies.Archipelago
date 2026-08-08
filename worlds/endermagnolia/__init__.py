@@ -6,6 +6,7 @@ from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
 from .Locations import LocationData, LocationGroup, locations, event_locations
+from .MetaProgression import meta_progression_fill
 from .Options import CentralElevatorFix, EnderMagnoliaOptions, Goal, slot_data_options
 from .Regions import room_connections
 from .Items import (ItemData, ItemGroup, aptitudes, currencies, custom, items, passives, pool,
@@ -106,8 +107,13 @@ class EnderMagnoliaWorld(World):
         remaining.extend(added)
 
         items_pool = [EnderMagnoliaItem.from_data(data, self.player) for data in remaining]
-        items_pool.extend(self.create_filler()
-                          for _ in range(len(self.multiworld.get_unfilled_locations(self.player)) - len(items_pool)))
+
+        target = len(self.multiworld.get_unfilled_locations(self.player))
+        items_pool.extend(self.create_filler() for _ in range(target - len(items_pool)))
+
+        for _ in range(len(items_pool) - target):
+            items_pool.remove(self.create_filler())
+
         self.multiworld.itempool.extend(items_pool)
 
     def collect_item(self, state, item: Item, remove: bool = False) -> Optional[str]:
@@ -216,6 +222,10 @@ class EnderMagnoliaWorld(World):
 
         # Goal
         self.set_completion_rule(completion_rules[self.options.goal.value])
+
+    def pre_fill(self) -> None:
+        if self.options.meta_progression:
+            meta_progression_fill(self)
 
     def get_filler_item_name(self) -> str:
         return currencies["Default"].name

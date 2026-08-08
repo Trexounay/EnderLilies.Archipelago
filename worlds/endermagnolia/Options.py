@@ -188,6 +188,17 @@ class ProgressiveAptitudes(DefaultOnToggle):
     slot_data = True
 
 
+class MetaProgression(Toggle):
+    """
+    Places progression in locations that were just unlocked, so every one you find
+    leads directly to the next one.
+
+    Enabling this keeps every progression item inside your own world.
+    """
+
+    display_name = "Meta Progression"
+
+
 class MinChapter(Range):
     """
     Lowest chapter value used to scale the game difficulty.
@@ -246,6 +257,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     start_with_heal: StartWithHeal
     central_elevator_fix: CentralElevatorFix
     progressive_aptitudes: ProgressiveAptitudes
+    meta_progression: MetaProgression
     min_chapter: MinChapter
     max_chapter: MaxChapter
     relic_cost_shuffle: RelicCostShuffle
@@ -269,6 +281,7 @@ option_groups = [
     OptionGroup("Logic", [
         CentralElevatorFix,
         ProgressiveAptitudes,
+        MetaProgression,
     ]),
     OptionGroup("Misc", [
         MinChapter,
