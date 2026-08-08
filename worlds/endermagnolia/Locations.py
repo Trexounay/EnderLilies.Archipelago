@@ -1,15 +1,7 @@
-from os import name
-from typing import List, Optional, Dict
-from enum import Enum
+from typing import List, Optional, Dict, Set
 from .Items import ItemData, items, events, assists, aptitudes, costumes, currencies,\
    equipments, quests, keys, materials, passives, skills, spirits, stats, tips
-from dataclasses import dataclass, field
-
-
-class LocationGroup(Enum):
-    Boss = 0
-    Event = 1
-    Interactable = 2
+from dataclasses import dataclass, field, replace
 
 
 @dataclass
@@ -19,26 +11,42 @@ class LocationData:
     key: Optional[str] = None
     content: Optional[ItemData] = None
     region: Optional[str] = None
-    group: Optional[LocationGroup] = None
+    group: Optional[str] = None
+
+
+def region_locations(group: Optional[str], rows: Dict[str, tuple]) -> List[LocationData]:
+    locations = []
+    for name, row in rows.items():
+        key, content, *rest = row
+        locations.append(LocationData(
+            name, None, key, content, rest[0] if rest else None, group))
+    return locations
+
+
+def region_events(rows: Dict[str, tuple]) -> List[LocationData]:
+    locations = []
+    for name, row in rows.items():
+        if not isinstance(row, tuple):
+            row = (row,)
+        content, *rest = row
+        locations.append(LocationData(
+            name, None, None, content, rest[0] if rest else None, None))
+    return locations
 
 
 @dataclass()
 class LocationTable():
-    rows: Dict[str, tuple]
+    rows: List[LocationData]
     address: Optional[int] = None
-    event: bool = False
     _locations: Dict[str, LocationData] = field(init=False)
 
     def __post_init__(self):
         address = self.address
         self._locations = {}
-        for name, row in self.rows.items():
-            if not isinstance(row, tuple):
-                row = (row,)
-            key = None if self.event else row[0]
-            content, *rest = row if self.event else row[1:]
-            self._locations[name] = LocationData(
-                name, address, key, content, rest[0] if rest else None)
+        for data in self.rows:
+            if data.name in self._locations:
+                raise ValueError(f"duplicate location: {data.name}")
+            self._locations[data.name] = replace(data, address=address)
             if address is not None:
                 address += 1
 
@@ -60,18 +68,31 @@ class LocationTable():
     def values(self):
         return self._locations.values()
 
+    def groups(self) -> Dict[str, Set[str]]:
+        groups: Dict[str, Set[str]] = {}
+        for name, data in self._locations.items():
+            if data.group:
+                groups.setdefault(data.group, set()).add(name)
+        return groups
 
-locations = LocationTable(address=1, rows={
+
+center = region_locations('Center', {
     "Center 1 - Gilroy":                             ("EVT_ev_s_e6050_Master_Defeat",                           aptitudes["SP"]),
     "Center 1 - Origin Gem Core":                    ("Center_001_Zone_001.BP_Interactable_AddItem_C_1",        materials["parts_lv6_a"]),
     "Center 1 - Huginn":                             ("EVT_ev_n_Levy_Treasure3_002",                            spirits["s5080_hawk"]),
     "Center 2 - Mantle of Milius":                   ("EVT_ev_n_Center_costume_001",                            costumes["p0030"]),
     "Center 3 - Charmed Fragment":                   ("Center_001_Zone_003.BP_Breakable_SpawnItem_Pod_01_C_1",  stats["hp_up_s"]),
     "Center 4 - Faintly Glowing Aegis Curio":        ("EVT_ev_n_Levy_Treasure6_002",                            quests["quest_amulet"]),
+})
+
+crossroad = region_locations('Crossroad', {
     "Crossroad 2 - Charmed Fragment":                ("Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1",     stats["hp_up_s"]),
     "Crossroad 3 - Subterranean Laborer's Code":     ("Crossroad_001_Zone_003.BP_Interactable_AddItem_C_1",     tips["tip_workerscode_01"]),
     "Crossroad 5 - Dodge":                           ("EVT_ev_s_0050_LevyMeeting.1",                            aptitudes["dodge"]),
     "Crossroad 5 - Aerial Jump":                     ("EVT_ev_s_0050_LevyMeeting",                              aptitudes["double_jump"]),
+})
+
+estate = region_locations('Estate', {
     "Estate 2 - Lorna 1":                            ("EVT_ev_s_n5040_Maiden_Defeat",                           spirits["s5040_maiden"]),
     "Estate 2 - Lorna 2":                            ("EVT_ev_s_n5040_Maiden_Defeat.1",                         keys["key_higher_a"]),
     "Estate 3 - Special Alloy Core":                 ("Estate_001_Zone_003.BP_Interactable_AddItem_C_0",        materials["parts_lv5_a"]),
@@ -85,6 +106,9 @@ locations = LocationTable(address=1, rows={
     "Estate 10 - Grimoire":                          ("Estate_001_Zone_010.BP_Interactable_TreasureBox_C_1",    stats["shop_line_up"]),
     "Estate 11 - Special Alloy Core":                ("Estate_001_Zone_011.BP_Interactable_AddItem_C_0",        materials["parts_lv5_a"]),
     "Estate 12 - Frost Confidential Records 1":      ("Estate_001_Zone_012.BP_Interactable_AddItem_C_0",        tips["tip_frostsrecord_01"]),
+})
+
+factory = region_locations('Factory', {
     "Factory 1 - Special Alloy Core":                ("Factory_001_Zone_001.BP_Interactable_AddItem_C_0",       materials["parts_lv5_a"]),
     "Factory 1 - Mysterious Glowing Can":            ("Factory_001_Zone_001.BP_Interactable_AddItem_C_1",       passives["stamina_damage_up_b_1"]),
     "Factory 2 - Worker's Surveillance Records":     ("Factory_001_Zone_002.BP_Interactable_AddItem_C_0",       tips["tip_surveillancerecord_01"]),
@@ -106,6 +130,9 @@ locations = LocationTable(address=1, rows={
     # "Factory 19 - Levy":                             ("Factory_001_Zone_019.BP_Trigger_Event_LevyTreasure_C_0", quests["quest_stone"]),
     "Factory 21 - Document on the Empyrean Parasol": ("EVT_ev_s_0250_KeyFactory.1",                             tips["tip_towerumbrella_01"]),
     "Factory 21 - Milius Lord's Mark":               ("EVT_ev_s_0250_KeyFactory",                               keys["key_higher_b"]),
+})
+
+forest = region_locations('Forest', {
     "Forest 1 - Crimson Bangle":                     ("Forest_001_Zone_001.BP_Interactable_AddItem_C_1",        equipments["armor_008"]),
     "Forest 2 - Obsolete Core":                      ("Forest_001_Zone_002.BP_Interactable_AddItem_C_1",        materials["parts_lv3_b"]),
     "Forest 2 - Words Etched into Stone":            ("Forest_001_Zone_002.BP_Interactable_AddTutorial_C_1",    tips["tip_tombstone_01"]),
@@ -125,6 +152,9 @@ locations = LocationTable(address=1, rows={
     "Forest 23 - Cassia's Grimoire":                 ("Forest_001_Zone_023.BP_Interactable_AddItem_C_3",        tips["tip_cassiabook_01"]),
     "Forest 23 - Incomplete Gear":                   ("EVT_ev_n_Levy_Treasure2_002",                            passives["reduce_gravity"]),
     "Forest 23 - Hati's Charge":                     ("EVT_ev_s_5210_Fenris_Upgrade",                           aptitudes["dash_charge"]),
+})
+
+garden = region_locations('Garden', {
     "Garden 1 - Charmed Fragment 1":                 ("Garden_001_Zone_001.BP_Interactable_AddItem_C_1",        stats["hp_up_s"]),
     "Garden 1 - Charmed Fragment 2":                 ("Garden_001_Zone_001.BP_Interactable_AddItem_C_2",        stats["hp_up_s"]),
     "Garden 1 - Materials":                          ("Garden_001_Zone_001.BP_Interactable_AddItem_C_4",        currencies["Default"]),
@@ -146,6 +176,9 @@ locations = LocationTable(address=1, rows={
     "Garden 8 - Scrap":                              ("Garden_001_Zone_008.BP_Interactable_AddItem_C_1",        currencies["rare"]),
     "Garden 11 - Luiseach":                          ("EVT_ev_s_e5070_Witch_Defeat",                            spirits["s5070_witch"]),
     "Garden 14 - Charmed Fragment":                  ("Garden_001_Zone_014.BP_Interactable_AddItem_C_1",        stats["hp_up_s"]),
+})
+
+kowloon = region_locations('Kowloon', {
     "Kowloon 5 - Mother's Note":                     ("Kowloon_001_Zone_005.BP_Interactable_AddItem_C_0",       tips["tip_mothersnote_01"]),
     "Kowloon 8 - Chief Attuner's Ring":              ("Kowloon_001_Zone_008.BP_Interactable_AddItem_C_1",       passives["restore_sp_up_a_1"]),
     # "Kowloon 9 - Levy":                              ("Kowloon_001_Zone_009.BP_Trigger_Event_LevyTreasure_C_0", quests["quest_bird"]),
@@ -167,6 +200,9 @@ locations = LocationTable(address=1, rows={
     "Kowloon 47 - Charmed Fragment":                 ("Kowloon_001_Zone_047.BP_Interactable_AddItem_C_0",       stats["hp_up_s"]),
     "Kowloon 47 - Origin Gem Core":                  ("Kowloon_001_Zone_047.BP_Interactable_AddItem_C_2",       materials["parts_lv6_a"]),
     "Kowloon 51 - No.7":                             ("EVT_ev_s_e5050_Ronin_Defeat",                            spirits["s5050_ronin"]),
+})
+
+labo = region_locations('Labo', {
     "Labo 1 - Lilia's Diary":                        ("Labo_001_Zone_001.BP_Interactable_AddItem_C_0",          tips["tip_liliasdiary_01"]),
     "Labo 3 - Aggressor":                            ("EVT_ev_s_e5003_Reaper_Defeat",                           materials["parts_s5000_a"]),
     "Labo 6 - Echo Device":                          ("Labo_001_Zone_006.BP_Interactable_TreasureBox_C_0",      passives["damage_up_skillcategory_combo_1"]),
@@ -185,6 +221,9 @@ locations = LocationTable(address=1, rows={
     "Labo 24 - Grimoire":                            ("Labo_001_Zone_024.BP_Interactable_TreasureBox_C_0",      stats["shop_line_up"]),
     "Labo 26 - Materials":                           ("Labo_001_Zone_026.BP_Interactable_AddItem_C_0",          currencies["Default"]),
     "Labo 27 - Origin Gem Core":                     ("Labo_001_Zone_027.BP_Interactable_TreasureBox_C_1",      materials["parts_lv6_a"]),
+})
+
+mine = region_locations('Mine', {
     "Mine 2 - Helix Crystal":                        ("Mine_001_Zone_002.BP_Interactable_AddItem_C_1",          passives["onkill_restorehp_1"]),
     "Mine 4 - Miner Unit":                           ("EVT_ev_s_e0122_Wheeler_Defeat",                          materials["parts_lv2_b"]),
     "Mine 4 - Writing Etched Into the Wall":         ("Mine_001_Zone_004.BP_Interactable_AddItem_C_1",          tips["tip_writingwall_01"]),
@@ -202,6 +241,9 @@ locations = LocationTable(address=1, rows={
     "Mine 14 - Notification of Restricted Areas":    ("Mine_001_Zone_014.BP_Interactable_AddItem_C_0",          tips["tip_tunerjournal_01"]),
     # "Mine 14 - Levy":                                ("Mine_001_Zone_014.BP_Trigger_Event_LevyTreasure_C_0",    quests["quest_board"]),
     "Mine 17 - Garm":                                ("EVT_ev_s_e5200_Pounder_Defeat",                          aptitudes["pile_attack"]),
+})
+
+paradise = region_locations('Paradise', {
     "Paradise 1 - Charmed Fragment 1":               ("Paradise_001_Zone_001.BP_Interactable_AddItem_C_1",      stats["hp_up_s"]),
     "Paradise 1 - Charmed Fragment 2":               ("Paradise_001_Zone_001.BP_Interactable_AddItem_C_2",      stats["hp_up_s"]),
     "Paradise 2 - Declan's Records":                 ("Paradise_001_Zone_002.BP_Interactable_AddItem_C_0",      tips["tip_degrandsrecord_01"]),
@@ -221,6 +263,9 @@ locations = LocationTable(address=1, rows={
     "Paradise 32 - Unidentified Transformer":        ("Paradise_001_Zone_032.BP_Interactable_AddItem_C_0",      materials["parts_s5000_c"]),
     "Paradise 33 - Headless Gold Statue":            ("Paradise_001_Zone_033.BP_Interactable_AddItem_C_0",      passives["onkill_drops_1"]),
     "Paradise 34 - Cracked Magicite Dagger":         ("Paradise_001_Zone_034.BP_Interactable_TreasureBox_C_1",  passives["damage_up_skillcategory_special_1"]),
+})
+
+quarry = region_locations('Quarry', {
     "Quarry 1 - Survey Teams Notes":                 ("Quarry_001_Zone_001.BP_Interactable_AddTutorial_C_0",    tips["tip_freeze_01"]),
     "Quarry 2 - Charmed Fragment":                   ("Quarry_001_Zone_002.BP_Interactable_AddItem_C_2",        stats["hp_up_s"]),
     "Quarry 3 - Tattered Notice":                    ("Quarry_001_Zone_003.BP_Interactable_AddItem_C_0",        tips["tip_raggedpastedown_01"]),
@@ -242,6 +287,9 @@ locations = LocationTable(address=1, rows={
     "Quarry 21 - Jagged Crystal":                    ("Quarry_001_Zone_021.BP_Interactable_AddItem_C_2",        passives["damage_up_minhp_1"]),
     "Quarry 24 - Materials":                         ("Quarry_001_Zone_024.BP_Interactable_AddItem_C_0",        currencies["Default"]),
     "Quarry 31 - Lar's Grip":                        ("EVT_ev_s_n7043_Quarry_Tuner",                            aptitudes["wall_grab"]),
+})
+
+roots = region_locations('Roots', {
     "Roots 1 - Reibolg 2":                           ("EVT_ev_s_e5012_RootsLancer_Defeat.1",                    quests["quest_eye"]),
     "Roots 1 - Reibolg 1":                           ("EVT_ev_s_e5012_RootsLancer_Defeat",                      spirits["s5010_lancer"]),
     "Roots 2 - White Priestess' Attire":             ("EVT_ev_s_FinalRelic.1",                                  costumes["p0050"]),
@@ -262,6 +310,9 @@ locations = LocationTable(address=1, rows={
     "Roots 28 - Origin Gem Core":                    ("Roots_001_Zone_028.BP_Interactable_AddItem_C_0",         materials["parts_lv6_a"]),
     "Roots 29 - Charmed Ore":                        ("Roots_001_Zone_029.BP_Interactable_AddItem_C_0",         stats["hp_up_l"]),
     "Roots 30 - Unidentified Amplifier":             ("Roots_001_Zone_030.BP_Interactable_AddItem_C_0",         materials["parts_s5000_b"]),
+})
+
+ruins = region_locations('Ruins', {
     "Ruins 4 - Nola":                                ("EVT_ev_s_0020_NoraMeeting",                              spirits["s5000_reaper"]),
     "Ruins 5 - Charmed Fragment":                    ("Ruins_001_Zone_005.BP_Interactable_AddItem_C_1",         stats["hp_up_s"]),
     "Ruins 12 - Lito":                               ("EVT_ev_s_e5030_Rogue_Defeat",                            spirits["s5030_rogue"]),
@@ -269,6 +320,9 @@ locations = LocationTable(address=1, rows={
     "Ruins 13 - Homunculus Research Log 1":          ("Ruins_001_Zone_013.BP_Interactable_AddItem_C_1",         tips["tip_homunculusrecord_01"]),
     "Ruins 14 - Worn Experiment Log":                ("Ruins_001_Zone_014.BP_Interactable_AddItem_C_1",         tips["tip_ruinsrecords_01"]),
     "Ruins 15 - Healing Ward":                       ("EVT_ev_s_0015_GetHeal",                                  aptitudes["heal"]),
+})
+
+sewer = region_locations('Sewer', {
     "Sewer 1 - Corroded Warning Sign":               ("Sewer_001_Zone_001.BP_Interactable_AddItem_C_0",         tips["tip_corrosionboard_01"]),
     "Sewer 2 - Grimoire":                            ("Sewer_001_Zone_002.BP_Interactable_TreasureBox_C_1",     stats["shop_line_up"]),
     "Sewer 4 - Materials":                           ("Sewer_001_Zone_004.BP_Interactable_AddItem_C_1",         currencies["Default"]),
@@ -283,6 +337,9 @@ locations = LocationTable(address=1, rows={
     "Sewer 13 - Unidentified Core":                  ("Sewer_001_Zone_013.BP_Interactable_AddItem_C_0",         materials["parts_s5000_a"]),
     "Sewer 15 - Charmed Fragment":                   ("Sewer_001_Zone_015.BP_Interactable_AddItem_C_0",         stats["hp_up_s"]),
     "Sewer 17 - Chloe's Bracelet":                   ("Sewer_001_Zone_017.BP_Interactable_TreasureBox_C_0",     equipments["armor_007"]),
+})
+
+slum = region_locations('Slum', {
     "Slum 1 - Tattered Letter":                      ("Slum_001_Zone_001.BP_Interactable_AddItem_C_1",          tips["tip_tunerletter_01"]),
     "Slum 1 - Eye of the Homunculus":                ("Slum_001_Zone_001.BP_Interactable_AddItem_C_2",          passives["junk_up_1"]),
     "Slum 1 - Levy's Mantle":                        ("EVT_ev_n_Levy_Treasure4_002",                            costumes["p0040"]),
@@ -290,6 +347,9 @@ locations = LocationTable(address=1, rows={
     "Slum 1 - Fast Travel":                          ("EVT_ev_s_0070_GordonReport",                             aptitudes["fast_travel"]),
     "Slum 1 - Charmed Ore":                          ("EVT_ev_n_Levy_Treasure1_002",                            stats["hp_up_l"]),
     "Slum 2 - Charmed Fragment":                     ("Slum_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1",    stats["hp_up_s"]),
+})
+
+street = region_locations('Street', {
     "Street 2 - Worries of a Sorcerer":              ("Street_001_Zone_002.BP_Interactable_AddItem_C_0",        tips["tip_painting_01"]),
     "Street 3 - Sanguinary Raven":                   ("Street_001_Zone_003.BP_Interactable_AddItem_C_0",        passives["damage_up_airborne_1"]),
     "Street 4 - Yolvan":                             ("EVT_ev_s_e5110_Gunman_Defeat",                           spirits["s5110_gunman"]),
@@ -305,6 +365,9 @@ locations = LocationTable(address=1, rows={
     "Street 19 - Broken Warning Sign":               ("Street_001_Zone_019.BP_Interactable_AddItem_C_1",        tips["tip_tornletter_01"]),
     "Street 20 - Tavern Bulletin Board":             ("Street_001_Zone_020.BP_Interactable_AddItem_C_0",        tips["tip_townboard_01"]),
     "Street 21 - Materials":                         ("Street_001_Zone_021.BP_Interactable_AddItem_C_0",        currencies["Default"]),
+})
+
+summit = region_locations('Summit', {
     "Summit 1 - Upper Stratum Communication Device": ("Summit_001_Zone_001.BP_Interactable_AddItem_C_1",        tips["tip_upperterminal_01"]),
     "Summit 4 - Administrator's Amplifier":          ("Summit_001_Zone_004.BP_Interactable_AddItem_C_0",        materials["parts_lv6_b"]),
     "Summit 7 - Administrator's Amplifier":          ("Summit_001_Zone_007.BP_Interactable_AddItem_C_0",        materials["parts_lv6_b"]),
@@ -325,6 +388,9 @@ locations = LocationTable(address=1, rows={
     "Summit 27 - Motley's Communication Device":     ("Summit_001_Zone_027.BP_Interactable_AddItem_C_0",        tips["tip_motleysterminal_01"]),
     "Summit 28 - Charmed Fragment":                  ("Summit_001_Zone_028.BP_Interactable_AddItem_C_0",        stats["hp_up_s"]),
     "Summit 30 - Charmed Fragment":                  ("Summit_001_Zone_030.BP_Interactable_AddItem_C_0",        stats["hp_up_s"]),
+})
+
+swamp = region_locations('Swamp', {
     "Swamp 2 - Materials":                           ("Swamp_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1",   currencies["Default"]),
     "Swamp 2 - Letter in a Bottle":                  ("Swamp_001_Zone_002.BP_Interactable_AddItem_C_2",         tips["tip_vials_01"]),
     "Swamp 2 - Vivid Claws":                         ("Swamp_001_Zone_002.BP_Interactable_AddItem_C_3",         passives["damage_up_targetdebuffed_1"]),
@@ -342,6 +408,9 @@ locations = LocationTable(address=1, rows={
     "Swamp 18 - Charmed Fragment":                   ("Swamp_001_Zone_018.BP_Interactable_AddItem_C_1",         stats["hp_up_s"]),
     "Swamp 19 - Materials":                          ("Swamp_001_Zone_019.BP_Interactable_AddItem_C_1",         currencies["Default"]),
     "Swamp 20 - Cleaner's Tag":                      ("Swamp_001_Zone_020.BP_Interactable_AddItem_C_1",         passives["damage_up_targetstunned_1"]),
+})
+
+tower = region_locations('Tower', {
     "Tower 1 - Charmed Fragment":                    ("Tower_001_Zone_001.BP_Breakable_SpawnItem_Pod_01_C_1",   stats["hp_up_s"]),
     "Tower 4 - Blighted Dice":                       ("Tower_001_Zone_004.BP_Breakable_SpawnItem_Box_01_C_2",   passives["experience_up_1"]),
     "Tower 4 - Magic Vial":                          ("Tower_001_Zone_004.BP_Breakable_SpawnItem_Pod_01_C_2",   stats["passive_slot_s"]),
@@ -359,167 +428,153 @@ locations = LocationTable(address=1, rows={
     "Tower 16 - Shackled Beast":                     ("EVT_ev_s_e5060_Beast_Defeat",                            spirits["s5060_beast"]),
     "Tower 18 - Homunculus Research Log 2":          ("Tower_001_Zone_018.BP_Interactable_AddItem_C_0",         tips["tip_homunculusrecord_02"]),
     "Tower 19 - Eye of the Ancients":                ("Tower_001_Zone_019.BP_Interactable_TreasureBox_C_1",     passives["reduce_skill_cooldown_1"]),
+})
 
-    # Shop
+shop = region_locations('Shop', {
     "Shop Level 1 - Slot 1":                         ("DT_Shop_Main.1.0",                                       stats["passive_slot_s"],              "Shop Level 1"),
     "Shop Level 1 - Slot 2":                         ("DT_Shop_Main.1.1",                                       equipments["armor_001"],              "Shop Level 1"),
     "Shop Level 1 - Slot 3":                         ("DT_Shop_Main.1.2",                                       equipments["armor_002"],              "Shop Level 1"),
-
     "Shop Level 2 - Slot 1":                         ("DT_Shop_Main.2.0",                                       equipments["armor_003"],              "Shop Level 2"),
     "Shop Level 2 - Slot 2":                         ("DT_Shop_Main.2.1",                                       materials["parts_lv2_c"],             "Shop Level 2"),
-
     "Shop Level 3 - Slot 1":                         ("DT_Shop_Main.3.0",                                       equipments["armor_004"],              "Shop Level 3"),
     "Shop Level 3 - Slot 2":                         ("DT_Shop_Main.3.1",                                       equipments["armor_005"],              "Shop Level 3"),
-
     "Shop Level 4 - Slot 1":                         ("DT_Shop_Main.4.0",                                       equipments["shield_001"],             "Shop Level 4"),
     "Shop Level 4 - Slot 2":                         ("DT_Shop_Main.4.1",                                       equipments["shield_002"],             "Shop Level 4"),
     "Shop Level 4 - Slot 3":                         ("DT_Shop_Main.4.2",                                       materials["parts_lv3_c"],             "Shop Level 4"),
-
     "Shop Level 5 - Slot 1":                         ("DT_Shop_Main.5.0",                                       equipments["armor_006"],              "Shop Level 5"),
     "Shop Level 5 - Slot 2":                         ("DT_Shop_Main.5.1",                                       passives["heal_short"],               "Shop Level 5"),
     "Shop Level 5 - Slot 3":                         ("DT_Shop_Main.5.2",                                       passives["higher_mobility"],          "Shop Level 5"),
-
     "Shop Level 6 - Slot 1":                         ("DT_Shop_Main.6.0",                                       equipments["armor_009"],              "Shop Level 6"),
     "Shop Level 6 - Slot 2":                         ("DT_Shop_Main.6.1",                                       equipments["armor_010"],              "Shop Level 6"),
     "Shop Level 6 - Slot 3":                         ("DT_Shop_Main.6.2",                                       equipments["shield_003"],             "Shop Level 6"),
     "Shop Level 6 - Slot 4":                         ("DT_Shop_Main.6.3",                                       equipments["shield_004"],             "Shop Level 6"),
-
     "Shop Level 7 - Slot 1":                         ("DT_Shop_Main.7.0",                                       assists["assist_002"],                "Shop Level 7"),
     "Shop Level 7 - Slot 2":                         ("DT_Shop_Main.7.1",                                       assists["assist_003"],                "Shop Level 7"),
     "Shop Level 7 - Slot 3":                         ("DT_Shop_Main.7.2",                                       assists["assist_004"],                "Shop Level 7"),
     "Shop Level 7 - Slot 4":                         ("DT_Shop_Main.7.3",                                       assists["assist_005"],                "Shop Level 7"),
     "Shop Level 7 - Slot 5":                         ("DT_Shop_Main.7.4",                                       materials["parts_lv4_c"],             "Shop Level 7"),
-
     "Shop Level 8 - Slot 1":                         ("DT_Shop_Main.8.0",                                       equipments["armor_011"],              "Shop Level 8"),
     "Shop Level 8 - Slot 2":                         ("DT_Shop_Main.8.1",                                       equipments["armor_012"],              "Shop Level 8"),
     "Shop Level 8 - Slot 3":                         ("DT_Shop_Main.8.2",                                       passives["dodge_long"],               "Shop Level 8"),
-
     "Shop Level 9 - Slot 1":                         ("DT_Shop_Main.9.0",                                       equipments["shield_005"],             "Shop Level 9"),
     "Shop Level 9 - Slot 2":                         ("DT_Shop_Main.9.1",                                       equipments["shield_006"],             "Shop Level 9"),
     "Shop Level 9 - Slot 3":                         ("DT_Shop_Main.9.2",                                       equipments["shield_007"],             "Shop Level 9"),
     "Shop Level 9 - Slot 4":                         ("DT_Shop_Main.9.3",                                       stats["hp_up_l"],                     "Shop Level 9"),
-
     "Shop Level 10 - Slot 1":                        ("DT_Shop_Main.10.0",                                      equipments["armor_013"],              "Shop Level 10"),
     "Shop Level 10 - Slot 2":                        ("DT_Shop_Main.10.1",                                      equipments["armor_016"],              "Shop Level 10"),
     "Shop Level 10 - Slot 3":                        ("DT_Shop_Main.10.2",                                      materials["parts_lv5_c"],             "Shop Level 10"),
-
     "Shop Level 11 - Slot 1":                        ("DT_Shop_Main.11.0",                                      assists["assist_007"],                "Shop Level 11"),
     "Shop Level 11 - Slot 2":                        ("DT_Shop_Main.11.1",                                      assists["assist_008"],                "Shop Level 11"),
     "Shop Level 11 - Slot 3":                        ("DT_Shop_Main.11.2",                                      assists["assist_011"],                "Shop Level 11"),
     "Shop Level 11 - Slot 4":                        ("DT_Shop_Main.11.3",                                      assists["assist_012"],                "Shop Level 11"),
-
     "Shop Level 12 - Slot 1":                        ("DT_Shop_Main.12.0",                                      equipments["armor_017"],              "Shop Level 12"),
     "Shop Level 12 - Slot 2":                        ("DT_Shop_Main.12.1",                                      equipments["armor_018"],              "Shop Level 12"),
     "Shop Level 12 - Slot 3":                        ("DT_Shop_Main.12.2",                                      passives["exploration_charge_short"], "Shop Level 12"),
-
     "Shop Level 13 - Slot 1":                        ("DT_Shop_Main.13.0",                                      stats["passive_slot_s"],              "Shop Level 13"),
     "Shop Level 13 - Slot 2":                        ("DT_Shop_Main.13.1",                                      equipments["armor_019"],              "Shop Level 13"),
     "Shop Level 13 - Slot 3":                        ("DT_Shop_Main.13.2",                                      materials["parts_lv6_c"],             "Shop Level 13"),
+})
 
-    # Levy
+levy = region_locations('Levy', {
     "Levy Quest Reward 1":                           ("EVT_ev_n_Levy_Treasure1_001",                            quests["quest_artifact"]),
     "Levy Quest Reward 2":                           ("EVT_ev_n_Levy_Treasure2_001",                            quests["quest_stone"]),
     "Levy Quest Reward 3":                           ("EVT_ev_n_Levy_Treasure3_001",                            quests["quest_bird"]),
     "Levy Quest Reward 4":                           ("EVT_ev_n_Levy_Treasure4_001",                            quests["quest_board"]),
     "Levy Quest Reward 5":                           ("EVT_ev_n_Levy_Treasure5_001",                            quests["quest_perfume"]),
+})
 
-    # Extra
+starting = region_locations(None, {
     "Starting Skill":                                ("starting_skill",                                         None,                                 "Menu"),
 })
 
+locations = LocationTable(address=1, rows=[
+    *center, *crossroad, *estate, *factory, *forest, *garden, *kowloon, *labo, *mine,
+    *paradise, *quarry, *roots, *ruins, *sewer, *slum, *street, *summit, *swamp, *tower, *shop,
+    *levy, *starting,
+])
 
-event_locations = LocationTable(event=True, rows={
-    "Garden 5 - Students Saved":                               (events["EVT_ev_s_n0233_RescueSuccess_001"]),
-    "Forest 23 - Lily in Crimson Forest":                      (events["EVT_ev_n_LilyEvent_Forest_001"]),
-    "Garden 13 - Lily in Sorcerer Academy":                    (events["EVT_ev_n_LilyEvent_Garden_001"]),
-    "Roots 2 - Lily in Land of Origin":                        (events["EVT_ev_s_LilyEvent_Roots_002"]),
-    "Street 11 - Street Elevator Fixed":                       (events["EVT_ev_s_0180_StreetElevatorFix"]),
-    "Swamp 17 - Unlock Relic Refinery":                        (events["EVT_ev_s_n7042_Swamp_Tuner"]),
-    "Garden 5 - Defeat Eliza":                                 (events["EVT_ev_s_e0233_Researcher_Defeat"]),
-    'Paradise 03 - Banshee Message':                           (events["EVT_ev_s_e0289_BansheeMessage"]),
-
-    "Center 5 - Lever":                                        (events["center05right_lever"]),
-    "Estate 6 - Lever":                                        (events["estate06right_lever"]),
-    "Forest 19 - Lever":                                       (events["forest19right_lever"]),
-    "Forest 2 - Lever":                                        (events["forest02right_lever"]),
-    "Forest 3 - Lever":                                        (events["forest03right_lever"]),
-    "Garden 2 - Center Lever":                                 (events["garden02center_lever"]),
-    "Garden 2 - Left Lever":                                   (events["garden02left_lever"]),
-    "Garden 2 - Lower Left Lever":                             (events["garden02lowerleft_lever"]),
-    "Garden 2 - Lower Right Left Lever":                       (events["garden02lowerrightleft_lever"]),
-    "Garden 2 - Lower Right Right Lever":                      (events["garden02lowerrightright_lever"]),
-
-
-    "Garden 2 - Student 1":                                    (events["EVT_ev_n_Student_a_001"]),
-    "Garden 2 - Student 2":                                    (events["EVT_ev_n_Student_b_001"]),
-    "Garden 2 - Student 3":                                    (events["EVT_ev_n_Student_c_001"]),
-    "Garden 6 - Student 1":                                    (events["EVT_ev_n_Student_d_001"]),
-    "Garden 6 - Student 2":                                    (events["EVT_ev_n_Student_e_001"]),
-
-
-    "Kowloon 6 - Lever":                                       (events["kowloon06right_lever"]),
-    "Kowloon 15 - Lever":                                      (events["kowloon15lower_lever"]),
-    "Kowloon 34 - Lever":                                      (events["kowloon34lower_lever"]),
-    "Kowloon 36 - Lever":                                      (events["kowloon36left_lever"]),
-    "Kowloon 40 - Lever":                                      (events["kowloon40right_lever"]),
-    "Kowloon 42 - Lever":                                      (events["kowloon42upper_lever"]),
-    "Kowloon 9 - Lever":                                       (events["kowloon09upper_lever"]),
-    "Labo 18 - Lever":                                         (events["labo18right_lever"]),
-    "Labo 19 - Lever":                                         (events["labo19left_lever"]),
-    "Labo 3 - Left Lever":                                     (events["labo03left_lever"]),
-    "Labo 3 - Right Lever":                                    (events["labo03right_lever"]),
-    "Labo 5 - Lower Lever":                                    (events["labo05lower_lever"]),
-    "Labo 5 - Upper Lever":                                    (events["labo05upper_lever"]),
-    "Mine 13 - Lever":                                         (events["mine13right_lever"]),
-    "Mine 4 - Lever":                                          (events["mine04right_lever"]),
-    "Mine 8 - Lever":                                          (events["mine08right_lever"]),
-    "Paradise 19 - Lever":                                     (events["paradise19center_lever"]),
-    "Paradise 4 - Lever":                                      (events["paradise04left_lever"]),
-    "Quarry 15 - Lever":                                       (events["quarry15upper_lever"]),
-    "Roots 11 - Lever":                                        (events["roots11lower_lever"]),
-    "Roots 20 - Lever":                                        (events["roots20upper_lever"]),
-    "Ruins 7 - Lever":                                         (events["ruins07upperright_lever"]),
-    "Sewer 15 - Lever":                                        (events["sewer15lower_lever"]),
-    "Street 2 - Lever":                                        (events["street02left_lever"]),
-    "Street 5 - Lever":                                        (events["street05lowerright_lever"]),
-    "Summit 16 - Lever":                                       (events["summit16right_lever"]),
-    "Summit 20 - Lever":                                       (events["summit20upper_lever"]),
-    "Summit 23 - Left Lever":                                  (events["summit23left_lever"]),
-    "Summit 23 - Upper Lever":                                 (events["summit23upper_lever"]),
-    "Summit 25 - Right Lever":                                 (events["summit25right_lever"]),
-    "Summit 25 - Upper Lever":                                 (events["summit25upper_lever"]),
-    "Summit 27 - Lever":                                       (events["summit27upper_lever"]),
-    "Summit 8 - Lever":                                        (events["summit08lowerright_lever"]),
-    "Swamp 10 - Lever":                                        (events["swamp10upper_lever"]),
-    "Swamp 11 - Left Lever":                                   (events["swamp11left_lever"]),
-    "Swamp 11 - Right Lever":                                  (events["swamp11right_lever"]),
-    "Swamp 12 - Lever":                                        (events["swamp12left_lever"]),
-    "Tower 1 - Lever":                                         (events["tower01centerright_lever"]),
-
-    # attached to an existing location's region
-    "Center 1 - Defeat Gilroy":                                (events["EVT_ev_s_e6050_Master_Defeat"],        "Center 1 - Gilroy"),
-    "Mine 4 - Defeat Miner Unit":                              (events["EVT_ev_s_e0122_Wheeler_Defeat"],       "Mine 4 - Miner Unit"),
-    "Mine 9 - Heath Mine":                                     (events["EVT_ev_s_0080_FrostAndOwl"],           "Mine 9 - Muninn"),
-    "Quarry 31 - Joran Intro":                                 (events["EVT_ev_s_n7043_Quarry_Tuner"],         "Quarry 31 - Lar's Grip"),
-    "Street 4 - Defeat Yolvan":                                (events["EVT_ev_s_e5110_Gunman_Defeat"],        "Street 4 - Yolvan"),
-    "Street 17 - Defeat City Stratum Guard":                   (events["EVT_ev_s_e0030_Guard_Defeat"],         "Street 17 - City Stratum Guard"),
-    "Summit 30 - Ending":                                      (events["Ending"],                              "Summit 30 - Charmed Fragment"),
-    "Swamp 15 - Defeat Motley":                                (events["EVT_ev_s_e6010_Cluster_Defeat"],       "Swamp 15 - Motley"),
-
-    "Roots 5 - Levy":                                          (events['EVT_ev_n_Levy_Treasure6_001'],         "Roots 5 - Stele of the Land of Origin"),
-	"Roots 1 - Defeat Reibolg":                                (events['EVT_ev_s_e5012_RootsLancer_Defeat'],   "Roots 1 - Reibolg 1"),
-	"Mine 17 - Defeat Garm":                                   (events['EVT_ev_s_e5200_Pounder_Defeat'],       "Mine 17 - Garm"),
-	"Forest 22 - Defeat Veol":                                 (events['EVT_ev_s_e6000_Rider_Defeat'],         "Forest22Left"),
-    
-    "Estate 7 - Levy":                                         (events["levy_treasure"]),
-    "Factory 19 - Levy":                                       (events["levy_treasure"]),
-    "Kowloon 9 - Levy":                                        (events["levy_treasure"]),
-    "Mine 14 - Levy":                                          (events["levy_treasure"]),
-    "Quarry 3 - Levy":                                         (events["levy_treasure"]),
-
-    "Meet Levy 1 time":                                        (events["EVT_ev_n_Levy_Treasure1_001"],         "Levy Quest Reward 1"),
-    "Meet Levy 2 times":                                       (events["EVT_ev_n_Levy_Treasure2_001"],         "Levy Quest Reward 2"),
-    "Meet Levy 3 times":                                       (events["EVT_ev_n_Levy_Treasure3_001"],         "Levy Quest Reward 3"),
-    "Meet Levy 4 times":                                       (events["EVT_ev_n_Levy_Treasure4_001"],         "Levy Quest Reward 4"),
-    "Meet Levy 5 times":                                       (events["EVT_ev_n_Levy_Treasure5_001"],         "Levy Quest Reward 5"),
-})
+event_locations = LocationTable(rows=region_events({
+    "Center 1 - Defeat Gilroy":                  (events["EVT_ev_s_e6050_Master_Defeat"],        "Center 1 - Gilroy"),
+    "Center 5 - Lever":                          events["center05right_lever"],
+    "Estate 6 - Lever":                          events["estate06right_lever"],
+    "Estate 7 - Levy":                           events["levy_treasure"],
+    "Factory 19 - Levy":                         events["levy_treasure"],
+    "Forest 2 - Lever":                          events["forest02right_lever"],
+    "Forest 3 - Lever":                          events["forest03right_lever"],
+    "Forest 19 - Lever":                         events["forest19right_lever"],
+    "Forest 22 - Defeat Veol":                   (events["EVT_ev_s_e6000_Rider_Defeat"],         "Forest22Left"),
+    "Forest 23 - Lily in Crimson Forest":        events["EVT_ev_n_LilyEvent_Forest_001"],
+    "Garden 2 - Center Lever":                   events["garden02center_lever"],
+    "Garden 2 - Left Lever":                     events["garden02left_lever"],
+    "Garden 2 - Lower Left Lever":               events["garden02lowerleft_lever"],
+    "Garden 2 - Lower Right Left Lever":         events["garden02lowerrightleft_lever"],
+    "Garden 2 - Lower Right Right Lever":        events["garden02lowerrightright_lever"],
+    "Garden 2 - Student 1":                      events["EVT_ev_n_Student_a_001"],
+    "Garden 2 - Student 2":                      events["EVT_ev_n_Student_b_001"],
+    "Garden 2 - Student 3":                      events["EVT_ev_n_Student_c_001"],
+    "Garden 5 - Defeat Eliza":                   events["EVT_ev_s_e0233_Researcher_Defeat"],
+    "Garden 5 - Students Saved":                 events["EVT_ev_s_n0233_RescueSuccess_001"],
+    "Garden 6 - Student 1":                      events["EVT_ev_n_Student_d_001"],
+    "Garden 6 - Student 2":                      events["EVT_ev_n_Student_e_001"],
+    "Garden 13 - Lily in Sorcerer Academy":      events["EVT_ev_n_LilyEvent_Garden_001"],
+    "Kowloon 6 - Lever":                         events["kowloon06right_lever"],
+    "Kowloon 9 - Lever":                         events["kowloon09upper_lever"],
+    "Kowloon 9 - Levy":                          events["levy_treasure"],
+    "Kowloon 15 - Lever":                        events["kowloon15lower_lever"],
+    "Kowloon 34 - Lever":                        events["kowloon34lower_lever"],
+    "Kowloon 36 - Lever":                        events["kowloon36left_lever"],
+    "Kowloon 40 - Lever":                        events["kowloon40right_lever"],
+    "Kowloon 42 - Lever":                        events["kowloon42upper_lever"],
+    "Labo 3 - Left Lever":                       events["labo03left_lever"],
+    "Labo 3 - Right Lever":                      events["labo03right_lever"],
+    "Labo 5 - Lower Lever":                      events["labo05lower_lever"],
+    "Labo 5 - Upper Lever":                      events["labo05upper_lever"],
+    "Labo 18 - Lever":                           events["labo18right_lever"],
+    "Labo 19 - Lever":                           events["labo19left_lever"],
+    "Meet Levy 1 time":                          (events["EVT_ev_n_Levy_Treasure1_001"],         "Levy Quest Reward 1"),
+    "Meet Levy 2 times":                         (events["EVT_ev_n_Levy_Treasure2_001"],         "Levy Quest Reward 2"),
+    "Meet Levy 3 times":                         (events["EVT_ev_n_Levy_Treasure3_001"],         "Levy Quest Reward 3"),
+    "Meet Levy 4 times":                         (events["EVT_ev_n_Levy_Treasure4_001"],         "Levy Quest Reward 4"),
+    "Meet Levy 5 times":                         (events["EVT_ev_n_Levy_Treasure5_001"],         "Levy Quest Reward 5"),
+    "Mine 4 - Defeat Miner Unit":                (events["EVT_ev_s_e0122_Wheeler_Defeat"],       "Mine 4 - Miner Unit"),
+    "Mine 4 - Lever":                            events["mine04right_lever"],
+    "Mine 8 - Lever":                            events["mine08right_lever"],
+    "Mine 9 - Heath Mine":                       (events["EVT_ev_s_0080_FrostAndOwl"],           "Mine 9 - Muninn"),
+    "Mine 13 - Lever":                           events["mine13right_lever"],
+    "Mine 14 - Levy":                            events["levy_treasure"],
+    "Mine 17 - Defeat Garm":                     (events["EVT_ev_s_e5200_Pounder_Defeat"],       "Mine 17 - Garm"),
+    "Paradise 03 - Banshee Message":             events["EVT_ev_s_e0289_BansheeMessage"],
+    "Paradise 4 - Lever":                        events["paradise04left_lever"],
+    "Paradise 19 - Lever":                       events["paradise19center_lever"],
+    "Quarry 3 - Levy":                           events["levy_treasure"],
+    "Quarry 15 - Lever":                         events["quarry15upper_lever"],
+    "Quarry 31 - Joran Intro":                   (events["EVT_ev_s_n7043_Quarry_Tuner"],         "Quarry 31 - Lar's Grip"),
+    "Roots 1 - Defeat Reibolg":                  (events["EVT_ev_s_e5012_RootsLancer_Defeat"],   "Roots 1 - Reibolg 1"),
+    "Roots 2 - Lily in Land of Origin":          events["EVT_ev_s_LilyEvent_Roots_002"],
+    "Roots 5 - Levy":                            (events["EVT_ev_n_Levy_Treasure6_001"],         "Roots 5 - Stele of the Land of Origin"),
+    "Roots 11 - Lever":                          events["roots11lower_lever"],
+    "Roots 20 - Lever":                          events["roots20upper_lever"],
+    "Ruins 7 - Lever":                           events["ruins07upperright_lever"],
+    "Sewer 15 - Lever":                          events["sewer15lower_lever"],
+    "Street 2 - Lever":                          events["street02left_lever"],
+    "Street 4 - Defeat Yolvan":                  (events["EVT_ev_s_e5110_Gunman_Defeat"],        "Street 4 - Yolvan"),
+    "Street 5 - Lever":                          events["street05lowerright_lever"],
+    "Street 11 - Street Elevator Fixed":         events["EVT_ev_s_0180_StreetElevatorFix"],
+    "Street 17 - Defeat City Stratum Guard":     (events["EVT_ev_s_e0030_Guard_Defeat"],         "Street 17 - City Stratum Guard"),
+    "Summit 8 - Lever":                          events["summit08lowerright_lever"],
+    "Summit 16 - Lever":                         events["summit16right_lever"],
+    "Summit 20 - Lever":                         events["summit20upper_lever"],
+    "Summit 23 - Left Lever":                    events["summit23left_lever"],
+    "Summit 23 - Upper Lever":                   events["summit23upper_lever"],
+    "Summit 25 - Right Lever":                   events["summit25right_lever"],
+    "Summit 25 - Upper Lever":                   events["summit25upper_lever"],
+    "Summit 27 - Lever":                         events["summit27upper_lever"],
+    "Summit 30 - Ending":                        (events["Ending"],                              "Summit 30 - Charmed Fragment"),
+    "Swamp 10 - Lever":                          events["swamp10upper_lever"],
+    "Swamp 11 - Left Lever":                     events["swamp11left_lever"],
+    "Swamp 11 - Right Lever":                    events["swamp11right_lever"],
+    "Swamp 12 - Lever":                          events["swamp12left_lever"],
+    "Swamp 15 - Defeat Motley":                  (events["EVT_ev_s_e6010_Cluster_Defeat"],       "Swamp 15 - Motley"),
+    "Swamp 17 - Unlock Relic Refinery":          events["EVT_ev_s_n7042_Swamp_Tuner"],
+    "Tower 1 - Lever":                           events["tower01centerright_lever"],
+}))

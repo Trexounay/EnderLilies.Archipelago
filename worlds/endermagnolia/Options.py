@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import Dict, Tuple
 
-from Options import Choice, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range, Toggle
+from Options import (Choice, DefaultOnToggle, OptionGroup, PerGameCommonOptions, Range,
+                     StartInventoryPool, Toggle)
 
 from .Items import skills
 
@@ -12,6 +13,7 @@ class StartingSkill(Choice):
     """
 
     display_name = "Starting Skill"
+    slot_data = True
 
     option_nola_spirit_piercer = 0
     option_nola_soul_harvester = 1
@@ -174,7 +176,7 @@ class CentralElevatorFix(Choice):
     option_key = 1
     option_free = 2
 
-    default = option_key
+    default = option_vanilla
 
 
 class ProgressiveAptitudes(DefaultOnToggle):
@@ -250,6 +252,7 @@ class GenerateSeedFile(Toggle):
 
 @dataclass
 class EnderMagnoliaOptions(PerGameCommonOptions):
+    start_inventory_from_pool: StartInventoryPool
     goal: Goal
     starting_skill: StartingSkill
     starting_respite: StartingRespite
@@ -268,7 +271,7 @@ slot_data_options = [name for name, option in EnderMagnoliaOptions.type_hints.it
                      if getattr(option, "slot_data", False)]
 
 
-option_groups = [
+em_option_groups = [
     OptionGroup("Goal", [
         Goal,
     ]),

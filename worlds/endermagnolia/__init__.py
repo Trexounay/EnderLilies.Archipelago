@@ -5,9 +5,9 @@ from rule_builder.rules import False_
 from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
-from .Locations import LocationData, LocationGroup, locations, event_locations
-from .MetaProgression import meta_progression_fill
-from .Options import CentralElevatorFix, EnderMagnoliaOptions, Goal, slot_data_options
+from .Locations import LocationData, locations, event_locations
+from .Options import (CentralElevatorFix, em_option_groups, EnderMagnoliaOptions, Goal,
+                      slot_data_options)
 from .Regions import room_connections
 from .Items import (ItemData, ItemGroup, aptitudes, currencies, custom, items, passives, pool,
                     progressive_chains, quests, stats)
@@ -21,6 +21,7 @@ from .gen.EventsRules import rules as events_rules
 class EnderMagnoliaWebWorld(WebWorld):
     game = ENDERMAGNOLIA
     theme = "dirt"
+    option_groups = em_option_groups
     tutorials = [Tutorial(
         "Ender Magnolia Setup Guide",
         "TODO",
@@ -51,14 +52,30 @@ class EnderMagnoliaWorld(World):
     
     # locations
     location_name_to_id = {name: data.address for name, data in locations.items()}
-    location_name_groups = {group.name: {name for name, data in locations.items() if data.group == group}
-                            for group in LocationGroup}
-    location_name_groups = {group: names for group, names in location_name_groups.items() if names}
+    location_name_groups = locations.groups()
+
+    @staticmethod
+    def interpret_slot_data(slot_data: Mapping[str, Any]) -> Mapping[str, Any]:
+        """Used by Universal Tracker, return value is passed to multiworld.re_gen_passthrough"""
+        return slot_data
 
     def generate_early(self) -> None:
+        if hasattr(self.multiworld, "re_gen_passthrough") and self.game in self.multiworld.re_gen_passthrough:
+            for key, value in self.multiworld.re_gen_passthrough[self.game].items():
+                if hasattr(self.options, key):
+                    getattr(self.options, key).value = value
+                else:
+                    setattr(self, key, value)
+
         if (self.options.starting_respite.requires_elevator()
                 and self.options.central_elevator_fix == CentralElevatorFix.option_vanilla):
             self.options.central_elevator_fix.value = CentralElevatorFix.option_free
+
+        start_inventory = self.options.start_inventory_from_pool.value
+        if self.options.start_with_fast_travel:
+            start_inventory[aptitudes["fast_travel"].name] = 1
+        if self.options.start_with_heal:
+            start_inventory[aptitudes["heal"].name] = 1
 
     def create_item(self, item: str) -> EnderMagnoliaItem:
         return EnderMagnoliaItem.from_name(item, self.player)
@@ -67,20 +84,13 @@ class EnderMagnoliaWorld(World):
         removed: List[ItemData] = []
         added: List[ItemData] = []
         placed: List[Tuple[ItemData, str]] = []
-        precollected: List[ItemData] = []
-        
+
         starting_skill = self.options.starting_skill.get_skill_name()
         placed.append((items[starting_skill], "Starting Skill"))
 
         if self.options.goal == Goal.option_ending_b:
             placed.append((passives["ending_flag"], "Roots 2 - Lilia's Blighted Ring"))
             placed.append((quests["quest_amulet"], "Center 4 - Faintly Glowing Aegis Curio"))
-
-        if self.options.start_with_fast_travel:
-            precollected.append(aptitudes["fast_travel"])
-
-        if self.options.start_with_heal:
-            precollected.append(aptitudes["heal"])
 
         if self.options.central_elevator_fix == CentralElevatorFix.option_key:
             added.append(custom["Grand Lift Key"])
@@ -95,11 +105,7 @@ class EnderMagnoliaWorld(World):
             item.classification = ItemClassification.progression
             self.get_location(location).place_locked_item(item)
 
-        for data in precollected:
-            self.multiworld.push_precollected(EnderMagnoliaItem.from_data(data, self.player))
-
         removed.extend(data for data, _ in placed)
-        removed.extend(precollected)
 
         remaining = list(pool)
         for data in removed:
@@ -107,13 +113,8 @@ class EnderMagnoliaWorld(World):
         remaining.extend(added)
 
         items_pool = [EnderMagnoliaItem.from_data(data, self.player) for data in remaining]
-
-        target = len(self.multiworld.get_unfilled_locations(self.player))
-        items_pool.extend(self.create_filler() for _ in range(target - len(items_pool)))
-
-        for _ in range(len(items_pool) - target):
-            items_pool.remove(self.create_filler())
-
+        items_pool.extend(self.create_filler()
+                          for _ in range(len(self.multiworld.get_unfilled_locations(self.player)) - len(items_pool)))
         self.multiworld.itempool.extend(items_pool)
 
     def collect_item(self, state, item: Item, remove: bool = False) -> Optional[str]:
