@@ -1,21 +1,10 @@
-from itertools import combinations
-from typing import Collection, List, NamedTuple, Optional, Set, Tuple
+from typing import Collection, Dict, List, NamedTuple, Optional, Set, Tuple
 
 from BaseClasses import CollectionState, Item, Location
 from Fill import FillError, sweep_from_pool
 from worlds.AutoWorld import World
 
-MAX_ATTEMPTS = 5
 MAX_BACKTRACKS = 200
-
-CONJUNCTIONS = [
-    ("Frost Lord's Mark", "Milius Lord's Mark"),
-    ("Blighted Pupil", "Stele of the Land of Origin"),
-    ("Dive", "Motley's Torrent"),
-    ("Lar's Grip", "Lar's Swift Flight"),
-    ("Progressive Dive", "Progressive Dive"),
-    ("Progressive Lar's Grip", "Progressive Lar's Grip"),
-]
 
 Unit = List[Item]
 Placement = Tuple[Location, Item]
@@ -26,35 +15,9 @@ class Frame(NamedTuple):
     seen: Set[Location]
     spheres: List[List[Location]]
     used: Set[Location]
-    units: List[Unit]
+    items: List[Item]
     placements: List[Placement]
     candidates: Optional[List[Unit]]
-
-
-def build_units(items: List[Item]) -> List[Unit]:
-    units: List[Unit] = [[item] for item in items]
-    for names in CONJUNCTIONS:
-        pool = list(items)
-        bundle: Unit = []
-        for name in names:
-            index = next((i for i, item in enumerate(pool) if item.name == name), None)
-            if index is None:
-                break
-            bundle.append(pool.pop(index))
-        if len(bundle) == len(names):
-            units.append(bundle)
-    return units
-
-
-def distinct(units: List[Unit]) -> List[Item]:
-    known: Set[int] = set()
-    items: List[Item] = []
-    for unit in units:
-        for item in unit:
-            if id(item) not in known:
-                known.add(id(item))
-                items.append(item)
-    return items
 
 
 class Chain:
@@ -76,15 +39,15 @@ class Chain:
         return sum(1 for location in frame.spheres[-1]
                    if location.item is None and location not in frame.used)
 
-    def emerging_pair(self, frame: Frame) -> List[Unit]:
-        loners = [unit[0] for unit in frame.units if len(unit) == 1]
-        pairs = list(combinations(loners, 2))
-        self.random.shuffle(pairs)
-        for first, second in pairs:
-            pair = [first, second]
-            if self.opens_new(frame, pair):
-                return [pair]
-        return []
+    def minimal_group(self, frame: Frame, blocked: List[Item]) -> Unit:
+        group = blocked
+        order = list(blocked)
+        self.random.shuffle(order)
+        for item in order:
+            trial = [other for other in group if other is not item]
+            if trial and self.opens_new(frame, trial):
+                group = trial
+        return group
 
     def place_unit(self, frame: Frame, unit: Unit) -> Optional[Frame]:
         state = frame.state.copy()
@@ -107,36 +70,44 @@ class Chain:
         fresh = [location for location in found if location not in frame.seen]
 
         taken = {id(item) for item in unit}
-        units = [rest for rest in frame.units if not any(id(item) in taken for item in rest)]
-        return Frame(state, set(found), frame.spheres + [fresh], used, units, placements, None)
+        items = [item for item in frame.items if id(item) not in taken]
+        return Frame(state, set(found), frame.spheres + [fresh], used, items, placements, None)
 
     def expand(self, frame: Frame) -> Frame:
-        ready = [unit for unit in frame.units if self.opens_new(frame, unit)]
-        alone = {id(unit[0]) for unit in ready if len(unit) == 1}
-        candidates = [unit for unit in ready
-                      if len(unit) == 1 or not any(id(item) in alone for item in unit)]
+        ready: List[Unit] = []
+        blocked: List[Item] = []
+        opens: Dict[str, bool] = {}
+        for item in frame.items:
+            if item.name not in opens:
+                opens[item.name] = self.opens_new(frame, [item])
+                if opens[item.name]:
+                    ready.append([item])
+            if not opens[item.name]:
+                blocked.append(item)
 
-        if not candidates and self.free_slots(frame) >= 2:
-            candidates = self.emerging_pair(frame)
+        candidates = ready
+        room = self.free_slots(frame)
+        if len(blocked) >= 2 and room >= 2 and self.opens_new(frame, blocked):
+            group = self.minimal_group(frame, blocked)
+            if len(group) <= room:
+                candidates = ready + [group]
 
         self.random.shuffle(candidates)
         return frame._replace(candidates=candidates)
 
-    def build(self, units: List[Unit]) -> Tuple[List[Placement], List[Item]]:
+    def build(self, items: List[Item]) -> Tuple[List[Placement], List[Item]]:
         state = sweep_from_pool(CollectionState(self.world.multiworld), locations=self.locations)
         found = self.reachable(state)
-        current = Frame(state, set(found), [found], set(), units, [], None)
+        current = Frame(state, set(found), [found], set(), items, [], None)
 
         stack: List[Frame] = []
         budget = MAX_BACKTRACKS
 
-        while current.units:
+        while current.items:
             if current.candidates is None:
                 current = self.expand(current)
-                if not current.candidates:
-                    rest = distinct(current.units)
-                    if not self.opens_new(current, rest):
-                        return current.placements, rest
+                if not current.candidates and not self.opens_new(current, current.items):
+                    return current.placements, current.items
 
             child = None
             while current.candidates and child is None:
@@ -162,15 +133,7 @@ def meta_progression_fill(world: World) -> None:
     if not items:
         return
 
-    chain = Chain(world)
-    units = build_units(items)
-    for attempt in range(MAX_ATTEMPTS):
-        try:
-            placements, dropped = chain.build(units)
-            break
-        except FillError:
-            if attempt == MAX_ATTEMPTS - 1:
-                raise
+    placements, dropped = Chain(world).build(items)
 
     chained = {id(item) for item in items}
     world.multiworld.itempool[:] = [item for item in world.multiworld.itempool

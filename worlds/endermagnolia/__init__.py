@@ -6,6 +6,7 @@ from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
 from .Locations import LocationData, locations, event_locations
+from .MetaProgression import meta_progression_fill
 from .Options import (CentralElevatorFix, em_option_groups, EnderMagnoliaOptions, Goal,
                       slot_data_options)
 from .Regions import room_connections
