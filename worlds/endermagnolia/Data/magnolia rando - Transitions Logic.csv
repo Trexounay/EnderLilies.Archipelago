@@ -582,7 +582,9 @@ Kowloon 9,Kowloon09Upper,Kowloon07Lower,Kowloon09HiddenRight + wall_grab + (dodg
 Kowloon 10,Kowloon10Left,Kowloon07Right,Kowloon10Right + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + (wall_grab | high_jump)),Done,"Added double_jump + dodge + (wall_grab | high_jump)
 barely reaches",,Kowloon10Right + (hook | (WALL_DASH + (double_jump | high_jump))),Kowloon10Right + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + (wall_grab | high_jump))
 Kowloon 10,Kowloon10Lower,Kowloon13UpperLeft,"((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH | dodge))))
-+ pile_attack",Done,Added double_jump + dodge also reaches,,"((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH))))
++ pile_attack",Done,Added double_jump + dodge also reaches,"Im not sure this is correct with double_jump + high_jump?
+I think this involves ""sprinting"" in air
+double_jump while sprinting works...","((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH))))
 + pile_attack","((Kowloon10Left | Kowloon10Right) + (hook | (double_jump + (high_jump | WALL_DASH | dodge))))
 + pile_attack"
 Kowloon 10,Kowloon10Right,Kowloon15LowerLeft,Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump),Done,basically same as 243 except wall_grab option is out of reach,double_jump + dodge also is sufficient WITH GRAV (8/1),Kowloon10Left + (hook | (double_jump + (high_jump | WALL_DASH))),Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump)
@@ -830,10 +832,10 @@ Kowloon 38,Kowloon38Left,Kowloon40Right,"(Kowloon38UpperRight + (Kowloon42Left +
 More logic from UpperRight to add? (hook + (double_jump | dodge)) | high_jump | ((WALL_DASH | dodge) + double_jump)","this UpperRight logic conflicts with other entrances; those assume the WALL_DASH wall is already broken, this one does not?","((Kowloon38UpperRight + (Kowloon42Left + WALL_DASH)))
 | (Kowloon38CenterRight + (high_jump | (hook + (dodge | double_jump)) | (wall_grab + double_jump + dodge)))
 | (Kowloon38LowerRight + (high_jump | (hook + wall_grab + (dodge | double_jump) | (wall_grab + dodge + double_jump)))
-+ Kowloon40Right_Lever)","(Kowloon42Left + WALL_DASH)
-| (Kowloon38CenterRight + (high_jump | (hook + (dodge | double_jump)) | (wall_grab + double_jump + dodge)))
-| (Kowloon38LowerRight + (high_jump | (hook + wall_grab + (dodge | double_jump) | (wall_grab + dodge + double_jump)))
-+ Kowloon40Right_Lever)"
++ Kowloon40Right_Lever)","(Kowloon42Left + WALL_DASH
+| Kowloon38CenterRight + (high_jump | hook + (dodge | double_jump) | wall_grab + double_jump + dodge)
+| Kowloon38LowerRight + (high_jump | hook + wall_grab + (dodge | double_jump) | wall_grab + dodge + double_jump))
++ Kowloon40Right_Lever"
 Kowloon 38,Kowloon38LowerRight,Kowloon26Left,"(Kowloon38Left + (high_jump | hook | double_jump | dodge | WALL_DASH))
 | (Kowloon38CenterRight | Kowloon38UpperRight)",Unsure,Added high_jump (from Left),,,"(Kowloon38Left + (high_jump | hook | double_jump | dodge | WALL_DASH))
 | (Kowloon38CenterRight | Kowloon38UpperRight)"
@@ -1063,12 +1065,12 @@ Mine 4,Mine04Left,Mine12Right,Mine04Upper + Mine04Right_Lever,Done,,,,Mine04Uppe
 Mine 4,Mine04Upper,Mine02LowerLeft,Mine04Left,Done,Still need to hit Right_Lever?,,,Mine04Left
 Mine 5,Mine05Left,Mine06Right,Mine05Upper,Done,,,,Mine05Upper
 Mine 5,Mine05Upper,Mine03Lower,Mine05Left + high_jump + dodge,Done,,,,Mine05Left + high_jump + dodge
-Mine 6,Mine06Left,Mine07Right,Mine06Right,Done,,,,Mine06Right
-Mine 6,Mine06Lower,Mine07HiddenRight,None,Done,,,,None
-Mine 6,Mine06Right,Mine05Left,Mine06Left ,Done,,,,Mine06Left 
-Mine 7,Mine07HiddenRight,Mine06Lower,Mine07Right | Mine07LowerLeft | Mine07UpperLeft,Done,,,,Mine07Right | Mine07LowerLeft | Mine07UpperLeft
+Mine 6,Mine06UpperLeft,Mine07Right,Mine06Right,Done,,,,Mine06Right
+Mine 6,Mine06LowerLeft,Mine07HiddenRight,None,Done,,,,None
+Mine 6,Mine06Right,Mine05Left,Mine06UpperLeft ,Done,,,,Mine06UpperLeft 
+Mine 7,Mine07HiddenRight,Mine06LowerLeft,Mine07Right | Mine07LowerLeft | Mine07UpperLeft,Done,,,,Mine07Right | Mine07LowerLeft | Mine07UpperLeft
 Mine 7,Mine07LowerLeft,Mine11Right,Mine07Right | Mine07UpperLeft | Mine07HiddenRight,Done,,,,Mine07Right | Mine07UpperLeft | Mine07HiddenRight
-Mine 7,Mine07Right,Mine06Left,Mine07LowerLeft | Mine07UpperLeft | Mine07HiddenRight,Done,,,,Mine07LowerLeft | Mine07UpperLeft | Mine07HiddenRight
+Mine 7,Mine07Right,Mine06UpperLeft,Mine07LowerLeft | Mine07UpperLeft | Mine07HiddenRight,Done,,,,Mine07LowerLeft | Mine07UpperLeft | Mine07HiddenRight
 Mine 7,Mine07UpperLeft,Mine09Right,Mine07LowerLeft | Mine07HiddenRight | Mine07Right,Done,,,,Mine07LowerLeft | Mine07HiddenRight | Mine07Right
 Mine 8,Mine08Right,Mine10Left,Mine08Upper + pile_attack + (double_jump | high_jump | wall_grab),Done,to include Right_Lever?,,,Mine08Upper + pile_attack + (double_jump | high_jump | wall_grab)
 Mine 8,Mine08Upper,Mine17Lower,None,Done,,,,None
@@ -1911,7 +1913,7 @@ Swamp 5,Swamp05Right,Swamp18Left,"(Swamp05Lower + (high_jump + (dodge + double_j
 Swamp 6,Swamp06Lower,Swamp07Upper,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive,Done,"added wall_grab to pile_attack
 also funny, pile_attack high enough (thru hook or WALL_DASH)? means dive is NOT required; potentially softlocks in next zone :) (should be able to warp to the respite though?)",,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack) + dive,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive
 Swamp 6,Swamp06Right,Swamp05Left,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive,Done,added hook capabilities,,Swamp06Lower + (high_jump | double_jump) + dive,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive
-Swamp 7,Swamp07Lower,Swamp08Upper,Swamp07Upper + dive,Done,for Future Transitions Logic : pile_attack + MOON actually allows for no dive !,,,Swamp07Upper + dive
+Swamp 7,Swamp07Lower,Swamp08Upper,Swamp07Upper + dive,Done,for Future Transitions Logic : pile_attack + moon actually allows for no dive !,,,Swamp07Upper + dive
 Swamp 7,Swamp07Upper,Swamp06Lower,Swamp07Lower + dive,Done,,,,Swamp07Lower + dive
 Swamp 8,Swamp08Lower,Swamp10UpperLeft,(Swamp08Upper | Swamp08Right) + dive,Done,,,,(Swamp08Upper | Swamp08Right) + dive
 Swamp 8,Swamp08Right,Swamp09Left,Swamp08Upper | Swamp08Lower + dive + (wall_grab | double_jump | high_jump),Done,"no requirements from Upper :)

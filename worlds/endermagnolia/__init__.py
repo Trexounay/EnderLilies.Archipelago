@@ -10,13 +10,18 @@ from .MetaProgression import meta_progression_fill
 from .Options import (CentralElevatorFix, em_option_groups, EnderMagnoliaOptions, Goal,
                       slot_data_options)
 from .Regions import room_connections
-from .Items import (ItemData, ItemGroup, aptitudes, currencies, custom, items, passives, pool,
-                    progressive_chains, quests, stats)
+from .Items import (ItemData, ItemGroup, advanced_logic_items, aptitudes, currencies, custom,
+                    items, passives, pool, progressive_chains, quests, stats)
 from .Rules import completion_rules, elevator_rules, items_rules, levy_rules, shop_rules, shop_item_rule
 from .Types import ENDERMAGNOLIA, EnderMagnoliaItem, EnderMagnoliaLocation, EnderMagnoliaEvent
+
 from .gen.TransitionsRules import rules as transitions_rules
 from .gen.LocationsRules import rules as locations_rules
 from .gen.EventsRules import rules as events_rules
+
+from .gen.TransitionsAdvancedRules import rules as transitions_rules_adv
+from .gen.LocationsAdvancedRules import rules as locations_rules_adv
+from .gen.EventsAdvancedRules import rules as events_rules_adv
 
 
 class EnderMagnoliaWebWorld(WebWorld):
@@ -79,7 +84,10 @@ class EnderMagnoliaWorld(World):
             start_inventory[aptitudes["heal"].name] = 1
 
     def create_item(self, item: str) -> EnderMagnoliaItem:
-        return EnderMagnoliaItem.from_name(item, self.player)
+        created = EnderMagnoliaItem.from_name(item, self.player)
+        if self.options.advanced_logic and created.name in advanced_logic_items:
+            created.classification = ItemClassification.progression
+        return created
 
     def create_items(self) -> None:
         removed: List[ItemData] = []
@@ -113,7 +121,7 @@ class EnderMagnoliaWorld(World):
             remaining.remove(data)
         remaining.extend(added)
 
-        items_pool = [EnderMagnoliaItem.from_data(data, self.player) for data in remaining]
+        items_pool = [self.create_item(data.name) for data in remaining]
         items_pool.extend(self.create_filler()
                           for _ in range(len(self.multiworld.get_unfilled_locations(self.player)) - len(items_pool)))
         self.multiworld.itempool.extend(items_pool)
@@ -154,6 +162,11 @@ class EnderMagnoliaWorld(World):
         parent_region.locations.append(location)
         return location
 
+    def add_advanced_exits(self, rules: Mapping[Tuple[str, str], Any]) -> None:
+        for (src, dst), rule in rules.items():
+            region = self.get_region(src)
+            region.add_exits({dst: f"{src} -> {dst} (advanced)"}, {dst: rule});
+
     def create_regions(self) -> None:
         # For each room entrances we create a region (need to happen first)
         menu = self.create_region("Menu")
@@ -171,7 +184,7 @@ class EnderMagnoliaWorld(World):
         # connect rooms entrances (room1left <-> room1right)
         for (src, dst), rule in transitions_rules.items():
             region = self.get_region(src)
-            region.add_exits([dst], {dst: rule});
+            region.add_exits([dst], {dst: rule})
 
         # the shop and one region per shop level
         for name in {dst for _, dst in shop_rules}:
@@ -188,22 +201,28 @@ class EnderMagnoliaWorld(World):
         # connect locations to rooms entrances
         for (src, dst), rule in locations_rules.items():
             region = self.get_region(src)
-            region.add_exits([dst], {dst: rule});
+            region.add_exits([dst], {dst: rule})
 
         # connect events to rooms entrances
         for (src, dst), rule in events_rules.items():
             region = self.get_region(src)
-            region.add_exits([dst], {dst: rule});
+            region.add_exits([dst], {dst: rule})
+
+        # if advanced logic
+        if self.options.advanced_logic:
+            self.add_advanced_exits(transitions_rules_adv)
+            self.add_advanced_exits(locations_rules_adv)
+            self.add_advanced_exits(events_rules_adv)
 
         # connect the shop and its levels
         for (src, dst), rule in shop_rules.items():
             region = self.get_region(src)
-            region.add_exits([dst], {dst: rule});
+            region.add_exits([dst], {dst: rule})
 
         # connect levy progressive locations
         for (src, dst), rule in levy_rules.items():
             region = self.get_region(src)
-            region.add_exits([dst], {dst: rule});
+            region.add_exits([dst], {dst: rule})
 
     def set_rules(self) -> None:
         # set items rules

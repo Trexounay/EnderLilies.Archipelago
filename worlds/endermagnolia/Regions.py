@@ -745,14 +745,14 @@ room_connections_data = {
         ("Mine05Upper", "Mine03Lower"),
     ],
     "Mine 6": [
-        ("Mine06Left", "Mine07Right"),
-        ("Mine06Lower", "Mine07HiddenRight"),
+        ("Mine06UpperLeft", "Mine07Right"),
+        ("Mine06LowerLeft", "Mine07HiddenRight"),
         ("Mine06Right", "Mine05Left"),
     ],
     "Mine 7": [
-        ("Mine07HiddenRight", "Mine06Lower"),
+        ("Mine07HiddenRight", "Mine06LowerLeft"),
         ("Mine07LowerLeft", "Mine11Right"),
-        ("Mine07Right", "Mine06Left"),
+        ("Mine07Right", "Mine06UpperLeft"),
         ("Mine07UpperLeft", "Mine09Right"),
     ],
     "Mine 8": [
