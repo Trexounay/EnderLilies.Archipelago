@@ -1,0 +1,111 @@
+Room,Name,Item,Logic,Status,Comment,Aloha Suggested (Enhanced version),notes,TODO comments (delete when DONE),,,,,,,,,,,
+Garden 2,Garden 2 - Left Lever,garden02left_lever,"Garden02Right + (high_jump | double_jump + dodge + wall_grab)
+| (Garden02LowerRight + (Garden02LowerRightLeft_Lever | Garden02LowerRightRight_Lever)) + (high_jump | double_jump + dodge + wall_grab)",Not Labbed,,,,,,,,,,,,,,,Garden 2 - Left Lever
+Garden 2,Garden 2 - Lower Left Lever,garden02lowerleft_lever,Garden02LowerLeft,Done,,N/A,,,,,,,,,,,,,Garden 2 - Lower Left Lever
+Garden 2,Garden 2 - Lower Right Left Lever,garden02lowerrightleft_lever,Garden02Right,Done,,N/A,,,,,,,,,,,,,Garden 2 - Lower Right Left Lever
+Garden 2,Garden 2 - Lower Right Right Lever,garden02lowerrightright_lever,Garden02Right,Done,,N/A,,,,,,,,,,,,,Garden 2 - Lower Right Right Lever
+Garden 2,Garden 2 - Center Lever,garden02center_lever,"Garden02Right | 
+Garden02LowerRight + (Garden02LowerRightLeft_Lever | Garden02LowerRightRight_Lever + (high_jump | double_jump + wall_grab)) |
+Garden02Left + (Garden02Left_Lever + (high_jump | double_jump + wall_grab) | hook + (double_jump | wall_grab + dodge)) | 
+Garden02LowerLeft + Garden02LowerLeft_Lever + Garden02Left_Lever + (high_jump | (hook | wall_grab) + double_jump | hook + wall_grab + dodge)",Not Labbed,,,,,,,,,,,,,,,Garden 2 - Center Lever
+Garden 2,Garden 2 - Student 1,EVT_ev_n_Student_a_001,"(Garden02Right + (high_jump | wall_grab + double_jump))
+| (Garden02LowerRight + (Garden02LowerRightRight_Lever | Garden02LowerRightLeft_Lever) + (high_jump | (wall_grab + double_jump))) 
+| ((Garden02Left | Garden02LowerLeft) + (high_jump | (double_jump + wall_grab)))",Not Labbed,SAME AS 69 LOCATIONS LOGIC,SAME AS 69 LOCATIONS LOGIC,SAME AS 69 LOCATIONS LOGIC,"Skipping Students for now
+
+SAME AS 69 LOCATIONS LOGIC","Naming convention of levers is like:
+BP_Interactable_Door_C_0
+
+ LIST of Garden2 Levers
+C0 : is labeled 13 in screenshot; required for treasure box c1
+C1: lever for Student1 door
+C4 : lever to enter area for Student1 from vertical drop
+C5 : lever for LowerRight Right side
+C6 : dubbed ""CenterLever"" , supports unique Left scenarios
+C7 : lever for LowerRight Left side
+C8 : this lever required to enter from Left areas
+C10: lever for C8 access
+C11: lever for Student3 door
+C12: lever for exiting LowerLeft",,,,,,,,,,
+Garden 2,Garden 2 - Student 2,EVT_ev_n_Student_b_001,(Garden02Right | (Garden02LowerRight + (Garden02LowerRightLeft_Lever | garden02lowerrightright_lever)) | (Garden02Left | Garden02LowerLeft + (garden02lowerleft_lever + Garden02Left_Lever)))  + (high_jump | (wall_grab + double_jump + dodge)),Not Labbed,,"Garden02Right + (high_jump | snow + ReiBlast | double_jump + (snow | moon | STALL + grav | FLOWER2 + ReiBlast) | wall_grab + (snow | moon | double_jump | STALL + grav | FLOWER2 | dodge + (scythe | axe))) 
+| (Garden02LowerLeft | Garden02Left) + (high_jump + (snow | double_jump + (axe | moon | FLOWER2) | grav + (scythe | sword) + (moon | flower | double_jump | dodge) | axe + grav + (moon | flower | dodge)) | wall_grab + (snow + double_jump + dodge + axe | STALL + grav + double_jump + (snow | dodge) | grav + (scythe | axe) + double_jump + moon))","From Right, there are two main options, Left or Right of the wall gap","Skipping Students for now
+
+From Right: this is probably high_jump | min wall grab reqs | no wall_grab
+
+Lefts can copy row 70?
+LowerRight is same as Right regardless of lever!",,,,,,,,,,,
+Garden 2,Garden 2 - Student 3,EVT_ev_n_Student_c_001,"(Garden02Right + (high_jump | wall_grab + (double_jump | dodge)))
+| (Garden02LowerRight + (garden02lowerrightright_lever | Garden02LowerRightLeft_Lever) + (high_jump | (wall_grab + double_jump))) 
+| ((Garden02Left | Garden02LowerLeft) + (Garden02LowerLeft_Lever + Garden02Left_Lever) + (high_jump | (hook + double_jump + wall_grab)))",Not Labbed,NOTE: this is assuming the player returns to respite after hitting the lever instead of getting stuck in a room with a pile_attack requirement to leave,,"Garden02Right + (high_jump | wall_grab + (double_jump | dodge | STALL | RONIN | ReiBlast) | INSERT movement options after warp)
+Garden02LowerRight + (LeftLever + (high_jump | wall_grab + (double_jump | dodge | STALL | RONIN | ReiBlast) | INSERT movement options after warp) 
+| RightLever + (high_jump | wall_grab + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump))))
+
+(Garden02LowerLeft | Garden02Left) + (high_jump + (snow | double_jump + (axe | moon | FLOWER2) | grav + (scythe | sword) + (moon | flower | double_jump | dodge) | axe + grav + (moon | flower | dodge)) | wall_grab + (snow + double_jump + dodge + axe | STALL + grav + double_jump + (snow | dodge) | grav + (scythe | axe) + double_jump + moon))","Skipping Students for now
+
+From Right: this is high_jump | wall grab reqs | movement options DIRECTLY out of the warp
+
+From LowerRight: LeftLever is same as Right, RightLever this is high_jump | min wall grab reqs | movement options DIRECTLY out of the warp
+
+Lefts can copy row 70 LOCATIONS LOGIC?",,,,,,,,,,,
+Garden 6,Garden 6 - Student 1,EVT_ev_n_Student_d_001,"(Garden06Right + (high_jump | (wall_grab + double_jump + (dodge | hook | wall_charge)))) 
+| (Garden06Left + (high_jump | double_jump | hook + dodge + wall_grab))
+| Garden06UpperDoor",Not Labbed,,"Garden06Right + (high_jump | wall_grab + double_jump + (hook | wall_charge)) 
+| Garden06Left + (high_jump | double_jump)
+| Garden06UpperDoor",From Right: STALL + wall_grab + (moon | snow),Skipping Students for now,,,,,,,,,,,
+Garden 6,Garden 6 - Student 2,EVT_ev_n_Student_e_001,"(Garden06Right + (high_jump | (wall_grab + double_jump + (hook | wall_charge | dodge)))) 
+| (Garden06Left + (high_jump | double_jump | hook + dodge + wall_grab))
+| (Garden06UpperDoor + (high_jump | hook | WALL_DASH | double_jump + dodge))",Not Labbed,,"Garden06Right + (high_jump | wall_grab + double_jump + (hook | wall_charge | dodge)) 
+| Garden06Left + (high_jump | double_jump | hook + dodge + wall_grab)
+| Garden06UpperDoor + (high_jump | hook | WALL_DASH | double_jump + dodge)",From Right: STALL + wall_grab + (moon | snow),Skipping Students for now,,,,,,,,,,,
+Forest 19,Forest 19 - Lever,forest19right_lever,Forest19LowerDoor,Done,,N/A,,,,,,,,,,,,,Forest 19 - Right Lever
+Center 5,Center 5 - Lever,center05right_lever,Center05CenterDoor | Center05LeftDoor | Center05RightDoor,Done,,N/A,,,,,,,,,,,,,Center 5 - Right Lever
+Estate 6,Estate 6 - Lever,estate06right_lever,Estate06Right,Done,,N/A,,,,,,,,,,,,,Estate 6 - Right Lever
+Forest 2,Forest 2 - Lever,forest02right_lever,Forest02Right,Done,,N/A,,,,,,,,,,,,,Forest 2 - Right Lever
+Forest 3,Forest 3 - Lever,forest03right_lever,Forest03LowerRightDoor,Done,,N/A,,,,,,,,,,,,,Forest 3 - Right Lever
+Kowloon 6,Kowloon 6 - Lever,kowloon06right_lever,Kowloon06CenterRight,Done,,N/A,,,,,,,,,,,,,Kowloon 6 - Right Lever
+Kowloon 9,Kowloon 9 - Lever,kowloon09upper_lever,Kowloon09HiddenRight + wall_grab + (dodge | double_jump | high_jump | wall_charge),Not Labbed,,,,,,,,,,,,,,,Kowloon 9 - Upper Lever
+Kowloon 15,Kowloon 15 - Lever,kowloon15lower_lever,Kowloon15Lower + (wall_grab | high_jump),Not Labbed,,,,,,,,,,,,,,,Kowloon 15 - Lower Lever
+Kowloon 34,Kowloon 34 - Lever,kowloon34lower_lever,Kowloon34CenterLeft | Kowloon34UpperLeft | Kowloon34Right,Done,,N/A,,,,,,,,,,,,,Kowloon 34 - Lower Lever
+Kowloon 36,Kowloon 36 - Lever,kowloon36left_lever,Kowloon36UpperLeft | Kowloon36Right + (double_jump | high_jump),Not Labbed,,,,,,,,,,,,,,,Kowloon 36 - Left Lever
+Kowloon 40,Kowloon 40 - Lever,kowloon40right_lever,Kowloon40Left + (wall_grab | high_jump),Not Labbed,,,,,,,,,,,,,,,Kowloon 40 - Right Lever
+Kowloon 42,Kowloon 42 - Lever,kowloon42upper_lever,Kowloon42Left + high_jump,Not Labbed,,,,,,,,,,,,,,,Kowloon 42 - Upper Lever
+Labo 3,Labo 3 - Left Lever,labo03left_lever,Labo03Left,Done,,N/A,,,,,,,,,,,,,Labo 3 - Left Lever
+Labo 3,Labo 3 - Right Lever,labo03right_lever,Labo03Right,Done,,N/A,,,,,,,,,,,,,Labo 3 - Right Lever
+Labo 5,Labo 5 - Lower Lever,labo05lower_lever,Labo05Lower,Done,,N/A,,,,,,,,,,,,,Labo 5 - Lower Lever
+Labo 5,Labo 5 - Upper Lever,labo05upper_lever,Labo05Lower + high_jump,Not Labbed,,,,,,,,,,,,,,,Labo 5 - Upper Lever
+Labo 18,Labo 18 - Lever,labo18right_lever,Labo18RightDoor,Done,,N/A,,,,,,,,,,,,,Labo 18 - Right Lever
+Labo 19,Labo 19 - Lever,labo19left_lever,Labo19Left,Done,,N/A,,,,,,,,,,,,,Labo 19 - Left Lever
+Mine 4,Mine 4 - Lever,mine04_right_lever,Mine04Left,Done,,N/A,,,,,,,,,,,,,Mine 4 - Right Lever
+Mine 8,Mine 8 - Lever,mine08right_lever,Mine08Upper + pile_attack + (double_jump | high_jump | wall_grab),Not Labbed,,,,,,,,,,,,,,,Mine 8 - Right Lever
+Mine 13,Mine 13 - Lever,mine13right_lever,Mine13Left,Done,,N/A,,,,,,,,,,,,,Mine 13 - Right Lever
+Paradise 4,Paradise 4 - Lever,paradise04left_lever,Paradise04Lower | Paradise04LowerRight | Paradise04CenterRight,Done,,N/A,,,,,,,,,,,,,Paradise 4 - Left Lever
+Paradise 19,Paradise 19 - Lever,paradise19center_lever,Paradise19Upper,Done,,N/A,,,,,,,,,,,,,Paradise 19 - Center Lever
+Quarry 15,Quarry 15 - Lever,quarry15upper_lever,(Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + ((double_jump | high_jump) + ((dodge + wall_grab) | WALL_DASH)),Not Labbed,,,,,,,,,,,,,,,Quarry 15 - Upper Lever
+Roots 11,Roots 11 - Lever,roots11lower_lever,Roots11Lower,Done,,N/A,,,,,,,,,,,,,
+Roots 20,Roots 20 - Lever,roots20upper_lever,Roots20Lower + wall_grab + (dodge | double_jump),Not Labbed,,,,,,,,,,,,,,,Roots 20 - Upper Lever
+Ruins 7,Ruins 7 - Lever,ruins07upperright_lever,Ruins07LowerRight | Ruins07LowerLeft,Done,,N/A,,,,,,,,,,,,,Ruins 7 - Upper Right Lever
+Sewer 15,Sewer 15 - Lever,sewer15lower_lever,Sewer15Lower + (high_jump + (dodge | (double_jump + wall_grab)) | hook),Not Labbed,,,,,,,,,,,,,,,Sewer 15 - Lower Lever
+Street 2,Street 2 - Lever,street02left_lever,Street02Right,Done,,N/A,,,,,,,,,,,,,Street 2 - Left Lever
+Street 5,Street 5 - Lever,street05lowerright_lever,Street05Left | Street05UpperRight,Done,,N/A,,,,,,,,,,,,,Street 5 - Lower Right Lever
+Summit 8,Summit 8 - Lever,summit08lowerright_lever,(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + double_jump + wall_grab,Not Labbed,,,,,,,,,,,,,,,Summit 8 - Lower Right Lever
+Summit 16,Summit 16 - Lever,summit16right_lever,Summit16CenterDoor | Summit16Left,Done,,N/A,,,,,,,,,,,,,Summit 16 - Right Lever
+Summit 20,Summit 20 - Lever,summit20upper_lever,Summit20Upper,Done,,N/A,,,,,,,,,,,,,Summit 20 - Upper Lever
+Summit 23,Summit 23 - Upper Lever,summit23upper_lever,Summit23LowerRight + Summit23Left_Lever + wall_grab + (high_jump | double_jump + (dodge | wall_charge)),Not Labbed,,,,,,,,,,,,,,,Summit 23 - Upper Lever
+Summit 23,Summit 23 - Left Lever,summit23left_lever,(Summit21Left | Summit21Lower | Summit21Right) + WALL_DASH,Not Labbed,,,,,,,,,,,,,,,Summit 23 - Left Lever
+Summit 25,Summit 25 - Upper Lever,summit25upper_lever,Summit25LowerRight + (high_jump | double_jump + dodge | wall_charge) + wall_grab,Not Labbed,,,,,,,,,,,,,,,Summit 25 - Upper Lever
+Summit 25,Summit 25 - Right Lever,summit25right_lever,Summit25LowerRight + (high_jump | double_jump + wall_grab),Not Labbed,,,,,,,,,,,,,,,Summit 25 - Right Lever
+Summit 27,Summit 27 - Lever,summit27upper_lever,Summit27LowerRight + (dive + dodge | wall_grab + double_jump + dodge | high_jump + double_jump | WALL_DASH + (double_jump | high_jump)),Not Labbed,,,,,,,,,,,,,,,Summit 27 - Upper Lever
+Swamp 10,Swamp 10 - Lever,swamp10upper_lever,"(Swamp10Left + TORRENT) 
+| ((Swamp10UpperLeft | Swamp10Right) + dive)",Not Labbed,,,,,,,,,,,,,,,Swamp 10 - Upper Lever
+Swamp 11,Swamp 11 - Left Lever,swamp11left_lever,"Swamp11LowerLeft 
++ (double_jump | wall_grab)",Not Labbed,,,,,,,,,,,,,,,Swamp 11 - Left Lever
+Swamp 11,Swamp 11 - Right Lever,swamp11right_lever,Swamp11LowerRight,Done,,N/A,,,,,,,,,,,,,Swamp 11 - Right Lever
+Swamp12,Swamp 12 - Lever,swamp12left_lever,(Swamp12UpperLeft | Swamp12Upper) + pile_attack,Not Labbed,,,,,,,,,,,,,,,Swamp 12 - Left Lever
+Tower 1,Tower 1 - Lever,tower01centerright_lever,Tower01CenterRight,Done,,N/A,,,,,,,,,,,,,Tower 1 - Center Right Lever
+Garden 5,Garden 5 - Students Saved,EVT_ev_s_n0233_RescueSuccess_001,(Garden05Left | Garden05Right) + EVT_ev_s_e0233_Researcher_Defeat + EVT_ev_n_Student_a_001+ EVT_ev_n_Student_b_001 + EVT_ev_n_Student_c_001+ EVT_ev_n_Student_d_001+ EVT_ev_n_Student_e_001,Done,,N/A,,,,,,,,,,,,,
+Garden 5,Garden 5 - Defeat Eliza,EVT_ev_s_e0233_Researcher_Defeat,Garden05Left | Garden05Right,Done,,N/A,,,,,,,,,,,,,
+Forest 23,Forest 23 - Lily in Crimson Forest,EVT_ev_n_LilyEvent_Forest_001,Forest23Left + EVT_ev_n_LilyEvent_Garden_001,Done,,N/A,,,,,,,,,,,,,
+Garden 13,Garden 13 - Lily in Sorcerer Academy,EVT_ev_n_LilyEvent_Garden_001,Garden13Right,Done,,N/A,,,,,,,,,,,,,
+Roots 2,Roots 2 - Lily in Land of Origin,EVT_ev_s_LilyEvent_Roots_002,Roots02Right + EVT_ev_n_LilyEvent_Forest_001,Done,,N/A,,,,,,,,,,,,,
+Street 11,Street 11 - Street Elevator Fixed,EVT_ev_s_0180_StreetElevatorFix,(Street11Right | Street11Left) + EVT_ev_s_n7043_Quarry_Tuner + EVT_ev_s_n7042_Swamp_Tuner + EVT_ev_s_e6010_Cluster_Defeat + EVT_ev_s_0080_FrostAndOwl,Done,,N/A,,,,,,,,,,,,,
+Swamp 17,Swamp 17 - Unlock Relic Refinery,EVT_ev_s_n7042_Swamp_Tuner,Swamp17Left + EVT_ev_s_e6010_Cluster_Defeat,Done,,N/A,,,,,,,,,,,,,
+Paradise 03,Paradise 03 - Banshee Message,EVT_ev_s_e0289_BansheeMessage,Paradise03UpperLeft | Paradise03Lower + (high_jump | wall_grab) ,Not Labbed,,,,,,,,,,,,,,,

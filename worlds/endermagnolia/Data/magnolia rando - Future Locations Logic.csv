@@ -1,0 +1,971 @@
+Room,Name,Actor,Item,Logic,Status,Comment,Aloha Suggested (Enhanced version),notes,TODO comments (delete when DONE)
+Center 1,Center 1 - Origin Gem Core,Center_001_Zone_001.BP_Interactable_AddItem_C_1,"materials[""parts_lv6_a""]",Center02UpperRight + WALL_DASH,Done,Need wall dash from center02,N/A,,
+Center 1,Center 1 - Huginn,Center_001_Zone_001.EVT_ev_n_Levy_Treasure3_002,"spirits[""s5080_hawk""]","(Center01Lower | Center01LowerLeft | Center01UpperLeft | Center01LeftDoor | Center01RightDoor) 
++ EVT_ev_s_e6050_Master_Defeat + quest_bird",Done,"Defeat Gilroy in center, meet tuner in Mines and have avian remains",N/A,,
+Center 1,Center 1 - Gilroy,Center_001_Zone_001.EVT_ev_s_e6050_Master_Defeat,"aptitudes[""SP""]",Center01LowerLeft | Center01UpperLeft | Center01Lower | Center01RightDoor | Center01LeftDoor,Done,,N/A,,
+Center 2,Center 2 - Mantle of Milius,Center_001_Zone_002.EVT_ev_n_Center_costume_001,"costumes[""p0030""]",Center02LowerRight + EVT_ev_s_e0030_Guard_Defeat + EVT_ev_s_e6050_Master_Defeat,Done,Defeat Gilroy in Center and save lil sis in Streets,N/A,,
+Center 3,Center 3 - Charmed Fragment,Center_001_Zone_003.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""hp_up_s""]",Center03LeftDoor | Center03CenterLeftDoor,Done,,N/A,,
+Center 4,Center 4 - Faintly Glowing Aegis Curio,Center_001_Zone_004.EVT_ev_n_Levy_Treasure6_002,"quests[""quest_amulet""]",(Center04Left | Center04RightDoor) + EVT_ev_s_LilyEvent_Roots_002 + quest_eye + quest_lithograph,Done,"Need to see Lily in Roots 2, have blighted eye and stele to get curio",N/A,,
+Crossroad 2,Crossroad 2 - Charmed Fragment,Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Crossroad02Left + (high_jump | dodge + double_jump | snow | (moon | axe | scythe) + (double_jump | dodge | grav + REIBOLG) | STALL + moon | flower + (axe | grav | double_jump) | flower + (sword | scythe) + WALL_DASH) 
+| Crossroad02Right + (high_jump | double_jump | WALL_DASH | moon | snow | flower + (axe | grav) | dodge + (axe | scythe) | STALL + grav)",Done,,Finished,,double check REIBOLG
+Crossroad 3,Crossroad 3 - Subterranean Laborer's Code,Crossroad_001_Zone_003.BP_Interactable_AddItem_C_1,"tips[""tip_workerscode_01""]",Crossroad03Left | Crossroad03Right,Done,,N/A,,
+Crossroad 5,Crossroad 5 - Aerial Jump,Crossroad_001_Zone_005.EVT_ev_s_0050_LevyMeeting,"aptitudes[""double_jump""]",Crossroad05Left | Crossroad05Right,Done,,N/A,,
+Crossroad 5,Crossroad 5 - Dodge,Crossroad_001_Zone_005.EVT_ev_s_0050_LevyMeeting.1,"aptitudes[""dodge""]",Crossroad05Left | Crossroad05Right,Done,,N/A,,
+Estate 2,Estate 2 - Lorna 1,Estate_001_Zone_002.EVT_ev_s_n5040_Maiden_Defeat,"spirits[""s5040_maiden""]",Estate02Left | Estate02Upper | Estate02UpperRight | Estate02LowerRight,Done,,N/A,,
+Estate 2,Estate 2 - Lorna 2,Estate_001_Zone_002.EVT_ev_s_n5040_Maiden_Defeat.1,"keys[""key_higher_a""]",Estate02Left | Estate02Upper | Estate02UpperRight | Estate02LowerRight,Done,,N/A,,
+Estate 3,Estate 3 - Special Alloy Core,Estate_001_Zone_003.BP_Interactable_AddItem_C_0,"materials[""parts_lv5_a""]",Estate03UpperLeft | Estate03HiddenRight,Done,,N/A,,
+Estate 4,Estate 4 - Abelia's Bracelet,Estate_001_Zone_004.BP_Interactable_AddItem_C_0,"equipments[""armor_014""]",Estate04Left,Done,,N/A,,
+Estate 5,Estate 5 - Scrap,Estate_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Estate05Lower,Done,,N/A,,
+Estate 6,Estate 6 - Frost Confidential Records 2,Estate_001_Zone_006.BP_Interactable_AddItem_C_0,"tips[""tip_frostsrecord_02""]",Estate06Lower | Estate06Right,Done,,N/A,,
+Estate 7,Estate 7 - Charmed Fragment,Estate_001_Zone_007.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Estate07UpperRight,Done,,N/A,,
+Estate 7,Estate 7 - Materials,Estate_001_Zone_007.BP_Interactable_AddItem_C_1,"currencies[""Default""]","(Estate07Lower | Estate07LowerRight) + 
+(high_jump + (double_jump | dive | snow | moon | wall_grab + (FLOWER2 | STALL) | STALL + grav + (flower | dodge)) | hook + (dodge + (axe | scythe) + grav | double_jump + (moon | snow | STALL + grav) | STALL + grav + (moon | snow) | wall_grab + (FLOWER2 | STALL | double_jump | snow | moon)) | dive + (WALL_DASH | (axe | scythe | sword + (grav | RONIN | lazer)) + double_jump + dodge | hook + (dodge | double_jump | RONIN | STALL | lazer + grav)) | (axe | scythe) + grav + double_jump + dodge + RONIN)",Done,,Finished,"For review, might be easiest to group logic like below
+
+high_jump options - use row 20 + high_jump
+
+dive-less hook options
+hook + (dodge + (axe | scythe) + grav | double_jump + (moon | snow | STALL + grav) | STALL + grav + (moon | snow) | wall_grab + (FLOWER2 | STALL | double_jump | snow | moon)))
+
+dive hook options
+hook + dive + (RONIN | STALL | ReiBlast + grav)
+
+dive hook-less options (doubtful of any combo not requiring both double_jump + dodge)
+dive + (WALL_DASH | (axe | scythe | sword + (grav | RONIN | ReiBlast)) + double_jump + dodge)
+
+dive-less hook-less options (sword not enough height?)
+(axe | scythe) + grav + double_jump + dodge + RONIN ",double check lazer / REIBOLG
+Estate 7,Estate 7 - Levy,Estate_001_Zone_007.BP_Trigger_Event_LevyTreasure_C_1,"quests[""quest_artifact""]",(Estate07Lower | Estate07LowerRight) + (double_jump | dive | snow | moon | wall_grab + (FLOWER2 | STALL) | STALL + grav + (flower | dodge)),Done,,Finished,,
+Estate 8,Estate 8 - Scrap,Estate_001_Zone_008.BP_Interactable_AddItem_C_1,"currencies[""rare""]",(Estate08Upper | Estate08Left | Estate08Right) + dive,Done,,N/A,,
+Estate 10,Estate 10 - Grimoire,Estate_001_Zone_010.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Estate10Left + TORRENT,Done,,N/A,,
+Estate 11,Estate 11 - Special Alloy Core,Estate_001_Zone_011.BP_Interactable_AddItem_C_0,"materials[""parts_lv5_a""]",(Estate11Left | Estate11Right) + TORRENT,Done,,N/A,,
+Estate 12,Estate 12 - Frost Confidential Records 1,Estate_001_Zone_012.BP_Interactable_AddItem_C_0,"tips[""tip_frostsrecord_01""]",(Estate12Left | Estate12Upper | Estate12Right) + dive,Done,,N/A,,
+Factory 1,Factory 1 - Special Alloy Core,Factory_001_Zone_001.BP_Interactable_AddItem_C_0,"materials[""parts_lv5_a""]","(Factory02LowerLeft | Factory02HiddenCenterRight | Factory02UpperRight | Factory02UpperLeft | Factory02LowerRight | Factory02UpperCenterRight) 
++ (high_jump + WALL_DASH)",In Progress,"Dash Wall needs access from Factory02
+
+WALL_DASH from Factory09Right + dodge + STALL + grav
+","(Factory02LowerLeft | Factory02HiddenCenterRight | Factory02UpperRight | Factory02UpperLeft | Factory02LowerRight | Factory02UpperCenterRight) 
++ (high_jump | double_jump + (STALL + (grav | dodge) | snow | moon)) + WALL_DASH","unsure if any flower tech; prob some double_jump + dodge + FLOWER2, but I cant get it","this one is painful because if you ""really"" want it, there are SO many ways to get it"
+Factory 1,Factory 1 - Mysterious Glowing Can,Factory_001_Zone_001.BP_Interactable_AddItem_C_1,"passives[""stamina_damage_up_b_1""]",Factory01Left + (high_jump | (wall_grab + double_jump)),In Progress,WALL_DASH from Factory09Right lul,Factory01Left + (high_jump | dodge + double_jump + (WALL_GRAB | snow | flower + STALL | STALL + grav | moon) | STALL + grav + (double_jump | dodge | RONIN) | WALL_DASH + (moon | snow | double_jump + flower)),"this needs to be edited since dodge may or may not be required whatsoever
+wall_grab + double_jump is sufficient, so WALL_DASH + double_jump is overkill",Factory01Right + WALL_DASH + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump)) (pending testing)
+Factory 2,Factory 2 - Worker's Surveillance Records,Factory_001_Zone_002.BP_Interactable_AddItem_C_0,"tips[""tip_surveillancerecord_01""]","Factory02UpperLeft + (WALL_DASH | high_jump | wall_grab + double_jump + dodge | wall_grab + hook + (dodge | double_jump)) 
+| (Factory02UpperRight | Factory02UpperCenterRight | Factory02LowerLeft | Factory02LowerRight | Factory02HiddenCenterRight) 
++ (high_jump | hook + wall_grab + (dodge | double_jump | wall_charge)) ",In Progress,this could be gotten from Factory01Right + WALL_DASH + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump)) (pending testing),"Factory02UpperLeft + (WALL_DASH | high_jump | wall_grab + double_jump + dodge | wall_grab + hook + (dodge | double_jump)) 
+| (Factory02UpperRight | Factory02UpperCenterRight | Factory02LowerLeft | Factory02LowerRight | Factory02HiddenCenterRight) 
++ (high_jump | hook + wall_grab + (dodge | double_jump | wall_charge) | WALL_DASH + double_jump + dodge)","Probably going to need to split UpperRight from others now
+
+from ALL (yes even lowers): (axe | scythe) + grav + double_jump + dodge
+Sword might require RONIN from Lowers, but fine from Right
+sword + grav + double_jump + dodge + (moon | snow)
+
+UpperLeft : STALL + double_jump + dodge 
+wall_grab + (STALL + (double_jump | hook | dodge | moon) | snow | flower | grav)
+wall_grab + moon + (ReiBlast | grav)
+
+Hook + double_jump + dodge + (ReiBlast + grav | sword)
+
+Hook + STALL + (double_jump | dodge) + (grav | RONIN)","Base wall_grab reqs from Lowers (can be used for some transitions logic as well):
+NOTE - for sword , need to navigate from the LowerRight wall above the transition
+
+wall_grab + (STALL + grav + (snow | double_jump | moon + dodge) | snow + double_jump | STALL + double_jump + (dodge | moon) | dodge + snow + (scythe | axe) | double_jump + dodge + moon) 
+
+need to add non-grav STALL options"
+Factory 5,Factory 5 - Scrap,Factory_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""rare""]","Factory05Left | Factory05Upper 
+| Factory05Right + (wall_grab | high_jump | double_jump + dodge | STALL + (double_jump | dodge | grav | moon | REIBOLG) | flower | snow | moon + (double_jump | dodge | grav | REIBOLG) | REIBOLG + grav + (double_jump | dodge))",Done,,Finished,,double check REIBOLG
+Factory 6,Factory 6 - Labourer's Tag,Factory_001_Zone_006.BP_Interactable_TreasureBox_C_0,"passives[""damage_cut_debuff_down_1""]","(Factory06Right | Factory06LowerLeft) + (double_jump + dodge + wall_grab | high_jump + (wall_grab + (double_jump | dodge)) | WALL_DASH) 
+| Factory06UpperLeft + (double_jump + dodge + wall_grab | WALL_DASH + (dodge | double_jump) | high_jump + wall_grab + (dodge | double_jump))
+| Factory06Upper + (double_jump + dodge + wall_grab | WALL_DASH | high_jump + wall_grab + (dodge | double_jump))",In Progress,NOTE there is something wrong with base logic - WALL_DASH from Factory06Right,"(Factory06Right | Factory06LowerLeft) + (double_jump + dodge + wall_grab | high_jump + wall_grab + (double_jump | dodge | wall_charge)) 
+| Factory06UpperLeft + (double_jump + dodge + wall_grab | WALL_DASH + (dodge | double_jump) | high_jump + wall_grab + (dodge | double_jump))
+| Factory06Upper + (double_jump + dodge + wall_grab | WALL_DASH | high_jump + wall_grab + (dodge | double_jump))","wall_grab + snow for all
+wall_grab + flower for UpperLeft/Upper
+wall_grab + FLOWER2 + ReiBlast from Lower/Right
+wall_grab + (double_jump | moon) + STALL
+wall_grab + (moon | STALL + grav) + dodge
+wall_grab + moon + double_jump
+double_jump + dodge + STALL + (grav | RONIN)
+high_jump + wall_grab + (STALL | moon | flower | wall_charge)
+More WALL_DASH options from Right/LowerLeft and UpperLeft
+
+Might be hook options from Upper? They dont seem relevant however
+
+Just need to merge and refine",double check REIBOLG
+Factory 7,Factory 7 - Factory Management Records,Factory_001_Zone_007.BP_Interactable_AddItem_C_0,"tips[""tip_administrationrecord_01""]",Factory07Left | Factory07Right,Done,,N/A,,
+Factory 8,Factory 8 - Scrap,Factory_001_Zone_008.BP_Interactable_AddItem_C_1,"currencies[""rare""]","Factory08UpperRight + ((hook | WALL_DASH) + (double_jump | dodge) | double_jump + dodge | STALL + (dodge | double_jump | RONIN | hook | grav | WALL_DASH) | RONIN + (double_jump | dodge | hook | WALL_DASH) | (snow | flower) + grav | REIBOLG)
+| Factory08LowerRight + (hook + (double_jump | dodge) | double_jump + dodge | STALL + (dodge | double_jump | RONIN | hook | grav | WALL_DASH) | RONIN + (double_jump | dodge | hook | WALL_DASH) | (snow | flower) + grav | REIBOLG)",Done,,Finished,,double check REIBOLG
+Factory 9,Factory 9 - Charmed Fragment,Factory_001_Zone_009.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","Factory09Upper 
+| (Factory09Lower | Factory09Right) + (high_jump | double_jump + wall_grab)",In Progress,"the WALL_DASH option involves dashing from 09 all the way to 01, climbing to right below the WALL_DASH item, then wall dashing to the other 01 item. from there can WALL_DASH back to 09.
+WALL_DASH only includes things that do NOT give enough height to normally wall_grab in 09","Factory09Upper 
+| (Factory09Lower | Factory09Right) + (high_jump | double_jump + wall_grab)","double_jump + (wall_grab | snow | STALL + grav)
+wall_grab + (axe | moon | snow | FLOWER2 | (sword | scythe) + grav)
+WALL_DASH + (sword | scythe | flower) -- check dodge? or ReiBlast
+check STALL + grav + dodge + RONIN?",
+Factory 10,Factory 10 - Velnest,Factory_001_Zone_010.EVT_ev_s_e2030_Sector_Defeat,"materials[""parts_lv5_b""]",Factory10Left | Factory10Right,Done,,N/A,,
+Factory 12,Factory 12 - Scrap,Factory_001_Zone_012.BP_Interactable_AddItem_C_1,"currencies[""rare""]","Factory12Left + (high_jump | wall_grab + double_jump + (wall_charge | dodge)) 
+| Factory12Right + (high_jump | WALL_DASH | wall_grab + (dodge + double_jump) | hook + (dodge | double_jump))
+| Factory15Lower",In Progress,Can be gotten from falling from Factory15 (factory 15 access can also be granted here with high_jump),"Factory12Left + (high_jump | wall_grab + double_jump + (wall_charge | dodge)) 
+| Factory12Right + (high_jump | WALL_DASH | wall_grab + (dodge + double_jump) | hook + (dodge | double_jump))
+| Factory15Lower","LEFT: WALL_DASH + hook + STALL | STALL + grav + double_jump + dodge | wall_grab + double_jump + STALL | wall_grab + (snow | moon + hook | flower + grav) + dodge | double_jump + wall_grab + hook + ReiBlast
+
+Right: STALL + grav + double_jump + dodge + RONIN | wall_grab + (dodge | double_jump | hook | moon) + STALL | wall_grab + (scythe | (sword | axe) + ReiBlast) + grav | wall_grab + (flower | snow)",
+Factory 12,Factory 12 - Cain's Ring,Factory_001_Zone_012.BP_Interactable_TreasureBox_C_1,"passives[""onattack_restorehp_damage_1""]","(Factory05Left | (Factory05Right + (wall_grab | (double_jump + dodge))) 
++ high_jump)",In Progress,Requires access from Factory05,Factory05Upper + (WALL_DASH | high_jump),"IN PROGRESS
+
+this is gonna have some funnnnnnn 
+wall_grab + STALL + double_jump + dodge + (grav | moon | snow)? options",
+Factory 13,Factory 13 - Charmed Fragment,Factory_001_Zone_013.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",((Factory13LowerLeft | Factory13UpperLeft | Factory13Right) + hook + (double_jump | dodge)),In Progress,,"Factory13UpperLeft + (double_jump | dodge)
+| Factory13LowerLeft + (high_jump + double_jump + dodge | hook + (double_jump | dodge))
+| Factory13Right","UpperLeft: STALL | ReiBlast | Hook + RONIN
+
+LowerLeft: (scythe | axe) + grav + double_jump + (dodge | (moon | snow) + wall_grab)
+Hook + (STALL | RONIN)",
+Factory 14,Factory 14 - Grimoire,Factory_001_Zone_014.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Factory14Left,Done,,N/A,,
+Factory 15,Factory 15 - Charmed Fragment,Factory_001_Zone_015.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Factory12Right | Factory12Left) + high_jump,In Progress,,"Factory15Lower + high_jump
+| (Factory15UpperLeft | Factory15Right) + WALL_DASH + double_jump","IN PROGRESS
+
+very easy: STALL + grav + (double_jump | dodge) + RONIN
+from left. hook + STALL + grav + (double_jump | dodge) + RONIN
+
+needs to be broken down more
+
+From Right:
+double_jump + dodge + STALL
+STALL + dodge + snow
+scythe + double_jump + snow
+ReiBlast + grav + (STALL | RONIN | dodge | double_jump)
+
+From Left:
+ReiBlast + grav + (STALL | RONIN | dodge | double_jump) (same, tested with Lazer, its OP)
+Hook + double_jump + dodge + STALL
+hook + STALL + dodge + snow
+hook + scythe + double_jump + snow
+double_jump + dodge + STALL + grav + snow
+
+Technically there are more options from Lower (STALL + grav + double_jump + dodge + RONIN + wall_grab) but not sure if really worth including?
+With CD relic, using snow twice can reach from Factory12Upper on the Right side, or just once to reach left (near Factory21 Entrance), can then WALL_DASH + double_jump ......",
+Factory 15,Factory 15 - Magic Vial,Factory_001_Zone_015.BP_Interactable_AddItem_C_1,"stats[""passive_slot_s""]","Factory15Right + (high_jump | hook + (dodge + double_jump | WALL_DASH)) 
+| Factory15UpperLeft + hook + (high_jump | dodge | double_jump | WALL_DASH)
+| Factory15Lower + high_jump + (double_jump | dodge | hook)
+| Factory16Right + high_jump + WALL_DASH
+| Factory17Right + WALL_DASH + (high_jump | hook) ",In Progress,"Also doable from Factory12Upper + dodge | hook | double_jump
+
+Ive removed | Factory16Right + high_jump + WALL_DASH
+Since Factory17Right does not require high_jump by default to reach (and is transition-accessible), it makes more sense to use it as the base and build from it instead","Factory15Right + (high_jump | hook + (dodge + double_jump | WALL_DASH)) 
+| Factory15UpperLeft + hook + (high_jump | dodge | double_jump | WALL_DASH)
+| Factory15Lower + high_jump + (double_jump | dodge | hook)
+| Factory17Right + WALL_DASH + (high_jump | hook) ","15Right: snow + wall_grab + (double_jump | (scythe | axe | sword + dodge) + grav)
+STALL + grav + double_jump + wall_grab
+Hook + (wall_grab | double_jump | dodge | ReiBlast) + RONIN
+hook + STALL + (dodge | double_jump | RONIN | ReiBlast + (grav | wall_grab))
+STALL + grav + double_jump + dodge + snow
+(scythe | axe) + grav + double_jump + dodge + (moon | flower)
+
+15Left : hook + (STALL | RONIN | ReiBlast + grav) (might be doable without grav?)
+STALL + grav + double_jump + dodge + snow
+
+15Lower: high_jump + (STALL | RONIN)
+STALL + grav + double_jump + dodge + snow - if from the item? it might also require wall_grab if from Factory21 entrance? I dont like this entrance, thinking about excluding altogether TBH outside of high_jump
+
+If WALL_DASH from Factory17, then its basically all logic from Right + WALL_DASH
+",
+Factory 18,Factory 18 - Miner Enchancement Project,Factory_001_Zone_018.BP_Interactable_AddItem_C_1,"tips[""tip_enhancementplan_01""]",Factory18UpperLeft + high_jump,Done,,N/A,,
+Factory 18,Factory 18 - Garm's Ascent,Factory_001_Zone_018.EVT_ev_s_5200_Pounder_Upgrade,"aptitudes[""high_jump""]",Factory18UpperLeft,Done,,N/A,,
+Factory 19,Factory 19 - Scrap,Factory_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""rare""]",Factory19UpperLeft,Done,,N/A,,
+Factory 19,Factory 19 - Levy,Factory_001_Zone_019.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_stone""]","Factory19LowerLeft + (hook + (double_jump | dodge | STALL | RONIN | REIBOLG) | STALL + grav + double_jump + dodge
+| STALL + grav + double_jump + (moon | flower) | axe + grav + double_jump + REIBOLG | double_jump + snow + scythe + (grav | REIBOLG) | double_jump + snow + axe | double_jump + snow + sword + (grav | dodge + dive))",Unsure,"double_jump + snow + sword + dodge needs to use momentum out of water for higher jump - not sure if we want to include this type of logic
+
+if yes, the suggested logic is Done; otherwise just remove the last line's OR dodge + dive",Finished,"hook options : STALL | RONIN | ReiBlast
+
+Need to add non-hook options!
+STALL + grav + double_jump + dodge
+STALL + grav + double_jump + (moon | flower)
+axe + grav + double_jump + ReiBlast
+double_jump + snow + scythe + (grav | ReiBlast)
+double_jump + snow + axe
+double_jump + snow + sword + (grav | dodge) (need to use momentum out of water for higher jump)",double check REIBOLG (but should be good)
+Factory 21,Factory 21 - Milius Lord's Mark,Factory_001_Zone_021.EVT_ev_s_0250_KeyFactory,"keys[""key_higher_b""]",Factory21Right + (double_jump | wall_grab | high_jump | snow | moon | (axe | (sword | scythe) + flower) + dodge | axe + flower | (STALL | flower) + grav),Unsure,"Since WALL_DASH is required to even enter, this is way overkill
+
+Leaving as unsure as technically, the requirement to enter the transition guarantees access. 
+
+If decided to leave requirements empty, then can delete the logic.
+If want to add requirements anyway, update to Done.",Finished,,
+Factory 21,Factory 21 - Document on the Empyrean Parasol,Factory_001_Zone_021.EVT_ev_s_0250_KeyFactory.1,"tips[""tip_towerumbrella_01""]",Factory21Right + (double_jump | wall_grab | high_jump | snow | moon | (axe | (sword | scythe) + flower) + dodge | axe + flower | (STALL | flower) + grav),Unsure,"Since WALL_DASH is required to even enter, this is way overkill
+
+Leaving as unsure as technically, the requirement to enter the transition guarantees access. 
+
+If decided to leave requirements empty, then can delete the logic.
+If want to add requirements anyway, update to Done.",Finished,,
+Forest 1,Forest 1 - Crimson Bangle,Forest_001_Zone_001.BP_Interactable_AddItem_C_1,"equipments[""armor_008""]",Forest01UpperDoor,Not Labbed,,N/A,,
+Forest 2,Forest 2 - Obsolete Core,Forest_001_Zone_002.BP_Interactable_AddItem_C_1,"materials[""parts_lv3_b""]","Forest02UpperRightDoor 
+| (Forest02Right | Forest02UpperLeftDoor | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | WALL_DASH | double_jump | axe + (dodge | REIBOLG | flower) | (sword | scythe) + (flower | REIBOLG + dodge) | snow | moon | (flower | STALL | REIBOLG) + grav)",Done,"(scythe | sword) + dodge ""can"" technically reach, but it involves dodging into the wall to push upward",Finished,This can also be used for the transition to Forest02UpperRightDoor!,double check REIBOLG
+Forest 2,Forest 2 - Words Etched into Stone,Forest_001_Zone_002.BP_Interactable_AddTutorial_C_1,"tips[""tip_tombstone_01""]",Forest02UpperRightDoor |  Forest02Right | Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperLeftDoor,Not Labbed,,N/A,,
+Forest 4,Forest 4 - Charmed Fragment,Forest_001_Zone_004.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Forest04LowerLeftDoor + (double_jump | high_jump | (STALL | flower) + grav | moon | snow | wall_grab + (dodge | wall_charge | STALL | flower | lazer))
+| Forest04UpperLeftDoor + (double_jump | high_jump | (STALL | flower) + grav | moon | snow | wall_grab)
+| (Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab | STALL + dodge + (double_jump | RONIN | lazer + grav) | double_jump + (snow | STALL + grav | dodge + (flower | moon | lazer + grav)))",Done,"sword + dodge + grav + ReiBlast is difficult, but I've successfully done it... if too hard, just split STALL to (axe | scythe)",Finished,,"double check lazer -> REIBOLG ; 
+May need to split ReiBlast if Blaster is not possible."
+Forest 7,Forest 7 - Chain Belt,Forest_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""damage_up_grounded_1""]",Forest07Left,Done,,N/A,,
+Forest 9,Forest 9 - Charmed Fragment,Forest_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Forest09LowerRight + TORRENT + (wall_grab | high_jump | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav)) 
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor) 
+| Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH | RONIN | STALL | lazer | dash_charge) 
+| Forest09CenterRightDoor + (high_jump | wall_grab | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav))) 
++ dive",Unsure,"do we want dash_charge with no dash_charge wall logic? or should this just be sprint/run?
+
+Labeled as Unsure based on whether to keep dash_charge option from UpperRightDoor
+
+REMEMBER : TORRENT = dive + dodge + dash_charge_underwater
+
+MEANING : dodge is implicitly included for LowerRight
+
+I've included the logic with dodge in each variation in the notes column for review/reference. This also includes breaking down STALL into (sword | scythe)
+
+This could be rewritten for better understanding to split TORRENT into dive + dodge + dash_charge_underwater if desired.",Finished,"Forest09LowerRight + TORRENT + (wall_grab | high_jump | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav)) 
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor) 
+| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH | RONIN | STALL | ReiBlast | dash_charge)) 
+| (Forest09CenterRightDoor + (high_jump | wall_grab | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav))) 
++ dive",double check lazer -> REIBOLG
+Forest 9,Forest 9 - Materials,Forest_001_Zone_009.BP_Interactable_AddItem_C_3,"currencies[""Default""]","Forest09LowerRight + TORRENT 
+| (Forest09CenterRightDoor 
+| Forest09UpperRightDoor + (double_jump | dodge | WALL_DASH | RONIN | STALL | lazer | dash_charge) 
+| Forest09CenterLeftDoor + (double_jump | dodge | high_jump | WALL_DASH | RONIN | STALL | lazer + grav) 
+| (Forest09LeftDoor | Forest09CenterDoor) + (high_jump | WALL_DASH | axe + double_jump + (wall_grab | dodge) | double_jump + (snow | moon) + (grav | wall_grab | STALL) | (scythe | axe) + grav + (double_jump | dodge + (wall_grab | RONIN) | (moon | snow) + wall_grab) | sword + grav + (double_jump | dodge + (moon | snow | flower + wall_grab) | (moon | snow) + wall_grab))) 
++ dive",Unsure,"do we want dash_charge with no dash_charge wall logic? or should this just be sprint/run?
+
+ReiBlast + grav from CenterLeftDoor may not work with Blaster
+
+Labeled as Unsure based on whether to keep dash_charge option from UpperRightDoor & ReiBlast Blast test
+
+REMEMBER : TORRENT = dive + dodge + dash_charge_underwater
+
+MEANING : dodge is implicitly included for LowerRight
+
+I've included the logic with dodge in each variation in the notes column for review/reference.
+
+This could be rewritten for better understanding to split TORRENT into dive + dodge + dash_charge_underwater if desired.",Finished,,"doube check lazer -> REIBOLG ;
+May need to split ReiBlast if Blaster is not possible."
+Forest 9,Forest 9 - Effigy,Forest_001_Zone_009.BP_Interactable_AddItem_C_5,"passives[""damage_cut_minhp_1""]","Forest09LeftDoor | Forest09CenterDoor | Forest09CenterLeftDoor 
+| Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH | STALL | RONIN | lazer | dash_charge)
+| Forest09LowerRight + TORRENT + (high_jump | wall_grab | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav))
+| Forest09CenterRightDoor + (high_jump | wall_grab | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav))",Unsure,"do we want dash_charge with no dash_charge wall logic? or should this just be sprint/run?
+
+Labeled as Unsure based on whether to keep dash_charge option from UpperRightDoor
+
+REMEMBER : TORRENT = dive + dodge + dash_charge_underwater
+
+MEANING : dodge is implicitly included for LowerRight
+
+I've included the logic with dodge in each variation in the notes column for review/reference. This also includes breaking down STALL into (sword | scythe)
+
+This could be rewritten for better understanding to split TORRENT into dive + dodge + dash_charge_underwater if desired.",Finished,"Forest09LeftDoor | Forest09CenterDoor | Forest09CenterLeftDoor 
+| Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH | STALL | RONIN | ReiBlast | dash_charge)
+| Forest09LowerRight + TORRENT + (high_jump | wall_grab | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav))
+| Forest09CenterRight + (high_jump | wall_grab | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav))",double check lazer -> REIBOLG
+Forest 10,Forest 10 - Charmed Fragment,Forest_001_Zone_010.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",Forest10RightDoor,Done,,N/A,,
+Forest 10,Forest 10 - Materials,Forest_001_Zone_010.BP_Interactable_AddItem_C_2,"currencies[""Default""]","Forest10CenterDoor 
+| (Forest10RightDoor | Forest10LowerLeftDoor) + (high_jump | double_jump | axe + (REIBOLG | dodge) | moon | snow | grav + (STALL | flower | REIBOLG))
+| Forest10UpperLeftDoor + (high_jump | double_jump | wall_grab + (dodge | wall_charge | STALL | REIBOLG) | STALL + (dodge | grav) | RONIN | REIBOLG + (axe | grav))",Done,,Finished,,double check REIBOLG
+Forest 11,Forest 11 - Magic Vial,Forest_001_Zone_011.BP_Interactable_AddItem_C_1,"stats[""passive_slot_s""]",Forest11Right,Done,,N/A,,
+Forest 19,Forest 19 - Beast Horn Ornanment,Forest_001_Zone_019.BP_Interactable_AddItem_C_1,"passives[""damage_cut_maxhp_1""]",(Forest19LeftDoor | Forest19Right) + (high_jump | snow | double_jump + (dodge | WALL_DASH | STALL | moon | flower) | dodge + grav + (moon | flower | STALL) | WALL_DASH + (axe | moon | (sword | scythe | flower) + grav)),Done,hardest option here is probably double_jump + flower,Finished,,
+Forest 20,Forest 20 - Spy's Letter,Forest_001_Zone_020.BP_Interactable_AddItem_C_0,"tips[""tip_secretletter_01""]","Forest20Left + (high_jump | double_jump | snow | moon | (STALL | flower) + (dodge | grav | WALL_DASH))
+| Forest20Right + (high_jump | double_jump | snow | moon | (axe | scythe) + grav | sword + grav + (flower | wall_grab | dodge | dash_charge) | dash_charge + (STALL + dodge | WALL_DASH | flower) | axe + ((flower | wall_grab) + dodge | wall_grab + flower) | FLOWER2 + wall_grab)",Done,"From left, WALL_DASH from just below the dash_charge wall
+
+This is one of the only places that has real dash_charge logic",Finished,,
+Forest 20,Forest 20 - Charmed Fragment,Forest_001_Zone_020.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Forest20Left + (high_jump | (double_jump | moon) + (dodge | WALL_DASH) | WALL_DASH + (STALL | flower) | axe + wall_grab + dodge | STALL + grav + (wall_grab + lazer | dodge) | snow | moon + (STALL | double_jump) | FLOWER2 + (wall_grab | STALL) | double_jump + flower) 
+| Forest20Right + (high_jump | (double_jump | moon) + (dodge | WALL_DASH) | dash_charge + WALL_DASH | axe + wall_grab + dodge | STALL + grav + (wall_grab + lazer | dodge) | snow | moon + (STALL | double_jump) | FLOWER2 + (wall_grab | STALL) | double_jump + flower)",Done,"Both are very similar, however each side has unique WALL_DASH options",Finished,,double check lazer -> REIBOLG
+Forest 20,Forest 20 - Grimoire,Forest_001_Zone_020.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]","(Forest20Left + (high_jump | double_jump | snow | moon | (flower | STALL) + (grav | dodge)) 
+| Forest20Right) 
++ dash_charge",Done,"Warning: Forest20Right + dodge + dash_charge does NOT work, but I think its impossible to find yourself in this situation without random start, which may be excluded due to Forest19Lever door?",Finished,,
+Forest 23,Forest 23 - Materials,Forest_001_Zone_023.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Forest23Left + dash_charge + (high_jump | double_jump | (flower | STALL) + (grav | dodge) | moon | snow),Done,"can also WALL_DASH from Forest20Right - it also requires height of some kind, but ReiBlast would work in that scenario.",Finished,,
+Forest 23,Forest 23 - Cassia's Grimoire,Forest_001_Zone_023.BP_Interactable_AddItem_C_3,"tips[""tip_cassiabook_01""]",Forest23Left + dash_charge,Not Labbed,,N/A,,
+Forest 23,Forest 23 - Incomplete Gear,Forest_001_Zone_023.EVT_ev_n_Levy_Treasure2_002,"passives[""reduce_gravity""]",Forest23Left + quest_stone,Not Labbed,,N/A,,
+Forest 23,Forest 23 - Hati's Charge,Forest_001_Zone_023.EVT_ev_s_5210_Fenris_Upgrade,"aptitudes[""dash_charge""]",Forest23Left,Done,,N/A,,
+Garden 1,Garden 1 - Charmed Fragment 1,Garden_001_Zone_001.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Garden01Right + (high_jump | wall_grab + (lazer + grav + (double_jump | RONIN | STALL) | double_jump + dodge + STALL) | WALL_DASH + (double_jump | FLOWER2 | moon | snow | STALL + grav | axe + dodge)) 
+| Garden01Left + (high_jump | wall_grab + (double_jump | RONIN | STALL) + grav + lazer | double_jump + dodge + STALL | grav + lazer + snow + (double_jump | dodge) | STALL + grav + lazer + (double_jump | dodge | snow) | WALL_DASH + (double_jump | STALL | moon | snow | FLOWER2))",Unsure,"Right to Left Transition requirements:
+(high_jump | wall_grab + (double_jump | FLOWER2 | moon | snow | STALL + grav | axe + dodge)) 
+
+Currently marking as Unsure, as there is Garden12Left + WALL_DASH + scythe + dodge that works; thinking may need to add it, but not a huge fan
+
+Additionally, this one REALLY has some suspect ReiBlast, I've bolded the ReiBlast scenarios that quite frankly will not work with Blaster, and will need to be split.",Finished,"Goal: find all possibilities from LEFT, then merge into base requirements from Rights wall_grab
+
+BOTH : wall_grab + (double_jump | RONIN | STALL) + grav + ReiBlast - dont think it works with Blaster , or a lot of other options either
+
+axe + grav + dodge + flower + ReiBlast (current logic this is overkill, but works with Blaster)
+
+LEFT : high_jump | wall_grab + (double_jump | RONIN | STALL) + grav + ReiBlast | double_jump + dodge + STALL | grav + ReiBlast + snow + (double_jump | dodge) | STALL + grav + ReiBlast + (double_jump | dodge | snow) | WALL_DASH + (double_jump | STALL | moon | snow | FLOWER2)
+
+RIGHT: high_jump | wall_grab + (ReiBlast + grav + (double_jump | RONIN | STALL) | double_jump + dodge + STALL) | WALL_DASH + (double_jump | FLOWER2 | moon | snow | STALL + grav | axe + dodge) ","double check lazer -> REIBOLG
+May need to split ReiBlast if Blaster is not possible."
+Garden 1,Garden 1 - Charmed Fragment 2,Garden_001_Zone_001.BP_Interactable_AddItem_C_2,"stats[""hp_up_s""]","Garden01Right + (high_jump | wall_grab + (double_jump + (dodge | wall_charge | flower | STALL) | FLOWER2 | moon | snow | STALL + grav | axe + dodge))
+| Garden01Left",Unsure,"See comment on line 65; this is marked as Done, but if need to add Garden12Left WALL_DASH option, this will need to be updated as well.
+
+Also marking as unsure due to Left - this is pretty easy using sprint + base dodge-roll , or grav + base dodge-roll
+
+for now, i've removed Left logic; if need to add back:  + (high_jump | double_jump | dodge | WALL_DASH | STALL | RONIN | REIBOLG)",Finished,READ COMMENT,READ COMMENT
+Garden 1,Garden 1 - Materials,Garden_001_Zone_001.BP_Interactable_AddItem_C_4,"currencies[""Default""]","(Garden01Right + (high_jump | wall_grab + (double_jump | FLOWER2 | moon | snow | STALL + grav | axe + dodge))
+| Garden01Left)
++ pile_attack ",Done,"See comment on line 65; this is marked as Done, but if need to add Garden12Left WALL_DASH option, this will need to be updated as well.
+
+Left works with just sprint / base dodge, previous logic was:  + (high_jump | wall_grab | double_jump | dodge | STALL | RONIN | REIBOLG)",Finished,READ COMMENT,READ COMMENT
+Garden 1,Garden 1 - Bloodstained Stuffed Toy,Garden_001_Zone_001.BP_Interactable_TreasureBox_C_1,"passives[""damage_cut_debuffed_1""]","Garden01Right + (high_jump | wall_grab + (double_jump | FLOWER2 | moon | snow | STALL + grav | axe + dodge)) 
+| Garden01Left",Unsure,"See comment on line 65; this is marked as Done, but if need to add Garden12Left WALL_DASH option, this will need to be updated as well.
+
+Unsure due to re-evaluating with base dodge-roll movement; high_jump logic from Right and Left logic major simplifications
+
+Original Right high_jump : high_jump + (dodge | double_jump | wall_grab | STALL | RONIN | ReiBlast)
+
+Left also works simply with base roll: NO movement required
+Original Left:  Garden01Left + (dodge | double_jump | STALL | RONIN | ReiBlast | wall_grab + (high_jump | hook)",Finished,,
+Garden 2,Garden 2 - Sorcerer's Gauntlet,Garden_001_Zone_002.BP_Interactable_TreasureBox_C_1,"passives[""debuff_damage_up_b_1""]","(Garden02Right | Garden02LowerRight + (Garden02LowerRightRight_Lever | Garden02LowerRightLeft_Lever)) + (high_jump | wall_grab + (double_jump | dodge | wall_charge | STALL | RONIN | lazer) | scythe + double_jump + (dodge + snow | grav) | grav + (axe | sword) + double_jump + RONIN | axe + double_jump + dodge | sword + grav + double_jump + dodge | (axe  | scythe) + grav + dodge + RONIN | sword + grav + dodge + snow + lazer)
+| Garden02Left + (high_jump + (snow | double_jump + (axe | moon | FLOWER2) | grav + (scythe | sword) + (moon | flower | double_jump | dodge) | axe + grav + (moon | flower | dodge)) | wall_grab + (snow + double_jump + dodge + axe | STALL + grav + double_jump + (snow | dodge) | grav + (scythe | axe) + double_jump + moon)
+| Garden02center_lever + Garden02left_lever + Garden02lowerleft_lever + (high_jump | wall_grab + (double_jump | dodge | wall_charge | STALL | RONIN | lazer) | scythe + double_jump + (dodge + snow | grav) | grav + (axe | sword) + double_jump + RONIN | axe + double_jump + dodge | sword + grav + double_jump + dodge | (axe  | scythe) + grav + dodge + RONIN | sword + grav + dodge + snow + lazer))
+| Garden02LowerLeft + (high_jump + (snow | double_jump + (axe | moon | FLOWER2) | grav + (scythe | sword) + (moon | flower | double_jump | dodge) | axe + grav + (moon | flower | dodge)) | wall_grab + (snow + double_jump + dodge + axe | STALL + grav + double_jump + (snow | dodge) | grav + (scythe | axe) + double_jump + moon)
+| Garden02center_lever + Garden02left_lever + (high_jump | wall_grab + (double_jump | dodge | wall_charge | STALL | RONIN | lazer) | scythe + double_jump + (dodge + snow | grav) | grav + (axe | sword) + double_jump + RONIN | axe + double_jump + dodge | sword + grav + double_jump + dodge | (axe  | scythe) + grav + dodge + RONIN | sword + grav + dodge + snow + lazer))",Unsure,"Marking as unsure as, from Right, it is possible to get this check with wall_grab alone; you need to jump AFTER holding left, there is a small window to jump off the wall and make it to the portal.
+
+Additionally, currently the Left based logic either assumes NO levers, or ALL the levers; might need to add logic without Center Lever.",Finished - TENTATIVELY / a little rushed,"Note from Right: the only requirement is being able to jump into the single portal
+
+Garden02Right + (high_jump | wall_grab + (double_jump | dodge | wall_charge | STALL | RONIN | ReiBlast) | scythe + double_jump + (dodge + snow | grav) | grav + (axe | sword) + double_jump + RONIN | axe + double_jump + dodge | sword + grav + double_jump + dodge | (axe  | scythe) + grav + dodge + RONIN | sword + grav + dodge + snow + ReiBlast)
+
+Left and Lower Left, I might only do non-lever logic? ie. high_jump + double_jump + STALL + grav stuff to reach Treasure C3
+
+there is high_jump + axe + double_jump, but i realllly dont wanna split all the STALL logic (its not that bad tbh but complain)
+
+Left/LowerLeft I plan to keep same as Right as well TBH, just maybe have the lever requirements.
+
+Skipping LowerRight! (its technically going to be exactly the same as Right, regardless of which lever)
+
+Technically, all of the options include:
+Right
+LowerRight (regardless of which side lever, its the same either way!)
+LowerLeft , LowerLeft + LeftLever(8), LowerLeft + LeftLever(8) + CenterLeftLever(6)
+Left, Left + LeftLever(8), Left + LeftLever(8) + LowerLeftLever(12), Left + LeftLever(8) + CenterLeftLever(6), Left + LeftLever(8) + CenterLeftLever(6) + LowerLeftLever(12)
+
+Note, Left + LowerLeftLever(12) is technically another option, but its going to be the same as Left.
+
+Left logic is super annoying with levers because there are 3? flows - goal is to just hit the bottom portal, then will have same requirements as RIGHT:
+min-wall_grab
+hook (+- wall_grab) (hook + (FLOWER2 | ReiBlast + (flower | grav)) ugh
+no hook or wall_grab to grab lowest platform - double_jump + (snow | moon + ReiBlast)","double check lazer -> REIBOLG
+
+There is a lever we could add that will skip hook requirement
+
+Added this ^ comment into suggested logic... hard to explain though; I've currently dubbed it Center_Lever for reference
+
+CenterLever may need to be defined somewhere if we expect it to be included in logic?
+
+CenterLever Logic:
+No requirements : Right
+No requirements : LowerRight + LowerRight_LeftLever
+LowerRight + LowerRight_RightLever + (high_jump | double_jump + wall_grab)
+Left + Left_Lever + (high_jump | double_jump + wall_grab)
+(Left | LowerLeft + LowerLeft_Lever) + Left_Lever + ((hook | wall_grab) + double_jump | hook + wall_grab + dodge)"
+Garden 2,Garden 2 - Chiron,Garden_001_Zone_002.BP_Interactable_TreasureBox_C_3,"assists[""assist_009""]","(Garden02Right | Garden02LowerRight + (Garden02LowerRightRight_Lever | Garden02LowerRightLeft_Lever)) + (high_jump | wall_grab + double_jump + (STALL + grav | snow) | double_jump + grav + STALL + moon | double_jump + STALL + grav + (flower | moon) | WALL_DASH + (double_jump + dodge | snow | moon + (STALL | lazer | double_jump | dodge) | flower + (grav | double_jump) | grav + (axe | scythe | sword + (dodge | lazer))))
+| Garden02Left + (high_jump + (snow | double_jump + (axe | moon | FLOWER2) | grav + (scythe | sword) + (moon | flower | double_jump | dodge) | axe + grav + (moon | flower | dodge)) | wall_grab + (snow + double_jump + dodge + axe | STALL + grav + double_jump + (snow | dodge) | grav + (scythe | axe) + double_jump + moon) | Garden02center_lever + Garden02left_lever + Garden02lowerleft_lever + (high_jump | wall_grab + double_jump + (STALL + grav | snow) | double_jump + grav + STALL + moon | double_jump + STALL + grav + (flower | moon) | WALL_DASH + (double_jump + dodge | snow | moon + (STALL | lazer | double_jump | dodge) | flower + (grav | double_jump) | grav + (axe | scythe | sword + (dodge | lazer)))))
+| Garden02LowerLeft + (high_jump + (snow | double_jump + (axe | moon | FLOWER2) | grav + (scythe | sword) + (moon | flower | double_jump | dodge) | axe + grav + (moon | flower | dodge)) | wall_grab + (snow + double_jump + dodge + axe | STALL + grav + double_jump + (snow | dodge) | grav + (scythe | axe) + double_jump + moon) | Garden02center_lever + Garden02left_lever + (high_jump | wall_grab + double_jump + (STALL + grav | snow) | double_jump + grav + STALL + moon | double_jump + STALL + grav + (flower | moon) | WALL_DASH + (double_jump + dodge | snow | moon + (STALL | lazer | double_jump | dodge) | flower + (grav | double_jump) | grav + (axe | scythe | sword + (dodge | lazer)))))",Unsure,"Similar to above, currently the Left based logic either assumes NO levers, or ALL the levers; might need to add logic without Center Lever.",Finished - TENTATIVELY / a little rushed,"Sigh why I do this; LIST of Garden2 Levers
+C0 : is labeled 13 in screenshot; required for treasure box c1
+C1: lever for Student1 door
+C4 : lever to enter area for Student1 from vertical drop
+C5 : lever for LowerRight Right side
+C6 : dubbed ""CenterLever"" , supports unique Left scenarios
+C7 : lever for LowerRight Left side
+C8 : this lever required to enter from Left areas
+C10: lever for C8 access
+C11: lever for Student3 door
+C12: lever for exiting LowerLeft",double check lazer -> REIBOLG
+Garden 3,Garden 3 - Grimoire,Garden_001_Zone_003.BP_Interactable_AddItem_C_1,"stats[""shop_line_up""]","Garden03UpperLeft + (high_jump | snow | flower | WALL_DASH | REIBOLG | STALL + (double_jump | dodge | moon | grav) | moon + (double_jump | dodge) | double_jump + dodge)
+| Garden03LeftUpper + (high_jump | snow | flower | WALL_DASH + (double_jump | lazer) | STALL + (double_jump | dodge | moon | grav) | moon + (double_jump | dodge | lazer) | double_jump + (dodge | lazer))
+| (Garden03UpperRight | Garden03LeftLower) + (high_jump | snow | flower | STALL + (double_jump | dodge | moon | grav) | moon + (double_jump | dodge | lazer) | double_jump + (dodge | lazer))",Done,,Finished - TENTATIVELY / a little rushed,"UpperLeft: high_jump | snow | flower | WALL_DASH | ReiBlast | STALL + (double_jump | dodge | moon | grav) | moon + (double_jump | dodge) | double_jump + dodge
+
+LeftUpper: high_jump | snow | flower | WALL_DASH + (double_jump | ReiBlast) | STALL + (double_jump | dodge | moon | grav) | moon + (double_jump | dodge | ReiBlast) | double_jump + (dodge | ReiBlast)
+
+UpperRight / LeftLower : high_jump | snow | flower | STALL + (double_jump | dodge | moon | grav) | moon + (double_jump | dodge | ReiBlast) | double_jump + (dodge | ReiBlast)","UpperLeft is good with all REIBOLG
+double check the other lazer -> REIBOLG
+
+Currently, main differences are WALL_DASH; UpperLeft can use only WALL_DASH and can use ReiBlast only, LeftUpper has some WALL_DASH/ReiBlast options as well"
+Garden 3,Garden 3 - Arcane Smith's Musings,Garden_001_Zone_003.BP_Interactable_AddItem_C_2,"tips[""tip_engineermemoirs_01""]","Garden03UpperLeft 
+| (Garden03UpperRight | Garden03LeftUpper | Garden03LeftLower) + (high_jump | double_jump | STALL | RONIN | REIBOLG)",Done,"there ""might"" be a dodge | WALL_DASH type of option from LeftUpper, but couldnt find anything
+
+leg enhancement gear relic works too",Finished,,
+Garden 3,Garden 3 - Chronicles of Milius,Garden_001_Zone_003.BP_Interactable_AddItem_C_3,"tips[""tip_miliusbook_01""]","(Garden03LeftLower | Garden03UpperRight) + (double_jump | high_jump | STALL | RONIN | REIBOLG)
+| Garden03LeftUpper + (WALL_DASH + dodge | high_jump | double_jump | STALL | RONIN | REIBOLG)
+| Garden03UpperLeft + (WALL_DASH | dodge | high_jump | double_jump | STALL | RONIN | REIBOLG)",Done,leg enhancement gear relic works too,Finished,,
+Garden 3,Garden 3 - Words on Land's End,Garden_001_Zone_003.BP_Interactable_AddItem_C_4,"tips[""tip_landend_01""]","(Garden03LeftLower | Garden03UpperRight) + (high_jump | RONIN | STALL + (double_jump | dodge | grav) | double_jump + (dodge | lazer))
+| Garden03LeftUpper + (high_jump | RONIN | WALL_DASH | STALL + (double_jump | dodge | grav) | double_jump + (dodge | lazer))
+| Garden03UpperLeft + (dodge | double_jump | high_jump | RONIN | STALL | REIBOLG)",Done,"Lower Logic RONIN requires sprint, sorry.
+
+im inconsistent though cause double_jump with sprint does not require dodge or anything else, sorry...",Finished - TENTATIVELY / a little rushed,This is an easier version of C1,double check lazer -> REIBOLG (and upper left REIBOLG)
+Garden 3,Garden 3 - Battered Grimoire,Garden_001_Zone_003.BP_Interactable_AddItem_C_5,"passives[""damage_up_debuffed_1""]","(Garden03LeftLower | Garden03UpperRight) + (high_jump | RONIN | STALL + (double_jump | dodge | grav) | double_jump + (dodge | lazer))
+| Garden03LeftUpper + (high_jump | RONIN | WALL_DASH | STALL + (double_jump | dodge | grav) | double_jump + (dodge | lazer))
+| Garden03UpperLeft + (dodge | double_jump | high_jump | RONIN | STALL | REIBOLG)",Done,"Same as above
+
+Lower Logic RONIN requires sprint, sorry.
+
+im inconsistent though cause double_jump with sprint does not require dodge or anything else, sorry...",Finished - TENTATIVELY / a little rushed,,double check lazer -> REIBOLG (and upper left REIBOLG)
+Garden 5,Garden 5 - Tripartite Magic Vial,Garden_001_Zone_005.EVT_ev_n_Levy_Treasure5_002,"stats[""passive_slot_l""]",(Garden05Left | Garden05Right) + (EVT_ev_s_e0233_Researcher_Defeat + quest_perfume),Not Labbed,Teacher needs to be moved here by finding all students,N/A,,
+Garden 5,Garden 5 - Magic Amplifier,Garden_001_Zone_005.EVT_ev_s_0233_Researcher_002,"materials[""parts_lv4_b""]",Garden05Left | Garden05Right + EVT_ev_s_e0233_Researcher_Defeat + EVT_ev_s_n0233_RescueSuccess_001,Not Labbed,"Needs all students rescued, then speak to teacher in 09, move back to here and get item",N/A,,
+Garden 6,Garden 6 - Magic Vial,Garden_001_Zone_006.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""passive_slot_s""]","(Garden06UpperDoor + (high_jump | (dodge | double_jump) + wall_grab) 
+| Garden06Right + (high_jump | double_jump + wall_grab)
+| Garden06Left + (high_jump | double_jump + (wall_grab + (hook | dodge) | WALL_DASH) | wall_grab + hook + dodge)) 
++ dash_charge + pile_attack",In Progress,Same as 84,"(Garden06UpperDoor + (high_jump | wall_grab + (dodge | double_jump)) 
+| Garden06Right + (high_jump | double_jump + wall_grab)
+| Garden06Left + (high_jump | double_jump + wall_grab + (hook | dodge | wall_charge) | wall_grab + hook + dodge)) 
++ dash_charge + pile_attack",From Right: STALL + (grav + moon | snow) | (moon | snow) + wall_grab,"From Left... 
+regardless: high_jump
+
+portal?
+(axe + dodge | STALL + grav | snow | moon | FLOWER2 | double_jump))
+
+wall_grab + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump))"
+Garden 6,Garden 6 - Materials,Garden_001_Zone_006.BP_Interactable_AddItem_C_1,"currencies[""Default""]","Garden06UpperDoor 
+| (Garden06Right + (high_jump | (double_jump + wall_grab + hook)))
+| (Garden06Left + (high_jump | (double_jump + hook)))",In Progress,,"Garden06UpperDoor 
+| Garden06Right + (high_jump | double_jump + wall_grab + hook)
+| Garden06Left + (high_jump | double_jump + hook | hook + dodge + wall_grab)",From RIght: STALL + grav + (double_jump | dodge) + snow + wall_grab | STALL + grav + double_jump + dodge + wall_grab | hook + wall_grab + ((sword | scythe) + (grav | dodge) | axe | moon | FLOWER2) | hook + snow ,"Left: (high_jump | hook + (axe + dodge | STALL + grav | snow | moon | FLOWER2 | double_jump))
+
+From RIGHT: double_jump + WALL_DASH + STALL + grav + snow + dodge - THIS ALLOWS to reach transition"
+Garden 6,Garden 6 - Origin Gem Core,Garden_001_Zone_006.BP_Interactable_AddItem_C_2,"materials[""parts_lv6_a""]","(Garden02Right | ((Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever) | (Garden02LowerRight + (Garden02LowerRightRight_Lever)))
+ + (WALL_DASH + double_jump + dodge)",In Progress,Requires wall dash from garden02,"(Garden02Right | (Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever | Garden02LowerRight + Garden02LowerRightRight_Lever)
+ + (WALL_DASH + double_jump + (dodge | high_jump))","Garden06 + high_jump + double_jump + dodge + STALL
+
+from Garden06UpperDoor + ((axe | scythe) + (RONIN | ReiBlast) | sword + RONIN (ReiBlast | wall_grab | hook)) + double_jump + dodge + grav
+WALL_DASH + double_jump + RONIN (flower IS JANK, wall_grab the doorway wall, then WALL_DASH + double_jump and flower onto the roof to wall_grab that ledge
+
+
+hook | wall_grab open up options from other entrances too","Can now also WALL_DASH from Garden06! brief scenario:
+Garden06Right + double_jump + WALL_DASH + hook + (moon | snow) (tested with moon)"
+Garden 6,Garden 6 - Unidentified Amplifier,Garden_001_Zone_006.BP_Interactable_TreasureBox_C_1,"materials[""parts_s5000_b""]","((Garden06Right + (high_jump | (double_jump + wall_grab))) 
+| (Garden06Left + (high_jump | (double_jump + (hook | WALL_DASH))))
+| Garden06UpperDoor) 
++ (dash_charge + pile_attack)",In Progress,Same as 81,"(Garden06UpperDoor + (high_jump | wall_grab + (dodge | double_jump)) 
+| Garden06Right + (high_jump | double_jump + wall_grab) 
+| Garden06Left + (high_jump | double_jump + (wall_grab + (hook | dodge) | WALL_DASH) | wall_grab + hook + dodge)) 
++ dash_charge + pile_attack","JUST COPY 81 , DONT THINK ABOUT THIS ONE OTHERWISE",SEE NOTES
+Garden 7,Garden 7 - Luiseach's Carapace,Garden_001_Zone_007.BP_Interactable_AddItem_C_1,"equipments[""shield_009""]",(Garden07LowerDoor | Garden07Upper) + ((scythe | axe) + grav + (dodge + moon | double_jump) | sword + grav + double_jump + (RONIN | dodge) | STALL + grav + dodge + snow | axe + double_jump + (moon | snow) | wall_grab + (snow | dodge + (double_jump | moon | FLOWER2 | STALL + grav) | double_jump + (STALL | moon | FLOWER2) | STALL + (FLOWER2 | moon)) | high_jump + (FLOWER2 | snow | (scythe | axe | moon) + grav + lazer | STALL + (flower | dodge | double_jump | moon) | double_jump + (dodge | wall_grab | moon | flower) | dodge + (moon | flower)) | WALL_DASH + (double_jump | moon | FLOWER2 | STALL + grav)),Done,,Finished,"Nicer readable format
+
+((scythe | axe) + grav + (dodge + moon | double_jump) | sword + grav + double_jump + (RONIN | dodge) | STALL + grav + dodge + snow | axe + double_jump + (moon | snow)
+
+| wall_grab + (snow | dodge + (double_jump | moon | FLOWER2 | STALL + grav) | double_jump + (STALL | moon | FLOWER2) | STALL + (FLOWER2 | moon))
+
+| high_jump + (FLOWER2 | snow | (scythe | axe | moon) + grav + ReiBlast | STALL + (flower | dodge | double_jump | moon) | double_jump + (dodge | wall_grab | moon | flower) | dodge + (moon | flower))
+
+| WALL_DASH + (double_jump | moon | FLOWER2 | STALL + grav))",double check lazer -> REIBOLG
+Garden 8,Garden 8 - Scrap,Garden_001_Zone_008.BP_Interactable_AddItem_C_1,"currencies[""rare""]",Garden08Right | Garden08Upper,Done,,N/A,,
+Garden 11,Garden 11 - Luiseach,Garden_001_Zone_011.EVT_ev_s_e5070_Witch_Defeat,"spirits[""s5070_witch""]",Garden11Right,Done,,N/A,,
+Garden 14,Garden 14 - Charmed Fragment,Garden_001_Zone_014.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Garden14Right + dive) 
+| (Garden14Left + TORRENT)",Not Labbed,,N/A,,
+Kowloon 5,Kowloon 5 - Mother's Note,Kowloon_001_Zone_005.BP_Interactable_AddItem_C_0,"tips[""tip_mothersnote_01""]","Kowloon05UpperLeft 
+| (Kowloon05LowerLeft | Kowloon05Right) + (high_jump | snow | moon | wall_grab + (double_jump | FLOWER2 | STALL + grav | axe + dodge + lazer) | double_jump + (STALL | flower) | STALL + grav + (dodge | flower))",Done,,Finished,,double check lazer -> REIBOLG
+Kowloon 8,Kowloon 8 - Chief Attuner's Ring,Kowloon_001_Zone_008.BP_Interactable_AddItem_C_1,"passives[""restore_sp_up_a_1""]",Kowloon08Left | Kowloon08Right,Done,,N/A,,
+Kowloon 9,Kowloon 9 - Levy,Kowloon_001_Zone_009.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_bird""]",Kowloon09HiddenRight | (Kowloon09Upper + Kowloon09Upper_Lever),Not Labbed,,N/A,,
+Kowloon 13,Kowloon 13 - Scrap,Kowloon_001_Zone_013.BP_Interactable_AddItem_C_1,"currencies[""rare""]","Kowloon13UpperRight 
+| (Kowloon13HiddenLower | Kowloon13UpperLeft) + (high_jump | wall_grab | axe + (moon | flower | hook) + double_jump + dodge | STALL + grav + ((hook | RONIN | dodge) + double_jump | dodge + snow) | hook + double_jump + (snow | moon) | sword + grav + dodge + moon + hook | (axe | scythe) + grav + dodge + moon | STALL + double_jump + dodge + snow)",Done,"There is a fraction of a second hook display for scythe + double_jump + dodge + hook , I havent been able to pull off though.",Finished,"
+",
+Kowloon 18,Kowloon 18 - Charmed Fragment,Kowloon_001_Zone_018.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Kowloon18Left + (wall_grab + (dodge | wall_charge | moon | snow | STALL + (grav | double_jump | flower)) | lazer + (dodge | double_jump | STALL | grav | RONIN) | STALL + (dodge | double_jump) + (RONIN | grav)),Done,,Finished,,double check lazer -> REIBOLG
+Kowloon 21,Kowloon 21 - Magic Amplifier,Kowloon_001_Zone_021.BP_Interactable_AddItem_C_1,"materials[""parts_lv4_b""]",Kowloon21LowerLeft + (high_jump | wall_grab | STALL + grav + double_jump + (dodge | moon | snow) | axe + dodge + double_jump + (moon | snow) | scythe + flower + grav + double_jump),Done,,Finished,,
+Kowloon 26,Kowloon 26 - Materials,Kowloon_001_Zone_026.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Kowloon26Left | Kowloon26Right,Done,,N/A,,
+Kowloon 28,Kowloon 28 - Arena Tower Demon Mask,Kowloon_001_Zone_028.BP_Interactable_AddItem_C_0,"passives[""damage_up_skillcategory_defence_1""]",(Kowloon28Left | Kowloon28Right) + (high_jump | wall_grab | (axe | scythe | sword + RONIN) + grav + double_jump + dodge | (scythe | axe) + grav + double_jump + snow | axe + double_jump + dodge + snow + lazer),Done,SAME AS BELOW - updates made to either should be made to the other,Finished,,double check lazer -> REIBOLG
+Kowloon 28,Kowloon 28 - Magic Amplifier,Kowloon_001_Zone_028.BP_Interactable_AddItem_C_1,"materials[""parts_lv4_b""]",(Kowloon28Left | Kowloon28Right) + (high_jump | wall_grab | (axe | scythe | sword + RONIN) + grav + double_jump + dodge | (scythe | axe) + grav + double_jump + snow | axe + double_jump + dodge + snow + lazer),Done,SAME AS ABOVE - updates made to either should be made to the other,Finished,,double check lazer -> REIBOLG
+Kowloon 29,Kowloon 29 - Scrap,Kowloon_001_Zone_029.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Kowloon29Left,Done,,N/A,,
+Kowloon 31,Kowloon 31 - Grimoire,Kowloon_001_Zone_031.BP_Interactable_TreasureBox_C_0,"stats[""shop_line_up""]",Kowloon31Right,Done,,N/A,,
+Kowloon 32,Kowloon 32 - Arena Tower Flyer,Kowloon_001_Zone_032.BP_Interactable_AddItem_C_0,"tips[""tip_fightingtower_01""]",Kowloon32Left,Done,,N/A,,
+Kowloon 33,Kowloon 33 - Fugitive Researcher's Notes,Kowloon_001_Zone_033.BP_Interactable_AddItem_C_0,"tips[""tip_researchersjournal_01""]","Kowloon33Left 
+| (Kowloon33Right + Kowloon34Lower_Lever)",Not Labbed,,N/A,,
+Kowloon 35,Kowloon 35 - Charmed Fragment,Kowloon_001_Zone_035.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Kowloon35Left | Kowloon35LowerRight) + (high_jump | wall_grab + double_jump + (dodge | moon | snow | STALL | flower + (grav | wall_charge)) | STALL + grav + ((double_jump | wall_grab) + (moon | snow | dodge)) | STALL + grav + wall_grab + flower | axe + grav + double_jump + flower),Done,"I had a WALL_DASH + axe + dodge scenario, but couldn't recreate again / even if I could... wish upon noone",Finished,,
+Kowloon 36,Kowloon 36 - Magicite Hairpin,Kowloon_001_Zone_036.BP_Interactable_AddItem_C_0,"passives[""onkill_reduce_cooldowns_1""]",Kowloon36Right | Kowloon36UpperLeft | (Kowloon36CenterLowerLeft | Kowloon36LowerLeft) + Kowloon36Left_Lever,Not Labbed,,N/A,,
+Kowloon 39,Kowloon 39 - Magic Vial,Kowloon_001_Zone_039.BP_Interactable_AddItem_C_0,"stats[""passive_slot_s""]","Kowloon39LowerRight + high_jump + hook + (dodge | double_jump | STALL | RONIN | REIBOLG) 
+| Kowloon39UpperRight + high_jump + (double_jump | dodge | WALL_DASH | hook | STALL | REIBOLG | RONIN)",Done,,Finished,,double check REIBOLG
+Kowloon 39,Kowloon 39 - Materials,Kowloon_001_Zone_039.BP_Interactable_AddItem_C_1,"currencies[""Default""]","(Kowloon39LowerRight + high_jump + hook + (dodge | double_jump | STALL | RONIN | REIBOLG)
+| Kowloon39UpperRight) 
++ pile_attack",Done,"This requirement is most likely easier than base: the base dodge-roll from UpperRight, and a little steering during pile_attack is sufficient
+
+Original intended logic is in notes",Finished,"(Kowloon39LowerRight + high_jump + hook + (dodge | double_jump | STALL | RONIN | ReiBlast)
+| Kowloon39UpperRight + (high_jump | double_jump | dodge | WALL_DASH | hook | STALL | ReiBlast | RONIN)) 
++ pile_attack",double check REIBOLG
+Kowloon 39,Kowloon 39 - Spica,Kowloon_001_Zone_039.BP_Interactable_TreasureBox_C_0,"assists[""assist_006""]",Kowloon39UpperRight | Kowloon39LowerRight,Done,,N/A,,
+Kowloon 47,Kowloon 47 - Charmed Fragment,Kowloon_001_Zone_047.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Kowloon47Lower | Kowloon47Right) + (wall_grab + (scythe + grav | double_jump + (moon | dodge)) | WALL_DASH | STALL + (dodge | RONIN | double_jump) | lazer + (axe | scythe | RONIN | double_jump | dodge | grav) | RONIN + dodge | double_jump + (snow | flower)),Done,,Finished,,double check lazer -> REIBOLG
+Kowloon 47,Kowloon 47 - Origin Gem Core,Kowloon_001_Zone_047.BP_Interactable_AddItem_C_2,"materials[""parts_lv6_a""]",(Kowloon47Lower | Kowloon47Right) + (WALL_DASH + (double_jump | high_jump | moon | snow | flower + (dodge | STALL | grav) | STALL + (dodge | grav)) | lazer + grav + (snow | double_jump + (moon | flower) | STALL + (moon | flower | double_jump | dodge)) | STALL + double_jump + dodge + RONIN + lazer),Done,"ReiBlast + grav allows for reaching the very bottom Left platform (or higher, based on other movement options available) 
+Only tested with lazer (no movement), so I assume that even Blast with any movement should be able to reach.",Finished,,double check lazer -> REIBOLG
+Kowloon 51,Kowloon 51 - No.7,Kowloon_001_Zone_051.EVT_ev_s_e5050_Ronin_Defeat,"spirits[""s5050_ronin""]",Kowloon51Left | Kowloon51Right,Done,,N/A,,
+Labo 1,Labo 1 - Lilia's Diary,Labo_001_Zone_001.BP_Interactable_AddItem_C_0,"tips[""tip_liliasdiary_01""]",Labo01Left | Labo01Upper | Labo01Right,Done,,N/A,,
+Labo 3,Labo 3 - Aggressor,Labo_001_Zone_003.EVT_ev_s_e5003_Reaper_Defeat,"materials[""parts_s5000_a""]",Labo03Left | Labo03Right,Done,,N/A,,
+Labo 6,Labo 6 - Echo Device,Labo_001_Zone_006.BP_Interactable_TreasureBox_C_0,"passives[""damage_up_skillcategory_combo_1""]",Labo08CenterRight + WALL_DASH + (double_jump | high_jump | dodge | STALL | moon | snow),Done,Need to wall dash from 08 through 16 and 15 into 06,Finished,,
+Labo 7,Labo 7 - Materials,Labo_001_Zone_007.BP_Interactable_AddItem_C_1,"currencies[""Default""]","Labo07Upper 
+| (Labo07Right | Labo07Left) + (high_jump | (scythe | axe | sword + lazer) + grav + double_jump + (snow | dodge) | sword + grav + double_jump + dodge + RONIN | axe + double_jump + (grav + lazer + (moon | flower) | dodge + snow) | scythe + grav + double_jump + moon + lazer)",Unsure,"I am doubtful there is any specific wall_grab logic that wouldnt be sufficient to reach the lowest platform option.
+
+Labo08Right + WALL_DASH + double_jump + (axe + dodge | RONIN | STALL + grav)
+
+I've currently marked as Unsure due to the desire to add a potential WALL_DASH option from Labo08; if we want to add it, can add the above line into the logic. If not, can simply mark as Done",Finished,,double check lazer -> REIBOLG
+Labo 8,Labo 8 - Charmed Fragment,Labo_001_Zone_008.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Labo08Upper + pile_attack,Not Labbed,,N/A,,
+Labo 9,Labo 9 - Charmed Fragment,Labo_001_Zone_009.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Labo09UpperRight | Labo09LowerRight | Labo09Left | Labo09Upper + pile_attack) + (high_jump | wall_grab + (double_jump | axe | snow | moon | grav + (flower | scythe | sword))),Unsure,"scythe + dodge does work - its rather easy too, but it requires dodge and attacking into the wall, so its a bit weird.
+
+If we want to add scythe + dodge, simply add it and mark as done. Otherwise if not, is good as is and can be marked as done.",Finished,,
+Labo 10,Labo 10 - Magic Vial,Labo_001_Zone_010.BP_Interactable_TreasureBox_C_1,"stats[""passive_slot_s""]","(Labo06LowerLeft | Labo06Lower | Labo06CenterLeft | Labo06UpperLeft | Labo06Upper) 
++ WALL_DASH + Labo05Lower_Lever",Unsure,"Needs Access from Labo06 Through 07 08 05 09 into10
+Lever in Labo05Lower also needs be be active",N/A,,
+Labo 11,Labo 11 - Scrap,Labo_001_Zone_011.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Labo11LowerRight + high_jump,Unsure,"there is a (axe | scythe) + grav + double_jump + dodge + snow that also utilizes a damage “reset”  (bouncing off vertical beam enables additional axe/scythe rotation), pretty difficult
+
+Sword “can” do it as well (the above), but it might require the cd relic to use snow twice
+
+with the cd relic, grav, snow and ReiBlast, can also hover and slowly gain height, but I highly doubt we want this type of logic.
+
+If we want to keep this in its simpler state, then can mark as done. If want to add the hard mode logic, simply copy the first line from this comment and mark as done.",Finished,,
+Labo 17,Labo 17 - Crystallised Fusion,Labo_001_Zone_017.BP_Interactable_AddItem_C_0,"passives[""damage_cut_sp_gauge_1""]",Labo17Left + dive + (high_jump | wall_grab | double_jump | dodge | RONIN | STALL),Done,,Finished,,
+Labo 18,Labo 18 - Charmed Fragment,Labo_001_Zone_018.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Labo18Left | Labo18RightDoor) + (high_jump | wall_grab + (double_jump | axe | moon | snow | scythe + (dodge | grav) | (flower | sword) + grav) | (axe | scythe) + double_jump + (snow | dodge | moon) + grav | sword + double_jump + dodge + RONIN + grav),Done,,Finished,,
+Labo 18,Labo 18 - Priestess' Tears,Labo_001_Zone_018.BP_Interactable_AddItem_C_2,"passives[""damage_up_sp_gauge_1""]","Labo18RightDoor 
+| (Labo18Left + Labo18Right_Lever)",Not Labbed,,N/A,,
+Labo 19,Labo 19 - Scrap,Labo_001_Zone_019.BP_Interactable_AddItem_C_0,"currencies[""rare""]","Labo19LowerCenter + (high_jump | wall_grab + (double_jump | snow | moon | axe | scythe + (dodge | grav) | (flower | sword) + grav) | STALL + grav + double_jump + (dodge | (flower | moon) + lazer) | double_jump + grav + snow + lazer | STALL + grav + dodge + RONIN + lazer | axe + double_jump + dodge + (lazer | RONIN) | (scythe | sword) + double_jump + dodge + snow) 
+| Labo19Right + (high_jump + (dodge + double_jump | flower | snow | lazer | sword | scythe | axe + (dodge | double_jump | grav | moon) | moon + (dodge | double_jump | grav)) | (scythe | axe) + grav + double_jump + dodge + snow)
+| (Labo18Left | Labo18RightDoor) + WALL_DASH + (high_jump | double_jump | axe | moon | snow | scythe + (dodge | grav) | (flower | sword) + grav)",Done,"Can also be gotten using a wall dash from Labo18, copied the requirements for the WALL_DASH scenario (based on above with the addition of high_jump)
+
+For the RIGHT non-high_jump logic, get enough height to reach the slide portion of the roof; that resets STALL/movement",Finished,"RIGHT: high_jump + (flower | snow | ReiBlast | sword | scythe | axe + (dodge | double_jump | grav | moon) | moon + (dodge | double_jump | grav)) | (scythe | axe) + grav + double_jump + dodge + snow
+
+LOWER: has 2 routes: vertically climbing the center area into horizontal (no wall_grab) or minimum wall_grab reqs
+wall_grab + (snow | moon | axe | scythe + (dodge | grav) | (flower | sword) + grav)
+
+LOWER no wall_grab:
+STALL + grav + double_jump + (dodge | (flower | moon) + ReiBlast) 
+STALL + grav + dodge + RONIN + ReiBlast
+double_jump + grav + snow + ReiBlast
+axe + double_jump + dodge + (ReiBlast | RONIN)
+(scythe | sword) + double_jump + dodge + snow",double check lazer -> REIBOLG
+Labo 21,Labo 21 - Lar's Swift Flight,Labo_001_Zone_021.EVT_ev_s_5230_Finder_Upgrade,"aptitudes[""wall_charge""]",Labo21LowerLeft,Done,,N/A,,
+Labo 22,Labo 22 - Gilroy Examination Record,Labo_001_Zone_022.BP_Interactable_AddItem_C_0,"tips[""tip_gilroyrecords_01""]",Labo22UpperRight,Done,,N/A,,
+Labo 24,Labo 24 - Caladrius Records,Labo_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_caladriusrecord_01""]","Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH | wall_grab + double_jump + (axe | snow | moon) | wall_grab + (moon | snow) + (grav | dodge) + STALL | wall_grab + STALL + grav + dodge | STALL + grav + (dodge | snow) + double_jump | (axe | scythe) + grav + (moon | flower + lazer) + double_jump | sword + grav + moon + lazer + double_jump)
+| Labo24Lower + (high_jump | double_jump + WALL_DASH | wall_grab + double_jump + (axe | snow | moon) | wall_grab + (moon | snow) + (grav | dodge) + STALL | wall_grab + STALL + grav + dodge | STALL + grav + (dodge | snow) + double_jump | (axe | scythe) + grav + (moon | flower + lazer) + double_jump | sword + grav + moon + lazer + double_jump)",Done,,Finished,,double check lazer -> REIBOLG
+Labo 24,Labo 24 - Grimoire,Labo_001_Zone_024.BP_Interactable_TreasureBox_C_0,"stats[""shop_line_up""]","Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH | wall_grab + double_jump + (axe | snow | moon) | wall_grab + (moon | snow) + (grav | dodge) + STALL | wall_grab + STALL + grav + dodge | (axe | scythe) + grav + (dodge | snow | moon + lazer) + double_jump | sword + grav + double_jump + dodge + RONIN)
+| Labo24Lower + (high_jump | double_jump + WALL_DASH | wall_grab + double_jump + (axe | snow | moon) | wall_grab + (moon | snow) + (grav | dodge) + STALL | wall_grab + STALL + grav + dodge | (axe | scythe) + grav + (dodge | snow | moon + lazer) + double_jump | sword + grav + double_jump + dodge + RONIN)",Done,,Finished,,double check lazer -> REIBOLG
+Labo 26,Labo 26 - Materials,Labo_001_Zone_026.BP_Interactable_AddItem_C_0,"currencies[""Default""]","Labo26Upper + (high_jump | dodge + double_jump + (wall_grab | STALL) | wall_grab + (snow | moon + (STALL | dodge | double_jump) | STALL + double_jump | grav + (flower + dodge | scythe)) | STALL + (double_jump | dodge) + (grav | RONIN) | double_jump + dodge + (RONIN | STALL) | dodge + (axe | scythe) + lazer) 
+| (Labo26Left | Labo26Right) + (high_jump | double_jump + (axe | scythe) + grav + (dodge | RONIN | lazer | wall_grab) | sword + double_jump + grav + (dodge | snow | moon | flower + lazer) | STALL + grav + dodge + snow | grav + dodge + (axe | scythe) + moon + wall_grab | double_jump + axe + dodge + snow)",Done,wall_grab options from Left/Right are based on grabbing the slightly lower wall on the Right side and traversing over from there.,Finished,,double check lazer -> REIBOLG
+Labo 27,Labo 27 - Origin Gem Core,Labo_001_Zone_027.BP_Interactable_TreasureBox_C_1,"materials[""parts_lv6_a""]",Labo27UpperRight,Done,,N/A,,
+Mine 2,Mine 2 - Helix Crystal,Mine_001_Zone_002.BP_Interactable_AddItem_C_1,"passives[""onkill_restorehp_1""]",Mine02UpperRight | Mine02LowerLeft | Mine02LowerRight,Done,,N/A,,
+Mine 4,Mine 4 - Writing Etched Into the Wall,Mine_001_Zone_004.BP_Interactable_AddItem_C_1,"tips[""tip_writingwall_01""]",Mine04Upper | Mine04Left,Done,,N/A,,
+Mine 4,Mine 4 - Miner Unit,Mine_001_Zone_004.EVT_ev_s_e0122_Wheeler_Defeat,"materials[""parts_lv2_b""]",Mine04Left,Done,,N/A,,
+Mine 5,Mine 5 - Charmed Fragment,Mine_001_Zone_005.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Mine05Upper | Mine05Left) 
++ (high_jump | (double_jump | STALL) + (dodge | moon) | snow | flower | dodge + moon | double_jump + STALL | (moon | scythe) + grav | (axe | sword | double_jump) + grav + lazer)",Done,,Finished,,double check lazer -> REIBOLG
+Mine 5,Mine 5 - Materials,Mine_001_Zone_005.BP_Interactable_AddItem_C_2,"currencies[""Default""]",(Mine05Left | Mine05Upper) + (high_jump | double_jump + dodge | snow | flower | REIBOLG | STALL + (double_jump | dodge | moon | grav | wall_grab) | moon + (grav | dodge | double_jump | wall_grab) | (wall_grab + (dodge | wall_charge | double_jump))),Done,,Finished,,double check REIBOLG
+Mine 5,Mine 5 - Magic Vial,Mine_001_Zone_005.BP_Interactable_AddItem_C_3,"stats[""passive_slot_s""]","(Mine05Upper | Mine05Left) 
++ (double_jump | high_jump | dodge | STALL | RONIN | REIBOLG)
++ pile_attack",Done,,Finished,,double check REIBOLG
+Mine 6,Mine 6 - Materials,Mine_001_Zone_006.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Mine06LowerLeft + (wall_grab | double_jump | high_jump | (sword | scythe) + (dodge | grav) | axe | RONIN),Done,"in the (sword | scythe) + (dodge | grav) , the leg enhancement gear relic could also supplement the sword | scythe (ie. sword + leg enhancement)",Finished,Mine06LowerLeft and UpperLeft are currently misnamed Lower and Left in transitions - expect an error here,
+Mine 6,Mine 6 - Charmed Fragment,Mine_001_Zone_006.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Mine06UpperLeft | Mine06Right) 
++ (high_jump | flower | snow | ((double_jump | moon) + (dodge | WALL_DASH | STALL | grav + lazer)) | moon + double_jump | STALL + (dodge | grav + (WALL_DASH | lazer)))",Done,,Finished,Mine06LowerLeft and UpperLeft are currently misnamed Lower and Left in transitions - expect an error here,double check lazer -> REIBOLG
+Mine 8,Mine 8 - Unidentified Amplifier,Mine_001_Zone_008.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_b""]",Mine08Upper + pile_attack + (high_jump | double_jump | WALL_DASH | RONIN | STALL + grav | (axe | scythe | sword + lazer) + dodge),Done,,Finished,,double check lazer -> REIBOLG
+Mine 9,Mine 9 - Muninn,Mine_001_Zone_009.EVT_ev_s_0080_FrostAndOwl,"spirits[""s5090_owl""]",Mine09Upper | Mine09Right,Done,,N/A,,
+Mine 11,Mine 11 - Tarnished Tag,Mine_001_Zone_011.BP_Interactable_TreasureBox_C_1,"passives[""damage_cut_physic_1""]",Mine11Right,Done,,N/A,,
+Mine 12,Mine 12 - Charmed Fragment,Mine_001_Zone_012.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","(Mine12Right + (double_jump | high_jump | RONIN | (STALL | lazer) + grav | scythe + dodge + (wall_grab | lazer) | axe + (dodge | wall_grab | lazer)) 
+| Mine12Upper + (double_jump | high_jump | RONIN | dodge | STALL | REIBOLG) 
+| Mine12Left) 
++ pile_attack",Done,"sword + dodge + wall_grab ""can"" technically work, but again, requires forcing attacking into wall
+
+current state, sword has no unique logic for this check from Right",Finished,"sword + leg enhancement + dodge + ReiBlast works (ie, there are other leg enhancement logic breaks here most likely too)",double check lazer -> REIBOLG & double check REIBOLG
+Mine 13,Mine 13 - Materials,Mine_001_Zone_013.BP_Interactable_AddItem_C_1,"currencies[""Default""]","Mine13Right + (double_jump | high_jump | REIBOLG | RONIN | STALL + (grav | dodge)) 
+| Mine13Left + (double_jump | high_jump | REIBOLG | RONIN | STALL + (grav | dodge) | wall_grab)",Unsure,"I want to remove Mine13Right from Logic? or add Lever?
+
+Otherwise update to Done",Finished,,double check REIBOLG
+Mine 13,Mine 13 - Grimoire,Mine_001_Zone_013.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Mine13Left,Done,,N/A,,
+Mine 14,Mine 14 - Notification of Restricted Areas,Mine_001_Zone_014.BP_Interactable_AddItem_C_0,"tips[""tip_tunerjournal_01""]",Mine14Left | Mine14Lower | Mine14Right,Done,,N/A,,
+Mine 14,Mine 14 - Levy,Mine_001_Zone_014.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_board""]","(Mine14Left | Mine14Lower | Mine14Right) 
++ (high_jump | hook + (double_jump | dodge | STALL | RONIN | lazer + grav + wall_grab))",Unsure,"Not sure why this is [quest board]
+
+I have NOT successfully tested with Reibolg's Blast Volley, and the other 2 are super tight; might be better to remove the ReiBlast + grav + wall_grab option altogether TBH
+
+Additionally, there is an axe + grav + double_jump + dodge + snow + wall_grab option that requires resetting off the left slope.
+
+Currently unsure : decide on whether to add the above axe option, and decide on keeping ReiBlast portion",Finished,,double check lazer -> REIBOLG; read comment
+Mine 17,Mine 17 - Garm,Mine_001_Zone_017.EVT_ev_s_e5200_Pounder_Defeat,"aptitudes[""pile_attack""]",Mine17Right,Done,,N/A,,
+Paradise 1,Paradise 1 - Charmed Fragment 1,Paradise_001_Zone_001.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Paradise01Left | Paradise01LowerRight) + (high_jump | double_jump | RONIN | STALL + grav | (scythe | sword) + dodge | axe + (dodge | wall_grab)) 
+| Paradise01UpperRight + (double_jump | dodge | high_jump | STALL | RONIN | REIBOLG)",Done,,Finished,,double check REIBOLG
+Paradise 1,Paradise 1 - Charmed Fragment 2,Paradise_001_Zone_001.BP_Interactable_AddItem_C_2,"stats[""hp_up_s""]","(Paradise01Left | Paradise01LowerRight | Paradise01UpperRight) 
++ (high_jump | (axe | scythe) + grav + dodge + double_jump + wall_grab + (moon | snow)) 
+| Paradise02UpperRight + (WALL_DASH | dodge + double_jump + scythe + grav + lazer)
+| (Paradise02Left | Paradise02LowerRight) + WALL_DASH + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump)",Unsure,"Hilariously enough, can also dodge + double_jump + STALL + wall_grab + grav + ReiBlast all the way from Paradise02UpperRight
+(ReiBlast specifically probably needs to be lazer)
+
+If we want to add the borderline ridiculous ReiBlast + grav comment above , then add it as an alternative option from Paradise02 options; If not, otherwise mark as Done
+
+I added it because.",Finished,"(axe | scythe) + grav + dodge + double_jump + (moon | snow) + wall_grab
+sword ""can"" work but it requires using snow x2 with either ReiBlast or cd relic (only tested with snowx2, moon doesnt look possible)","Very doubtful ReiBlast Blaster would work if adding logic from Paradise02
+
+double check lazer -> REIBOLG
+
+May need to split ReiBlast if Blaster is not possible."
+Paradise 2,Paradise 2 - Declan's Records,Paradise_001_Zone_002.BP_Interactable_AddItem_C_0,"tips[""tip_degrandsrecord_01""]","(Paradise02Left | Paradise02LowerRight) + (double_jump | dodge | high_jump | STALL | RONIN | REIBOLG + grav)
+| Paradise02UpperRight | Paradise02CenterRight + Paradise04Left_Lever",Done,,Finished,,double check REIBOLG
+Paradise 3,Paradise 3 - Magic Vial,Paradise_001_Zone_003.BP_Interactable_AddItem_C_0,"stats[""passive_slot_s""]","(Paradise03UpperLeft | Paradise03LowerLeft | Paradise03Lower + (high_jump | wall_grab | (axe | scythe) + grav + dodge + moon + lazer | (axe | scythe | sword + lazer) + grav + snow + dodge | STALL + grav + double_jump + (dodge | snow | moon) | axe + double_jump + dodge + (snow | moon))) 
++ TORRENT",Done,"Should LowerLeft be removed as it requires key?
+
+REMEMBER : TORRENT = dive + dodge + dash_charge_underwater
+
+MEANING : dodge is implicitly included
+
+I've included the logic with dodge in each variation in the notes column for review/reference.
+
+This could be rewritten for better understanding to split TORRENT into dive + dodge + dash_charge_underwater if desired.",Finished,"((Paradise03UpperLeft | Paradise03LowerLeft | (Paradise03Lower + (high_jump | wall_grab | (axe | scythe) + grav + dodge + moon + ReiBlast | (axe | scythe | sword + ReiBlast) + grav + snow + dodge | STALL + grav + double_jump + (dodge | snow | moon) | axe + double_jump + dodge + (snow | moon))))) 
++ TORRENT",double check lazer -> REIBOLG
+Paradise 3,Paradise 3 - Grimoire,Paradise_001_Zone_003.BP_Interactable_TreasureBox_C_0,"stats[""shop_line_up""]","(Paradise03UpperLeft | Paradise03LowerLeft) + (high_jump | snow | wall_grab + FLOWER2 | (double_jump | STALL | moon) + (dodge | WALL_DASH))
+| Paradise03Lower + ((high_jump | (axe | scythe) + grav + dodge + moon + lazer | (axe | scythe | sword + lazer) + grav + snow + dodge | STALL + grav + double_jump + (dodge | snow | moon) | axe + double_jump + dodge + (snow | moon)) | wall_grab + (snow | FLOWER2 | double_jump + (dodge | wall_charge | moon | flower | lazer | STALL)) | wall_grab + dodge + (STALL | moon | flower)  | wall_grab + STALL + (grav + lazer | moon) | WALL_DASH + (moon | STALL + (lazer | grav)))",Unsure,"Should LowerLeft be removed as it requires key?
+
+Marking as unsure due to the above comment
+
+If kept, it needs to be split from UpperLeft and further logic review
+If removed, then delete the location and logic is Done",Finished,,double check lazer -> REIBOLG
+Paradise 5,Paradise 5 - Charmed Fragment,Paradise_001_Zone_005.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Paradise05UpperRight | Paradise05Right) + (high_jump | WALL_DASH | wall_grab + (double_jump + dodge | snow | (double_jump | dodge) + (lazer | STALL | moon | flower) | STALL + (lazer | grav | moon | flower)) | STALL + grav + double_jump | (scythe | axe) + grav + snow | STALL + grav + dodge + (moon | flower)),Unsure,"This is marked as unsure as it requires an assumption from the UpperRight direction: the only way to get to here is with either wall_grab or high_jump; I don't think it is worth entertaining a “I fell into the transition, let me use STALL + dodge only”
+
+This also means, if you have wall_grab, can default from the right position (from either entrance), due to the fact that “some” movement required to get the item would also enable you to get to that wall_grab position
+
+If we ""really"" want to discuss splitting, this is type of logic that could be done without wall_grab from UpperRight: dodge + (STALL | ReiBlast | moon) | FLOWER2 | snow
+And any of the wall_grab-less combos would be Right only, as they would definitely be overkill from an Upper perspective.
+
+If we are fine with the assumption, then can mark as Done and be done with it. Otherwise the logic will need to be split based on entrance and reworked a little bit.",Finished,,double check lazer -> REIBOLG
+Paradise 8,Paradise 8 - No.47,Paradise_001_Zone_008.EVT_ev_s_e0289_Banshee_Defeat,"materials[""parts_lv5_b""]",Paradise08Lower | Paradise08LowerLeft | Paradise08LowerRight,Done,,N/A,,
+Paradise 11,Paradise 11 - Bloodstained Diary,Paradise_001_Zone_011.BP_Interactable_AddItem_C_0,"tips[""tip_bloodstaineddiary_01""]",Paradise11Upper,Done,,N/A,,
+Paradise 12,Paradise 12 - Declan's Ring,Paradise_001_Zone_012.BP_Interactable_TreasureBox_C_0,"passives[""onattack_restorehp_1""]",Paradise12Upper,Done,,N/A,,
+Paradise 19,Paradise 19 - Scrap,Paradise_001_Zone_019.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Paradise19Lower,Done,,N/A,,
+Paradise 19,Paradise 19 - Materials,Paradise_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""Default""]",(Paradise19Upper | Paradise19Left) + TORRENT,Not Labbed,,N/A,,
+Paradise 19,Paradise 19 - Motley's Torrent,Paradise_001_Zone_019.EVT_ev_s_5220_Wirer_Upgrade,"aptitudes[""dash_charge_underwater""]",Paradise19Upper | (Paradise19Left + TORRENT),Not Labbed,,N/A,,
+Paradise 21,Paradise 21 - Materials,Paradise_001_Zone_021.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Paradise21Right,Done,,N/A,,
+Paradise 24,Paradise 24 - Words Etched into Cell,Paradise_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_prisonwall_01""]",Paradise24Left,Done,,N/A,,
+Paradise 26,Paradise 26 - Declan's Binds,Paradise_001_Zone_026.BP_Interactable_AddItem_C_0,"equipments[""armor_015""]",Paradise26Upper,Done,,N/A,,
+Paradise 30,Paradise 30 - Grand Sorcerer's Key,Paradise_001_Zone_030.EVT_ev_n_e0289_Banshee_KeyGet,"keys[""key_owner""]",Paradise30Left,Done,,N/A,,
+Paradise 32,Paradise 32 - Unidentified Transformer,Paradise_001_Zone_032.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_c""]","((Paradise32Left | Paradise32Lower) + (high_jump | axe + grav + dodge + (double_jump | snow | (moon | flower) + wall_grab) | (sword | scythe) + grav + dodge + (double_jump | RONIN + wall_grab) | (axe | scythe) + grav + double_jump + (snow | (flower | moon) + wall_grab) | sword + grav + double_jump + (RONIN + wall_grab) | hook + (double_jump | dodge | STALL | RONIN | lazer))
+| Paradise32HiddenUpper + (high_jump | STALL + double_jump + dodge | double_jump + (lazer + grav | WALL_DASH) | hook + (double_jump | dodge | STALL | RONIN | lazer) | dodge + STALL + grav + (RONIN | lazer))
+| Paradise32Right + (high_jump | double_jump + (dodge | STALL | moon | snow | FLOWER2) + WALL_DASH | STALL + double_jump + dodge + (grav | RONIN) | hook + (double_jump | dodge | STALL | RONIN | lazer ) | dodge + STALL + grav + RONIN))
++ pile_attack",Unsure,"Marking as unsure due to the existance of Paradise32Lower.
+
+I don't think it we should keep it. If we decide to remove it, just delete it and mark as done. 
+If we think it should be kept, then need to add TORRENT and then split & rework the logic (as the TORRENT macro currently includes dodge).
+
+Also, I'll be honest, this one was a little rushed. Probably could be further reviewed.",Finished,,double check lazer -> REIBOLG - esp the hook option
+Paradise 33,Paradise 33 - Headless Gold Statue,Paradise_001_Zone_033.BP_Interactable_AddItem_C_0,"passives[""onkill_drops_1""]","Paradise33Upper 
+| Paradise33Left + (high_jump + (dodge | double_jump | WALL_DASH | scythe | RONIN | ((sword | axe) + (grav | lazer)) | grav + lazer) | STALL + grav + (double_jump | dodge + RONIN)  | double_jump + (snow | moon + grav) | wall_grab + (double_jump | STALL + (grav | dodge | flower) | moon | snow | FLOWER2))",Done,,Finished,,"double check lazer -> REIBOLG
+
+ReiBlast - NOTE havent successfully tested with Blast, only lazer"
+Paradise 34,Paradise 34 - Cracked Magicite Dagger,Paradise_001_Zone_034.BP_Interactable_TreasureBox_C_1,"passives[""damage_up_skillcategory_special_1""]",Paradise34Upper,Done,,N/A,,
+Quarry 1,Quarry 1 - Survey Teams Notes,Quarry_001_Zone_001.BP_Interactable_AddTutorial_C_0,"tips[""tip_freeze_01""]",Quarry01Left + (double_jump | wall_grab | high_jump | RONIN | REIBOLG | STALL + (grav | dodge)) | Quarry01Right,Unsure,"Unsure because I think Left should be deleted
+
+If want to keep, then just update to Done.",Finished,,double check REIBOLG
+Quarry 2,Quarry 2 - Charmed Fragment,Quarry_001_Zone_002.BP_Interactable_AddItem_C_2,"stats[""hp_up_s""]","(Quarry02Right | Quarry02LowerLeft | Quarry02LowerRight) 
++ double_jump + dash_charge",Unsure,"SKIPPING – technically with the leg enhancement gear relic, then double_jump ""could"" be replaceable, but not sure if we plan to include that in logic
+
+Probably more apt to update to N/A and mark as done.",Finished,,
+Quarry 3,Quarry 3 - Tattered Notice,Quarry_001_Zone_003.BP_Interactable_AddItem_C_0,"tips[""tip_raggedpastedown_01""]",Quarry03Upper | Quarry03Lower,Done,,N/A,,
+Quarry 3,Quarry 3 - Levy,Quarry_001_Zone_003.BP_Trigger_Event_LevyTreasure_C_0,"quests[""quest_perfume""]",Quarry03Upper | Quarry03Lower,Done,,N/A,,
+Quarry 4,Quarry 4 - Materials,Quarry_001_Zone_004.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Quarry04Upper + dash_charge,In Progress,,N/A,,
+Quarry 4,Quarry 4 - Grimoire,Quarry_001_Zone_004.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]",Quarry04Left + (high_jump | wall_grab | double_jump | snow | moon | axe + dodge | STALL + grav),Done,,Finished,FLOWER2 + leg enhancement relic...,
+Quarry 5,Quarry 5 - Materials,Quarry_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry05Lower,Unsure,,N/A,"TODO? Prob not – skipping for same reason in comment section; if you can enter the room, you can get the item",
+Quarry 7,Quarry 7 - Survey Team Gauntlet,Quarry_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""debuff_damage_up_a_1""]","(Quarry07Upper | Quarry07Lower | Quarry07Left) 
++ (snow | high_jump | WALL_DASH + (double_jump | moon | STALL) | moon + (double_jump | dodge | grav + lazer | STALL) | flower + (double_jump | dodge | STALL | grav) | STALL + (double_jump | dodge) | (scythe | axe) + grav + lazer | double_jump + dodge)",Unsure,"Currently marked as Unsure due to 2 factors:
+We can add Quarry07Right + dash_charge if we want, currently it is left out. it is a little moot either way since its a dead end.
+
+There is a WALL_DASH option from Quarry10Right, which might actually be potentially relevant. Id currently recommend adding it.
+
+If we decide to add Quarry10 WALL_DASH, that needs to be added, then can be marked as Done. If do not add, can mark as Done.",Finished,"Clean logic!
+
+snow | high_jump
+WALL_DASH + (double_jump | moon | STALL)
+moon + (double_jump | dodge | grav + ReiBlast | STALL)
+flower + (double_jump | dodge | STALL | grav)
+STALL + (double_jump | dodge)
+(scythe | axe) + grav + ReiBlast
+double_jump + dodge",double check lazer -> REIBOLG
+Quarry 10,Quarry 10 - New Model Core,Quarry_001_Zone_010.BP_Interactable_AddItem_C_1,"materials[""parts_lv4_a""]","Quarry10UpperRight + (high_jump | double_jump | wall_grab + (dodge | STALL | lazer | flower | wall_charge) | moon | snow | STALL + (flower | dodge) | (flower | lazer) + grav)
+| Quarry10HiddenRight + (high_jump | double_jump | wall_grab + (dodge | wall_charge | lazer + grav | STALL | flower) | (flower | STALL) + dodge | moon | snow | (STALL | grav) + flower)
+| Quarry10Lower + (high_jump | double_jump | wall_grab + (dodge | lazer + grav | STALL | flower) | (flower | STALL) + dodge | moon | snow | (STALL | grav) + flower)",Done,,Finished,,double check lazer -> REIBOLG
+Quarry 11,Quarry 11 - Materials,Quarry_001_Zone_011.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry11Left,Unsure,not sure why I put none here,N/A,,
+Quarry 14,Quarry 14 - Magic Vial,Quarry_001_Zone_014.BP_Interactable_AddItem_C_1,"stats[""passive_slot_s""]",(Quarry14Upper | Quarry14Right) + double_jump + dash_charge,Done,,N/A,,
+Quarry 15,Quarry 15 - Depths Survey Record,Quarry_001_Zone_015.BP_Interactable_AddItem_C_1,"tips[""tip_lowestrecord_01""]","Quarry15Upper 
+| (Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (wall_grab + (double_jump | moon | snow | STALL | FLOWER2) | high_jump + (wall_grab + (dodge | flower | wall_charge) | snow | double_jump + (moon | STALL + grav | dodge + (STALL | FLOWER2)) | STALL + grav + (moon | dodge)))",Done,"this is same as 179 (2 down)
+
+double_jump + wall_grab feels close to frame perfect, its annoyingly difficult. You need to input left on keyboard/control stick BEFORE hitting jump",Finished,,
+Quarry 15,Quarry 15 - Charmed Fragment,Quarry_001_Zone_015.BP_Interactable_AddItem_C_3,"stats[""hp_up_s""]",(Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (wall_grab + (double_jump | dodge | RONIN | STALL | wall_charge) | high_jump + (snow | double_jump + (moon | STALL + grav | dodge + (STALL | FLOWER2)) | STALL + grav + (moon | dodge))),Done,This is an easier version of 177/179; the minimum requirements to reach the area just below the lever,Finished,,
+Quarry 15,Quarry 15 - Krios,Quarry_001_Zone_015.BP_Interactable_TreasureBox_C_1,"assists[""assist_001""]","Quarry15Upper 
+| (Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (wall_grab + (double_jump | moon | snow | STALL | FLOWER2) | high_jump + (wall_grab + (dodge | flower | wall_charge) | snow | double_jump + (moon | STALL + grav | dodge + (STALL | FLOWER2)) | STALL + grav + (moon | dodge)))",Done,"this is same as 177 (2 above)
+
+double_jump + wall_grab feels close to frame perfect, its annoyingly difficult. You need to input left on keyboard/control stick BEFORE hitting jump",Finished,,
+Quarry 16,Quarry 16 - Materials,Quarry_001_Zone_016.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry16Right,Done,,N/A,,
+Quarry 17,Quarry 17 - Materials,Quarry_001_Zone_017.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry17Right,Done,,N/A,,
+Quarry 18,Quarry 18 - Blighted Talisman,Quarry_001_Zone_018.BP_Interactable_AddItem_C_1,"passives[""stamina_damage_up_a_1""]","Quarry18Upper + (high_jump | wall_grab + (double_jump | dodge | wall_charge | STALL | RONIN | lazer) | double_jump + (STALL | dodge | lazer) | (axe | scythe) + grav | STALL + (dodge | RONIN) | (double_jump | dodge) + RONIN | lazer + (RONIN | grav)) 
+| (Quarry18LowerLeft | Quarry18HiddenLeft) + (high_jump | wall_grab + (double_jump | dodge | wall_charge | STALL | RONIN | lazer) | double_jump + (STALL | dodge | lazer) | (axe | scythe) + grav | sword + grav + (dodge | lazer | RONIN))",Done,,Finished,,"double check lazer -> REIBOLG
+
+there is probably a mix if not all REIBOLG"
+Quarry 21,Quarry 21 - Unidentified Core,Quarry_001_Zone_021.BP_Interactable_AddItem_C_1,"materials[""parts_s5000_a""]","Quarry21Lower + (high_jump + (double_jump | dodge | STALL | REIBOLG | RONIN | WALL_DASH) | double_jump + (dodge | STALL | RONIN | WALL_DASH) | axe + flower | STALL + (grav | wall_grab + dodge) | (snow | moon | flower + grav) + dodge | (moon | snow) + STALL)
+| Quarry21Right + (high_jump | double_jump + (dodge | WALL_DASH) | snow | moon | (flower | STALL) + (grav | double_jump) | STALL + flower)",Done,,Finished,,double check REIBOLG
+Quarry 21,Quarry 21 - Jagged Crystal,Quarry_001_Zone_021.BP_Interactable_AddItem_C_2,"passives[""damage_up_minhp_1""]","Quarry21Lower + (high_jump + (double_jump | dodge | STALL | REIBOLG | RONIN | WALL_DASH) | wall_grab + (double_jump + (dodge | STALL | RONIN | wall_charge) | axe + flower | STALL + (grav | dodge) | (snow | moon | flower + grav) + dodge | (moon | snow) + STALL))
+| Quarry21Right + (high_jump | wall_grab + (double_jump + (dodge | wall_charge) | snow | moon | (flower | STALL) + (grav | double_jump) | STALL + flower))",Done,,Finished,,double check REIBOLG
+Quarry 24,Quarry 24 - Materials,Quarry_001_Zone_024.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry24Upper,Done,,N/A,,
+Quarry 31,Quarry 31 - Lar's Grip,Quarry_001_Zone_031.EVT_ev_s_n7043_Quarry_Tuner,"aptitudes[""wall_grab""]",Quarry31Upper | Quarry31Right,Done,,N/A,,
+Roots 1,Roots 1 - Reibolg 1,Roots_001_Zone_001.EVT_ev_s_e5012_RootsLancer_Defeat,"spirits[""s5010_lancer""]",Roots01Left,Done,,N/A,,
+Roots 1,Roots 1 - Reibolg 2,Roots_001_Zone_001.EVT_ev_s_e5012_RootsLancer_Defeat.1,"quests[""quest_eye""]",Roots01Left,Done,,N/A,,
+Roots 2,Roots 2 - Lilia's Blighted Ring,Roots_001_Zone_002.EVT_ev_s_FinalRelic,"passives[""ending_flag""]",Roots02Right + quest_amulet,Unsure,"are we going to be using the same requirements for ending b (need Blighted eye and stele to get curio from Lily to get Blighted Ring from Lilia, or will curio and Blighted Ring be shuffled???",N/A,,
+Roots 2,Roots 2 - White Priestess' Attire,Roots_001_Zone_002.EVT_ev_s_FinalRelic.1,"costumes[""p0050""]",Roots02Right + quest_amulet,Not Labbed,,N/A,,
+Roots 5,Roots 5 - Stele of the Land of Origin,Roots_001_Zone_005.EVT_ev_n_Levy_Treasure6_001,"quests[""quest_lithograph""]",Roots05Upper | Roots05Right,Done,,N/A,,
+Roots 6,Roots 6 - Charmed Fragment,Roots_001_Zone_006.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",Roots06Right + pile_attack + (wall_grab | high_jump | axe + (dodge + moon | snow) + double_jump | (scythe | sword) + dodge + snow + double_jump | (scythe | sword) + grav + double_jump + (RONIN | dodge) | axe + grav + double_jump + (dodge | flower | moon) | STALL + grav + dodge + snow),Done,"Same logic as below; if you update one, just prob update both
+
+There might be better logical grouping/writing, but yeah... axe is currently separated since it has a couple of unique use cases ",Finished,,
+Roots 6,Roots 6 - Origin Gem Core,Roots_001_Zone_006.BP_Interactable_AddItem_C_3,"materials[""parts_lv6_a""]",Roots06Right + pile_attack + dash_charge + (wall_grab | high_jump | axe + (dodge + moon | snow) + double_jump | (scythe | sword) + dodge + snow + double_jump | (scythe | sword) + grav + double_jump + (RONIN | dodge) | axe + grav + double_jump + (dodge | flower | moon) | STALL + grav + dodge + snow),Done,"Same logic as above; if you update one, just prob update both",Finished,,
+Roots 8,Roots 8 - Charmed Ore,Roots_001_Zone_008.BP_Interactable_AddItem_C_1,"stats[""hp_up_l""]",Roots08Left + (wall_grab | high_jump | snow | dodge + double_jump | (dodge | double_jump) + (STALL | lazer + grav | moon | flower) | STALL + (moon | flower | lazer + grav)),Done,,Finished,,double check lazer -> REIBOLG
+Roots 9,Roots 9 - Materials,Roots_001_Zone_009.BP_Interactable_TreasureBox_C_1,"currencies[""Default""]",Roots09Lower,Done,,N/A,,
+Roots 11,Roots 11 - Blighted Prophecy,Roots_001_Zone_011.BP_Interactable_AddItem_C_1,"tips[""tip_prophecybook_01""]",Roots11Right | Roots11HiddenUpper,Done,,N/A,,
+Roots 12,Roots 12 - Typhon,Roots_001_Zone_012.BP_Interactable_AddItem_C_1,"assists[""assist_010""]",Roots09Right + WALL_DASH + (double_jump | high_jump | STALL | moon | snow | flower + grav),Unsure,"Friendly reminder, this is actually for the Roots12 Item
+
+Needs access to Roots09 for WALL_DASH
+
+I had a dash_charge + dodge scenario - it does work, not sure if we want to add it; if not considering base game state, the dash_charge walls should technically already be broken if able to approach from Roots09Right, so it would more simply be just 'dodge'",Finished,,
+Roots 17,Roots 17 - Joran's Notes 1,Roots_001_Zone_017.BP_Interactable_AddItem_C_1,"tips[""tip_yoransdiary_01""]","Roots17Left 
+| Roots17Right + (STALL + double_jump + (snow | dodge) | STALL + snow + dodge | double_jump + dodge + (snow | moon) | STALL + grav + (dodge + (moon | flower) | lazer + snow | double_jump + (lazer | moon | flower)) | hook + (dodge | double_jump | STALL | RONIN | lazer + grav))",Done,,Finished,This can also be used Right to Left transition,"double check lazer -> REIBOLG ; esp the hook
+
+May need to verify ReiBlast Blast"
+Roots 18,Roots 18 - Joran's Notes 2,Roots_001_Zone_018.BP_Interactable_AddItem_C_0,"tips[""tip_yoransdiary_02""]","Roots18UpperRight 
+| Roots18LowerRight + (high_jump | double_jump + (STALL | dodge | lazer | RONIN) | axe + (dodge + (wall_grab | lazer) | grav) | (sword | scythe) + (grav | wall_grab + (lazer | dodge)) | wall_grab + (lazer + (axe | dodge) | RONIN))",Done,"I was able to do with just axe + dodge , it might have due to lag / frame changes; added ReiBlast for consistency
+
+There are definitely more RONIN options - but they require cooldown to be able to be used without the platforms disappearing, or maybe with potential STALLing
+
+double_jump + grav + leg enhancement gear LUL",Finished,,double check lazer -> REIBOLG ; esp double jump
+Roots 20,Roots 20 - Primordial Heirloom,Roots_001_Zone_020.BP_Interactable_TreasureBox_C_0,"equipments[""shield_008""]",Roots20Lower + (high_jump + (axe | scythe | sword + (REIBOLG | RONIN)) + grav + double_jump + dodge | wall_grab + (double_jump + (dodge | wall_charge | high_jump) | moon | snow | (high_jump | FLOWER2) + dodge | STALL + (double_jump | grav))),Done,"Non-wall_grab logic uses the fact that falling onto the slope resets STALL/double_jump/dodge
+
+Aside from sword, there isnt any RONIN + high_jump; without cd relics and/or ReiBlast STALLing, it isnt fast enough to replace double_jump | dodge",Finished,,double check REIBOLG
+Roots 22,Roots 22 - Abelia's Ring,Roots_001_Zone_022.BP_Interactable_TreasureBox_C_1,"passives[""onattack_instantkill_1""]",Roots22Upper,Done,,N/A,,
+Roots 23,Roots 23 - Origin Gem Core,Roots_001_Zone_023.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_a""]",Roots23Left + (wall_grab + (double_jump + dodge + (axe | scythe | lazer + grav | sword + (moon | snow | grav)) | STALL + grav + (moon | snow | lazer) + (double_jump | dodge) | snow + lazer + grav) | WALL_DASH + (double_jump + dodge | STALL + ((flower | dodge) + grav | double_jump | moon | snow))),Unsure,"snow + ReiBlast + grav + (STALL | double_jump | dodge)
+
+cd relic also helps with the above
+
+do we want this type of logic (the above is a scenario with NO wall_grab requirement? requires multiple uses of snow. again, its just a bit excessive? its not hard...
+
+If we want to add this logic, then add the above logic and mark as done. if not, mark as done as is.",Finished,,double check lazer -> REIBOLG
+Roots 27,Roots 27 - Ancient's Fury,Roots_001_Zone_027.BP_Interactable_TreasureBox_C_0,"equipments[""armor_020""]",Roots27Lower + TORRENT + assist_012,Unsure,This is that horrible swim section that needs a bunch of healing charms and totems. Can be done with just Cetus totem,N/A,,
+Roots 28,Roots 28 - Origin Gem Core,Roots_001_Zone_028.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_a""]",Roots28Lower + TORRENT,Not Labbed,,N/A,,
+Roots 29,Roots 29 - Charmed Ore,Roots_001_Zone_029.BP_Interactable_AddItem_C_0,"stats[""hp_up_l""]",Roots29Upper + TORRENT,Not Labbed,,N/A,,
+Roots 30,Roots 30 - Unidentified Amplifier,Roots_001_Zone_030.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_b""]",Roots30Right,Done,,N/A,,
+Ruins 4,Ruins 4 - Nola,Ruins_001_Zone_004.EVT_ev_s_0020_NoraMeeting,"spirits[""s5000_reaper""]",Ruins04LowerLeft | Ruins04UpperLeft,Done,we assume we spawn with a weapon that break walls,N/A,,
+Ruins 5,Ruins 5 - Charmed Fragment,Ruins_001_Zone_005.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Ruins05Left | Ruins05Right) + dash_charge + double_jump,Done,"SKIPPING - unless there is some tech im not aware of, no updates required",N/A,,
+Ruins 12,Ruins 12 - Subterranean Testing Site Key,Ruins_001_Zone_012.BP_Interactable_AddItem_Skill_C_0,"keys[""key_ruins_tuto""]",Ruins12Right,Done,,N/A,,
+Ruins 12,Ruins 12 - Lito,Ruins_001_Zone_012.EVT_ev_s_e5030_Rogue_Defeat,"spirits[""s5030_rogue""]",Ruins12Right,Done,,N/A,,
+Ruins 13,Ruins 13 - Homunculus Research Log 1,Ruins_001_Zone_013.BP_Interactable_AddItem_C_1,"tips[""tip_homunculusrecord_01""]",Ruins13Left | Ruins13Upper,Done,,N/A,,
+Ruins 14,Ruins 14 - Worn Experiment Log,Ruins_001_Zone_014.BP_Interactable_AddItem_C_1,"tips[""tip_ruinsrecords_01""]",Ruins14Right,Done,,N/A,,
+Ruins 15,Ruins 15 - Healing Ward,Ruins_001_Zone_015.EVT_ev_s_0015_GetHeal,"aptitudes[""heal""]",Ruins15Left | Ruins15Right,Done,,N/A,,
+Sewer 1,Sewer 1 - Corroded Warning Sign,Sewer_001_Zone_001.BP_Interactable_AddItem_C_0,"tips[""tip_corrosionboard_01""]",Sewer01Upper | Sewer01Right,Done,,N/A,,
+Sewer 2,Sewer 2 - Grimoire,Sewer_001_Zone_002.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]","Sewer02UpperLeft | 
+((Sewer02LowerLeft | Sewer02Lower) + dive)",Not Labbed,,N/A,,
+Sewer 4,Sewer 4 - Materials,Sewer_001_Zone_004.BP_Interactable_AddItem_C_1,"currencies[""Default""]",(Sewer04Upper | Sewer04Left | Sewer04Right | Sewer04Lower) + (double_jump | dodge | RONIN | STALL | REIBOLG + grav),Done,,Finished,,double check REIBOLG
+Sewer 5,Sewer 5 - Materials,Sewer_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Sewer05Right,Done,,N/A,,
+Sewer 8,Sewer 8 - Eye of the Beast,Sewer_001_Zone_008.BP_Interactable_AddItem_C_0,"passives[""gold_up_1""]",(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab | (STALL | dodge) + snow | STALL + dodge + (grav | moon) | double_jump + (dodge | RONIN | STALL)),Unsure,"this one is a question of ""how janky"" do we want the logic to be.
+
+All the suggested logic has been tested, just not exactly user friendly / can be slightly frustrating.
+
+I would recommend testing these scenarios (I can demo/record them as well), to see what we want to keep / remove.
+
+If we want to keep everything, then can mark as Done. Otherwise, remove what we want and mark as Done.",Finished,"for Dodge + snow : snow as high as possible into the waterfall, spam dodge into the waterfall until snow off cd, then snow + dodge to item
+dodge + moon + STALL very similar to above",
+Sewer 9,Sewer 9 - Magic Strange Charm,Sewer_001_Zone_009.BP_Interactable_AddItem_C_0,"passives[""damage_up_maxhp_1""]","(Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + (hook + (double_jump | dodge | RONIN | STALL | lazer) | STALL + double_jump + wall_grab + (snow | flower | dodge + moon)  | (axe | scythe) + double_jump + grav + (dodge | moon | snow | lazer + wall_grab) | axe + grav + snow + wall_grab + lazer | scythe + wall_grab + grav + (lazer | dodge) + snow | sword + wall_grab + double_jump + grav + (dodge | moon | lazer) | sword + double_jump + dodge + grav + RONIN)
+| Sewer09Left",Done,"Logic is based on the using the slide as starting point (so double jump or whatever, get onto the slide, and immediately begin STALL when having control again)",Finished,Can probably revisit this and better group / organize the logic - might find gaps,double check lazer -> REIBOLG ; esp the hook
+Sewer 9,Sewer 9 - Materials,Sewer_001_Zone_009.BP_Interactable_AddItem_C_2,"currencies[""Default""]",(Sewer09Left | Sewer09UpperLeft | Sewer09UpperRight | Sewer09Right) + dive,Not Labbed,,N/A,,
+Sewer 10,Sewer 10 - Blighted Note,Sewer_001_Zone_010.EVT_ev_s_0090_Sewer001,"tips[""tip_disposaljournal_01""]","Sewer10Left 
+| Sewer10Right + (double_jump | high_jump | WALL_DASH | RONIN | REIBOLG | STALL + (grav | dodge))",Done,"TECHNICALLY its possible to get the height to grab the platform with just scythe | sword, but it feels very inconsistent (attacking into the corner of the wall for that tiny bit of extra height from being pushed)
+
+Excluded that sort of logic.",Finished,,double check REIBOLG
+Sewer 10,Sewer 10 - Dive,Sewer_001_Zone_010.EVT_ev_s_0090_Sewer001.1,"aptitudes[""dive""]","Sewer10Left 
+| Sewer10Right + (double_jump | high_jump | WALL_DASH | RONIN | REIBOLG | STALL + (grav | dodge))",Done,same as above,Finished,,double check REIBOLG
+Sewer 11,Sewer 11 - Charmed Fragment,Sewer_001_Zone_011.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","(Sewer11Left | Sewer11UpperRight | Sewer11LowerRight) 
++ (high_jump | hook + (double_jump | dodge | STALL | RONIN | REIBOLG) | double_jump + dodge + (scythe | axe | sword + (grav | RONIN)) | double_jump + STALL + grav + snow | double_jump + (axe | scythe) + grav + (moon | flower) | WALL_DASH + (snow | double_jump + (moon | STALL) | STALL + grav + dodge | grav + moon))",Done,,Finished,,double check REIBOLG
+Sewer 12,Sewer 12 - Attuner's Pendant,Sewer_001_Zone_012.BP_Interactable_AddItem_C_0,"passives[""damage_up_swimming_1""]",(Sewer12Lower | Sewer12Upper) + dive,Not Labbed,,N/A,,
+Sewer 13,Sewer 13 - Unidentified Core,Sewer_001_Zone_013.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_a""]",(Sewer13Upper | Sewer13Right) + dive,Not Labbed,,N/A,,
+Sewer 15,Sewer 15 - Charmed Fragment,Sewer_001_Zone_015.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]","Sewer15Left | 
+Sewer15Lower + (hook | high_jump + (dodge | double_jump) | wall_grab + (axe + dodge + (grav + snow | double_jump + (moon | snow)) | STALL + grav + double_jump + (moon | snow | dodge)))",Done,,Finished,,
+Sewer 17,Sewer 17 - Chloe's Bracelet,Sewer_001_Zone_017.BP_Interactable_TreasureBox_C_0,"equipments[""armor_007""]",Sewer17Left,Done,,N/A,,
+Slum 1,Slum 1 - Tattered Letter,Slum_001_Zone_001.BP_Interactable_AddItem_C_1,"tips[""tip_tunerletter_01""]",Slum01Left | Slum01Right | Slum01Lower,Done,,N/A,,
+Slum 1,Slum 1 - Eye of the Homunculus,Slum_001_Zone_001.BP_Interactable_AddItem_C_2,"passives[""junk_up_1""]",(Slum01Left | Slum01Lower | Slum01Right) + (high_jump | hook + (double_jump | dodge | STALL | RONIN | REIBOLG) | STALL + grav + double_jump + dodge | axe + double_jump + dodge + (snow | moon + lazer)),Done,"sword is pretty hard to reach (with grav + double_jump + dodge), but doable",Finished,,double check lazer -> REIBOLG & REIBOLG hook
+Slum 1,Slum 1 - Charmed Ore,Slum_001_Zone_001.EVT_ev_n_Levy_Treasure1_002,"stats[""hp_up_l""]",(Slum01Left | Slum01Right | Slum01Lower) + quest_artifact + EVT_ev_s_e0122_Wheeler_Defeat,Unsure,Requires Blighted Mineral + defeating Miner Unit in Mines04,N/A,,
+Slum 1,Slum 1 - Levy's Mantle,Slum_001_Zone_001.EVT_ev_n_Levy_Treasure4_002,"costumes[""p0040""]",(Slum01Left | Slum01Right | Slum01Lower) + quest_board,Not Labbed,,N/A,,
+Slum 1,Slum 1 - Fast Travel,Slum_001_Zone_001.EVT_ev_s_0070_GordonReport,"aptitudes[""fast_travel""]",(Slum01Left | Slum01Right | Slum01Lower) + EVT_ev_s_e5110_Gunman_Defeat,Unsure,are we going to require finding yolvan homuncli for Gordon report or defeating calidrius (boss yolvan)??,N/A,,
+Slum 1,Slum 1 - Lower Stratum Key,Slum_001_Zone_001.EVT_ev_s_0070_GordonReport.1,"keys[""key_lower""]",(Slum01Left | Slum01Right | Slum01Lower) + EVT_ev_s_e5110_Gunman_Defeat,Not Labbed,,N/A,,
+Slum 2,Slum 2 - Charmed Fragment,Slum_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1,"stats[""hp_up_s""]",Slum02Upper,Done,,N/A,,
+Street 2,Street 2 - Worries of a Sorcerer,Street_001_Zone_002.BP_Interactable_AddItem_C_0,"tips[""tip_painting_01""]","Street02Right 
+| (Street02Left + Street02Left_Lever)",Not Labbed,,N/A,,
+Street 3,Street 3 - Sanguinary Raven,Street_001_Zone_003.BP_Interactable_AddItem_C_0,"passives[""damage_up_airborne_1""]","(Street03LowerLeft + Street05LowerRight_Lever | Street03Right | Street03Door) + (high_jump | double_jump | RONIN | STALL + (dodge | lazer | grav) | lazer + (dodge | grav)) 
+| Street03UpperLeft + (high_jump | dodge | double_jump | RONIN | STALL | lazer + grav)
+| Street05UpperRight + WALL_DASH",Unsure,"Either remove LowerLeft or add LowerRight_Lever? (currently added)
+Same with Street03Right , needs a key or delete?
+
+Update based on above clarifications.",Finished,,double check lazer -> REIBOLG
+Street 4,Street 4 - Yolvan,Street_001_Zone_004.EVT_ev_s_e5110_Gunman_Defeat,"spirits[""s5110_gunman""]",Street04Left | Street04Right,Not Labbed,,N/A,,
+Street 8,Street 8 - Charmed Fragment,Street_001_Zone_008.BP_Breakable_SpawnItem_Box_01_C_1,"stats[""hp_up_s""]",Street08Left | Street08Right,Done,,N/A,,
+Street 9,Street 9 - Materials,Street_001_Zone_009.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Street09Left | Street09Upper,Done,,N/A,,
+Street 12,Street 12 - Attuner's Earrings,Street_001_Zone_012.BP_Interactable_AddItem_C_0,"passives[""onkill_restoresp_1""]","Street12Left + (high_jump | wall_grab + (double_jump | moon | snow | FLOWER2 | STALL + (dodge | lazer | flower | grav)) | (scythe | axe) + (grav | snow) + double_jump + dodge | sword + grav + double_jump + dodge + (lazer | RONIN)) 
+| (Street12Door | Street12UpperRight | Street12LowerRight) + (high_jump | wall_grab + (double_jump | STALL | moon | snow | FLOWER2) | (scythe | axe) + (grav | snow) + double_jump + dodge | sword + grav + double_jump + dodge + (lazer | RONIN))
+| Street19UpperLeft + WALL_DASH",Done,"Apparently I had a comment that: Sword with reduced grav and double_jump and dodge also works easily?? Havent been able to find that.
+
+There might be an axe + grav + snow + double_jump + ReiBlast - but it probably requires using snow twice sorta deal.",Finished,,double check lazer -> REIBOLG
+Street 14,Street 14 - Crimson Ribbon,Street_001_Zone_014.BP_Interactable_AddItem_C_1,"passives[""debuff_cut_burn_1""]",Street14UpperHidden,Done,,N/A,,
+Street 14,Street 14 - Homunculus Expedition Report,Street_001_Zone_014.BP_Interactable_AddTutorial_C_1,"tips[""tip_searchrecord_01""]",Street14Right | Street14UpperRight | Street14UpperLeft,Done,,N/A,,
+Street 17,Street 17 - City Stratum Guard,Street_001_Zone_017.EVT_ev_s_e0030_Guard_Defeat,"materials[""parts_s5000_c""]",Street17Right,Done,,N/A,,
+Street 18,Street 18 - Materials,Street_001_Zone_018.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Street18Right + Street02Left_Lever | Street18Door,Done,,N/A,,
+Street 18,Street 18 - Charmed Fragment,Street_001_Zone_018.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Street18Right + Street02Left_Lever | Street18Door) + (high_jump | wall_grab + (double_jump | snow | moon | STALL | FLOWER2 | wall_charge) | axe + grav + double_jump + dodge + snow),Done,,Finished,,
+Street 19,Street 19 - Charmed Fragment,Street_001_Zone_019.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Street19UpperLeft,Done,,N/A,,
+Street 19,Street 19 - Broken Warning Sign,Street_001_Zone_019.BP_Interactable_AddItem_C_1,"tips[""tip_tornletter_01""]",Street19LowerLeft,Done,,N/A,,
+Street 20,Street 20 - Tavern Bulletin Board,Street_001_Zone_020.BP_Interactable_AddItem_C_0,"tips[""tip_townboard_01""]",Street20Right,Done,,N/A,,
+Street 21,Street 21 - Materials,Street_001_Zone_021.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Street21Right,Done,,N/A,,
+Summit 1,Summit 1 - Upper Stratum Communication Device,Summit_001_Zone_001.BP_Interactable_AddItem_C_1,"tips[""tip_upperterminal_01""]",Summit01LowerLeft,Done,,N/A,,
+Summit 4,Summit 4 - Administrator's Amplifier,Summit_001_Zone_004.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","Summit04Right + (dodge + high_jump | double_jump + (high_jump | WALL_DASH) | double_jump + dodge + wall_grab | moon + (wall_grab | double_jump | STALL + grav) | snow | high_jump + (STALL | lazer | flower | moon) | axe + double_jump | (sword | scythe) + double_jump + (dodge | grav | flower) | STALL + dodge + (moon | flower) | STALL + grav + wall_grab | axe + wall_grab + dodge | flower + wall_grab + (grav | double_jump))
+| Summit04Left + (dodge + high_jump | double_jump + WALL_DASH | double_jump + dodge + wall_grab | moon + (wall_grab | double_jump | STALL + grav) | snow | high_jump + (STALL | lazer | flower | moon) | axe + double_jump | (sword | scythe) + double_jump + (dodge | grav | flower) | STALL + dodge + (moon | flower) | STALL + grav + wall_grab | axe + wall_grab + dodge | flower + wall_grab + (grav | double_jump))",Done,"Added to both (it looks like more than it is): 
+moon + (wall_grab | double_jump | STALL + grav) 
+| snow 
+| high_jump + (STALL | ReiBlast | flower | moon) 
+| axe + double_jump 
+| (sword | scythe) + double_jump + (dodge | grav | flower) 
+| STALL + dodge + (moon | flower) 
+| STALL + grav + wall_grab 
+| axe + wall_grab + dodge 
+| flower + wall_grab + (grav | double_jump)",Finished,,double check lazer -> REIBOLG
+Summit 7,Summit 7 - Administrator's Amplifier,Summit_001_Zone_007.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","Summit07Right + (high_jump + (double_jump | RONIN | STALL) | wall_grab + axe + grav + double_jump + dodge + snow | dive + double_jump + dodge + STALL | dive + STALL + grav + (dodge | double_jump) + lazer | dive + grav + lazer + snow) 
+| (Summit07UpperLeft | Summit07LowerLeft + Summit08LowerRight_Lever) + dive + (high_jump + (double_jump | RONIN | STALL) | double_jump + dodge + STALL | STALL + grav + (dodge | double_jump) + lazer | grav + lazer + snow)",Done,,Finished,,"double check lazer -> REIBOLG
+
+dive + grav + ReiBlast + snow only successfully tested with lazer ; does not require multiple uses of snow
+
+May need to split ReiBlast if Blaster is not possible."
+Summit 8,Summit 8 - Administrator's Amplifier,Summit_001_Zone_008.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","((Summit08Left | Summit08LeftDoor) + (STALL | dodge | double_jump)
+| (Summit08UpperRight | Summit08RightDoor) + (STALL | dodge | double_jump | REIBOLG))
++ dash_charge",Unsure,"With correct positioning, can begin charging the dash charge while falling from upper platforms to fall onto the last 2 and break the wall without double jump.
+
+If we want this type of logic, then use the new version.
+
+If not, simplify it back to double_jump + dash_charge.",Finished,,double check REIBOLG
+Summit 9,Summit 9 - Scrap,Summit_001_Zone_009.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Summit09UpperLeft,Done,,N/A,,
+Summit 10,Summit 10 - Celestial Bangle,Summit_001_Zone_010.BP_Interactable_TreasureBox_C_1,"equipments[""armor_021""]",Summit10Right + (high_jump | wall_grab | sword + grav + double_jump + (RONIN | dodge) | (sword | scythe) + double_jump + dodge + snow | scythe + grav + (double_jump | dodge + (snow | moon)) | axe + double_jump + (snow | dodge + (flower | moon) | grav)),Done,,Finished,"
+",
+Summit 13,Summit 13 - Materials,Summit_001_Zone_013.BP_Breakable_SpawnItem_Box_01_C_1,"currencies[""Default""]",Summit13UpperRight + (double_jump | high_jump | wall_grab | RONIN | STALL | REIBOLG),Done,the Leg Enhancement gear relic would also suffice,Finished,,double check REIBOLG
+Summit 18,Summit 18 - Unidentified Transformer,Summit_001_Zone_018.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_c""]",Summit18Left,Done,,N/A,,
+Summit 21,Summit 21 - Velius,Summit_001_Zone_021.EVT_ev_s_e0222_Security_Defeat,"materials[""parts_lv6_b""]",Summit21Lower | Summit21Right | Summit21Left,Not Labbed,,N/A,,
+Summit 22,Summit 22 - Administrator's Amplifier,Summit_001_Zone_022.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","Summit22UpperLeft + (WALL_DASH | double_jump + dodge | high_jump | lazer | STALL + (double_jump | dodge | snow | flower) | (double_jump | dodge) + (snow | flower) | moon + (grav + (dodge | STALL) | double_jump + wall_grab) | wall_grab + FLOWER2) 
+| Summit22UpperRight + WALL_DASH 
+| (Summit22LowerLeft | Summit22CenterLeft | Summit22CenterRight | Summit22LowerRight) + (high_jump | wall_grab + (wall_charge | lazer) + (axe | (scythe | sword) + grav | snow | moon | double_jump) | 
+wall_grab + (axe + (dodge | flower) | double_jump + (STALL | dodge | flower | moon) | (sword + grav | scythe) + dodge | snow + (double_jump | dodge | STALL) | moon + grav + (STALL | dodge) | FLOWER2))",Unsure,"Heres my problem : the only way into this area is WALL_DASHing thru Summit21, which also requires some sort of height to get to this point in the first place. WALL_DASH + (basically) any height is enough to get this item from Summit22LowerLeft.
+
+I understand most other rooms have a sort of ""but what if you approach from this way with that set of movement"" but that just simply doesn't really apply here.
+
+That means this would become Summit22LowerLeft + (high_jump | WALL_DASH + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump)
+(or Summit22LowerLeft + WALL_DASH + (high_jump | axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump) , but neither here nor there at the end of the day)
+
+UpperRight either a) always requires WALL_DASH, in which case the logic is fully covered IMO, or b) WALL_DASH wall is already gone, so can simply fall into it with ANY movement. Not going to focus on it.
+
+For now, I've kept Summit22LowerLeft | Summit22CenterLeft | Summit22CenterRight | Summit22LowerRight altogether, but if we need to split them, I fully acknowledge that logic for CenterLeft and CenterRight would need to be split - all current conditions would still apply, but there would be wall_grab-less options too. (Like axe + grav + dodge + double_jump + snow)
+
+Final note, the wall_grab logic from LowerLeft needs an additional review. After review if everything is all good and no additional updates are made based on the above points, can mark as done. Otherwise, revise as needed.",Finished,"Min-wall_grab requirements
+
+wall_grab + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump))
+
+Logical thoughts here were
+a) Standalone requirements from UpperLeft
+b) Minimum required to wall_grab from Lower and climb - this enables Player to move all the way to UpperLeft
+these are essentially the WALL_DASH options
+c) Combining the wall_grab requirements from Lower (a) with the UpperLeft requirements
+
+There are no non-wall_grab options (other than high_jump) from Lower
+","double check lazer -> REIBOLG
+
+May need to split ReiBlast if Blaster is not possible."
+Summit 22,Summit 22 - Charmed Fragment,Summit_001_Zone_022.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Summit22UpperLeft | Summit22CenterLeft | Summit22LowerLeft 
+| Summit22UpperRight + WALL_DASH
+| (Summit22CenterRight | Summit22LowerRight) + (dodge | double_jump | high_jump | STALL | RONIN | REIBOLG)",Unsure,"Are CenterLeft / LowerRight / CenterRight real options as they are blocked origin/base state?
+
+If yes and we want to keep, update to Done. If not, just delete and mark as Done.",Finished,,double check REIBOLG
+Summit 23,Summit 23 - Administrator's Amplifier,Summit_001_Zone_023.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]",Summit23UpperRight,Done,,N/A,,
+Summit 23,Summit 23 - Gilroy's Communication Device,Summit_001_Zone_023.BP_Interactable_AddItem_C_1,"tips[""tip_gilroysterminal_01""]",Summit23UpperLeft,Done,,N/A,,
+Summit 23,Summit 23 - Nameless Priestess' Ring,Summit_001_Zone_023.BP_Interactable_TreasureBox_C_1,"passives[""restore_sp_up_b_1""]",Summit23UpperLeft + (wall_grab | double_jump | high_jump | RONIN | REIBOLG | STALL + (dodge | grav)),Unsure,"Since WALL_DASH is required to even enter, this is way overkill
+
+Leaving as unsure as technically, the requirement to enter guarantees access. 
+If decided to leave requirements empty, then delete the logic.
+If want to add requirements anyway, update to Done.",Finished,,double check REIBOLG
+Summit 24,Summit 24 - Administrator's Amplifier 1,Summit_001_Zone_024.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","Summit24CenterDoor + 
+(high_jump + (wall_grab + (double_jump + (STALL | dodge | snow | moon | FLOWER2) | STALL + (snow | moon | FLOWER2) | dodge + (snow | grav + (STALL | moon | flower)))
+| lazer + (snow | moon + (double_jump | dodge | STALL + grav) | axe + (double_jump | dodge) | (sword | scythe) + (double_jump | dodge + grav) | FLOWER2 + (dodge | double_jump)) 
+| STALL + grav + (moon | snow | double_jump) + dodge) | wall_grab + (lazer + (snow | moon | FLOWER2 + (double_jump | (axe | scythe)) | STALL + grav + (double_jump | dodge) + flower) | (snow | moon) + (double_jump + dodge | STALL + (double_jump | dodge))) | (scythe | (moon | snow) + (axe | sword)) + grav + dodge + double_jump | axe + flower + grav + dodge + double_jump | WALL_DASH + (double_jump + dodge | snow | moon + (double_jump | dodge | STALL + grav) | axe + (double_jump | dodge) | (sword | scythe) + (double_jump | dodge + grav) | FLOWER2 + (dodge | double_jump)))",Unsure,"Note, similar to line 259 (5 above), CenterDoor is the ONLY expected ""first"" entrance. I am going to focus on getting the item from there only its complex enough as is.
+
+If we are happy with single entrance logic, can mark as Done. Otherwise, lots of review required :)
+
+This is also unsure because I am quite certain there might be some overlap, esp between some of the high_jump + wall_grab scenarios with wall_grab itself",Finished,"Slightly more readable version based on grouping: high_jump, wall_grab, no high_jump | wall_grab, and lastly WALL_DASH
+
+Summit24CenterDoor + 
+(
+
+high_jump + (wall_grab + (double_jump + (STALL | dodge | snow | moon | FLOWER2) | STALL + (snow | moon | FLOWER2) | dodge + (snow | grav + (STALL | moon | flower)))
+| ReiBlast + (snow | moon + (double_jump | dodge | STALL + grav) | axe + (double_jump | dodge) | (sword | scythe) + (double_jump | dodge + grav) | FLOWER2 + (dodge | double_jump)) 
+| STALL + grav + (moon | snow | double_jump) + dodge) 
+
+| wall_grab + (ReiBlast + (snow | moon | FLOWER2 + (double_jump | (axe | scythe)) | STALL + grav + (double_jump | dodge) + flower) | (snow | moon) + (double_jump + dodge | STALL + (double_jump | dodge))) 
+
+| (scythe | (moon | snow) + (axe | sword)) + grav + dodge + double_jump | axe + flower + grav + dodge + double_jump 
+
+| WALL_DASH + (double_jump + dodge | snow | moon + (double_jump | dodge | STALL + grav) | axe + (double_jump | dodge) | (sword | scythe) + (double_jump | dodge + grav) | FLOWER2 + (dodge | double_jump))
+
+)",double check lazer -> REIBOLG
+Summit 24,Summit 24 - Administrator's Amplifier 2,Summit_001_Zone_024.BP_Interactable_AddItem_C_1,"materials[""parts_lv6_b""]",Summit25LowerLeft + WALL_DASH + (double_jump | dodge | high_jump | RONIN | STALL),Done,,Finished,,
+Summit 24,Summit 24 - Administrator's Amplifier 3,Summit_001_Zone_024.BP_Interactable_AddItem_C_2,"materials[""parts_lv6_b""]",Summit27Upper_Lever + Summit27CenterRight + WALL_DASH,Unsure,Need wall dash from summit27,N/A,,
+Summit 27,Summit 27 - Motley's Communication Device,Summit_001_Zone_027.BP_Interactable_AddItem_C_0,"tips[""tip_motleysterminal_01""]",Summit27UpperRight,Done,,N/A,,
+Summit 28,Summit 28 - Charmed Fragment,Summit_001_Zone_028.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Summit28Upper,Done,,N/A,,
+Summit 30,Summit 30 - Charmed Fragment,Summit_001_Zone_030.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",Summit30CenterDoor + (high_jump | wall_grab + (double_jump | snow | flower | moon + (STALL | dodge | REIBOLG) | STALL + (dodge | grav)) | (axe | scythe) + grav + double_jump + dodge + snow),Done,,Finished,,double check REIBOLG
+Swamp 2,Swamp 2 - Materials,Swamp_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1,"currencies[""Default""]",(Swamp02Upper | Swamp02Left) + dive,Not Labbed,,N/A,,
+Swamp 2,Swamp 2 - Letter in a Bottle,Swamp_001_Zone_002.BP_Interactable_AddItem_C_2,"tips[""tip_vials_01""]",(Swamp02Upper | Swamp02Left) + dive,Not Labbed,,N/A,,
+Swamp 2,Swamp 2 - Vivid Claws,Swamp_001_Zone_002.BP_Interactable_AddItem_C_3,"passives[""damage_up_targetdebuffed_1""]",(Swamp02Upper | Swamp02Left) + dive + pile_attack,Not Labbed,,N/A,,
+Swamp 4,Swamp 4 - Roller,Swamp_001_Zone_004.EVT_ev_s_e0203_Scarab_Defeat,"materials[""parts_lv4_a""]","(Swamp04Right | Swamp04Upper | Swamp04HiddenLeft)
+| (Swamp04Lower + dive)",Not Labbed,,N/A,,
+Swamp 6,Swamp 6 - Obsolete Core,Swamp_001_Zone_006.BP_Interactable_AddItem_C_1,"materials[""parts_lv3_b""]","(Swamp06Right + (hook | high_jump | dodge | scythe | snow | flower | double_jump + (wall_grab | lazer | moon | axe | sword) | grav + (lazer | moon | axe | sword) | moon + (axe | sword | lazer) | lazer + (axe | sword) | wall_grab + (moon | lazer | wall_charge))
+| Swamp06Lower + dive + (high_jump | double_jump | STALL + (grav | dodge | hook) | RONIN | lazer | hook + dodge + wall_grab)) 
++ pile_attack",Done,ReiBlast + wall_grab from Right requires going all the way towards Lower then coming back around.,Finished,,double check lazer -> REIBOLG
+Swamp 6,Swamp 6 - Magic Vial,Swamp_001_Zone_006.BP_Interactable_AddItem_C_2,"stats[""passive_slot_s""]","Swamp06Lower + dive + (STALL + (grav | snow) + double_jump + dodge | STALL + grav + (double_jump | dodge) + REIBOLG + RONIN | double_jump + (hook | (high_jump + dodge)) | WALL_DASH + (double_jump | high_jump | STALL + (dodge | grav) | RONIN | REIBOLG) | hook + (STALL | RONIN | REIBOLG + (dodge | grav)) | high_jump + (flower | snow | moon + (REIBOLG | double_jump | dodge | STALL)))
+| Swamp06Right + (STALL + (grav | snow) + double_jump + dodge | STALL + grav + (double_jump | dodge) + REIBOLG + RONIN | WALL_DASH | double_jump + (hook | (high_jump + dodge)) | hook + (STALL | RONIN | REIBOLG + (dodge | grav)) | high_jump + (flower | snow | moon + (REIBOLG | double_jump | dodge | STALL)))",Unsure,"TIL grav has other base impacts - current assumption is falling speed acceleration change?
+This means that this is a potential scenario as well: high_jump + dodge + grav
+
+Currently unsure if we want to add grav logic independent of STALL | RONIN | ReiBlast.
+If yes, add high_jump + dodge + grav option to both.
+If not, mark as Done.
+
+We can also treat it on a case-by-case basis; we can add the additional logic here, and as we find other places that might be able to take advantage of it, can add as we go?
+
+Main differences between Lower and Right are WALL_DASH logic and dive requirement for Lower, everything else is the same
+
+Additionally, I believe there is a double_jump + grav + ReiBlast (lazer); I dont think it works with other ReiBlast, also unsure if we want to add this",Finished,"Read comment, this has a high_jump + dodge + grav combo - if we want to add grav combo's that are independent of STALL | RONIN | ReiBlast , we might have to re-review everything :)",Verified with All ReiBlast; might want to double check anyway
+Swamp 7,Swamp 7 - Silencing Light Documents,Swamp_001_Zone_007.BP_Interactable_AddItem_C_0,"tips[""tip_lightsilence_01""]",(Swamp07Lower | Swamp07Upper) + dive,Not Labbed,,N/A,,
+Swamp 8,Swamp 8 - Materials,Swamp_001_Zone_008.BP_Breakable_SpawnItem_Pod_01_C_1,"currencies[""Default""]","Swamp08Upper | Swamp08Right 
+| (Swamp08Lower + dive)",Not Labbed,,N/A,,
+Swamp 9,Swamp 9 - Journal of an Attuner,Swamp_001_Zone_009.BP_Interactable_AddItem_C_0,"tips[""tip_tornjournal_01""]","(Swamp09Right | Swamp09Lower + dive) + (double_jump | dodge | high_jump | STALL | RONIN | REIBOLG + grav + pile_attack) 
+| Swamp09Left",Done,"ReiBlast + grav CAN reach - but then you don't fall the same distance into the water to be able to grab the item, thus requiring pile_attack
+
+its really niche if want to remove it
+
+Warning: could be wrong - but equipping grav reduces how far you fall into water; this might mean that STALL + grav would not be in logic anymore. Might need to warn players.",Finished,ReiBlast + sprint can also reach,double check REIBOLG
+Swamp 10,Swamp 10 - House Milius Earrings,Swamp_001_Zone_010.BP_Interactable_AddItem_C_1,"passives[""damage_up_skillcategory_auto_1""]",Swamp10Left + TORRENT | (Swamp10Right | Swamp10UpperLeft | Swamp10UpperRight + swamp10upper_lever) + dive,Done,,N/A,,
+Swamp 10,Swamp 10 - Grimoire,Swamp_001_Zone_010.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]","(Swamp10Right | Swamp10UpperLeft) + dive 
+| Swamp10Left + TORRENT
+| Swamp10UpperRight",Done,,N/A,,
+Swamp 12,Swamp 12 - Charmed Fragment,Swamp_001_Zone_012.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Swamp12Upper | Swamp12UpperLeft) + pile_attack + (WALL_DASH | snow | (double_jump | high_jump) + (STALL | moon | flower | lazer | dodge) | dodge + (((lazer | wall_grab | grav) + (sword | scythe)) | axe | moon | flower) | (flower | lazer) + grav | (flower | moon) + lazer),Done,,Finished,,"double check lazer -> REIBOLG
+
+May need to split ReiBlast if Blaster is not possible."
+Swamp 13,Swamp 13 - Charmed Fragment,Swamp_001_Zone_013.BP_Interactable_AddItem_C_0,"stats[""hp_up_s""]",(Swamp13Upper | Swamp13Lower) + dive,Done,,N/A,,
+Swamp 15,Swamp 15 - Motley,Swamp_001_Zone_015.EVT_ev_s_e6010_Cluster_Defeat,"aptitudes[""Hook""]",Swamp15Left | Swamp15Right,Done,,N/A,,
+Swamp 18,Swamp 18 - Charmed Fragment,Swamp_001_Zone_018.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Swamp18Upper 
+| Swamp18Left + (wall_grab | STALL + grav + double_jump + (RONIN | dodge) | (axe | scythe) + grav + dodge + (snow | moon) | hook + (double_jump | dodge | REIBOLG | axe + grav | scythe | sword | RONIN))",Done,"The waterfalls don't actually push or have any dive potential - the last one does ""count"" as water, but will float to top - ie, no dive requirements",Finished,,double check REIBOLG
+Swamp 19,Swamp 19 - Materials,Swamp_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Swamp19Right,Done,,N/A,,
+Swamp 20,Swamp 20 - Cleaner's Tag,Swamp_001_Zone_020.BP_Interactable_AddItem_C_1,"passives[""damage_up_targetstunned_1""]",Swamp20Upper + (high_jump | double_jump | wall_grab | RONIN | STALL | REIBOLG),Done,,Finished,,double check REIBOLG
+Tower 1,Tower 1 - Charmed Fragment,Tower_001_Zone_001.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""hp_up_s""]",Tower01CenterRight,Done,,N/A,,
+Tower 4,Tower 4 - Blighted Dice,Tower_001_Zone_004.BP_Breakable_SpawnItem_Box_01_C_2,"passives[""experience_up_1""]",Tower04Upper | Tower04Lower,Done,,N/A,,
+Tower 4,Tower 4 - Magic Vial,Tower_001_Zone_004.BP_Breakable_SpawnItem_Pod_01_C_2,"stats[""passive_slot_s""]","Tower04Upper + (high_jump | double_jump | wall_grab | snow | moon | grav + (flower + lazer | STALL) | axe + dodge + lazer) 
+| Tower04Lower + (high_jump | double_jump | wall_grab + (lazer | flower | STALL + dodge) | snow | moon | grav + (flower + lazer | STALL) | axe + dodge + lazer)",Done,,Finished,,double check lazer -> REIBOLG
+Tower 6,Tower 6 - Materials,Tower_001_Zone_006.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Tower06Right,Done,,N/A,,
+Tower 7,Tower 7 - Chief Attuner's Journal,Tower_001_Zone_007.BP_Interactable_AddItem_C_1,"tips[""tip_chieftunerjournal_01""]",Tower07Upper | Tower07Lower,Done,,N/A,,
+Tower 7,Tower 7 - Magicite Mining Record,Tower_001_Zone_007.BP_Interactable_AddTutorial_C_1,"tips[""tip_magicrecord_01""]",Tower07Upper | Tower07Lower,Done,,N/A,,
+Tower 9,Tower 9 - Charmed Fragment,Tower_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Tower09UpperRight
+| (Tower09LowerRight | Tower09CenterRight | Tower09Lower | Tower09Upper) + (high_jump 
+| double_jump + (WALL_DASH | snow | dodge + (moon | axe | wall_grab + (flower | scythe | sword | axe + lazer))) 
+| STALL + grav | axe + (flower | moon) | wall_grab + snow + dodge + lazer 
+| dodge + grav + (STALL + (moon | flower) | (scythe | axe) + (lazer | wall_grab)) 
+| axe + grav + (snow | moon + lazer))",Done,,Finished,,double check lazer -> REIBOLG
+Tower 10,Tower 10 - Steeple Executioner,Tower_001_Zone_010.EVT_ev_s_e0162_Gang_Defeat,"materials[""parts_lv2_b""]",Tower10UpperLeft | Tower10LowerLeft,Done,,N/A,,
+Tower 12,Tower 12 - Materials,Tower_001_Zone_012.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Tower12Right,Done,,N/A,,
+Tower 14,Tower 14 - Book of the Blighted,Tower_001_Zone_014.BP_Interactable_AddItem_C_1,"tips[""tip_frostgrimoire_01""]","Tower14UpperLeft + (high_jump | WALL_DASH | double_jump + dodge | (double_jump | dodge) + (moon | STALL | lazer) | wall_grab + (moon | axe) | (STALL | moon | lazer) + grav | snow | flower) 
+| (Tower14LowerLeft | Tower14Right) + (high_jump | hook + wall_grab + dodge + (double_jump | axe | scythe | sword + flower) | wall_grab + (snow | double_jump + (STALL | moon | hook + flower) | dodge + moon) | WALL_DASH + (hook + (grav | dodge) + lazer | moon | axe | double_jump | (sword | scythe | flower) + grav))",Done,Same as 298 (Below),Finished,,double check lazer -> REIBOLG
+Tower 14,Tower 14 - Materials,Tower_001_Zone_014.BP_Interactable_AddItem_C_2,"currencies[""Default""]",Tower14Right | Tower14UpperLeft | Tower14LowerLeft,Done,,N/A,,
+Tower 14,Tower 14 - Grimoire,Tower_001_Zone_014.BP_Interactable_TreasureBox_C_1,"stats[""shop_line_up""]","Tower14UpperLeft + (high_jump | WALL_DASH | double_jump + dodge | (double_jump | dodge) + (moon | STALL | lazer) | wall_grab + (moon | axe) | (STALL | moon | lazer) + grav | snow | flower) 
+| (Tower14LowerLeft | Tower14Right) + (high_jump | hook + wall_grab + dodge + (double_jump | axe | scythe | sword + flower) | wall_grab + (snow | double_jump + (STALL | moon | hook + flower) | dodge + moon) | WALL_DASH + (hook + (grav | dodge) + lazer | moon | axe | double_jump | (sword | scythe | flower) + grav))",Done,Same as 296 (Above),Finished,,double check lazer -> REIBOLG
+Tower 14,Tower 14 - Pure Floral Necklace,Tower_001_Zone_014.BP_Interactable_TreasureBox_C_2,"passives[""damage_up_skillcategory_repeat_1""]",(Tower14LowerLeft | Tower14Right | Tower14UpperLeft) + (high_jump | double_jump + WALL_DASH | wall_grab + (snow | moon | STALL | FLOWER2) + double_jump + dodge | wall_grab + STALL + grav + (double_jump | dodge) | hook + (double_jump | snow | moon | axe + (dodge | lazer) | grav + (STALL | flower))),Done,,Finished,,double check lazer -> REIBOLG
+Tower 15,Tower 15 - Charmed Fragment,Tower_001_Zone_015.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Tower15Left | Tower15Right) + (high_jump | WALL_DASH | hook + (STALL | RONIN | double_jump) | wall_grab + double_jump + (STALL | dodge | snow | moon) | wall_grab + (dodge | STALL) + (moon | snow) | double_jump + dodge + (snow | STALL + (moon | grav)) | STALL + grav + (dodge + snow | double_jump + RONIN)),Done,Logic is generally easier jumping off of the elevator as the starting point,Finished,,
+Tower 16,Tower 16 - Shackled Beast,Tower_001_Zone_016.EVT_ev_s_e5060_Beast_Defeat,"spirits[""s5060_beast""]",Tower16Left | Tower16Right,Done,,N/A,,
+Tower 18,Tower 18 - Homunculus Research Log 2,Tower_001_Zone_018.BP_Interactable_AddItem_C_0,"tips[""tip_homunculusrecord_02""]","Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump | STALL | RONIN | REIBOLG) 
+| (Tower18Left | Tower18Lower) + (double_jump | snow | moon | grav + (flower + wall_grab | STALL) | axe + (WALL_DASH | dodge))
+| Tower18LowerRight + (high_jump | double_jump + (dodge | WALL_DASH | STALL | flower) | snow | moon | flower + (wall_grab | grav + (lazer | dodge)) | STALL + grav | (sword | scythe) + dodge + (flower | wall_grab) | axe + dodge)",Done,,Finished,,double check lazer -> REIBOLG & REIBOLG
+Tower 19,Tower 19 - Eye of the Ancients,Tower_001_Zone_019.BP_Interactable_TreasureBox_C_1,"passives[""reduce_skill_cooldown_1""]",(Tower19Upper | Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | snow | double_jump + (dodge | STALL | moon | flower | lazer + (wall_grab | grav)) | STALL + (wall_grab + dodge | moon | grav) | moon + (grav | dodge) | flower + (wall_grab | lazer + grav)),Done,,Finished,,double check lazer -> REIBOLG

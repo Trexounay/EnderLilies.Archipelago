@@ -20,9 +20,21 @@ def find_template(templates_dir: str) -> str:
             if name.endswith(".yaml"):
                 return os.path.join(templates_dir, name)
 
+    import Utils
     from Options import generate_yaml_templates
+    from worlds import AutoWorldRegister
 
-    generate_yaml_templates(templates_dir, False)
+    world = AutoWorldRegister.world_types.get(GAME)
+    required = world.manifest.get("minimum_ap_version") if world else None
+
+    original = Utils.__version__
+    try:
+        if required:
+            Utils.__version__ = required
+        generate_yaml_templates(templates_dir, False)
+    finally:
+        Utils.__version__ = original
+
     for name in sorted(os.listdir(templates_dir)):
         if name.endswith(".yaml"):
             return os.path.join(templates_dir, name)

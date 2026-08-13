@@ -4,6 +4,7 @@ import pathlib
 import sys
 from typing import List, Set, Dict, Tuple
 
+import ast
 import re
 import csv
 
@@ -21,6 +22,36 @@ for table in (aptitudes, assists, costumes, currencies, equipments, quests,
         id_to_item[entry] = name
 for event in events.values():
     id_to_item[event.key] = event.name
+
+
+def load_macros(path: pathlib.Path) -> Tuple[Set[str], Dict[str, str]]:
+    tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    names : Set[str] = set()
+    aliases : Dict[str, str] = {}
+    for stmt in tree.body:
+        if isinstance(stmt, ast.Assign):
+            targets = stmt.targets
+        elif isinstance(stmt, ast.AnnAssign):
+            targets = [stmt.target]
+        else:
+            continue
+        for target in targets:
+            if not isinstance(target, ast.Name) or target.id.startswith("_"):
+                continue
+            if target.id == "Aliases":
+                aliases = ast.literal_eval(stmt.value)
+            else:
+                names.add(target.id)
+    return names, aliases
+
+
+macros, aliases = load_macros(root / "Macros.py")
+
+for alias, target in sorted(aliases.items()):
+    if alias in id_to_item or alias in macros:
+        print(f"alias {alias!r} shadows an existing item or macro")
+    if target not in id_to_item:
+        print(f"alias {alias!r} points to unknown item {target!r}")
 
 
 TOKEN_REGEX = re.compile(r'\s*([A-Za-z0-9_]+|\+|\||\(|\))')
@@ -111,9 +142,9 @@ class Parser:
             raise SyntaxError("incomplete expression")
 
         self.consume()
-        if tok.endswith("_Lever"):
+        if tok.lower().endswith("_lever"):
             tok = tok.lower()
-        return Symbol(tok)
+        return Symbol(aliases.get(tok, tok))
 
 DNF = Set[frozenset[Symbol]]
 def to_dnf(expr: Expr) -> DNF:
@@ -131,7 +162,7 @@ def to_dnf(expr: Expr) -> DNF:
 
 
 def is_macro(symbol: str) -> bool:
-    return symbol not in id_to_item and symbol.isupper()
+    return symbol in macros
 
 def item_arg(symbol: str) -> str:
     name = id_to_item.get(symbol, symbol)
@@ -164,8 +195,9 @@ def count_symbols(nodes: Dict[str, DNF], known_nodes: Set[str]):
                 if s.name not in known_nodes and s.name != "None":
                     used_symbols[s.name] += 1
     used_items = {s: used_symbols[s] for s in sorted(used_symbols) if s in id_to_item}
-    used_macros = {s: used_symbols[s] for s in sorted(used_symbols) if s not in id_to_item and s.isupper()}
-    used_unknown = {s: used_symbols[s] for s in sorted(used_symbols) if s not in id_to_item and not s.isupper()}
+    used_macros = {s: used_symbols[s] for s in sorted(used_symbols) if is_macro(s)}
+    used_unknown = {s: used_symbols[s] for s in sorted(used_symbols)
+                    if s not in id_to_item and not is_macro(s)}
     return used_items, used_macros, used_unknown
 
 
@@ -280,6 +312,8 @@ def generate(csv_path: str, node_col: int, logic_col: int,
     own_nodes.add("Menu")
     resolve_against = own_nodes if known_nodes is None else (known_nodes | own_nodes)
     used_items, used_macros, used_unknown = count_symbols(nodes, resolve_against)
+    for sym, count in used_unknown.items():
+        print(f"{pathlib.Path(csv_path).name}: unknown symbol {sym!r} used {count} times")
     node_to_node = extract_rules(nodes, resolve_against, error)
     find_redundant_rules(node_to_node, error)
     macro_names : Set[str] = set()
@@ -289,13 +323,26 @@ def generate(csv_path: str, node_col: int, logic_col: int,
 
 
 transition_nodes = generate(
-    f"{root}/data/Transitions Logic.csv", node_col=1, logic_col=8,
+    f"{root}/data/magnolia rando - Transitions Logic.csv", node_col=1, logic_col=8,
     out_path=f"{root}/gen/TransitionsRules.py")
 
 generate(
-    f"{root}/data/Locations Logic.csv", node_col=1, logic_col=9,
+    f"{root}/data/magnolia rando - Locations Logic.csv", node_col=1, logic_col=9,
     out_path=f"{root}/gen/LocationsRules.py", known_nodes=transition_nodes)
 
 generate(
-    f"{root}/data/Events Logic.csv", node_col=1, logic_col=8,
+    f"{root}/data/magnolia rando - Events Logic.csv", node_col=1, logic_col=8,
     out_path=f"{root}/gen/EventsRules.py", known_nodes=transition_nodes)
+
+
+generate(
+    f"{root}/data/magnolia rando - Future Transitions Logic.csv", node_col=1, logic_col=3,
+    out_path=f"{root}/gen/TransitionsAdvancedRules.py")
+
+generate(
+    f"{root}/data/magnolia rando - Future Locations Logic.csv", node_col=1, logic_col=4,
+    out_path=f"{root}/gen/LocationsAdvancedRules.py", known_nodes=transition_nodes)
+
+generate(
+    f"{root}/data/magnolia rando - Future Events Logic.csv", node_col=1, logic_col=3,
+    out_path=f"{root}/gen/EventsAdvancedRules.py", known_nodes=transition_nodes)

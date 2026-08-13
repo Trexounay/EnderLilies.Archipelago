@@ -179,6 +179,17 @@ class CentralElevatorFix(Choice):
     default = option_vanilla
 
 
+class AdvancedLogic(Toggle):
+    """
+    Include Nola, No.7, Reibolg and Incomplete Gear in the logic
+    """
+
+    display_name = "Advanced Logic"
+    slot_data = True
+
+    default = 0
+
+
 class ProgressiveAptitudes(DefaultOnToggle):
     """
     Aptitudes are acquired in order.
@@ -188,6 +199,17 @@ class ProgressiveAptitudes(DefaultOnToggle):
 
     display_name = "Progressive Aptitudes"
     slot_data = True
+
+
+class MetaProgression(Toggle):
+    """
+    Places progression in locations that were just unlocked, so every one you find
+    leads directly to the next one.
+
+    Enabling this keeps every progression item inside your own world.
+    """
+
+    display_name = "Meta Progression"
 
 
 class MinChapter(Range):
@@ -248,7 +270,9 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     start_with_fast_travel: StartWithFastTravel
     start_with_heal: StartWithHeal
     central_elevator_fix: CentralElevatorFix
+    advanced_logic: AdvancedLogic
     progressive_aptitudes: ProgressiveAptitudes
+    meta_progression: MetaProgression
     min_chapter: MinChapter
     max_chapter: MaxChapter
     relic_cost_shuffle: RelicCostShuffle
@@ -270,8 +294,10 @@ em_option_groups = [
         StartWithHeal,
     ]),
     OptionGroup("Logic", [
+        AdvancedLogic,
         CentralElevatorFix,
         ProgressiveAptitudes,
+        MetaProgression,
     ]),
     OptionGroup("Misc", [
         MinChapter,

@@ -163,14 +163,10 @@ UpperLeftDoor WALL_DASH is excessive, can be reduced to wall_grab","(Forest04Low
 | ((Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab))"
 Forest 7,Forest 7 - Chain Belt,Forest_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""damage_up_grounded_1""]",Forest07Left,Done,,good,,Forest07Left
 Forest 9,Forest 9 - Charmed Fragment,Forest_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor) | (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) | (Forest09CenterRightDoor + (high_jump | wall_grab))) + dive",Not Labbed,,good,,"(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
 | ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor ) 
 | (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) 
-| (Forest09CenterRightDoor + (high_jump | wall_grab)) 
-+ dive)",Not Labbed,,good,,"(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
-| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor ) 
-| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) 
-| (Forest09CenterRightDoor + (high_jump | wall_grab)) 
-+ dive)"
+| (Forest09CenterRightDoor + (high_jump | wall_grab))) + dive"
 Forest 9,Forest 9 - Materials,Forest_001_Zone_009.BP_Interactable_AddItem_C_3,"currencies[""Default""]","(Forest09LowerRight + TORRENT) 
 | (Forest09CenterRightDoor 
 | (Forest09UpperRightDoor + (double_jump | dodge | WALL_CHARGE)) 
@@ -466,9 +462,9 @@ Mine 5,Mine 5 - Magic Vial,Mine_001_Zone_005.BP_Interactable_AddItem_C_3,"stats[
 + pile_attack",Not Labbed,,good,,"(Mine05Upper | Mine05Left) 
 + (double_jump | high_jump | dodge)
 + pile_attack"
-Mine 6,Mine 6 - Materials,Mine_001_Zone_006.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Mine06LowerLeft + (wall_grab | double_jump | high_jump),Not Labbed,,good,,Mine06Lower + (wall_grab | double_jump | high_jump)
+Mine 6,Mine 6 - Materials,Mine_001_Zone_006.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Mine06LowerLeft + (wall_grab | double_jump | high_jump),Not Labbed,,good,,Mine06LowerLeft + (wall_grab | double_jump | high_jump)
 Mine 6,Mine 6 - Charmed Fragment,Mine_001_Zone_006.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Mine06UpperLeft | Mine06Right) 
-+ (high_jump | (double_jump + (dodge | WALL_DASH)))",Not Labbed,,good,,"(Mine06Left | Mine06Right) 
++ (high_jump | (double_jump + (dodge | WALL_DASH)))",Not Labbed,,good,,"(Mine06UpperLeft | Mine06Right) 
 + (high_jump | (double_jump + (dodge | WALL_DASH)))"
 Mine 8,Mine 8 - Unidentified Amplifier,Mine_001_Zone_008.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_b""]",Mine08Upper + pile_attack + (high_jump | (double_jump + (dodge | WALL_DASH))),Not Labbed,,"double_jump is sufficient without dodge or WALL_DASH;
 there is also a WALL_DASH only option (break the pile_attack barrier without charging thru it)

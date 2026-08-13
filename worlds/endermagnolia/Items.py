@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Set
 from enum import Enum, IntFlag
 from dataclasses import dataclass, field
 
@@ -497,9 +497,28 @@ events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {
     "levy_treasure"                    : "Meet Levy",
 }.items()}
 
+# items not required by logic
+aptitudes["SP"].classification = IC.useful
+aptitudes["fast_travel"].classification = IC.useful
+aptitudes["heal"].classification = IC.useful
+
 # items required by logic
 assists["assist_012"].classification = IC.progression
 stats["shop_line_up"].classification = IC.progression
+
+# items required by the advanced logic only
+advanced_logic_items : Set[str] = {
+    passives["reduce_gravity"].name,
+    skills["s5000_sword"].name,
+    skills["s5001_scythe"].name,
+    skills["s5002_axe"].name,
+    skills["s5010_blaster"].name,
+    skills["s5011_lazer"].name,
+    skills["s5012_granade"].name,
+    skills["s5050_moon"].name,
+    skills["s5051_snow"].name,
+    skills["s5052_flower"].name,
+}
 
 # 297
 vanilla_pool = [
