@@ -177,9 +177,6 @@ class EnderMagnoliaWorld(World):
         for name, region_data in room_connections.items():
             region = self.get_region(name)
             region.add_exits(region_data.get_exits())
- 
-        # connect the menu to the starting respite
-        menu.add_exits({self.options.starting_respite.get_region(): "Start"})
 
         # connect rooms entrances (room1left <-> room1right)
         for (src, dst), rule in transitions_rules.items():
@@ -223,6 +220,9 @@ class EnderMagnoliaWorld(World):
         for (src, dst), rule in levy_rules.items():
             region = self.get_region(src)
             region.add_exits([dst], {dst: rule})
+            
+        # connect the menu to the starting respite
+        menu.add_exits({self.options.starting_respite.get_region(): "Start"})
 
     def set_rules(self) -> None:
         # set items rules
@@ -263,6 +263,13 @@ class EnderMagnoliaWorld(World):
 
         for name, value in self.options.as_dict(*slot_data_options).items():
             output += f"option.{name}:{int(value)}\n"
+
+        start_index = 0
+        for item in self.multiworld.precollected_items[self.player]:
+            if item.name not in items:
+                continue
+            output += f"start.{start_index}:{items[item.name].key}\n"
+            start_index += 1
 
         locations : List[EnderMagnoliaLocation] = self.multiworld.get_filled_locations(self.player);
         for location in locations:

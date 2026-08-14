@@ -95,7 +95,7 @@ class StartingRespite(Choice):
         14: ("tower_gate",        "Tower15Left"),
         15: ("forest_tree",       "Forest02LowerDoor"),
         18: ("swamp_lake",        "Swamp03Left"),
-        19: ("swamp_center",      "Swamp07Lower"),
+        19: ("swamp_center",      "Swamp07Respite"),
         21: ("quarry_room",       "Quarry13Left"),
         41: ("estate_room",       "Estate06Lower"),
         # work with elevator_key
@@ -212,6 +212,23 @@ class MetaProgression(Toggle):
     display_name = "Meta Progression"
 
 
+class ChapterScaling(Choice):
+    """
+    Determines how the chapter value moves between Minimum Chapter and Maximum Chapter.
+
+    vanilla: raises difficulty when you reach specific points
+    progress: derived from completion, Minimum Chapter at 0% and Maximum Chapter at 100%
+    """
+
+    display_name = "Chapter Scaling"
+    slot_data = True
+
+    option_vanilla = 0
+    option_progress = 1
+
+    default = option_vanilla
+
+
 class MinChapter(Range):
     """
     Lowest chapter value used to scale the game difficulty.
@@ -273,6 +290,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     advanced_logic: AdvancedLogic
     progressive_aptitudes: ProgressiveAptitudes
     meta_progression: MetaProgression
+    chapter_scaling: ChapterScaling
     min_chapter: MinChapter
     max_chapter: MaxChapter
     relic_cost_shuffle: RelicCostShuffle
@@ -300,6 +318,7 @@ em_option_groups = [
         MetaProgression,
     ]),
     OptionGroup("Misc", [
+        ChapterScaling,
         MinChapter,
         MaxChapter,
         RelicCostShuffle,

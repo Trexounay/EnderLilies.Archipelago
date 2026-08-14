@@ -1575,6 +1575,7 @@ room_connections_data = {
     "Swamp 7": [
         ("Swamp07Lower", "Swamp08Upper"),
         ("Swamp07Upper", "Swamp06Lower"),
+        ("Swamp07Respite", None),
     ],
     "Swamp 8": [
         ("Swamp08Lower", "Swamp10UpperLeft"),
@@ -1733,5 +1734,8 @@ room_connections_data = {
 room_connections: Dict[str, RegionData] = {}
 for room, connections in room_connections_data.items():
     for (src, dst) in connections:
-        room_connections[src] = RegionData(src, [ExitData(src, dst)])
+        if dst:
+            room_connections[src] = RegionData(src, [ExitData(src, dst)])
+        else:
+            room_connections[src] = RegionData(src, [])
 

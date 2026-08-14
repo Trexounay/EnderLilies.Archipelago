@@ -1300,15 +1300,15 @@ Quarry 8,Quarry08Right,Quarry13Left,Quarry08Left,Done,,,,Quarry08Left
 Quarry 9,Quarry09Left,Quarry19LowerRight,Quarry09Right,Done,,,,Quarry09Right
 Quarry 9,Quarry09Right,Quarry18LowerLeft,Quarry09Left,Done,,,,Quarry09Left
 Quarry 10,Quarry10HiddenRight,Quarry11Left,"Quarry10UpperRight 
-| Quarry10Lower + (dodge | double_jump | high_jump)",Done,,,,"Quarry10UpperRight 
-| Quarry10Lower + (dodge | double_jump | high_jump)"
+| Quarry10Lower + (dodge | double_jump | high_jump)",Done,,,,(Quarry10UpperRight | Quarry10Lower) + (dodge | double_jump | high_jump)
 Quarry 10,Quarry10Lower,Quarry12Upper,Quarry10UpperRight | Quarry10HiddenRight,Done,,,,Quarry10UpperRight | Quarry10HiddenRight
-Quarry 10,Quarry10UpperRight,Quarry08Left,(Quarry10HiddenRight | Quarry10Lower) + ((wall_grab + (dodge | wall_charge) | high_jump | double_jump)),Done,,,,(Quarry10HiddenRight | Quarry10Lower) + ((wall_grab + (dodge | wall_charge) | high_jump | double_jump))
+Quarry 10,Quarry10UpperRight,Quarry08Left,(Quarry10HiddenRight | Quarry10Lower) + ((wall_grab + (dodge | wall_charge) | high_jump | double_jump)),Done,Unsure how Lower can use wall_dash,,,"Quarry10HiddenRight + (wall_grab + (dodge | wall_charge) | high_jump | double_jump) 
+| Quarry10Lower + (wall_grab + dodge | high_jump | double_jump)"
 Quarry 11,Quarry11Left,Quarry10HiddenRight,None,Done,,,,None
 Quarry 12,Quarry12Left,Quarry21Right,Quarry12Right + dash_charge,Unsure,Multiple connections are required for dash_charge,,,Quarry12Right + dash_charge
 Quarry 12,Quarry12Lower,Quarry18Upper,Quarry12Upper | ((Quarry12Left | Quarry12Right) + dash_charge),Unsure,Multiple connections are required for dash_charge,,,Quarry12Upper | ((Quarry12Left | Quarry12Right) + dash_charge)
 Quarry 12,Quarry12Right,Quarry20Left,Quarry12Left + dash_charge,Unsure,Multiple connections are required for dash_charge,,,Quarry12Left + dash_charge
-Quarry 12,Quarry12Upper,Quarry10Lower,Quarry12Lower | ((Quarry12Left | Quarry12Right) + dash_charge) + (double_jump | high_jump),Unsure,Multiple connections are required for dash_charge,,,Quarry12Lower | ((Quarry12Left | Quarry12Right) + dash_charge) + (double_jump | high_jump)
+Quarry 12,Quarry12Upper,Quarry10Lower,Quarry12Lower | ((Quarry12Left | Quarry12Right) + dash_charge) + (double_jump | high_jump),Unsure,Multiple connections are required for dash_charge,,,(Quarry12Lower | (Quarry12Left | Quarry12Right) + dash_charge) + (double_jump | high_jump)
 Quarry 13,Quarry13Left,Quarry08Right,Quarry13Right | Quarry13Upper,Done,,,,Quarry13Right | Quarry13Upper
 Quarry 13,Quarry13Right,Quarry07Left,Quarry13Left | Quarry13Upper,Done,,,,Quarry13Left | Quarry13Upper
 Quarry 13,Quarry13Upper,Quarry05Lower,(Quarry13Left | Quarry13Right) + (high_jump | double_jump + wall_grab),Done,,,,(Quarry13Left | Quarry13Right) + (high_jump | double_jump + wall_grab)
@@ -1913,8 +1913,9 @@ Swamp 5,Swamp05Right,Swamp18Left,"(Swamp05Lower + (high_jump + (dodge + double_j
 Swamp 6,Swamp06Lower,Swamp07Upper,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive,Done,"added wall_grab to pile_attack
 also funny, pile_attack high enough (thru hook or WALL_DASH)? means dive is NOT required; potentially softlocks in next zone :) (should be able to warp to the respite though?)",,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack) + dive,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive
 Swamp 6,Swamp06Right,Swamp05Left,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive,Done,added hook capabilities,,Swamp06Lower + (high_jump | double_jump) + dive,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive
-Swamp 7,Swamp07Lower,Swamp08Upper,Swamp07Upper + dive,Done,for Future Transitions Logic : pile_attack + moon actually allows for no dive !,,,Swamp07Upper + dive
-Swamp 7,Swamp07Upper,Swamp06Lower,Swamp07Lower + dive,Done,,,,Swamp07Lower + dive
+Swamp 7,Swamp07Lower,Swamp08Upper,Swamp07Upper + dive,Done,for Future Transitions Logic : pile_attack + moon actually allows for no dive !,,,(Swamp07Upper | Swamp07Respite) + dive
+Swamp 7,Swamp07Upper,Swamp06Lower,Swamp07Lower + dive,Done,,,,(Swamp07Lower | Swamp07Respite) + dive
+Swamp 7,Swamp07Respite,,,,,,,(Swamp07Lower | Swamp07Upper) + dive
 Swamp 8,Swamp08Lower,Swamp10UpperLeft,(Swamp08Upper | Swamp08Right) + dive,Done,,,,(Swamp08Upper | Swamp08Right) + dive
 Swamp 8,Swamp08Right,Swamp09Left,Swamp08Upper | Swamp08Lower + dive + (wall_grab | double_jump | high_jump),Done,"no requirements from Upper :)
 what about from Lower?",,Swamp08Upper + (dodge | double_jump | high_jump | WALL_DASH),Swamp08Upper | Swamp08Lower + dive + (wall_grab | double_jump | high_jump)

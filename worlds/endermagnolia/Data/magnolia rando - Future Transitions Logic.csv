@@ -1,45 +1,45 @@
 Room,Door,Lead to,Logic,Status,Comment,Aloha Suggested (Enhanced version),notes,TODO comments (delete when DONE)
-Center 1,Center01LeftDoor,Center05CenterDoor,Center01LowerLeft | Center01Lower | Center01RightDoor | Center01UpperLeft,Not Labbed,,N/A,,
-Center 1,Center01Lower,Street11Upper,(Center01LowerLeft | Center01LeftDoor | Center01RightDoor | Center01UpperLeft) + EVT_ev_s_0180_StreetElevatorFix,Not Labbed,,N/A,,
-Center 1,Center01LowerLeft,Center02LowerRight,Center01Lower | Center01LeftDoor | Center01RightDoor | Center01UpperLeft,Not Labbed,,N/A,,
-Center 1,Center01RightDoor,Center04RightDoor,Center01Lower | Center01LeftDoor | Center01LowerLeft | Center01UpperLeft,Not Labbed,,N/A,,
+Center 1,Center01LeftDoor,Center05CenterDoor,Center01LowerLeft | Center01Lower | Center01RightDoor | Center01UpperLeft,Done,,N/A,,
+Center 1,Center01Lower,Street11Upper,(Center01LowerLeft | Center01LeftDoor | Center01RightDoor | Center01UpperLeft) + EVT_ev_s_0180_StreetElevatorFix,Done,,N/A,,
+Center 1,Center01LowerLeft,Center02LowerRight,Center01Lower | Center01LeftDoor | Center01RightDoor | Center01UpperLeft,Done,,N/A,,
+Center 1,Center01RightDoor,Center04RightDoor,Center01Lower | Center01LeftDoor | Center01LowerLeft | Center01UpperLeft,Done,,N/A,,
 Center 1,Center01UpperLeft,Center02UpperRight,(Center01Lower | Center01LeftDoor | Center01LowerLeft | Center01RightDoor) + (high_jump | wall_grab + (wall_charge | axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump) | double_jump + ((scythe | axe) + (grav | moon + dodge | snow) | sword + grav + (dodge | RONIN)) | STALL + grav + dodge + snow | (scythe | axe) + dodge + grav + moon),Done,,Finished,,
-Center 2,Center02LowerRight,Center01LowerLeft,None,Not Labbed,,N/A,,
-Center 2,Center02UpperRight,Center01UpperLeft,None,Not Labbed,,N/A,,
-Center 3,Center03CenterLeftDoor,Center05LeftDoor,Center03LeftDoor,Not Labbed,,N/A,,
-Center 3,Center03CenterRightDoor,Center05RightDoor,Center03RightDoor,Not Labbed,,N/A,,
-Center 3,Center03LeftDoor,Garden12RightDoor,Center03CenterLeftDoor,Not Labbed,,N/A,,
-Center 3,Center03RightDoor,Kowloon01LeftDoor,Center03CenterRightDoor,Not Labbed,,N/A,,
-Center 4,Center04Left,Center05Right,Center04RightDoor + Center05Right_Lever,Not Labbed,,N/A,,
-Center 4,Center04RightDoor,Center01RightDoor,Center04Left,Not Labbed,,N/A,,
-Center 5,Center05CenterDoor,Center01LeftDoor,Center05LeftDoor | Center05RightDoor,Not Labbed,,N/A,,
-Center 5,Center05LeftDoor,Center03CenterLeftDoor,Center05CenterDoor | Center05RightDoor,Not Labbed,,N/A,,
-Center 5,Center05Right,Center04Left,Center05CenterDoor | Center05LeftDoor | Center05RightDoor,Not Labbed,,N/A,,
-Center 5,Center05RightDoor,Center03CenterRightDoor,Center05CenterDoor | Center05LeftDoor,Not Labbed,,N/A,,
-Crossroad 1,Crossroad01Lower,Ruins13Upper,Crossroad01Right,Not Labbed,,N/A,,
-Crossroad 1,Crossroad01Right,Crossroad04LowerLeft,Crossroad01Lower,Not Labbed,,N/A,,
+Center 2,Center02LowerRight,Center01LowerLeft,None,Done,,N/A,,
+Center 2,Center02UpperRight,Center01UpperLeft,None,Done,,N/A,,
+Center 3,Center03CenterLeftDoor,Center05LeftDoor,Center03LeftDoor,Done,,N/A,,
+Center 3,Center03CenterRightDoor,Center05RightDoor,Center03RightDoor,Done,,N/A,,
+Center 3,Center03LeftDoor,Garden12RightDoor,Center03CenterLeftDoor,Done,,N/A,,
+Center 3,Center03RightDoor,Kowloon01LeftDoor,Center03CenterRightDoor,Done,,N/A,,
+Center 4,Center04Left,Center05Right,Center04RightDoor + Center05Right_Lever,Done,,N/A,,
+Center 4,Center04RightDoor,Center01RightDoor,Center04Left,Done,,N/A,,
+Center 5,Center05CenterDoor,Center01LeftDoor,Center05LeftDoor | Center05RightDoor,Done,,N/A,,
+Center 5,Center05LeftDoor,Center03CenterLeftDoor,Center05CenterDoor | Center05RightDoor,Done,,N/A,,
+Center 5,Center05Right,Center04Left,Center05CenterDoor | Center05LeftDoor | Center05RightDoor,Done,,N/A,,
+Center 5,Center05RightDoor,Center03CenterRightDoor,Center05CenterDoor | Center05LeftDoor,Done,,N/A,,
+Crossroad 1,Crossroad01Lower,Ruins13Upper,Crossroad01Right,Done,,N/A,,
+Crossroad 1,Crossroad01Right,Crossroad04LowerLeft,Crossroad01Lower,Done,,N/A,,
 Crossroad 2,Crossroad02Left,Crossroad05Right,Crossroad02Right + (double_jump | high_jump | wall_grab | STALL | RONIN | REIBOLG),Done,,Finished,,
 Crossroad 2,Crossroad02Right,Slum01Left,"Crossroad02Left + (high_jump | dodge + double_jump | snow | moon | (axe | scythe) + (double_jump | dodge | grav + REIBOLG) | sword + (double_jump | dodge) | flower + (STALL | grav | double_jump | dodge)) 
 | Crossroad01Right + WALL_DASH",Done,"moon suffices while running
 
 If we don't want running based logic, then its probably similar to flower",Finished,,
-Crossroad 3,Crossroad03Left,Mine01Right,Crossroad03Right,Not Labbed,,N/A,,
-Crossroad 3,Crossroad03Right,Crossroad04UpperLeft,Crossroad03Left,Not Labbed,,N/A,,
-Crossroad 4,Crossroad04LowerLeft,Crossroad01Right,Crossroad04Right | Crossroad04UpperLeft + key_lower,Not Labbed,,N/A,,
-Crossroad 4,Crossroad04Right,Crossroad05Left,Crossroad04LowerLeft | Crossroad04UpperLeft + key_lower,Not Labbed,,N/A,,
-Crossroad 4,Crossroad04UpperLeft,Crossroad03Right,(Crossroad04LowerLeft | Crossroad04Right) + key_lower,Not Labbed,,N/A,,
+Crossroad 3,Crossroad03Left,Mine01Right,Crossroad03Right,Done,,N/A,,
+Crossroad 3,Crossroad03Right,Crossroad04UpperLeft,Crossroad03Left,Done,,N/A,,
+Crossroad 4,Crossroad04LowerLeft,Crossroad01Right,Crossroad04Right | Crossroad04UpperLeft + key_lower,Done,,N/A,,
+Crossroad 4,Crossroad04Right,Crossroad05Left,Crossroad04LowerLeft | Crossroad04UpperLeft + key_lower,Done,,N/A,,
+Crossroad 4,Crossroad04UpperLeft,Crossroad03Right,(Crossroad04LowerLeft | Crossroad04Right) + key_lower,Done,,N/A,,
 Crossroad 5,Crossroad05Left,Crossroad04Right,Crossroad05Right + (double_jump | high_jump | wall_grab | STALL + (grav | dodge) | RONIN | REIBOLG),Done,leg enhancement relic impacts,Finished,,
 Crossroad 5,Crossroad05Right,Crossroad02Left,Crossroad05Left + (double_jump | high_jump | wall_grab | RONIN | REIBOLG | STALL + grav | dodge + (axe | scythe)),Done,leg enhancement relic impacts - adds sword + dodge,Finished,,
 Estate 1,Estate01Left,Estate07UpperRight,Estate01Lower + (high_jump + (moon | snow | flower + (grav | wall_grab) | STALL + (wall_grab | grav) | (scythe | axe) + dodge | double_jump + (dodge | REIBOLG | STALL | flower)) | wall_grab + STALL + grav + double_jump + (dodge | lazer + RONIN) | (scythe | axe) + dodge + double_jump + grav + (moon | snow) | WALL_DASH + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump | high_jump)),Done,,Finished,,
-Estate 1,Estate01Lower,Estate08Upper,Estate01Left + dive,Not Labbed,,N/A,,
+Estate 1,Estate01Lower,Estate08Upper,Estate01Left + dive,Done,,N/A,,
 Estate 1,Estate01Right,Estate02Left,"(Estate01Left | Estate01Lower + (double_jump | WALL_DASH | moon | snow | FLOWER2 | wall_grab + (STALL | dive + dodge | flower) | STALL + grav | (scythe | axe) + dodge))
 + key_owner",Done,Left can now simply sprint,Finished,"wall_grab + dodge + dive -> underwater momentum jump
 
 FLOWER2 is also easier with it but not required
 
 sword + dive + dodge + pile_attack can also do it - havent been able to do without pile_attack",
-Estate 2,Estate02Left,Estate01Right,Estate02LowerRight | Estate02Upper | Estate02UpperRight,Not Labbed,,N/A,,
-Estate 2,Estate02LowerRight,Estate03CenterLeft,Estate02Left | Estate02Upper | Estate02UpperRight,Not Labbed,,N/A,,
+Estate 2,Estate02Left,Estate01Right,Estate02LowerRight | Estate02Upper | Estate02UpperRight,Done,,N/A,,
+Estate 2,Estate02LowerRight,Estate03CenterLeft,Estate02Left | Estate02Upper | Estate02UpperRight,Done,,N/A,,
 Estate 2,Estate02Upper,Estate05Lower,(Estate02Left | Estate02LowerRight | Estate02UpperRight) + (high_jump | double_jump + WALL_DASH | wall_grab + STALL + grav + (double_jump + dodge | (dodge | double_jump) + lazer + (moon | snow))),Done,not fullllllly tested but confident?,Finished,,
 Estate 2,Estate02UpperRight,Estate03UpperLeft,(Estate02Left | Estate02Upper | Estate02LowerRight) + (wall_grab + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump) | high_jump | STALL + grav + double_jump + (dodge | RONIN) | (scythe | axe) + grav + dodge + (moon | snow)),Done,"I dont want to entertain a REIBOLG option from Upper, sorry not sorry",Finished,,
 Estate 3,Estate03CenterLeft,Estate02LowerRight,Estate03LowerLeft,Not Labbed,,N/A,,
@@ -337,7 +337,7 @@ Kowloon 8,Kowloon08Right,Kowloon15CenterLeft,Kowloon08Left,Not Labbed,,N/A,,
 Kowloon 9,Kowloon09HiddenRight,Kowloon14Left,Kowloon09Upper + Kowloon09Upper_Lever,Not Labbed,,N/A,,
 Kowloon 9,Kowloon09Upper,Kowloon07Lower,Kowloon09HiddenRight + wall_grab + (dodge | double_jump | high_jump | wall_charge),Not Labbed,,,,
 Kowloon 10,Kowloon10Left,Kowloon07Right,Kowloon10Right + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + (wall_grab | high_jump)),Not Labbed,,,,
-Kowloon 10,Kowloon10Lower,Kowloon13UpperLeft,(Kowloon10Left | Kowloon10Right) + (hook | double_jump | STALL | RONIN) + pile_attack,Not Labbed,,double_jump while sprinting works with 2 base dodge rolls,"Lazer
+Kowloon 10,Kowloon10Lower,Kowloon13UpperLeft,(Kowloon10Left | Kowloon10Right) + (hook | double_jump | STALL | RONIN) + pile_attack,In Progress,,double_jump while sprinting works with 2 base dodge rolls,"Lazer
 Tracer + wall_grab | grav | dodge?
 ",
 Kowloon 10,Kowloon10Right,Kowloon15LowerLeft,Kowloon10Left + (hook | (WALL_DASH + (double_jump | high_jump)) | double_jump + dodge + high_jump),Not Labbed,,,,
@@ -666,7 +666,7 @@ Paradise 2,Paradise02Left,Paradise01UpperRight,"Paradise02UpperRight + (WALL_DAS
 | ((Paradise02LowerRight | (Paradise02CenterRight + Paradise04Left_Lever)) 
 + (dive | dodge | double_jump | high_jump | pile_attack))",Not Labbed,,,,
 Paradise 2,Paradise02LowerRight,Paradise19Left,(Paradise02Left | Paradise02UpperRight | (Paradise02CenterRight + Paradise04Left_Lever)) + dive,Not Labbed,,N/A,,
-Paradise 2,Paradise02UpperRight,Paradise04UpperLeft,((Paradise02Left | Paradise02LowerRight | (Paradise02CenterRight + Paradise04Left_Lever)) + (high_jump | (double_jump + wall_grab))),Not Labbed,,,,
+Paradise 2,Paradise02UpperRight,Paradise04UpperLeft,(Paradise02Left | Paradise02LowerRight | Paradise02CenterRight + Paradise04Left_Lever) + (high_jump | double_jump + wall_grab),Not Labbed,,,,
 Paradise 3,Paradise03Lower,Paradise33Upper,Paradise03UpperLeft,Not Labbed,,N/A,,
 Paradise 3,Paradise03LowerLeft,Paradise08LowerRight,"(Paradise03UpperLeft 
 | Paradise03Lower + (high_jump | wall_grab)) 
@@ -675,7 +675,7 @@ Paradise 3,Paradise03UpperLeft,Paradise08UpperRight,Paradise03Lower + (high_jump
 Paradise 4,Paradise04CenterRight,Paradise10Left,(Paradise04LowerRight | Paradise04Lower) + (high_jump |  (double_jump + (dodge | WALL_DASH))),Not Labbed,,,,
 Paradise 4,Paradise04Lower,Paradise12Upper,Paradise04CenterRight | Paradise04LowerRight,Not Labbed,,N/A,,
 Paradise 4,Paradise04LowerLeft,Paradise02CenterRight,Paradise04CenterRight | Paradise04LowerRight | Paradise04Lower,Not Labbed,,N/A,,
-Paradise 4,Paradise04LowerRight,Paradise07Left,Paradise04CenterRight | (Paradise04Lower + (high_jump | double_jump)),Not Labbed,,,,
+Paradise 4,Paradise04LowerRight,Paradise07Left,Paradise04CenterRight | Paradise04Lower + (high_jump | double_jump),Not Labbed,,,,
 Paradise 4,Paradise04UpperLeft,Paradise02UpperRight,Paradise04UpperRight,Not Labbed,,N/A,,
 Paradise 4,Paradise04UpperRight,Paradise09Left,Paradise04UpperLeft,Not Labbed,,N/A,,
 Paradise 5,Paradise05Left,Paradise01LowerRight,Paradise05UpperLeft + (high_jump | wall_grab | double_jump),Not Labbed,,,,
@@ -687,7 +687,7 @@ Paradise 6,Paradise06LowerRight,Paradise05UpperRight,Paradise06LowerLeft + (high
 Paradise 7,Paradise07Left,Paradise04LowerRight,Paradise07Lower,Not Labbed,,N/A,,
 Paradise 7,Paradise07Lower,Paradise18Upper,Paradise07Left + (dive | pile_attack),Not Labbed,,,,
 Paradise 8,Paradise08Lower,Paradise11Upper,Paradise08LowerLeft | Paradise08LowerRight,Not Labbed,,N/A,,
-Paradise 8,Paradise08LowerLeft,Paradise09Right,(Paradise08Lower | Paradise08LowerRight) + (high_jump |  (wall_grab + (dodge | double_jump | wall_charge))),Not Labbed,,,,
+Paradise 8,Paradise08LowerLeft,Paradise09Right,(Paradise08Lower | Paradise08LowerRight) + (high_jump |  wall_grab + (dodge | double_jump | wall_charge)),Not Labbed,,,,
 Paradise 8,Paradise08LowerRight,Paradise03LowerLeft,Paradise08LowerLeft | Paradise08Lower,Not Labbed,,N/A,,
 Paradise 8,Paradise08UpperLeft,Paradise10Right,Paradise08UpperRight,Not Labbed,,N/A,,
 Paradise 8,Paradise08UpperRight,Paradise03UpperLeft,Paradise08UpperLeft,Not Labbed,,N/A,,
@@ -702,10 +702,10 @@ Paradise 18,Paradise18Upper,Paradise07Lower,Paradise18Lower + dive,Not Labbed,,N
 Paradise 19,Paradise19Left,Paradise02LowerRight,Paradise19Upper + TORRENT,Not Labbed,,N/A,,
 Paradise 19,Paradise19Lower,Paradise32HiddenUpper,None,Not Labbed,,N/A,,
 Paradise 19,Paradise19Upper,Paradise18Lower,Paradise19Left + TORRENT + Paradise19Center_Lever,Not Labbed,,N/A,,
-Paradise 20,Paradise20CenterLeft,Paradise05Right,"Paradise20LowerLeft + (high_jump | (wall_grab + dodge) | WALL_DASH)
-| Paradise20LowerRight + (high_jump | WALL_DASH | ((double_jump | wall_grab) + dodge))
-| (Paradise20CenterRight + (high_jump | double_jump | dodge | WALL_DASH)) 
-| (Paradise20UpperRight + (high_jump | wall_grab | dodge | double_jump))
+Paradise 20,Paradise20CenterLeft,Paradise05Right,"Paradise20LowerLeft + (high_jump | wall_grab + dodge | WALL_DASH)
+| Paradise20LowerRight + (high_jump | WALL_DASH | (double_jump | wall_grab) + dodge)
+| Paradise20CenterRight + (high_jump | double_jump | dodge | WALL_DASH) 
+| Paradise20UpperRight + (high_jump | wall_grab | dodge | double_jump)
 | Paradise20UpperLeft",Not Labbed,,,,
 Paradise 20,Paradise20CenterRight,Paradise24Left,"Paradise20CenterLeft + (high_jump | double_jump + wall_grab)
 | ((Paradise20LowerLeft | Paradise20LowerRight) + (high_jump | (wall_grab + double_jump + (dodge | wall_charge)))) 
@@ -754,46 +754,67 @@ Paradise 33,Paradise33Left,Paradise32Right,Paradise33Upper,Not Labbed,,N/A,,
 Paradise 33,Paradise33Upper,Paradise03Lower,Paradise33Left + (high_jump + dodge | wall_grab + dodge + double_jump),Not Labbed,,,,
 Paradise 34,Paradise34Upper,Paradise32Lower,None,Not Labbed,,N/A,,
 Quarry 1,Quarry01Left,Quarry02Right,Quarry01Right + key_lower,Not Labbed,,N/A,,
-Quarry 1,Quarry01Right,Ruins08Left,Quarry01Left + (high_jump | double_jump | wall_grab + (dodge | wall_charge)) + key_lower,Not Labbed,,,,
-Quarry 2,Quarry02LowerLeft,Quarry03Upper,(Quarry02Right | Quarry02LowerRight) + dash_charge + (double_jump | high_jump),Not Labbed,,,,
+Quarry 1,Quarry01Right,Ruins08Left,Quarry01Left + (high_jump | double_jump | wall_grab | RONIN | REIBOLG + (dodge | STALL) | STALL + (dodge | grav)) + key_lower,Unsure,"probably dodge | stall + leg enhancement
+
+there is also pile_attack + (STALL | dodge)",Finished,yes tested with all REI,
+Quarry 2,Quarry02LowerLeft,Quarry03Upper,(Quarry02Right | Quarry02LowerRight) + dash_charge + (double_jump | high_jump | snow | moon | flower + (wall_grab | sword + dodge | grav) | dodge + (sword | axe) | STALL + grav | sword + wall_grab + dodge | wall_grab + (dodge | STALL) + REIBOLG),Unsure,"sword + pile_attack + dodge | sword + leg enhancement + dodge
+
+leg enhancement might also work with wall_grab + STALL",Finished,yes tested with all REI,
 Quarry 2,Quarry02LowerRight,Quarry04Upper,"Quarry02Right 
-| (Quarry02LowerLeft + dash_charge + (double_jump | high_jump | wall_grab))",Not Labbed,,,,
-Quarry 2,Quarry02Right,Quarry01Left,"(Quarry02LowerRight 
-| (Quarry02LowerLeft + dash_charge)) 
-+ (double_jump | high_jump | WALL_DASH)",Not Labbed,,,,
+| Quarry02LowerLeft + dash_charge + (double_jump | high_jump | wall_grab | REIBOLG | RONIN | STALL + (grav | dodge))",Done,pile_attack alone lul,Finished,yes tested with all REI,
+Quarry 2,Quarry02Right,Quarry01Left,"Quarry02LowerLeft + dash_charge + (double_jump | high_jump | WALL_DASH | RONIN | (dodge | grav) + (STALL | REIBOLG) | STALL + REIBOLG) | 
+Quarry02LowerRight + (double_jump | high_jump | WALL_DASH | RONIN | STALL + (grav | dodge | REIBOLG))",Done,,Finished,yes tested with all REI,
 Quarry 3,Quarry03Lower,Quarry07Upper,Quarry03Upper,Not Labbed,,N/A,,
-Quarry 3,Quarry03Upper,Quarry02LowerLeft,Quarry03Lower + (double_jump | high_jump | wall_grab),Not Labbed,,,,
+Quarry 3,Quarry03Upper,Quarry02LowerLeft,Quarry03Lower + (double_jump | high_jump | wall_grab | RONIN | REIBOLG | STALL + (grav | dodge)),Done,"pile_attack alone lul
+im sure beast / carapace would prob work too
+leg enhancement didnt seem to help!",Finished,yes tested with all REI,
 Quarry 4,Quarry04Left,Quarry07Right,None,Not Labbed,,N/A,,
 Quarry 4,Quarry04Upper,Quarry02LowerRight,None,Not Labbed,,N/A,,
 Quarry 5,Quarry05Lower,Quarry13Upper,None,Not Labbed,,N/A,,
-Quarry 7,Quarry07Left,Quarry13Right,"(Quarry07Upper | Quarry07Lower 
-|  (Quarry04Left + dash_charge))
- + ((double_jump | (dodge + wall_grab)) | high_jump)",Not Labbed,,,,
-Quarry 7,Quarry07Lower,Quarry15Upper,Quarry07Upper | Quarry07Left | (Quarry04Left + dash_charge),Not Labbed,,,,
-Quarry 7,Quarry07Right,Quarry04Left,(Quarry07Left | Quarry07Upper | Quarry07Lower) + (dash_charge + double_jump),Not Labbed,,,,
-Quarry 7,Quarry07Upper,Quarry03Lower,"(Quarry07Left | Quarry07Lower 
-| (Quarry04Left + dash_charge))
-+ (double_jump | high_jump |  (dodge + wall_grab))",Not Labbed,,,,
+Quarry 7,Quarry07Left,Quarry13Right,(Quarry07Upper | Quarry07Lower) + (RONIN | high_jump | double_jump | wall_grab + (REIBOLG + grav | dodge) | STALL + (wall_grab | grav | dodge)),Done,,Finished,"Im removing this from current transition logic.. it doesnt really add anything: (Quarry04Left + dash_charge)
+
+yes tested with all REI",
+Quarry 7,Quarry07Lower,Quarry15Upper,Quarry07Upper | Quarry07Left,Done,,Finished,Im removing this from current transition logic.. it doesnt really add anything: (Quarry04Left + dash_charge),
+Quarry 7,Quarry07Right,Quarry04Left,"((Quarry07Left | Quarry07Lower) + (double_jump | high_jump | wall_grab + (STALL | dodge | REIBOLG + grav) | RONIN | STALL + (dodge | grav))
+| Quarry07Upper) + dash_charge",Done,"Hard version - Upper does not need double_jump :)
+
+jump into transition from 03Lower while charging charge, can single jump from frozen platform",Finished,yes tested with all REI,
+Quarry 7,Quarry07Upper,Quarry03Lower,(Quarry07Left | Quarry07Lower) + (double_jump | high_jump | wall_grab + (STALL | dodge | REIBOLG + grav) | RONIN | STALL + (dodge | grav)),Done,,Finished,"Im removing this from current transition logic.. it doesnt really add anything: (Quarry04Left + dash_charge)
+
+yes tested with all REI",
 Quarry 8,Quarry08Left,Quarry10UpperRight,Quarry08Right,Not Labbed,,N/A,,
 Quarry 8,Quarry08Right,Quarry13Left,Quarry08Left,Not Labbed,,N/A,,
 Quarry 9,Quarry09Left,Quarry19LowerRight,Quarry09Right,Not Labbed,,N/A,,
 Quarry 9,Quarry09Right,Quarry18LowerLeft,Quarry09Left,Not Labbed,,N/A,,
-Quarry 10,Quarry10HiddenRight,Quarry11Left,"Quarry10UpperRight 
-| Quarry10Lower + (dodge | double_jump | high_jump)",Not Labbed,,,,
+Quarry 10,Quarry10HiddenRight,Quarry11Left,"Quarry10UpperRight + (dodge | double_jump | high_jump | STALL | RONIN | REIBOLG + grav) 
+| Quarry10Lower + (dodge | double_jump | high_jump | STALL | RONIN | wall_grab + REIBOLG + grav)",Done,"granade is very hard , requires near perfect timing :)",Finished,yes tested with all REI,
 Quarry 10,Quarry10Lower,Quarry12Upper,Quarry10UpperRight | Quarry10HiddenRight,Not Labbed,,N/A,,
-Quarry 10,Quarry10UpperRight,Quarry08Left,(Quarry10HiddenRight | Quarry10Lower) + ((wall_grab + (dodge | wall_charge) | high_jump | double_jump)),Not Labbed,,,,
+Quarry 10,Quarry10UpperRight,Quarry08Left,"Quarry10HiddenRight + (wall_grab + (dodge | wall_charge | REIBOLG + grav) | high_jump | double_jump | RONIN | STALL + (grav | dodge | wall_grab))
+| Quarry10Lower + (wall_grab + (dodge | REIBOLG + grav) | high_jump | double_jump | RONIN | STALL + (grav | dodge | wall_grab))",Done,the only difference is a wall_charge option available from HiddenRight,Finished,yes tested with all REI,
 Quarry 11,Quarry11Left,Quarry10HiddenRight,None,Not Labbed,,N/A,,
 Quarry 12,Quarry12Left,Quarry21Right,Quarry12Right + dash_charge,Not Labbed,,N/A,,
 Quarry 12,Quarry12Lower,Quarry18Upper,Quarry12Upper | ((Quarry12Left | Quarry12Right) + dash_charge),Not Labbed,,N/A,,
 Quarry 12,Quarry12Right,Quarry20Left,Quarry12Left + dash_charge,Not Labbed,,N/A,,
-Quarry 12,Quarry12Upper,Quarry10Lower,Quarry12Lower | ((Quarry12Left | Quarry12Right) + dash_charge) + (double_jump | high_jump),Not Labbed,,,,
+Quarry 12,Quarry12Upper,Quarry10Lower,(Quarry12Lower | (Quarry12Left | Quarry12Right) + dash_charge) + (double_jump | high_jump | snow | moon | grav + (scythe | axe | sword + (dodge | REIBOLG | flower) | flower + REIBOLG) | axe + dodge + (flower | REIBOLG) | scythe + dodge + flower),Done,"STALL + grav + pile_attack
+
+might have an extra option or two if the dash_charge walls are destroyed",Finished,yes tested with all REI,
 Quarry 13,Quarry13Left,Quarry08Right,Quarry13Right | Quarry13Upper,Not Labbed,,N/A,,
 Quarry 13,Quarry13Right,Quarry07Left,Quarry13Left | Quarry13Upper,Not Labbed,,N/A,,
-Quarry 13,Quarry13Upper,Quarry05Lower,(Quarry13Left | Quarry13Right) + (high_jump | double_jump + wall_grab),Not Labbed,,,,
+Quarry 13,Quarry13Upper,Quarry05Lower,(Quarry13Left | Quarry13Right) + (high_jump | wall_grab + (axe | (scythe | sword) + grav | scythe + dodge | snow | moon | FLOWER2 | double_jump)),Done,,Finished,a little rushed - just updated with base wall_grab,
 Quarry 14,Quarry14Right,Quarry23UpperLeft,Quarry14Upper ,Not Labbed,,N/A,,
-Quarry 14,Quarry14Upper,Quarry21Lower,Quarry14Right + (double_jump | WALL_DASH),Not Labbed,,,,
+Quarry 14,Quarry14Upper,Quarry21Lower,Quarry14Right + (double_jump | snow | moon | wall_grab + (wall_charge | dive + dodge + REIBOLG | flower | STALL + REIBOLG) | grav + (STALL | flower) | dodge + (flower + (scythe | sword) | axe) | axe + flower),Done,"lul this is silly, cant make it over the little island
+
+underwater momentum dodge jump
+
+pile_attack + dodge + flower
+
+leg enhancement relic makes it over T.T",Finished,yes tested with all REI,
 Quarry 15,Quarry15Left,Quarry22Right,"(Quarry15Upper + Quarry15Upper_Lever + (high_jump + (double_jump | dodge | WALL_DASH))) 
-| (Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + high_jump) ",Not Labbed,,,,
+| (Quarry15LowerLeft | Quarry15LowerRight) + (double_jump + high_jump) ",In Progress,"Removing extra high_jump logic from all, unnecessary
+
+split lowerRight out; it will always require wall_grab or high_jump minimum","(Quarry15Upper + Quarry15Upper_Lever + (high_jump | WALL_DASH + double_jump)) 
+| Quarry15LowerLeft + (high_jump | WALL_DASH + double_jump) 
+| Quarry15LowerRight + ((high_jump | wall_grab + (wall_charge + double_jump | ) | )",wall_grab + (snow | double_jump + moon),
 Quarry 15,Quarry15LowerLeft,Quarry24Upper,"(Quarry15Upper + Quarry15Upper_Lever + (dodge | double_jump | WALL_DASH)) 
 | (Quarry15LowerRight + (wall_grab | high_jump)) 
 | (Quarry15Left + (wall_grab | high_jump | double_jump))",Not Labbed,,,,
@@ -948,12 +969,18 @@ Ruins 15,Ruins15Right,Ruins01Left,Ruins15Left,Not Labbed,,N/A,,
 Ruins 16,Ruins16Left,Ruins14Right,Ruins16Right,Not Labbed,,N/A,,
 Ruins 16,Ruins16Right,Ruins15Left,Ruins16Left,Not Labbed,,N/A,,
 Sewer 1,Sewer01Right,Sewer03UpperLeft,Sewer01Upper,Not Labbed,,N/A,,
-Sewer 1,Sewer01Upper,Slum02Lower,Sewer01Right + (wall_grab | double_jump | dodge),Not Labbed,,,,
+Sewer 1,Sewer01Upper,Slum02Lower,Sewer01Right + (RONIN | STALL | wall_grab | double_jump | dodge + (dive | REIBOLG)),Done,"dodge + leg enhancement
+dodge + pile_attack
+momentum dodge dive jump",,,
 Sewer 2,Sewer02Lower,Sewer04Upper,Sewer02LowerLeft | (Sewer02UpperLeft + dive),Not Labbed,,N/A,,
 Sewer 2,Sewer02LowerLeft,Sewer03CenterRight,(Sewer02UpperLeft | Sewer02Lower) + dive,Not Labbed,,N/A,,
 Sewer 2,Sewer02UpperLeft,Sewer03UpperRight,(Sewer02LowerLeft | Sewer02Lower) + dive,Not Labbed,,N/A,,
 Sewer 3,Sewer03CenterRight,Sewer02LowerLeft,"(Sewer03UpperLeft | Sewer03UpperRight)
-| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter | Sewer03HiddenLeft) + (double_jump + (wall_grab | high_jump))",Not Labbed,,,,
+| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter | Sewer03HiddenLeft) + (double_jump + (wall_grab | high_jump))",Not Labbed,,"Sewer03UpperLeft | Sewer03UpperRight
+| Sewer03HiddenLeft + (wall_grab + (double_jump | wall_charge | snow | flower | moon + (dodge | STALL | grav + REIBOLG)) | high_jump + (double_jump | dodge | STALL | RONIN | REIBOLG))
+| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter | Sewer03HiddenLeft) + (double_jump + (wall_grab | high_jump))","tested with all REIBOLG
+
+Need to consider more moon options from HiddenLeft",
 Sewer 3,Sewer03HiddenLeft,Sewer05Right,"(Sewer03UpperLeft | Sewer03UpperRight) + (wall_grab | double_jump | dodge)
 | (Sewer03LowerLeft | Sewer03LowerRight | Sewer03LowerCenter)  + (double_jump +  (dodge | wall_grab | high_jump))
 | (Sewer03CenterRight) + (wall_charge | double_jump | dodge | high_jump + wall_grab)",Not Labbed,,,,
@@ -1213,8 +1240,9 @@ Swamp 5,Swamp05Right,Swamp18Left,"(Swamp05Lower + (high_jump + (dodge + double_j
 | (Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump)))",Not Labbed,,,,
 Swamp 6,Swamp06Lower,Swamp07Upper,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive,Not Labbed,,,,
 Swamp 6,Swamp06Right,Swamp05Left,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive,Not Labbed,,,,
-Swamp 7,Swamp07Lower,Swamp08Upper,Swamp07Upper + dive,Not Labbed,for Future Transitions Logic : pile_attack + moon actually allows for no dive !,,,
-Swamp 7,Swamp07Upper,Swamp06Lower,Swamp07Lower + dive,Not Labbed,,N/A,,
+Swamp 7,Swamp07Lower,Swamp08Upper,(Swamp07Upper | Swamp07Respite) + dive,Not Labbed,for Future Transitions Logic : pile_attack + moon actually allows for no dive !,,,
+Swamp 7,Swamp07Upper,Swamp06Lower,(Swamp07Lower | Swamp07Respite) + dive,Not Labbed,,N/A,,
+Swamp 7,Swamp07Respite,,(Swamp07Lower | Swamp07Upper) + dive,Not Labbed,,N/A,,
 Swamp 8,Swamp08Lower,Swamp10UpperLeft,(Swamp08Upper | Swamp08Right) + dive,Not Labbed,,N/A,,
 Swamp 8,Swamp08Right,Swamp09Left,Swamp08Upper | Swamp08Lower + dive + (wall_grab | double_jump | high_jump),Not Labbed,,,,
 Swamp 8,Swamp08Upper,Swamp07Lower,(Swamp08Right | Swamp08Lower) + dive,Not Labbed,,N/A,,

@@ -797,7 +797,7 @@ There is also a WALL_DASH option from Right without any additional movement :)",
 Swamp 7,Swamp 7 - Silencing Light Documents,Swamp_001_Zone_007.BP_Interactable_AddItem_C_0,"tips[""tip_lightsilence_01""]","Swamp07Lower 
 | Swamp07Upper + dive",Not Labbed,,"fixed minor typo.
 Lower should also require dive
-Unless you are cheesing the respite point proximity and then teleporting???",(Swamp07Lower | Swamp07Upper) + dive,(Swamp07Lower | Swamp07Upper) + dive
+Unless you are cheesing the respite point proximity and then teleporting???",(Swamp07Lower | Swamp07Upper) + dive,(Swamp07Lower | Swamp07Upper) + dive | Swamp07Respite
 Swamp 8,Swamp 8 - Materials,Swamp_001_Zone_008.BP_Breakable_SpawnItem_Pod_01_C_1,"currencies[""Default""]","Swamp08Upper | Swamp08Right 
 | (Swamp08Lower + dive)",Not Labbed,,good,,"Swamp08Upper | Swamp08Right 
 | (Swamp08Lower + dive)"
