@@ -116,8 +116,8 @@ aptitudes = DataTable("DT_ItemAptitudes", group=ItemGroup.Aptitude, classificati
     "heal"                   : "Healing Ward",
     "high_jump"              : "Garm's Ascent",
     "pile_attack"            : "Garm's Iron Stake",
-    "wall_charge"            : "Lar's Swift Flight",
-    "wall_grab"              : "Lar's Grip",
+    "wall_charge"            : "Lars' Swift Flight",
+    "wall_grab"              : "Lars' Grip",
 })
 
 assists = DataTable("DT_ItemAssists", group=ItemGroup.Assist, code=2000,rows = 
@@ -248,7 +248,7 @@ passives = DataTable("DT_ItemPassives", group=ItemGroup.Passive, code=9000,rows 
     "damage_up_airborne_1"              : "Sanguinary Raven",
     "damage_up_debuffed_1"              : "Battered Grimoire",
     "damage_up_grounded_1"              : "Chain Belt",
-    "damage_up_maxhp_1"                 : "Magic Strange Charm",
+    "damage_up_maxhp_1"                 : "Magic Strand Charm",
     "damage_up_minhp_1"                 : "Jagged Crystal",
     "damage_up_skillcategory_auto_1"    : "House Milius Earrings",
     "damage_up_skillcategory_combo_1"   : "Echo Device",
@@ -401,12 +401,12 @@ custom = CustomTable(code=14000, rows =
 {
     "Grand Lift Key"         : ("DT_ItemKeys.key_elevator", ItemGroup.Key),
     "Progressive Dive"       : ("DT_ItemAptitudes.progressive_dive", ItemGroup.Aptitude),
-    "Progressive Lar's Grip" : ("DT_ItemAptitudes.progressive_wall_grab", ItemGroup.Aptitude),
+    "Progressive Lars' Grip" : ("DT_ItemAptitudes.progressive_wall_grab", ItemGroup.Aptitude),
 })
 
 progressive_chains: Dict[str, List[str]] = {
     "Progressive Dive"       : [aptitudes["dive"].name, aptitudes["dash_charge_underwater"].name],
-    "Progressive Lar's Grip" : [aptitudes["wall_grab"].name, aptitudes["wall_charge"].name],
+    "Progressive Lars' Grip" : [aptitudes["wall_grab"].name, aptitudes["wall_charge"].name],
 }
 
 events : Dict[str, ItemData] = {key: EventData(key, name) for key, name in {

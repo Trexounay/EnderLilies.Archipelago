@@ -268,6 +268,38 @@ class RelicCostShuffle(Toggle):
     default = 0
 
 
+class SkillCostShuffle(Toggle):
+    """
+    Shuffles the materials required to upgrade skills.
+    """
+
+    display_name = "Skill Cost Shuffle"
+    slot_data = True
+
+    default = 0
+
+
+class ShuffleSP(Toggle):
+    """
+    Shuffles Attuner Arts for all skills.
+    """
+
+    display_name = "Shuffle Attuner Arts"
+    slot_data = True
+
+    default = 0
+
+class ShuffleBGM(Toggle):
+    """
+    Shuffles the background music tracks.
+    """
+
+    display_name = "Shuffle BGM"
+    slot_data = True
+
+    default = 0
+
+
 class GenerateSeedFile(Toggle):
     """
     Also generate a seed file for non-archipelago play.
@@ -294,6 +326,9 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     min_chapter: MinChapter
     max_chapter: MaxChapter
     relic_cost_shuffle: RelicCostShuffle
+    skill_cost_shuffle: SkillCostShuffle
+    shuffle_bgm: ShuffleBGM
+    shuffle_sp: ShuffleSP
     generate_seed_file: GenerateSeedFile
 
 
@@ -322,6 +357,9 @@ em_option_groups = [
         MinChapter,
         MaxChapter,
         RelicCostShuffle,
+        SkillCostShuffle,
+        ShuffleBGM,
+        ShuffleSP,
         GenerateSeedFile,
     ]),
 ]

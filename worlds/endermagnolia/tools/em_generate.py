@@ -14,26 +14,38 @@ TEMPLATES_DIR = "templates"
 ERROR_LOG = "generate_error.txt"
 
 
+def render_templates(target: str) -> str:
+    import Utils
+    from Options import generate_yaml_templates
+    from worlds import AutoWorldRegister
+
+    world = AutoWorldRegister.world_types.get(GAME)
+    if world is None:
+        raise Exception(f"{GAME} did not load, cannot render its template")
+
+    required = world.manifest.get("minimum_ap_version")
+
+    original = Utils.__version__
+    try:
+        if required:
+            Utils.__version__ = required
+        generate_yaml_templates(target, False)
+    finally:
+        Utils.__version__ = original
+
+    template = os.path.join(target, f"{GAME}.yaml")
+    if not os.path.isfile(template):
+        raise Exception(f"template not written: {template}")
+    return template
+
+
 def find_template(templates_dir: str) -> str:
     if os.path.isdir(templates_dir):
         for name in sorted(os.listdir(templates_dir)):
             if name.endswith(".yaml"):
                 return os.path.join(templates_dir, name)
 
-    import Utils
-    from Options import generate_yaml_templates
-    from worlds import AutoWorldRegister
-
-    world = AutoWorldRegister.world_types.get(GAME)
-    required = world.manifest.get("minimum_ap_version") if world else None
-
-    original = Utils.__version__
-    try:
-        if required:
-            Utils.__version__ = required
-        generate_yaml_templates(templates_dir, False)
-    finally:
-        Utils.__version__ = original
+    render_templates(templates_dir)
 
     for name in sorted(os.listdir(templates_dir)):
         if name.endswith(".yaml"):
@@ -90,6 +102,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 3 and sys.argv[1] == "--template":
+        print(f"Template written to {render_templates(sys.argv[2])}")
+        sys.exit(0)
+
     log_path = os.path.join(os.path.dirname(os.path.abspath(sys.executable)), ERROR_LOG)
     if os.path.exists(log_path):
         os.remove(log_path)
