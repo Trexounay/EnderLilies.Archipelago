@@ -215,7 +215,7 @@ labo = region_locations('Labo', {
     "Labo 18 - Charmed Fragment":                    ("Labo_001_Zone_018.BP_Interactable_AddItem_C_0",          stats["hp_up_s"]),
     "Labo 18 - Priestess' Tears":                    ("Labo_001_Zone_018.BP_Interactable_AddItem_C_2",          passives["damage_up_sp_gauge_1"]),
     "Labo 19 - Scrap":                               ("Labo_001_Zone_019.BP_Interactable_AddItem_C_0",          currencies["rare"]),
-    "Labo 21 - Lar's Swift Flight":                  ("EVT_ev_s_5230_Finder_Upgrade",                           aptitudes["wall_charge"]),
+    "Labo 21 - Lars' Swift Flight":                  ("EVT_ev_s_5230_Finder_Upgrade",                           aptitudes["wall_charge"]),
     "Labo 22 - Gilroy Examination Record":           ("Labo_001_Zone_022.BP_Interactable_AddItem_C_0",          tips["tip_gilroyrecords_01"]),
     "Labo 24 - Caladrius Records":                   ("Labo_001_Zone_024.BP_Interactable_AddItem_C_0",          tips["tip_caladriusrecord_01"]),
     "Labo 24 - Grimoire":                            ("Labo_001_Zone_024.BP_Interactable_TreasureBox_C_0",      stats["shop_line_up"]),
@@ -286,7 +286,7 @@ quarry = region_locations('Quarry', {
     "Quarry 21 - Unidentified Core":                 ("Quarry_001_Zone_021.BP_Interactable_AddItem_C_1",        materials["parts_s5000_a"]),
     "Quarry 21 - Jagged Crystal":                    ("Quarry_001_Zone_021.BP_Interactable_AddItem_C_2",        passives["damage_up_minhp_1"]),
     "Quarry 24 - Materials":                         ("Quarry_001_Zone_024.BP_Interactable_AddItem_C_0",        currencies["Default"]),
-    "Quarry 31 - Lar's Grip":                        ("EVT_ev_s_n7043_Quarry_Tuner",                            aptitudes["wall_grab"]),
+    "Quarry 31 - Lars' Grip":                        ("EVT_ev_s_n7043_Quarry_Tuner",                            aptitudes["wall_grab"]),
 })
 
 roots = region_locations('Roots', {
@@ -328,7 +328,7 @@ sewer = region_locations('Sewer', {
     "Sewer 4 - Materials":                           ("Sewer_001_Zone_004.BP_Interactable_AddItem_C_1",         currencies["Default"]),
     "Sewer 5 - Materials":                           ("Sewer_001_Zone_005.BP_Interactable_AddItem_C_0",         currencies["Default"]),
     "Sewer 8 - Eye of the Beast":                    ("Sewer_001_Zone_008.BP_Interactable_AddItem_C_0",         passives["gold_up_1"]),
-    "Sewer 9 - Magic Strange Charm":                 ("Sewer_001_Zone_009.BP_Interactable_AddItem_C_0",         passives["damage_up_maxhp_1"]),
+    "Sewer 9 - Magic Strand Charm":                 ("Sewer_001_Zone_009.BP_Interactable_AddItem_C_0",         passives["damage_up_maxhp_1"]),
     "Sewer 9 - Materials":                           ("Sewer_001_Zone_009.BP_Interactable_AddItem_C_2",         currencies["Default"]),
     "Sewer 10 - Dive":                               ("EVT_ev_s_0090_Sewer001.1",                               aptitudes["dive"]),
     "Sewer 10 - Blighted Note":                      ("EVT_ev_s_0090_Sewer001",                                 tips["tip_disposaljournal_01"]),
@@ -548,7 +548,7 @@ event_locations = LocationTable(rows=region_events({
     "Paradise 19 - Lever":                       events["paradise19center_lever"],
     "Quarry 3 - Levy":                           events["levy_treasure"],
     "Quarry 15 - Lever":                         events["quarry15upper_lever"],
-    "Quarry 31 - Joran Intro":                   (events["EVT_ev_s_n7043_Quarry_Tuner"],         "Quarry 31 - Lar's Grip"),
+    "Quarry 31 - Joran Intro":                   (events["EVT_ev_s_n7043_Quarry_Tuner"],         "Quarry 31 - Lars' Grip"),
     "Roots 1 - Defeat Reibolg":                  (events["EVT_ev_s_e5012_RootsLancer_Defeat"],   "Roots 1 - Reibolg 1"),
     "Roots 2 - Lily in Land of Origin":          events["EVT_ev_s_LilyEvent_Roots_002"],
     "Roots 5 - Levy":                            (events["EVT_ev_n_Levy_Treasure6_001"],         "Roots 5 - Stele of the Land of Origin"),

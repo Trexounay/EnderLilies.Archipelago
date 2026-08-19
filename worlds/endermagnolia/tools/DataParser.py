@@ -201,11 +201,15 @@ def count_symbols(nodes: Dict[str, DNF], known_nodes: Set[str]):
     return used_items, used_macros, used_unknown
 
 
+def sort_clauses(dnfs: DNF) -> List[frozenset]:
+    return sorted(dnfs, key=lambda term: sorted(s.name for s in term))
+
+
 def extract_rules(nodes: Dict[str, DNF], known_nodes: Set[str], error: list) -> Dict[Tuple[str, str], DNF]:
     node_to_node : Dict[Tuple[str, str], DNF] = {}
     multi_node_seen : Set[Tuple[str, str]] = set()
     for node, dnfs in nodes.items():
-        for term in dnfs:
+        for term in sort_clauses(dnfs):
             nodes_in_term = {s.name for s in term if s.name in known_nodes}
             items_in_term = frozenset({s for s in term if s.name not in known_nodes})
             if len(items_in_term) == 1 and list(items_in_term)[0].name == "None":
@@ -214,8 +218,9 @@ def extract_rules(nodes: Dict[str, DNF], known_nodes: Set[str], error: list) -> 
                 src = nodes_in_term.pop()
                 node_to_node.setdefault((src, node), set()).add(items_in_term)
             elif len(nodes_in_term) == 0:
-                print(f"{node} rule: no other nodes, only items {set(items_in_term)}")
-                error.append((node, f"missing a node in condition: {set(items_in_term)}"))
+                items = ", ".join(sorted(s.name for s in items_in_term))
+                print(f"{node} rule: no other nodes, only items {{{items}}}")
+                error.append((node, f"missing a node in condition: {{{items}}}"))
                 break
             elif len(nodes_in_term) > 1:
                 names = ", ".join(sorted(nodes_in_term))
@@ -224,20 +229,21 @@ def extract_rules(nodes: Dict[str, DNF], known_nodes: Set[str], error: list) -> 
                     multi_node_seen.add(msg)
                     print(f"{node} rule: multiple nodes {names}, added each as True")
                     error.append(msg)
-                for src in nodes_in_term:
+                for src in sorted(nodes_in_term):
                     node_to_node.setdefault((src, node), set()).add(frozenset())
     return node_to_node
 
 
 def find_redundant_rules(rules: Dict[Tuple[str, str], DNF], error: list):
     for key, clauses in rules.items():
-        for i, a in enumerate(clauses):
-            for j, b in enumerate(clauses):
+        ordered = sort_clauses(clauses)
+        for i, a in enumerate(ordered):
+            for j, b in enumerate(ordered):
                 if i == j:
                     continue
                 if b.issubset(a):
-                    plop1 = "+".join([str(s) for s in a])
-                    plop2 = "+".join([str(s) for s in b])
+                    plop1 = "+".join(sorted(str(s) for s in a))
+                    plop2 = "+".join(sorted(str(s) for s in b))
                     print(f"{key[1]} as a useless rule: {key[0]} + {plop1} because it already has: {key[0]} + {plop2}")
                     error.append((key[1], f"redundant rule: {key[0]} + {plop1} (already in {key[0]} + {plop2})"))
 
@@ -258,7 +264,7 @@ def clause_expr(clause, macro_names: Set[str]) -> str:
 def rule_expr(clauses, macro_names: Set[str]) -> str:
     if any(len(clause) == 0 for clause in clauses):
         return "True_()"
-    return " | ".join(clause_expr(clause, macro_names) for clause in clauses)
+    return " | ".join(clause_expr(clause, macro_names) for clause in sort_clauses(clauses))
 
 
 def build_rule_lines(logic: Dict[Tuple[str, str], DNF], macro_names: Set[str]) -> List[str]:

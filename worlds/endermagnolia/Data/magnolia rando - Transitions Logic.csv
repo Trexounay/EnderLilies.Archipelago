@@ -1478,7 +1478,7 @@ Roots 24,Roots24UpperRight,Roots27Lower,"((Roots24Left | Roots24HiddenLeft | Roo
 + dive)",Done,,,,"((Roots24Left | Roots24HiddenLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24LowerLeft) 
 + (dodge | wall_grab | double_jump) 
 + dive)"
-Roots 25,Roots25Left,Roots24Right,Roots25Right + dive,Done,dive is not really required :),do we want to add heal to this requirement?,,Roots25Right + dive
+Roots 25,Roots25Left,Roots24Right,Roots25Right + dive,Done,dive is not really required :),do we want to add heal to this requirement?,,Roots25Right + dive + (heal | assist_012 | assist_001)
 Roots 25,Roots25Right,Swamp10Left,Roots25Left + dive,Done,dive is not really required :),NOTE; the only way into this zone at large does require TORRENT from Swamp10Left,,Roots25Left + dive
 Roots 26,Roots26Upper,Roots24LowerRight,None,Done,"I feel like this should require dive, to exit this respite",,,None
 Roots 27,Roots27Lower,Roots24UpperRight,None,Done,,,,None
@@ -1594,7 +1594,7 @@ Sewer 14,Sewer14CenterLeft,Sewer13Right,"(Sewer14UpperLeft | Sewer14HiddenRight)
 Sewer 14,Sewer14HiddenRight,Sewer17Left,(Sewer14CenterLeft | Sewer14UpperLeft | Sewer14LowerLeft) + (double_jump | high_jump | wall_grab),Done,,,,(Sewer14CenterLeft | Sewer14UpperLeft | Sewer14LowerLeft) + (double_jump | high_jump | wall_grab)
 Sewer 14,Sewer14LowerLeft,Sewer11UpperRight,Sewer14CenterLeft | Sewer14HiddenRight | Sewer14UpperLeft,Done,,,,Sewer14CenterLeft | Sewer14HiddenRight | Sewer14UpperLeft
 Sewer 14,Sewer14UpperLeft,Sewer04Right,(Sewer14CenterLeft | Sewer14HiddenRight | Sewer14LowerLeft) + (double_jump | (high_jump + dodge) | WALL_DASH),Done,I dont think high_jump or wall_grab are enough by themselves,,(Sewer14CenterLeft | Sewer14HiddenRight | Sewer14LowerLeft) + (double_jump | high_jump | wall_grab),(Sewer14CenterLeft | Sewer14HiddenRight | Sewer14LowerLeft) + (double_jump | (high_jump + dodge) | WALL_DASH)
-Sewer 15,Sewer15Left,Sewer11LowerRight,Sewer15Lower + (high_jump + (dodge | (double_jump + wall_grab)) | hook),Done,,,,Sewer15Lower + (high_jump + (dodge | (double_jump + wall_grab)) | hook)
+Sewer 15,Sewer15Left,Sewer11LowerRight,Sewer15Lower + (high_jump + (dodge | (double_jump + wall_grab)) | hook),Done,,,,Sewer15Lower + dive + (hook | high_jump + (dodge | double_jump + wall_grab))
 Sewer 15,Sewer15Lower,Swamp18Upper,Sewer15Left + Sewer15Lower_Lever,Done,,,,Sewer15Left + Sewer15Lower_Lever
 Sewer 17,Sewer17Left,Sewer14HiddenRight,None,Done,,,,None
 Slum 1,Slum01Left,Crossroad02Right,Slum01Right | Slum01Lower,Done,,,,Slum01Right | Slum01Lower
@@ -1923,7 +1923,7 @@ Swamp 8,Swamp08Upper,Swamp07Lower,(Swamp08Right | Swamp08Lower) + dive,Done,,,,(
 Swamp 9,Swamp09Left,Swamp08Right,(Swamp09Right | Swamp09Lower) + (double_jump | high_jump),Done,dodge + pile_attack also gives enough height to reach,,,(Swamp09Right | Swamp09Lower) + (double_jump | high_jump)
 Swamp 9,Swamp09Lower,Swamp10UpperRight,(Swamp09Right | Swamp09Left) + (dive | pile_attack),Done,,"can also pile_attack into the transition, which actually allows for getting the item in next area",(Swamp09Right | Swamp09Left) + dive,(Swamp09Right | Swamp09Left) + (dive | pile_attack)
 Swamp 9,Swamp09Right,Swamp11UpperLeft,Swamp09Left | Swamp09Lower,Done,,,,Swamp09Left | Swamp09Lower
-Swamp 10,Swamp10Left,Roots25Right,((Swamp10UpperLeft | Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever))) + TORRENT,Done,,,,((Swamp10UpperLeft | Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever))) + TORRENT
+Swamp 10,Swamp10Left,Roots25Right,((Swamp10UpperLeft | Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever))) + TORRENT,Done,,,,(Swamp10UpperLeft | Swamp10Right | Swamp10UpperRight + Swamp10Upper_Lever) + TORRENT
 Swamp 10,Swamp10Right,Swamp11LowerLeft,(Swamp10UpperLeft + dive) | (Swamp10Left + TORRENT) | (Swamp10UpperRight + Swamp10Upper_Lever + dive),Done,,,,(Swamp10UpperLeft + dive) | (Swamp10Left + TORRENT) | (Swamp10UpperRight + Swamp10Upper_Lever + dive)
 Swamp 10,Swamp10UpperLeft,Swamp08Lower,"((Swamp10Left + TORRENT) 
 | (Swamp10Right | (Swamp10UpperRight + Swamp10Upper_Lever))
@@ -2016,7 +2016,7 @@ Tower 7,Tower07Upper,Tower02Lower,Tower07Lower + (high_jump | double_jump | wall
 Tower 8,Tower08Lower,Tower09Upper,Tower08Upper | Tower08Right,Done,,,,Tower08Upper | Tower08Right
 Tower 8,Tower08Right,Tower10UpperLeft,Tower08Upper | Tower08Lower,Done,,,,Tower08Upper | Tower08Lower
 Tower 8,Tower08Upper,Tower05Lower,Tower08Right | Tower08Lower,Done,,,,Tower08Right | Tower08Lower
-Tower 9,Tower09CenterRight,Tower10CenterLowerLeft,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower + (double_jump | wall_charge | high_jump | dodge + wall_grab)),Done,added WALL_DASH from Upper area (denoted as wall_charge),,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower + (double_jump | high_jump | dodge + wall_grab)),Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower + (double_jump | wall_charge | high_jump | dodge + wall_grab))
+Tower 9,Tower09CenterRight,Tower10CenterLowerLeft,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower + (double_jump | wall_charge | high_jump | dodge + wall_grab)),Done,added WALL_DASH from Upper area (denoted as wall_charge),,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower + (double_jump | high_jump | dodge + wall_grab)),Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower) + (double_jump | WALL_DASH | high_jump | dodge + wall_grab)
 Tower 9,Tower09Lower,Tower11Upper,Tower09Upper | Tower09LowerRight | Tower09UpperRight | (Tower09CenterRight + (double_jump | high_jump | wall_grab)),Done,,,,Tower09Upper | Tower09LowerRight | Tower09UpperRight | (Tower09CenterRight + (double_jump | high_jump | wall_grab))
 Tower 9,Tower09LowerRight,Tower10LowerLeft,Tower09Upper | Tower09Lower | Tower09UpperRight | (Tower09CenterRight + (double_jump | high_jump | wall_grab)),Done,,,,Tower09Upper | Tower09Lower | Tower09UpperRight | (Tower09CenterRight + (double_jump | high_jump | wall_grab))
 Tower 9,Tower09Upper,Tower08Lower,Tower09Lower | Tower09LowerRight  | Tower09UpperRight | (Tower09CenterRight + (double_jump | wall_grab | high_jump)),Done,Extra CenterRight options,,Tower09Lower | Tower09LowerRight  | Tower09UpperRight | (Tower09CenterRight + double_jump),Tower09Lower | Tower09LowerRight  | Tower09UpperRight | (Tower09CenterRight + (double_jump | wall_grab | high_jump))

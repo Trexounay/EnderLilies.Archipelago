@@ -1,7 +1,7 @@
 from rule_builder.rules import HasAll, HasAny
 
 TORRENT   = HasAll("Dive", "Dodge", "Motley's Torrent")
-WALL_DASH = HasAll("Lar's Grip", "Lar's Swift Flight")
+WALL_DASH = HasAll("Lars' Grip", "Lars' Swift Flight")
 
 # advanced
 FLOWER2   = HasAll("Incomplete Gear", "No.7 Thunder Flower")

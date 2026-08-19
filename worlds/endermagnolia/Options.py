@@ -194,7 +194,7 @@ class ProgressiveAptitudes(DefaultOnToggle):
     """
     Aptitudes are acquired in order.
     Dive -> Motley's Torrent
-    Lar's Grip -> Lar's Swift Flight
+    Lars' Grip -> Lars' Swift Flight
     """
 
     display_name = "Progressive Aptitudes"

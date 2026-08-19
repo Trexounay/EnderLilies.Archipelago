@@ -170,6 +170,7 @@ class EnderMagnoliaWorld(World):
     def create_regions(self) -> None:
         # For each room entrances we create a region (need to happen first)
         menu = self.create_region("Menu")
+        shop = self.create_region("Shop")
         for name in room_connections:
             self.create_region(name)
 

@@ -24,8 +24,8 @@ items_rules: Dict[str, ItemRule] = {
 }
 
 shop_rules: Dict[Tuple[str, str], Rule] = {
-	('Slum01Left',   'Shop')           : Has('Defeat Yolvan'),
-	('Center01LowerLeft',   'Shop')    : Has('Defeat Gilroy'),
+	#('Slum01Left',   'Shop')           : Has('Defeat Yolvan'),
+	#('Center01LowerLeft',   'Shop')    : Has('Defeat Gilroy'),
 
 	('Shop',         'Shop Level 1' )  : True_(),
 	('Shop',         'Shop Level 2' )  : Has('Grimoire', 1),

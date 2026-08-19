@@ -431,7 +431,7 @@ Labo 19,Labo 19 - Scrap,Labo_001_Zone_019.BP_Interactable_AddItem_C_0,"currencie
 Labo19Lower -> LowerCenter","Added extra parenthesis to fix red..
 seems good aside from WALL_DASH comment",,"Labo19LowerCenter + (high_jump | double_jump + wall_grab) 
 | Labo19Right + (dodge + double_jump + high_jump)"
-Labo 21,Labo 21 - Lar's Swift Flight,Labo_001_Zone_021.EVT_ev_s_5230_Finder_Upgrade,"aptitudes[""wall_charge""]",Labo21LowerLeft | Labo21UpperLeft,Done,,technically cannot enter from UpperLeft base-state?,Labo21LowerLeft,Labo21LowerLeft
+Labo 21,Labo 21 - Lars' Swift Flight,Labo_001_Zone_021.EVT_ev_s_5230_Finder_Upgrade,"aptitudes[""wall_charge""]",Labo21LowerLeft | Labo21UpperLeft,Done,,technically cannot enter from UpperLeft base-state?,Labo21LowerLeft,Labo21LowerLeft
 Labo 22,Labo 22 - Gilroy Examination Record,Labo_001_Zone_022.BP_Interactable_AddItem_C_0,"tips[""tip_gilroyrecords_01""]",Labo22UpperRight,Done,,good,,Labo21LowerLeft | Labo21UpperLeft
 Labo 24,Labo 24 - Caladrius Records,Labo_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_caladriusrecord_01""]",((Labo24Left | Labo24Lower) + (high_jump | (double_jump + WALL_DASH))),Not Labbed,,From Left (wall_grab + double_jump + dodge),"Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH)
 | Labo24Lower + (high_jump | (double_jump + WALL_DASH))","Labo24Left + (wall_grab + double_jump + dodge | high_jump | double_jump + WALL_DASH)
@@ -519,7 +519,7 @@ Paradise 11,Paradise 11 - Bloodstained Diary,Paradise_001_Zone_011.BP_Interactab
 Paradise 12,Paradise 12 - Declan's Ring,Paradise_001_Zone_012.BP_Interactable_TreasureBox_C_0,"passives[""onattack_restorehp_1""]",Paradise12Upper,Done,,good,,Paradise12Upper
 Paradise 19,Paradise 19 - Scrap,Paradise_001_Zone_019.BP_Interactable_AddItem_C_0,"currencies[""rare""]",Paradise19Lower,Done,,good,,Paradise19Lower
 Paradise 19,Paradise 19 - Materials,Paradise_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""Default""]",(Paradise19Upper | Paradise19Left) + TORRENT,Not Labbed,,good - unless you want to add Lever,,(Paradise19Upper | Paradise19Left) + TORRENT
-Paradise 19,Paradise 19 - Motley's Torrent,Paradise_001_Zone_019.EVT_ev_s_5220_Wirer_Upgrade,"aptitudes[""dash_charge_underwater""]",Paradise19Upper | (Paradise19Left + TORRENT),Not Labbed,,need to add Lever or remove Left,,Paradise19Upper | (Paradise19Left + TORRENT)
+Paradise 19,Paradise 19 - Motley's Torrent,Paradise_001_Zone_019.EVT_ev_s_5220_Wirer_Upgrade,"aptitudes[""dash_charge_underwater""]",Paradise19Upper | (Paradise19Left + TORRENT),Not Labbed,,need to add Lever or remove Left,,Paradise19Upper
 Paradise 21,Paradise 21 - Materials,Paradise_001_Zone_021.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Paradise21Right,Done,,good,,Paradise21Right
 Paradise 24,Paradise 24 - Words Etched into Cell,Paradise_001_Zone_024.BP_Interactable_AddItem_C_0,"tips[""tip_prisonwall_01""]",Paradise24Left,Done,,good,,Paradise24Left
 Paradise 26,Paradise 26 - Declan's Binds,Paradise_001_Zone_026.BP_Interactable_AddItem_C_0,"equipments[""armor_015""]",Paradise26Upper,Done,,good,,Paradise26Upper
@@ -610,7 +610,7 @@ dont need dodge | wall_charge from right","Quarry21Lower + ((high_jump + (double
 | Quarry21Right + (high_jump | (double_jump + wall_grab))","Quarry21Lower + ((high_jump + (double_jump | dodge | WALL_DASH)) | (double_jump + wall_grab + (dodge | wall_charge)))
 | Quarry21Right + (high_jump | (double_jump + wall_grab))"
 Quarry 24,Quarry 24 - Materials,Quarry_001_Zone_024.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Quarry24Upper,Done,,good,,Quarry24Upper
-Quarry 31,Quarry 31 - Lar's Grip,Quarry_001_Zone_031.EVT_ev_s_n7043_Quarry_Tuner,"aptitudes[""wall_grab""]",Quarry31Upper,Done,,"do you have to enter from Upper? what about from Right?
+Quarry 31,Quarry 31 - Lars' Grip,Quarry_001_Zone_031.EVT_ev_s_n7043_Quarry_Tuner,"aptitudes[""wall_grab""]",Quarry31Upper,Done,,"do you have to enter from Upper? what about from Right?
 (story progression wise, ""should"" always enter from upper, but i dont see that is a hard and true restriction here?)",Quarry31Upper | Quarry31Right,Quarry31Upper | Quarry31Right
 Roots 1,Roots 1 - Reibolg 1,Roots_001_Zone_001.EVT_ev_s_e5012_RootsLancer_Defeat,"spirits[""s5010_lancer""]",Roots01Left,Done,,,,Roots01Left
 Roots 1,Roots 1 - Reibolg 2,Roots_001_Zone_001.EVT_ev_s_e5012_RootsLancer_Defeat.1,"quests[""quest_eye""]",Roots01Left,Done,,is this EVT_ev_s_e6050_MasterDefeat?,,Roots01Left
@@ -641,7 +641,9 @@ id love it if the yaml could simply exclude this check altogether i hate it so m
 Roots 28,Roots 28 - Origin Gem Core,Roots_001_Zone_028.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_a""]",Roots28Lower + TORRENT,Not Labbed,,good,,Roots28Lower + TORRENT
 Roots 29,Roots 29 - Charmed Ore,Roots_001_Zone_029.BP_Interactable_AddItem_C_0,"stats[""hp_up_l""]",Roots29 + TORRENT + (double_jump | dodge),Not Labbed,,"since torrent requires dodge, this might be able to be simplified
 
-updating Roots29 ->  Roots29Upper",Roots29Upper + TORRENT,Roots29Upper + TORRENT
+updating Roots29 ->  Roots29Upper
+
+Interestingly enough, this requires dash_charge as well; torrent wont persist out of the waterfall without it",Roots29Upper + TORRENT,Roots29Upper + TORRENT + dash_charge
 Roots 30,Roots 30 - Unidentified Amplifier,Roots_001_Zone_030.BP_Interactable_AddItem_C_0,"materials[""parts_s5000_b""]",Roots30Right,Done,,good,,Roots30Right
 Ruins 4,Ruins 4 - Nola,Ruins_001_Zone_004.EVT_ev_s_0020_NoraMeeting,"spirits[""s5000_reaper""]",Ruins04LowerLeft | Ruins04UpperLeft,Done,we assume we spawn with a weapon that break walls,good,,Ruins04LowerLeft | Ruins04UpperLeft
 Ruins 5,Ruins 5 - Charmed Fragment,Ruins_001_Zone_005.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]",(Ruins05Left | Ruins05Right) + dash_charge + double_jump,Done,,good,,(Ruins05Left | Ruins05Right) + dash_charge + double_jump
@@ -658,7 +660,7 @@ Sewer 4,Sewer 4 - Materials,Sewer_001_Zone_004.BP_Interactable_AddItem_C_1,"curr
 Sewer 5,Sewer 5 - Materials,Sewer_001_Zone_005.BP_Interactable_AddItem_C_0,"currencies[""Default""]",Sewer05Right,Done,,good,,Sewer05Right
 Sewer 8,Sewer 8 - Eye of the Beast,Sewer_001_Zone_008.BP_Interactable_AddItem_C_0,"passives[""gold_up_1""]",(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab),Not Labbed,,"there is double_jump + dodge (doable from both entrances)
 its a little finnicky from Lower, but very doable; the important thing is to get as high on the water/waterfall as possible, dodge -> jump -> dodge",(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab | double_jump + dodge),(Sewer08Left | Sewer08Lower) + (high_jump | wall_grab | double_jump + dodge)
-Sewer 9,Sewer 9 - Magic Strange Charm,Sewer_001_Zone_009.BP_Interactable_AddItem_C_0,"passives[""damage_up_maxhp_1""]","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook) 
+Sewer 9,Sewer 9 - Magic Strand Charm,Sewer_001_Zone_009.BP_Interactable_AddItem_C_0,"passives[""damage_up_maxhp_1""]","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook) 
 | Sewer09Left",Not Labbed,,"added a parenthesis to fix red...
 im not sure hook is enough by itself; also requires double_jump | dodge","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook + (double_jump | dodge)) 
 | Sewer09Left","((Sewer09UpperRight | Sewer09Right | Sewer09UpperLeft) + hook + (double_jump | dodge)) 
@@ -699,7 +701,7 @@ Same with Street03Right , needs a key unlock
 (or just remove Street03LowerLeft?)
 Can also WALL_DASH out of Street05UpperRight/Street03UpperLeft","(Street03LowerLeft + Street05LowerRight_Lever | Street03Right | Street03Door) + (high_jump | double_jump) 
 | Street03UpperLeft + (high_jump | dodge | double_jump)
-| Street05UpperRight + WALL_DASH","(Street03LowerLeft + Street05LowerRight_Lever | Street03Right | Street03Door) + (high_jump | double_jump) 
+| Street05UpperRight + WALL_DASH","(Street03LowerLeft + Street05LowerRight_Lever | Street03Right + key_lower | Street03Door) + (high_jump | double_jump) 
 | Street03UpperLeft + (high_jump | dodge | double_jump)
 | Street05UpperRight + WALL_DASH"
 Street 4,Street 4 - Yolvan,Street_001_Zone_004.EVT_ev_s_e5110_Gunman_Defeat,"spirits[""s5110_gunman""]",Street04Left | Street04Right,Not Labbed,,,,Street04Left | Street04Right
