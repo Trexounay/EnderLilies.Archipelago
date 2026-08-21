@@ -300,6 +300,18 @@ class ShuffleBGM(Toggle):
     default = 0
 
 
+class AllowMultiSkill(Toggle):
+    """
+    Removes the one-skill-per-spirit limit.
+    Logic doesn't account for this.
+    """
+
+    display_name = "Allow Multiple Skills Per Spirit"
+    slot_data = True
+
+    default = 0
+
+
 class GenerateSeedFile(Toggle):
     """
     Also generate a seed file for non-archipelago play.
@@ -329,6 +341,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     skill_cost_shuffle: SkillCostShuffle
     shuffle_bgm: ShuffleBGM
     shuffle_sp: ShuffleSP
+    allow_multiskill: AllowMultiSkill
     generate_seed_file: GenerateSeedFile
 
 
@@ -360,6 +373,7 @@ em_option_groups = [
         SkillCostShuffle,
         ShuffleBGM,
         ShuffleSP,
+        AllowMultiSkill,
         GenerateSeedFile,
     ]),
 ]
