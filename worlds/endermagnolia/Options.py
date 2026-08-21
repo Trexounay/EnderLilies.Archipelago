@@ -312,6 +312,17 @@ class AllowMultiSkill(Toggle):
     default = 0
 
 
+class NewGamePlusAI(Toggle):
+    """
+    Enemies use their New Game+ AI
+    """
+
+    display_name = "NG+ AI"
+    slot_data = True
+
+    default = 0
+
+
 class GenerateSeedFile(Toggle):
     """
     Also generate a seed file for non-archipelago play.
@@ -342,6 +353,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     shuffle_bgm: ShuffleBGM
     shuffle_sp: ShuffleSP
     allow_multiskill: AllowMultiSkill
+    ngplus_ai: NewGamePlusAI
     generate_seed_file: GenerateSeedFile
 
 
@@ -374,6 +386,7 @@ em_option_groups = [
         ShuffleBGM,
         ShuffleSP,
         AllowMultiSkill,
+        NewGamePlusAI,
         GenerateSeedFile,
     ]),
 ]
