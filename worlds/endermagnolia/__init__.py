@@ -116,15 +116,14 @@ class EnderMagnoliaWorld(World):
 
         removed.extend(data for data, _ in placed)
 
-        remaining = list(pool)
+        filler = items[self.get_filler_item_name()]
+        remaining = [data for data in pool if data != filler]
         for data in removed:
             remaining.remove(data)
         remaining.extend(added)
+        remaining.extend(filler * (len(self.multiworld.get_unfilled_locations(self.player)) - len(remaining)))
 
-        items_pool = [self.create_item(data.name) for data in remaining]
-        items_pool.extend(self.create_filler()
-                          for _ in range(len(self.multiworld.get_unfilled_locations(self.player)) - len(items_pool)))
-        self.multiworld.itempool.extend(items_pool)
+        self.multiworld.itempool.extend(self.create_item(data.name) for data in remaining)
 
     def collect_item(self, state, item: Item, remove: bool = False) -> Optional[str]:
         chain = progressive_chains.get(item.name)

@@ -1663,7 +1663,7 @@ room_connections_data = {
         ("Tower05Upper", "Tower04Lower"),
     ],
     "Tower 6": [
-        ("Tower06Right", "Tower18Left"),
+        ("Tower06Right", "Tower18HiddenLeft"),
     ],
     "Tower 7": [
         ("Tower07Lower", "Tower04Upper"),
@@ -1717,7 +1717,7 @@ room_connections_data = {
         ("Tower17Right", "Forest01Left"),
     ],
     "Tower 18": [
-        ("Tower18Left", "Tower06Right"),
+        ("Tower18HiddenLeft", "Tower06Right"),
         ("Tower18Lower", "Swamp01Upper"),
         ("Tower18LowerRight", "Tower19LowerLeft"),
         ("Tower18UpperRight", "Tower19UpperLeft"),

@@ -653,18 +653,18 @@ skills_materials = [
     *materials["parts_lv2_c"]   * 2,
     *materials["parts_lv3_b"]   * 2,
     *materials["parts_lv3_c"]   * 2,
-    *materials["parts_lv4_b"]   * 1,
+    *materials["parts_lv4_b"]   * 2,
     *materials["parts_lv4_c"]   * 2,
     *materials["parts_lv5_b"]   * 2,
     *materials["parts_lv5_c"]   * 2,
-    *materials["parts_lv6_b"]   * 2,
+    *materials["parts_lv6_b"]   * 1,
     *materials["parts_lv6_c"]   * 1,
     *materials["parts_s5000_b"] * 1,
     *materials["parts_s5000_c"] * 1,
 ]
 
 # computed pool (vanilla + shop - skills_materials + skills - spirits)
-# we remove 48/49 tips to flatten shop items
+# we remove 49 tips + 2 costumes to flatten shop items
 pool = [
     *aptitudes,
     *assists,
@@ -673,11 +673,11 @@ pool = [
     *passives,
     *quests,
     *skills,
-    *[*tips][:-48],
+    #*[*tips][:-48],
 
     costumes["p0030"],
-    costumes["p0040"],
-    costumes["p0050"],
+    #costumes["p0040"],
+    #costumes["p0050"],
 
     *currencies["Default"] * 35,
     *currencies["rare"] * 13,
@@ -686,9 +686,10 @@ pool = [
     *materials["parts_lv4_b"]   * 2,
     *materials["parts_lv4_c"]   * 2,
     *materials["parts_lv5_a"]   * 3,
+    *materials["parts_lv5_b"]   * 2,
     *materials["parts_lv5_c"]   * 2,
     *materials["parts_lv6_a"]   * 7,
-    *materials["parts_lv6_b"]   * 7,
+    *materials["parts_lv6_b"]   * 8,
     *materials["parts_lv6_c"]   * 8,
     *materials["parts_s5000_a"] * 3,
     *materials["parts_s5000_b"] * 2,

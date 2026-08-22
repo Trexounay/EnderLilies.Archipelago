@@ -705,7 +705,7 @@ rules: Dict[Tuple[str, str], Rule] = {
 	('Tower15Right',                 'Tower 15 - Charmed Fragment')                   : WALL_DASH | HasAll("Lars' Grip", 'Aerial Jump', 'Dodge') | HasAll("Motley's Magic Strands", 'Aerial Jump') | Has("Garm's Ascent"),
 	('Tower16Left',                  'Tower 16 - Shackled Beast')                     : True_(),
 	('Tower16Right',                 'Tower 16 - Shackled Beast')                     : True_(),
-	('Tower18Left',                  'Tower 18 - Homunculus Research Log 2')          : Has('Aerial Jump'),
+	('Tower18HiddenLeft',            'Tower 18 - Homunculus Research Log 2')          : Has('Aerial Jump'),
 	('Tower18Lower',                 'Tower 18 - Homunculus Research Log 2')          : Has('Aerial Jump'),
 	('Tower18LowerRight',            'Tower 18 - Homunculus Research Log 2')          : WALL_DASH & Has('Aerial Jump') | HasAll('Aerial Jump', 'Dodge') | Has("Garm's Ascent"),
 	('Tower18UpperRight',            'Tower 18 - Homunculus Research Log 2')          : WALL_DASH | Has('Dodge') | Has('Aerial Jump') | Has("Garm's Ascent"),

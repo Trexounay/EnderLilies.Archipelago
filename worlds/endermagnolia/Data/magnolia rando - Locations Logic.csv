@@ -869,13 +869,13 @@ WALL_DASH by itself is annoying.
 otherwise good!",(Tower15Left | Tower15Right) + (high_jump | WALL_DASH | hook + double_jump | wall_grab + double_jump + dodge),(Tower15Left | Tower15Right) + (high_jump | WALL_DASH | hook + double_jump | wall_grab + double_jump + dodge)
 Tower 16,Tower 16 - Shackled Beast,Tower_001_Zone_016.EVT_ev_s_e5060_Beast_Defeat,"spirits[""s5060_beast""]",Tower16Left | Tower16Right,Done,,,,Tower16Left | Tower16Right
 Tower 18,Tower 18 - Homunculus Research Log 2,Tower_001_Zone_018.BP_Interactable_AddItem_C_0,"tips[""tip_homunculusrecord_02""]","(Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump)) 
-| (Tower18Left + (high_jump | double_jump)) 
+| (Tower18HiddenLeft + (high_jump | double_jump)) 
 | (Tower18LowerRight + high_jump | (double_jump + (dodge |  WALL_DASH)))",Not Labbed,,"how does Left use high_jump?
 do we need to add Lower?
 changed Left -> HiddenLeft","(Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump)) 
 | ((Tower18Left | Tower18Lower) + double_jump) 
 | (Tower18LowerRight + high_jump | (double_jump + (dodge |  WALL_DASH)))","Tower18UpperRight + (double_jump | dodge | WALL_DASH | high_jump) 
-| (Tower18Left | Tower18Lower) + double_jump 
+| (Tower18HiddenLeft | Tower18Lower) + double_jump 
 | Tower18LowerRight + (high_jump | double_jump + (dodge | WALL_DASH))"
 Tower 19,Tower 19 - Eye of the Ancients,Tower_001_Zone_019.BP_Interactable_TreasureBox_C_1,"passives[""reduce_skill_cooldown_1""]",(Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | (double_jump + dodge)),Not Labbed,,"Need to add Upper
 otherwise good",(Tower19Upper | Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | (double_jump + dodge)),(Tower19Upper | Tower19UpperLeft | Tower19LowerLeft | Tower19UpperRight | Tower19LowerRight) + (high_jump | WALL_DASH | (double_jump + dodge))

@@ -12,7 +12,9 @@ items: Dict[str, int] = {
 	'EVT_ev_n_Student_e_001' : 2,
 	'EVT_ev_s_0080_FrostAndOwl' : 2,
 	'EVT_ev_s_e0233_Researcher_Defeat' : 2,
+	'EVT_ev_s_e5110_Gunman_Defeat' : 1,
 	'EVT_ev_s_e6010_Cluster_Defeat' : 3,
+	'EVT_ev_s_e6050_Master_Defeat' : 1,
 	'EVT_ev_s_n7042_Swamp_Tuner' : 2,
 	'EVT_ev_s_n7043_Quarry_Tuner' : 2,
 	'dash_charge' : 4,
@@ -145,4 +147,6 @@ rules: Dict[Tuple[str, str], Rule] = {
 	('Swamp17Left',            'Swamp 17 - Unlock Relic Refinery')     : Has('Defeat Motley'),
 	('Paradise03Lower',        'Paradise 03 - Banshee Message')        : Has("Garm's Ascent") | Has("Lars' Grip"),
 	('Paradise03UpperLeft',    'Paradise 03 - Banshee Message')        : True_(),
+	('Center01LowerLeft',      'Shop')                                 : Has('Defeat Gilroy'),
+	('Slum01Left',             'Shop')                                 : Has('Defeat Yolvan'),
 }

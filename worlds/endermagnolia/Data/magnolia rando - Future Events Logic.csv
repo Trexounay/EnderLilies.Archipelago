@@ -109,3 +109,4 @@ Roots 2,Roots 2 - Lily in Land of Origin,EVT_ev_s_LilyEvent_Roots_002,Roots02Rig
 Street 11,Street 11 - Street Elevator Fixed,EVT_ev_s_0180_StreetElevatorFix,(Street11Right | Street11Left) + EVT_ev_s_n7043_Quarry_Tuner + EVT_ev_s_n7042_Swamp_Tuner + EVT_ev_s_e6010_Cluster_Defeat + EVT_ev_s_0080_FrostAndOwl,Done,,N/A,,,,,,,,,,,,,
 Swamp 17,Swamp 17 - Unlock Relic Refinery,EVT_ev_s_n7042_Swamp_Tuner,Swamp17Left + EVT_ev_s_e6010_Cluster_Defeat,Done,,N/A,,,,,,,,,,,,,
 Paradise 03,Paradise 03 - Banshee Message,EVT_ev_s_e0289_BansheeMessage,Paradise03UpperLeft | Paradise03Lower + (high_jump | wall_grab) ,Not Labbed,,,,,,,,,,,,,,,
+Center 1/Slum 1,Shop,,Slum01Left + EVT_ev_s_e5110_Gunman_Defeat | Center01LowerLeft + EVT_ev_s_e6050_Master_Defeat,Done,,N/A,,,,,,,,,,,,,

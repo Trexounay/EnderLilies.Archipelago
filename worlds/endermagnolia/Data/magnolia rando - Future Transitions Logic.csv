@@ -136,110 +136,118 @@ Factory 19,Factory19LowerLeft,Factory02LowerRight,None,Not Labbed,,N/A,,
 Factory 19,Factory19UpperLeft,Factory02HiddenCenterRight,None,Not Labbed,,N/A,,
 Factory 21,Factory21Right,Factory15LowerLeft,None,Not Labbed,,N/A,,
 Forest 1,Forest01Left,Tower17Right,Forest01RightDoor | Forest01UpperDoor,Not Labbed,,N/A,,
-Forest 1,Forest01RightDoor,Forest02LowerLeftDoor,Forest01UpperDoor | (Forest01Left + (high_jump | double_jump | wall_grab)),Not Labbed,,Forest01UpperDoor | Forest01Left + (double_jump | RONIN | (scythe | axe) + dodge | sword + grav | high_jump | wall_grab),"Starting point from Items+Transitions
+Forest 1,Forest01RightDoor,Forest02LowerLeftDoor,Forest01UpperDoor | Forest01Left + (double_jump | RONIN | STALL + (dodge | grav) | high_jump | wall_grab | REIBOLG),Done,"probably some leg enhancement and pile attack options as well
 
-line 353 ref
+pile_attack + (STALL | dodge)",Finished,"Starting point from Items+Transitions
 
-what about scythe/axe grav?",
+line 353 ref",
 Forest 1,Forest01UpperDoor,Forest12LeftDoor,None,Not Labbed,,N/A,,
 Forest 2,Forest02LowerDoor,Forest04UpperCenterDoor,Forest02LowerLeftDoor | Forest02UpperLeftDoor | Forest02Right | Forest02UpperRightDoor,Not Labbed,,N/A,,
 Forest 2,Forest02LowerLeftDoor,Forest01RightDoor,Forest02LowerDoor | Forest02UpperLeftDoor | Forest02Right | Forest02UpperRightDoor,Not Labbed,,N/A,,
 Forest 2,Forest02Right,Forest03Left,(Forest02LowerLeftDoor | Forest02UpperLeftDoor | Forest02LowerDoor | Forest02UpperRightDoor) + Forest02Right_Lever,Not Labbed,,N/A,,
 Forest 2,Forest02UpperLeftDoor,Forest06CenterDoor,Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperRightDoor | Forest02Right,Not Labbed,,N/A,,
-Forest 2,Forest02UpperRightDoor,Forest05CenterLowerDoor,(Forest02Right | Forest02UpperLeftDoor | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | WALL_DASH | double_jump | axe + (dodge | REIBOLG | flower) | (sword | scythe) + (flower | REIBOLG + dodge) | snow | moon | (flower | STALL | REIBOLG) + grav),Done,this is using item logic,Finished,"(Forest05CenterLowerDoor + LDASH) | 
-((Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperLeft | Forest03Left | Forest05CenterLowerDoor) + (double_jump | moon | snow | grav + STALL | FLOWER2 | high_jump)","Starting point from Items+Transitions
+Forest 2,Forest02UpperRightDoor,Forest05CenterLowerDoor,(Forest02Right | Forest02UpperLeftDoor | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | WALL_DASH | double_jump | axe + (dodge | REIBOLG | flower) | (sword | scythe) + (flower | REIBOLG + dodge) | snow | moon | (flower | STALL | REIBOLG) + grav),Done,this is using item logic,Finished,"Starting point from Items+Transitions
 
-line 359 ref"
+line 359 ref",
 Forest 3,Forest03Left,Forest02Right,Forest03LowerRightDoor | Forest03UpperRightDoor | Forest03UpperDoor,Not Labbed,,N/A,,
 Forest 3,Forest03LowerRightDoor,Forest09CenterRightDoor,(Forest03Left | Forest03UpperRightDoor | Forest03UpperDoor) + Forest03Right_Lever,Not Labbed,,N/A,,
-Forest 3,Forest03UpperDoor,Forest07LeftDoor,"Forest03UpperRightDoor
-| (Forest03Left | Forest03LowerRightDoor) + (double_jump | high_jump)",In Progress,Removed reqs for UpperRightDoor - just sprint,Forest03UpperRightDoor | (Forest03Left | Forest03LowerRightDoor) + (double_jump | moon | snow | grav + STALL | FLOWER2 | high_jump),"Starting point from Items+Transitions
+Forest 3,Forest03UpperDoor,Forest07LeftDoor,Forest03UpperRightDoor | (Forest03Left | Forest03LowerRightDoor) + (double_jump | moon | snow | grav + STALL | FLOWER2 | high_jump | axe + (dodge | granade) | (sword | scythe) + dodge + REIBOLG | grav + granade),Done,"Removed reqs for UpperRightDoor - just sprint
 
-line 368 ref
+pile_attack + scythe + dodge
+grav + (lazer | blaster) + leg enhancement",Finished,"Starting point from Items+Transitions
 
-axe + granade",
-Forest 3,Forest03UpperRightDoor,Forest19LeftDoor,"Forest03UpperDoor + (double_jump | high_jump | dodge) 
-| (Forest03Left | Forest03LowerRightDoor) + (double_jump | high_jump)",Not Labbed,,(Forest07LowerDoor | Forest19LeftDoor) | (Forest09CenterRightDoor + (double_jump | moon | snow | grav + STALL | FLOWER2 | high_jump),"Starting point from Items+Transitions
+line 368 ref",
+Forest 3,Forest03UpperRightDoor,Forest19LeftDoor,Forest03UpperDoor | (Forest03Left | Forest03LowerRightDoor) + (double_jump | moon | snow | grav + STALL | FLOWER2 | high_jump | axe + (dodge | granade) | (sword | scythe) + dodge + REIBOLG | grav + granade),Done,"same as above (line 122) just with UpperDoor and UpperRightDoor swapped
+
+Removed reqs for UpperDoor - just sprint",Finished,"Starting point from Items+Transitions
 
 line 367 ref",
-Forest 4,Forest04LowerCenterLeftDoor,Forest09CenterLeftDoor,"(Forest04UpperLeftDoor | Forest04LowerLeftDoor) 
-| ((Forest04UpperCenterDoor | Forest04LowerCenterRightDoor | Forest04UpperRightDoor) 
-+ (high_jump | wall_grab))",Not Labbed,,Forest09CenterDoor | Forest12LowerRightDoor | Forest09Left | ((Forest02LowerDoor | Forest18CenterLeftDoor | Forest09CenterLeftDoor) + (high_jump | wall_grab) | (grav+ (sword + dodge + moon) | ((AXE | SCYTHE) + (RONIN | dodge))) | ((STALL + (double_jump + (MOON | SNOW | reduce_gravity)) | (dodge + (MOON | SNOW)) (grav+ snow))) | (FLOWER + dodge + (AXE | SCYTHE))),"Starting point from Items+Transitions
+Forest 4,Forest04LowerCenterLeftDoor,Forest09CenterLeftDoor,"Forest04UpperLeftDoor | Forest04LowerLeftDoor 
+| (Forest04UpperCenterDoor | Forest04LowerCenterRightDoor | Forest04UpperRightDoor) 
++ (high_jump | wall_grab)",Not Labbed,,Forest04UpperLeftDoor | Forest04LowerLeftDoor | (Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab | STALL + dodge + (double_jump | RONIN) | dodge + grav + (sword + REIBOLG | axe | scythe) | double_jump + (snow | STALL + grav | dodge + (flower | moon | lazer + grav))),"Forest04UpperLeftDoor | Forest04LowerLeftDoor 
+| (Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab | grav + (sword + dodge + moon | (axe | scythe) + (RONIN | dodge)) | STALL + (double_jump + (moon | snow | grav) | dodge + (moon | snow) | grav + snow) | flower + dodge + (axe | scythe))
 
-line 375 ref",
+what about STALL + double_jump + flower | moon?
+
+need to update the item logic as well","Starting point from Items+Transitions
+
+line 375 ref"
 Forest 4,Forest04LowerCenterRightDoor,Forest09CenterDoor,"Forest04UpperCenterDoor | Forest04UpperRightDoor 
-| ((Forest04LowerLeftDoor | Forest04UpperLeftDoor) 
-+ (high_jump | double_jump | WALL_DASH))",Not Labbed,,Forest02LowerDoor | Forest18CenterLeftDoor | ((Forest09LeftDoor | Forest12LowerRightDoor) + ( DJUMP | high_jump | wall_grab | (FLOWER + reduce_gravity) | (dodge + AXE))),"Starting point from Items+Transitions
+| (Forest04LowerLeftDoor | Forest04UpperLeftDoor) 
++ (high_jump | double_jump | WALL_DASH)",Not Labbed,,"Forest04UpperCenterDoor | Forest04UpperRightDoor 
+| (Forest04LowerLeftDoor | Forest04UpperLeftDoor) + (double_jump | moon | snow | grav + STALL | high_jump | wall_grab | FLOWER + grav | dodge + AXE)","Starting point from Items+Transitions
 
 line 372 ref",
 Forest 4,Forest04LowerLeftDoor,Forest09LeftDoor,"Forest04UpperLeftDoor |
- ((Forest04UpperCenterDoor | Forest04UpperRightDoor | Forest04LowerCenterRightDoor) 
-+ (high_jump | wall_grab))",Not Labbed,,Forest09LeftDoor | Forest12LowerRightDoor | ((Forest02LowerDoor | Forest18CenterLeftDoor | Forest09CenterLeftDoor) + (high_jump | wall_grab) | (grav+ (sword + dodge + moon) | ((AXE | SCYTHE) + (RONIN | dodge))) | ((STALL + (double_jump + (MOON | SNOW | reduce_gravity)) | (dodge + (MOON | SNOW)) (grav+ snow))) | (FLOWER + dodge + (AXE | SCYTHE))),"Starting point from Items+Transitions
+ (Forest04UpperCenterDoor | Forest04UpperRightDoor | Forest04LowerCenterRightDoor) 
++ (high_jump | wall_grab)",Not Labbed,,"Forest04UpperLeftDoor 
+| (Forest04UpperCenterDoor | Forest04UpperRightDoor | Forest04LowerCenterRightDoor) + (high_jump | wall_grab | grav + (sword + dodge + moon | (axe | scythe) + (RONIN | dodge)) | STALL + (double_jump + (moon | snow | grav)) | dodge + (moon | snow) | grav + snow)) | flower + dodge + (axe | scythe))","Starting point from Items+Transitions
 
 line 373 ref",
-Forest 4,Forest04LowerRightDoor,Forest18LowerLeftDoor,"(Forest04UpperLeftDoor | Forest04LowerLeftDoor | Forest04LowerCenterLeftDoor) 
-| ((Forest04UpperCenterDoor | Forest04UpperRightDoor | Forest04LowerCenterRightDoor) 
-+ (high_jump | wall_grab))",Not Labbed,,Forest09CenterDoor | Forest12LowerRightDoor | Forest09Left | Forest18LowerLeftDoor | ((Forest02LowerDoor | Forest18CenterLeftDoor | Forest09CenterLeftDoor) + (high_jump | wall_grab) | (grav+ (sword + dodge + moon) | ((AXE | SCYTHE) + (RONIN | dodge))) | ((STALL + (double_jump + (MOON | SNOW | reduce_gravity)) | (dodge + (MOON | SNOW)) (grav+ snow))) | (FLOWER + dodge + (AXE | SCYTHE))),"Starting point from Items+Transitions
+Forest 4,Forest04LowerRightDoor,Forest18LowerLeftDoor,"Forest04UpperLeftDoor | Forest04LowerLeftDoor | Forest04LowerCenterLeftDoor 
+| (Forest04UpperCenterDoor | Forest04UpperRightDoor | Forest04LowerCenterRightDoor) 
++ (high_jump | wall_grab)",Not Labbed,,"Forest04UpperLeftDoor | Forest04LowerLeftDoor | Forest04LowerCenterLeftDoor 
+| (Forest04UpperCenterDoor | Forest04UpperRightDoor | Forest04LowerCenterRightDoor) + (high_jump | wall_grab | grav + (sword + dodge + moon | (axe | scythe) + (RONIN | dodge)) | ((STALL + (double_jump + (moon | snow | grav)) | dodge + (moon | snow)) | grav + snow)) | flower + dodge + (axe | scythe))","Starting point from Items+Transitions
 
 line 376 ref",
 Forest 4,Forest04UpperCenterDoor,Forest02LowerDoor,"(Forest04UpperRightDoor + (high_jump | double_jump | dodge | WALL_DASH)) 
 | (Forest04LowerCenterRightDoor + (high_jump | double_jump | wall_grab + dodge | WALL_DASH)) 
-| ((Forest04LowerLeftDoor | Forest04UpperLeftDoor) + (wall_grab + (double_jump | dodge) | high_jump | WALL_DASH))",Not Labbed,,Forest02LowerDoor | (Forest18CenterLeftDoor + (STALL | DJUMP | dodge | high_jump | FLOWER)) | (Forest09CenterDoor + (wall_grab | DJUMP | FLOWER2 | high_jump | (AXE  + dodge))) |  ((Forest09LeftDoor | Forest12LowerRightDoor) + ( DJUMP | high_jump | wall_grab | (FLOWER + reduce_gravity) | (dodge + AXE))),"Starting point from Items+Transitions
+| ((Forest04LowerLeftDoor | Forest04UpperLeftDoor) + (wall_grab + (double_jump | dodge) | high_jump | WALL_DASH))",Not Labbed,,Forest02LowerDoor | (Forest18CenterLeftDoor + (STALL | double_jump | moon | snow | (grav + STALL) | dodge | high_jump | FLOWER)) | (Forest09CenterDoor + (wall_grab | double_jump | moon | snow | (grav + STALL) | FLOWER2 | high_jump | (AXE  + dodge))) |  ((Forest09LeftDoor | Forest12LowerRightDoor) + ( double_jump | moon | snow | (grav + STALL) | high_jump | wall_grab | (FLOWER + grav) | (dodge + AXE))),"Starting point from Items+Transitions
 
 line 370 ref",
 Forest 4,Forest04UpperLeftDoor,Forest12LowerRightDoor,"(Forest04LowerLeftDoor + (high_jump | double_jump | dodge + wall_grab | WALL_DASH)) 
 | ((Forest04UpperCenterDoor | Forest04LowerCenterRightDoor | Forest04UpperRightDoor) 
-+ (high_jump | wall_grab + (double_jump | dodge | wall_charge)))",Not Labbed,,Forest12LowerRightDoor | (Forest09LeftDoor + (DJUMP | high_jump | wall_grab | (dodge + (AXE | SCYTHE)) | (FLOWER + (STALL | reduce_gravity))) | ((Forest02LowerDoor | Forest18CenterLeftDoor | Forest09CenterLeftDoor) + (high_jump | wall_grab) | (grav+ (sword + dodge + moon) | ((AXE | SCYTHE) + (RONIN | dodge))) | ((STALL + (double_jump + (MOON | SNOW | reduce_gravity)) | (dodge + (MOON | SNOW)) (grav+ snow))) | (FLOWER + dodge + (AXE | SCYTHE))),"Starting point from Items+Transitions
++ (high_jump | wall_grab + (double_jump | dodge | wall_charge)))",Not Labbed,,Forest12LowerRightDoor | (Forest09LeftDoor + (double_jump | moon | snow | (grav + STALL) | high_jump | wall_grab | (dodge + (AXE | SCYTHE)) | (FLOWER + (STALL | grav))) | ((Forest02LowerDoor | Forest18CenterLeftDoor | Forest09CenterLeftDoor) + (high_jump | wall_grab) | (grav + (sword + dodge + moon) | ((AXE | SCYTHE) + (RONIN | dodge))) | ((STALL + (double_jump + (MOON | SNOW | grav)) | (dodge + (MOON | SNOW)) (grav + snow))) | (FLOWER + dodge + (AXE | SCYTHE))),"Starting point from Items+Transitions
 
 line 374 ref",
 Forest 4,Forest04UpperRightDoor,Forest18CenterLeftDoor,"Forest04UpperCenterDoor 
 | Forest04LowerCenterRightDoor + (wall_grab | high_jump | double_jump)
 | (Forest04UpperLeftDoor | Forest04LowerLeftDoor) 
-+ ((wall_grab + double_jump) | high_jump)",Not Labbed,,Forest02LowerDoor | (Forest09CenterDoor + (wall_grab | DJUMP | FLOWER2 | high_jump | (AXE  + dodge)))  | ((Forest09LeftDoor | Forest12LowerRightDoor) + ( DJUMP | high_jump | wall_grab | (FLOWER + reduce_gravity) | (dodge + AXE))),"Starting point from Items+Transitions
++ ((wall_grab + double_jump) | high_jump)",Not Labbed,,Forest02LowerDoor | (Forest09CenterDoor + (wall_grab | double_jump | moon | snow | (grav + STALL) | FLOWER2 | high_jump | (AXE  + dodge)))  | ((Forest09LeftDoor | Forest12LowerRightDoor) + ( double_jump | moon | snow | (grav + STALL) | high_jump | wall_grab | (FLOWER + grav) | (dodge + AXE))),"Starting point from Items+Transitions
 
 line 371 ref",
 Forest 5,Forest05CenterLowerDoor,Forest02UpperRightDoor,Forest05CenterUpperDoor | Forest05RightDoor | Forest05LeftDoor,Not Labbed,,N/A,,
-Forest 5,Forest05CenterUpperDoor,Forest06LowerRightDoor,(Forest05CenterLowerDoor | Forest05RightDoor | Forest05LeftDoor) + ((double_jump + wall_grab + (dodge | wall_charge)) | high_jump),Not Labbed,,Forest06LowerRightDoor | ((Forest02UpperRightDoor | Forest10LowerLeft | Forest12UpperRight) + high_jump | (DJUMP + wall_grab) | (grav+ double_jump + dodge + (SWORD + RONIN) | (AXE | SCYTHE)) | (grav+ ((SCYTHE | AXE) + (double_jump | dodge) + RONIN)) | (AXE + double_jump + dodge + SNOW)),"Starting point from Items+Transitions
+Forest 5,Forest05CenterUpperDoor,Forest06LowerRightDoor,(Forest05CenterLowerDoor | Forest05RightDoor | Forest05LeftDoor) + ((double_jump + wall_grab + (dodge | wall_charge)) | high_jump),Not Labbed,,Forest06LowerRightDoor | ((Forest02UpperRightDoor | Forest10LowerLeft | Forest12UpperRight) + high_jump | (double_jump | moon | snow | (grav + STALL) + wall_grab) | (grav + double_jump + dodge + (SWORD + RONIN) | (AXE | SCYTHE)) | (grav + ((SCYTHE | AXE) + (double_jump | dodge) + RONIN)) | (AXE + double_jump + dodge + SNOW)),"Starting point from Items+Transitions
 
 line 380 ref",
 Forest 5,Forest05LeftDoor,Forest12UpperRightDoor,Forest05CenterUpperDoor | Forest05RightDoor | Forest05CenterLowerDoor,Not Labbed,,N/A,,
 Forest 5,Forest05RightDoor,Forest10LowerLeftDoor,Forest05CenterUpperDoor | Forest05CenterLowerDoor | Forest05LeftDoor,Not Labbed,,N/A,,
 Forest 6,Forest06CenterDoor,Forest02UpperLeftDoor,"Forest06Left + (double_jump | high_jump | WALL_DASH | dodge)
-| Forest06LowerLeftDoor + (double_jump | high_jump | WALL_DASH | dodge + wall_grab)",Not Labbed,,Forest02UpperLeftDoor | (Forest12UpperLeftDoor + (wall_grab + (STALL | wall_charge)) | DJUMP | high_jump | (FLOWER + (AXE | SCYTHE | reduce_gravity)) | ((AXE | SCYTHE) + dodge)),"Starting point from Items+Transitions
+| Forest06LowerLeftDoor + (double_jump | high_jump | WALL_DASH | dodge + wall_grab)",Not Labbed,,Forest02UpperLeftDoor | (Forest12UpperLeftDoor + (wall_grab + (STALL | wall_charge)) | double_jump | moon | snow | (grav + STALL) | high_jump | (FLOWER + (AXE | SCYTHE | grav)) | ((AXE | SCYTHE) + dodge)),"Starting point from Items+Transitions
 
 line 385 ref",
 Forest 6,Forest06HiddenRight,Forest07Left,"(Forest06Left + (double_jump | dodge | high_jump | WALL_DASH)) 
 | (Forest06LowerLeftDoor + (((wall_grab | double_jump) + dodge) | high_jump | WALL_DASH))
 | (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump)) 
-| (Forest06LowerRightDoor + high_jump)",Not Labbed,,Forest07Left | (Forest12UpperLeftDoor + (wall_grab + (STALL | wall_charge)) | DJUMP | high_jump | (FLOWER + (AXE | SCYTHE | reduce_gravity)) | ((AXE | SCYTHE) + dodge)) | (Forest02UpperLeft + (DJUMP | high_jump | FLOWER2) | ((AXE | SCYTHE) + dodge)) | (Forest05UpperDoor + high_jump | (STALL + (double_jump + (MOON | SNOW)) | (grav+ (dodge + (MOON | SNOW)) | (double_jump + dodge)) | (LDASH + double_jump))),"Starting point from Items+Transitions
+| (Forest06LowerRightDoor + high_jump)",Not Labbed,,Forest07Left | (Forest12UpperLeftDoor + (wall_grab + (STALL | wall_charge)) | double_jump | moon | snow | (grav + STALL) | high_jump | (FLOWER + (AXE | SCYTHE | grav)) | ((AXE | SCYTHE) + dodge)) | (Forest02UpperLeft + (double_jump | moon | snow | (grav + STALL) | high_jump | FLOWER2) | ((AXE | SCYTHE) + dodge)) | (Forest05UpperDoor + high_jump | (STALL + (double_jump + (MOON | SNOW)) | (grav + (dodge + (MOON | SNOW)) | (double_jump + dodge)) | (WALL_DASH + double_jump))),"Starting point from Items+Transitions
 
 line 388 ref",
 Forest 6,Forest06Left,Forest11Right,"(Forest06LowerLeftDoor + (wall_grab | high_jump | double_jump)
 | Forest06CenterDoor + (high_jump | double_jump)) + dash_charge",Not Labbed,,,,
 Forest 6,Forest06LowerLeftDoor,Forest12UpperDoor,"Forest06Left
-| (Forest06CenterDoor + (double_jump | high_jump))",Not Labbed,,Forest12UpperDoor | (Forest02UpperLeftDoor + (DJUMP | high_jump | FLOWER2) | ((AXE | SCYTHE) + dodge)),"Starting point from Items+Transitions
+| (Forest06CenterDoor + (double_jump | high_jump))",Not Labbed,,Forest12UpperDoor | (Forest02UpperLeftDoor + (double_jump | moon | snow | (grav + STALL) | high_jump | FLOWER2) | ((AXE | SCYTHE) + dodge)),"Starting point from Items+Transitions
 
 line 386 ref",
 Forest 6,Forest06LowerRightDoor,Forest05CenterUpperDoor,"Forest06HiddenRight 
 | (Forest06Left + (double_jump | dodge | high_jump | WALL_DASH))
 | (Forest06LowerLeftDoor + (((double_jump | wall_grab) + dodge) | high_jump | WALL_DASH))
-| (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump))",Not Labbed,,Forest07Left | Forest05UpperDoor | (Forest12UpperLeftDoor + (wall_grab + (STALL | wall_charge)) | DJUMP | high_jump | (FLOWER + (AXE | SCYTHE | reduce_gravity)) | ((AXE | SCYTHE) + dodge)) | (Forest02UpperLeft + (DJUMP | high_jump | FLOWER2) | ((AXE | SCYTHE) + dodge)),"Starting point from Items+Transitions
+| (Forest06CenterDoor  + (double_jump + (dodge | WALL_DASH) | high_jump))",Not Labbed,,Forest07Left | Forest05UpperDoor | (Forest12UpperLeftDoor + (wall_grab + (STALL | wall_charge)) | double_jump | moon | snow | (grav + STALL) | high_jump | (FLOWER + (AXE | SCYTHE | grav)) | ((AXE | SCYTHE) + dodge)) | (Forest02UpperLeft + (double_jump | moon | snow | (grav + STALL) | high_jump | FLOWER2) | ((AXE | SCYTHE) + dodge)),"Starting point from Items+Transitions
 
 line 384 ref",
 Forest 7,Forest07CenterDoor,Forest10UpperLeftDoor,"(Forest07LeftDoor + (wall_grab | high_jump)) 
-| Forest07Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump)",Not Labbed,,Forest10UpperLeftDoor | (Forest08Left + high_jump | wall_grab | (STALL3 + reduce_gravity) | (double_jump + dodge + (AXE | SCYTHE) + (MOON | SNOW)) | (Forest03Upper + high_jump | wall_grab | (STALL3 + reduce_gravity) | (double_jump + AXE + SNOW) | (double_jump + dodge + MOON + (AXE | SCYTHE))),"Starting point from Items+Transitions
+| Forest07Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump)",Not Labbed,,Forest10UpperLeftDoor | (Forest08Left + high_jump | wall_grab | (STALL3 + grav) | (double_jump + dodge + (AXE | SCYTHE) + (MOON | SNOW)) | (Forest03Upper + high_jump | wall_grab | (STALL3 + grav) | (double_jump + AXE + SNOW) | (double_jump + dodge + MOON + (AXE | SCYTHE))),"Starting point from Items+Transitions
 
 line 392 ref",
 Forest 7,Forest07Left,Forest06HiddenRight,None,Not Labbed,,N/A,,
 Forest 7,Forest07Right,Forest08Left,"(Forest07CenterDoor + (double_jump | high_jump | WALL_DASH)) 
-| (Forest07LeftDoor + (wall_grab + (double_jump | wall_charge) | high_jump))",Not Labbed,,Forest08Left | (Forest03Upper + high_jump | wall_grab | (STALL3 + reduce_gravity) | (double_jump + AXE + SNOW) | (double_jump + dodge + MOON + (AXE | SCYTHE))),"Starting point from Items+Transitions
+| (Forest07LeftDoor + (wall_grab + (double_jump | wall_charge) | high_jump))",Not Labbed,,Forest08Left | (Forest03Upper + high_jump | wall_grab | (STALL3 + grav) | (double_jump + AXE + SNOW) | (double_jump + dodge + MOON + (AXE | SCYTHE))),"Starting point from Items+Transitions
 
 line 393 ref",
 Forest 7,Forest07LeftDoor,Forest03UpperDoor,"Forest07CenterDoor 
-| (Forest07Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump))",Not Labbed,,(Forest08Left + high_jump | wall_grab | (double_jump + dodge + (AXE | SCYTHE) + (MOON | SNOW)) | (STALL3 + reduce_gravity)),"Starting point from Items+Transitions
+| (Forest07Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump))",Not Labbed,,(Forest08Left + high_jump | wall_grab | (double_jump + dodge + (AXE | SCYTHE) + (MOON | SNOW)) | (STALL3 + grav)),"Starting point from Items+Transitions
 
 ?? line 391",
-Forest 8,Forest08Left,Forest07Right,Forest08LowerDoor + (high_jump | WALL_DASH + double_jump),Not Labbed,,Forest07Right | (Forest10RightDoor + high_jump | (wallgrab + (MOON | SNOW) | (STALL + doublejump) | ( STALL + dodge + reduce_gravity))),"Starting point from Items+Transitions
+Forest 8,Forest08Left,Forest07Right,Forest08LowerDoor + (high_jump | WALL_DASH + double_jump),Not Labbed,,Forest07Right | (Forest10RightDoor + high_jump | (wallgrab + (MOON | SNOW) | (STALL + doublejump) | ( STALL + dodge + grav))),"Starting point from Items+Transitions
 
 line 396 ref",
 Forest 8,Forest08LowerDoor,Forest10RightDoor,Forest08Left,Not Labbed,,N/A,,
@@ -265,9 +273,9 @@ Forest 9,Forest09LowerRight,Estate12Left,"((Forest09UpperRightDoor + (double_jum
 | (Forest09CenterLeftDoor + (dodge | double_jump | high_jump | WALL_DASH)) 
 | Forest09CenterRightDoor) 
 + TORRENT",Not Labbed,,,,
-Forest 9,Forest09UpperRightDoor,Forest18LowerCenterDoor,"((Forest09LeftDoor | Forest09CenterDoor) + (WALL_DASH | high_jump)) 
-| (Forest09CenterLeftDoor + (dodge | double_jump | high_jump | WALL_DASH)) 
-| ((Forest09LowerRight + TORRENT | Forest09CenterRightDoor) + (high_jump | (wall_grab + (dodge | double_jump)) | wall_charge))",Not Labbed,,,,
+Forest 9,Forest09UpperRightDoor,Forest18LowerCenterDoor,"(Forest09LeftDoor | Forest09CenterDoor) + (WALL_DASH | high_jump) 
+| Forest09CenterLeftDoor + (dodge | double_jump | high_jump | WALL_DASH) 
+| ((Forest09LowerRight + TORRENT | Forest09CenterRightDoor) + (high_jump | wall_grab + (dodge | double_jump) | WALL_DASH))",Not Labbed,,,,
 Forest 10,Forest10CenterDoor,Forest18UpperLeftDoor,"((Forest10RightDoor | Forest10LowerLeftDoor) + (high_jump | double_jump))
 | (Forest10UpperLeftDoor + ((dodge + wall_grab) | double_jump | high_jump | WALL_DASH))",Not Labbed,,,,
 Forest 10,Forest10LowerLeftDoor,Forest05RightDoor,Forest10UpperLeftDoor | Forest10RightDoor,Not Labbed,,N/A,,
@@ -304,8 +312,8 @@ Garden 1,Garden01Left,Garden09Right,Garden01Right + (high_jump | wall_grab + (do
 Garden 1,Garden01Right,Garden12Left,Garden01Left,Not Labbed,,N/A,,
 Garden 2,Garden02Left,Garden04Right,"Garden02Right + (high_jump | double_jump + dodge + wall_grab)
 | (Garden02LowerRight + (Garden02LowerRightLeft_Lever | Garden02LowerRightRight_Lever)) + (high_jump | double_jump + dodge + wall_grab)
-| Garden02LowerLeft",Not Labbed,,"(Garden02Left + high_jump | (STALL3 + reduce_gravity) | (STALL + double_jump + (SNOW | MOON) | (wall_grab + STALL + grav+ (double_jump | MOON | SNOW))) | 
-(Garden04Right | Garden03UpperLeft + (high_jump + (double_jump + (AXE | SCYTHE) | (grav+ SWORD)) | (wall_grab + (SNOW | MOON) + ((STALL + reduce_gravity) | double_jump)))))","Starting point from Items+Transitions
+| Garden02LowerLeft",Not Labbed,,"(Garden02Left + high_jump | (STALL3 + grav) | (STALL + double_jump + (SNOW | MOON) | (wall_grab + STALL + grav + (double_jump | MOON | SNOW))) | 
+(Garden04Right | Garden03UpperLeft + (high_jump + (double_jump + (AXE | SCYTHE) | (grav + SWORD)) | (wall_grab + (SNOW | MOON) + ((STALL + grav) | double_jump)))))","Starting point from Items+Transitions
 
 line 739 ref",
 Garden 2,Garden02LowerLeft,Garden03UpperLeft,"((Garden02Right + (high_jump | double_jump + dodge + wall_grab)
@@ -392,7 +400,7 @@ Kowloon 10,Kowloon10Right,Kowloon15LowerLeft,Kowloon10Left + (hook | (WALL_DASH 
 Kowloon 13,Kowloon13HiddenLower,Kowloon14HiddenUpper,"(Kowloon13UpperLeft + (wall_grab | double_jump | high_jump | (hook + dodge))) 
 | Kowloon13UpperRight",Not Labbed,,,,
 Kowloon 13,Kowloon13UpperLeft,Kowloon10Lower,(Kowloon13UpperRight | Kowloon13HiddenLower) + high_jump,Not Labbed,,,,
-Kowloon 13,Kowloon13UpperRight,Kowloon15Lower,"(Kowloon13UpperLeft | Kowloon13HiddenLower) + (high_jump | (wall_grab + dodge + double_jump) | double_jump + (hook + wall_grab | wall_charge))
+Kowloon 13,Kowloon13UpperRight,Kowloon15Lower,"(Kowloon13UpperLeft | Kowloon13HiddenLower) + (high_jump | wall_grab + dodge + double_jump | double_jump + (hook + wall_grab | WALL_DASH))
 ",Not Labbed,,,,
 Kowloon 14,Kowloon14HiddenUpper,Kowloon13HiddenLower,Kowloon14Left + (hook + double_jump + dodge + (wall_grab | high_jump)),Not Labbed,,,,
 Kowloon 14,Kowloon14Left,Kowloon09HiddenRight,Kowloon14HiddenUpper + hook + (dodge | double_jump | WALL_DASH),Not Labbed,,,,
@@ -863,47 +871,50 @@ Quarry 15,Quarry15Left,Quarry22Right,"(Quarry15Upper + Quarry15Upper_Lever + (hi
 split lowerRight out; it will always require wall_grab or high_jump minimum","(Quarry15Upper + Quarry15Upper_Lever) + (high_jump | WALL_DASH + double_jump) 
 | Quarry15LowerLeft + (high_jump | WALL_DASH + double_jump) 
 | Quarry15LowerRight + (high_jump | wall_grab + (wall_charge + double_jump | ) | )","wall_grab + (snow | double_jump + moon)
-scythe + grav + double_jump + (moon + REIBOLG | snow | dodge) | axe + grav + double_jump + (dodge | (moon | snow) + REIBOLG) | sword + grav + double_jump + (dodge + RONIN | snow + REIBOLG)",(Quarry24Upper | Quarry31Upper) + high_jump | (wall_grab + (double_jump + (MOON | SNOW | (STALL + reduce_gravity))) | (grav+ (MOON | SNOW) + STALL) | (grav+ dodge + (AXE | SCYTHE))) | Quarry22Left
-Quarry 15,Quarry15LowerLeft,Quarry24Upper,"(Quarry15Upper + Quarry15Upper_Lever + (dodge | double_jump | WALL_DASH)) 
-| (Quarry15LowerRight + (wall_grab | high_jump)) 
-| (Quarry15Left + (wall_grab | high_jump | double_jump))",Not Labbed,,,,
+scythe + grav + double_jump + (moon + REIBOLG | snow | dodge) | axe + grav + double_jump + (dodge | (moon | snow) + REIBOLG) | sword + grav + double_jump + (dodge + RONIN | snow + REIBOLG)",(Quarry15LowerLeft | Quarry15LowerRight) + high_jump | (wall_grab + (double_jump + (MOON | SNOW | (STALL + grav))) | (grav + (MOON | SNOW) + STALL) | (grav + dodge + (AXE | SCYTHE))) | 
+Quarry 15,Quarry15LowerLeft,Quarry24Upper,"(Quarry15Upper + Quarry15Upper_Lever) + (dodge | double_jump | WALL_DASH) 
+| Quarry15LowerRight + (wall_grab | high_jump) 
+| Quarry15Left + (wall_grab | high_jump | double_jump)",Not Labbed,,,,
 Quarry 15,Quarry15LowerRight,Quarry31Upper,"(Quarry15Upper + Quarry15Upper_Lever) 
 | (Quarry15Left | Quarry15LowerLeft) + (wall_grab | double_jump | high_jump) ",Not Labbed,,,,
-Quarry 15,Quarry15Upper,Quarry07Lower,(Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + ((double_jump | high_jump) + ((dodge + wall_grab) | WALL_DASH)),Not Labbed,,(Quarry22Right | Quarry24Upper | Quarry31Upper) + wall_grab + (double_jump | ((SCYTHE | AXE) + reduce_gravity) | Quarry07Lower,"Starting point from Items+Transitions
+Quarry 15,Quarry15Upper,Quarry07Lower,(Quarry15Left | Quarry15LowerLeft | Quarry15LowerRight) + (wall_grab + (double_jump | moon | snow | STALL | FLOWER2) | high_jump + (wall_grab + (dodge | flower | wall_charge) | snow | double_jump + (moon | STALL + grav | dodge + (STALL | FLOWER2)) | STALL + grav + (moon | dodge))),Done,Copied from locations logic,Finished,"Starting point from Items+Transitions
 
 line 575 ref",
 Quarry 16,Quarry16Right,Quarry18HiddenLeft,None,Not Labbed,,N/A,,
 Quarry 17,Quarry17Right,Quarry21HiddenLeft,None,Not Labbed,,N/A,,
 Quarry 18,Quarry18HiddenLeft,Quarry16Right,"Quarry18Upper + (double_jump + dodge | wall_grab | high_jump) 
-| Quarry18LowerLeft + (high_jump | wall_grab + ((dodge | double_jump) | wall_charge))",Not Labbed,,(Quarry12Lower + ((double_jump + reduce_gravity) | MOON | wall_grab | (STALL + (grav| dodge))) | high_jump | FLOWER) | (Quarry09Right + (wall_grab + (STALL | dodge)) | (grav+ (double_jump | AXE | SCYTHE))),"Starting point from Items+Transitions
+| Quarry18LowerLeft + (high_jump | wall_grab + (dodge | double_jump | wall_charge))",Not Labbed,,"Quarry18Upper + (double_jump + grav | RONIN | wall_grab | STALL + (grav | dodge) | high_jump) 
+| Quarry18LowerLeft + (wall_grab + (STALL | dodge) | grav + (double_jump | axe | scythe))","Starting point from Items+Transitions
 
 line 591 ref",
 Quarry 18,Quarry18LowerLeft,Quarry09Right,Quarry18Upper | Quarry18HiddenLeft,Not Labbed,,N/A,,
-Quarry 18,Quarry18Upper,Quarry12Lower,(Quarry18LowerLeft | Quarry18HiddenLeft) + (double_jump | high_jump),Not Labbed,,(Quarry16Right + DJUMP | high_jump | (STALL + (FLOWER | reduce_gravity) | (LDASH + (STALL | dodge)) | (Quarry09Right + (double_jump | SNOW | MOON) | (grav+ (AXE | SCYTHE) | high_jump | (LDASH + STALL | dodge))),"Starting point from Items+Transitions
+Quarry 18,Quarry18Upper,Quarry12Lower,(Quarry18LowerLeft | Quarry18HiddenLeft) + (double_jump | high_jump),Not Labbed,,"Quarry18HiddenLeft + (double_jump | moon | snow | grav + STALL | high_jump | STALL + (FLOWER | grav) | WALL_DASH + (STALL | dodge)) 
+| Quarry18LowerLeft + (double_jump | moon | snow | grav + (AXE | SCYTHE) | high_jump | WALL_DASH + (STALL | dodge))","Starting point from Items+Transitions
 
 line 590 ref",
 Quarry 19,Quarry19LowerRight,Quarry09Left,Quarry19UpperRight,Not Labbed,,N/A,,
-Quarry 19,Quarry19UpperRight,Quarry23LowerLeft,Quarry19LowerRight + (double_jump | wall_grab | high_jump),Not Labbed,,Quarry23LowerLeft | (Quarry09Left + (high_jump | double_jump | RONIN | wall_grab | AXE | SCYTHE) | (SWORD + (grav| dodge))),"Starting point from Items+Transitions (assuming its a typo for UpperLeft?)
+Quarry 19,Quarry19UpperRight,Quarry23LowerLeft,Quarry19LowerRight + (double_jump | wall_grab | high_jump),Not Labbed,,Quarry19LowerRight + (high_jump | double_jump | RONIN | wall_grab | axe | scythe | sword + (grav | dodge)),"Starting point from Items+Transitions (assuming its a typo for UpperLeft?)
 
 line 594 ref",
 Quarry 20,Quarry20Left,Quarry12Right,Quarry20Right,Not Labbed,,N/A,,
 Quarry 20,Quarry20Right,Quarry22Left,Quarry20Left,Not Labbed,,N/A,,
-Quarry 21,Quarry21HiddenLeft,Quarry17Right,(Quarry21Right | Quarry21Lower) + (double_jump + dash_charge),Not Labbed,,(Quarry12Left | (Quarry14Upper + (high_jump + (STALL | dodge | double_jump | RONIN)) | double_jump | (STALL + (grav| (wall_grab + dodge))))  + dash_charge),"Starting point from Items+Transitions
+Quarry 21,Quarry21HiddenLeft,Quarry17Right,(Quarry21Right | Quarry21Lower) + (double_jump + dash_charge),Not Labbed,"Quarry21Right reqs simplified, just dash_charge sufficient","Quarry21Right + dash_charge 
+| Quarry21Lower + dash_charge + (high_jump + (STALL | dodge | double_jump | RONIN) | double_jump | STALL + (grav | wall_grab + dodge))","Starting point from Items+Transitions
 
 line 601 ref",
-Quarry 21,Quarry21Lower,Quarry14Upper,Quarry21Right | (Quarry17Right + dash_charge),Not Labbed,,,,
-Quarry 21,Quarry21Right,Quarry12Left,(Quarry21Lower | (Quarry17Right + dash_charge)) + (high_jump + (dodge | double_jump | WALL_DASH)  | (double_jump + (dodge | WALL_DASH))),Not Labbed,,Quarry12Left | (Quarry14Upper + (high_jump + (STALL | dodge | double_jump | RONIN)) | double_jump | (STALL + (grav| (wall_grab + dodge)))),"Starting point from Items+Transitions
+Quarry 21,Quarry21Lower,Quarry14Upper,Quarry21Right,Done,I removed Quarry17Right,,,
+Quarry 21,Quarry21Right,Quarry12Left,Quarry21Lower + (high_jump + (dodge | double_jump | WALL_DASH) | double_jump + (dodge | WALL_DASH)),Not Labbed,I removed Quarry17Right,Quarry21Lower + (high_jump + (STALL | dodge | double_jump | RONIN)) | double_jump | (STALL + (grav | (wall_grab + dodge)))),"Starting point from Items+Transitions
 
 line 602 ref",
 Quarry 22,Quarry22Left,Quarry20Right,Quarry22Right ,Not Labbed,,N/A,,
 Quarry 22,Quarry22Right,Quarry15Left,Quarry22Left,Not Labbed,,N/A,,
 Quarry 23,Quarry23LowerLeft,Quarry19UpperRight,Quarry23UpperLeft,Not Labbed,,N/A,,
-Quarry 23,Quarry23UpperLeft,Quarry14Right,Quarry23LowerLeft + ((wall_grab + (dodge | wall_charge)) | double_jump | high_jump),Not Labbed,,Quarry14Right | (Quarry19UpperRight + (DJUMP | high_jump | wall_grab) | (grav+ (FLOWER | SCYTHE) ,"Starting point from Items+Transitions
+Quarry 23,Quarry23UpperLeft,Quarry14Right,Quarry23LowerLeft + (wall_grab + (dodge | wall_charge) | double_jump | high_jump),Not Labbed,,Quarry23LowerLeft + (double_jump | moon | snow | grav + STALL | high_jump | wall_grab | grav + (flower | scythe)),"Starting point from Items+Transitions
 
 line 609 ref",
 Quarry 24,Quarry24Upper,Quarry15LowerLeft,None,Not Labbed,,N/A,,
 Quarry 31,Quarry31Right,Roots17Left,Quarry31Upper + EVT_ev_s_e6050_Master_Defeat,Not Labbed,,N/A,,
-Quarry 31,Quarry31Upper,Quarry15LowerRight,Quarry31Right + EVT_ev_s_e6050_Master_Defeat + (wall_grab | high_jump),Not Labbed,,Might leave unchanged,,
+Quarry 31,Quarry31Upper,Quarry15LowerRight,Quarry31Right + EVT_ev_s_e6050_Master_Defeat + (wall_grab | high_jump),Done,,Might leave unchanged,,
 Roots 1,Roots01Left,Roots04Right,None,Not Labbed,,N/A,,
 Roots 2,Roots02Right,Roots03Left,None,Not Labbed,,N/A,,
 Roots 3,Roots03Left,Roots02Right,Roots03Right + EVT_ev_n_LilyEvent_Forest_001 + EVT_ev_n_LilyEvent_Garden_001,Not Labbed,,N/A,,
@@ -945,7 +956,7 @@ Roots 13,Roots13Right,Roots23Left,"(Roots13Lower | Roots13LowerLeft) + (high_jum
 | (Roots13UpperLeft + (high_jump | (wall_grab + (double_jump | wall_charge))))",Not Labbed,,,,
 Roots 13,Roots13UpperLeft,Roots16Right,"(Roots13Lower | Roots13LowerLeft) + (high_jump | (double_jump + wall_grab))
 | (Roots13Right + (high_jump | (wall_grab + (double_jump | wall_charge))))",Not Labbed,,,,
-Roots 14,Roots14Left,Roots15Right,Roots14Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump + (double_jump | dodge | wall_charge)),Not Labbed,,,,
+Roots 14,Roots14Left,Roots15Right,Roots14Right + (wall_grab + (double_jump | dodge | wall_charge) | high_jump + (double_jump | dodge | WALL_DASH)),Not Labbed,,,,
 Roots 14,Roots14Right,Roots13LowerLeft,Roots14Left + (wall_grab + double_jump | high_jump + (dodge | double_jump)),Not Labbed,,,,
 Roots 15,Roots15Left,Roots18UpperRight,Roots15Right,Not Labbed,,N/A,,
 Roots 15,Roots15Right,Roots14Left,Roots15Left + high_jump,Not Labbed,,,,
@@ -1034,19 +1045,23 @@ Ruins 16,Ruins16Right,Ruins15Left,Ruins16Left,Not Labbed,,N/A,,
 Sewer 1,Sewer01Right,Sewer03UpperLeft,Sewer01Upper,Not Labbed,,N/A,,
 Sewer 1,Sewer01Upper,Slum02Lower,Sewer01Right + (RONIN | STALL | wall_grab | double_jump | dodge + (dive | REIBOLG)),Done,"dodge + leg enhancement
 dodge + pile_attack
-momentum dodge dive jump", (double_jump | wall_grab | RONIN) | (STALL + (grav| dodge))),,
+momentum dodge dive jump", (double_jump | wall_grab | RONIN) | (STALL + (grav | dodge))),,
 Sewer 2,Sewer02Lower,Sewer04Upper,Sewer02LowerLeft | (Sewer02UpperLeft + dive),Not Labbed,,N/A,,
 Sewer 2,Sewer02LowerLeft,Sewer03CenterRight,(Sewer02UpperLeft | Sewer02Lower) + dive,Not Labbed,,N/A,,
 Sewer 2,Sewer02UpperLeft,Sewer03UpperRight,(Sewer02LowerLeft | Sewer02Lower) + dive,Not Labbed,,N/A,,
 Sewer 3,Sewer03CenterRight,Sewer02LowerLeft,"(Sewer03UpperLeft | Sewer03UpperRight)
-| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter | Sewer03HiddenLeft) + (double_jump + (wall_grab | high_jump))",Not Labbed,,"Sewer03UpperLeft | Sewer03UpperRight
+| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter | Sewer03HiddenLeft) + (double_jump + (wall_grab | high_jump))",In Progress,,"Sewer03UpperLeft | Sewer03UpperRight
 | Sewer03HiddenLeft + (wall_grab + (double_jump | wall_charge | snow | flower | moon + (dodge | STALL | grav + REIBOLG)) | high_jump + (double_jump | dodge | STALL | RONIN | REIBOLG))
-| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter | Sewer03HiddenLeft) + (double_jump + (wall_grab | high_jump))","tested with all REIBOLG
+| (Sewer03LowerRight | Sewer03LowerLeft | Sewer03LowerCenter) + (double_jump + (wall_grab | high_jump))","tested with all REIBOLG
 
-Need to consider more moon options from HiddenLeft",
+Need to consider more moon options from HiddenLeft
+
+Continue on lower Reqs",
 Sewer 3,Sewer03HiddenLeft,Sewer05Right,"(Sewer03UpperLeft | Sewer03UpperRight) + (wall_grab | double_jump | dodge)
 | (Sewer03LowerLeft | Sewer03LowerRight | Sewer03LowerCenter)  + (double_jump +  (dodge | wall_grab | high_jump))
-| (Sewer03CenterRight) + (wall_charge | double_jump | dodge | high_jump + wall_grab)",Not Labbed,,Sewer05Right | Sewer01Right | Sewer02UpperLeft | (Sewer02LowerLeft + (STALL | double_jump | dodge | RONIN | LDASH)) | (Sewer04Left | Sewer06Right | Sewer12Upper + (double_jump + (STALL | wall_grab | high_jump | MOON | SNOW)) | ((AXE | SCYTHE) + (dodge | (grav+ FLOWER)) | MOON)) | (SNOW + (dodge | STALL) | (MOON + dodge)),"Starting point from Items+Transitions
+| (Sewer03CenterRight) + (double_jump | dodge | wall_grab + (high_jump | wall_charge))",Not Labbed,,"(Sewer03UpperLeft | Sewer03UpperRight) + (STALL | double_jump | dodge | RONIN | wall_grab) 
+| (Sewer03LowerLeft | Sewer03LowerRight | Sewer03LowerCenter) + (double_jump + (STALL | wall_grab | high_jump | moon | snow)) | ((axe | scythe) + (dodge | FLOWER2) | moon)) | (snow + (dodge | STALL) | (moon + dodge))
+| (Sewer03CenterRight) + (double_jump | dodge | wall_grab + (high_jump | wall_charge))","Starting point from Items+Transitions
 
 line 466 ref",
 Sewer 3,Sewer03LowerCenter,Sewer12Upper,(Sewer03CenterRight | Sewer03HiddenLeft | Sewer03LowerLeft | Sewer03LowerRight | Sewer03UpperLeft | Sewer03UpperRight) + dive,Not Labbed,,N/A,,
@@ -1055,13 +1070,16 @@ Sewer 3,Sewer03LowerRight,Sewer04Left,(Sewer03CenterRight | Sewer03HiddenLeft | 
 Sewer 3,Sewer03UpperLeft,Sewer01Right,"(Sewer03LowerCenter | Sewer03LowerRight | Sewer03LowerLeft) + (double_jump + (wall_grab | high_jump))
 | Sewer03HiddenLeft + ((double_jump + (wall_grab | high_jump)) | high_jump + WALL_DASH)
 | Sewer03CenterRight + (high_jump | double_jump + (wall_grab | dodge))
-| Sewer03UpperRight",Not Labbed,,Sewer01Right | Sewer02UpperLeft | (Sewer02LowerLeft + (double_jump | high_jump | dodge | RONIN | (STALL + reduce_gravity)) | ((Sewer04Left | Sewer06Right | Sewer12Upper) + high_jump | (wall_grab + (STALL + reduce_gravity) | ((AXE | SCYTHE) + dodge) | double_jump | MOON | SNOW) | (grav+ (STALL + (dodge | double_jump | MOON | SNOW)) | ((AXE | SCYTHE) + FLOWER))),"Starting point from Items+Transitions
+| Sewer03UpperRight",Not Labbed,,"Sewer03UpperRight 
+| Sewer03CenterRight + (double_jump | high_jump | dodge | RONIN | STALL + grav) 
+| (Sewer03LowerCenter | Sewer03LowerRight | Sewer03LowerLeft) + high_jump | (wall_grab + STALL + grav | ((axe | scythe) + dodge) | double_jump | moon | snow) | (grav + (STALL + (dodge | double_jump | moon | snow)) | ((axe | scythe) + flower)))","Starting point from Items+Transitions
 
 line 465 ref",
 Sewer 3,Sewer03UpperRight,Sewer02UpperLeft,"Sewer03UpperLeft + (wall_grab | high_jump)
 | (Sewer03LowerLeft | Sewer03LowerRight | Sewer03LowerCenter) + (double_jump + (wall_grab | high_jump))
 | Sewer03CenterRight + (high_jump | double_jump + wall_grab)
-| Sewer03HiddenLeft + ((double_jump + (wall_grab | high_jump)) | high_jump + WALL_DASH)",Not Labbed,,Sewer02UpperLeft | (Sewer01Right + (wall_grab | high_jump) | (grav+ (SWORD + (double_jump | SNOW) | (dodge + MOON))) | ((SCYTHE | AXE) + (double_jump | SNOW | MOON |dodge))) | ((Sewer02LowerLeft | Sewer05Right | Sewer06Right | Sewer04Left | Sewer12Upper) + high_jump | (wall_grab + (double_jump | MOON | SNOW) | (STALL + (grav| dodge))) | (grav+ (SWORD + (double_jump | SNOW) | (dodge + MOON)) | ((SCYTHE | AXE) + (double_jump | SNOW | MOON |dodge)))) ,"Starting point from Items+Transitions
+| Sewer03HiddenLeft + ((double_jump + (wall_grab | high_jump)) | high_jump + WALL_DASH)",Not Labbed,this one needs to be very split im afraid,"Sewer03UpperLeft+ (wall_grab | high_jump | grav + (SWORD + (double_jump | SNOW) | (dodge + MOON))) | ((SCYTHE | AXE) + (double_jump | SNOW | MOON |dodge))) 
+| ((Sewer03CenterRight | Sewer03HiddenLeft | Sewer03LowerLeft | Sewer03LowerRight | Sewer03LowerCenter) + high_jump | (wall_grab + (double_jump | MOON | SNOW) | (STALL + (grav | dodge))) | (grav + (SWORD + (double_jump | SNOW) | (dodge + MOON)) | ((SCYTHE | AXE) + (double_jump | SNOW | MOON |dodge)))) ","Starting point from Items+Transitions
 
 line 462 ref",
 Sewer 4,Sewer04Left,Sewer03LowerRight,(Sewer04Right | Sewer04Upper | Sewer04Lower) + dive,Not Labbed,,N/A,,
@@ -1070,7 +1088,7 @@ Sewer 4,Sewer04Right,Sewer14UpperLeft,Sewer04Left | Sewer04Upper | Sewer04Lower,
 Sewer 4,Sewer04Upper,Sewer02Lower,(Sewer04Left | Sewer04Right | Sewer04Lower) + dive,Not Labbed,,N/A,,
 Sewer 5,Sewer05Right,Sewer03HiddenLeft,None,Not Labbed,,N/A,,
 Sewer 6,Sewer06Left,Sewer07UpperRight,Sewer06Right,Not Labbed,,N/A,,
-Sewer 6,Sewer06Right,Sewer03LowerLeft,Sewer06Left + (double_jump + dodge | wall_grab),Not Labbed,,Sewer03LowerLeft | (Sewer07UpperRight + (wall_grab | (MOON + (AXE | SCYTHE)) | SNOW ( STALL + (double_jump + (dodge | MOON | grav| FLOWER)) | (dodge + reduce_gravity)),"Starting point from Items+Transitions
+Sewer 6,Sewer06Right,Sewer03LowerLeft,Sewer06Left + (double_jump + dodge | wall_grab),Not Labbed,,Sewer06Left + (wall_grab | moon + (axe | scythe) | snow | STALL + (double_jump + (dodge | moon | grav | flower) | dodge + grav)),"Starting point from Items+Transitions
 
 line 480 ref",
 Sewer 7,Sewer07LowerRight,Sewer08Left,Sewer07UpperRight + pile_attack,Not Labbed,,N/A,,
@@ -1275,20 +1293,21 @@ Summit 23,Summit23LowerRight,Summit17LowerLeft,Summit23CenterLeft + Summit23Uppe
 Summit 23,Summit23UpperLeft,Summit22UpperRight,None,Not Labbed,,N/A,,
 Summit 23,Summit23UpperRight,Summit17UpperLeft,None,Not Labbed,,N/A,,
 Summit 24,Summit24CenterDoor,Summit16CenterDoor,"Summit24UpperLeft + (dodge + double_jump | wall_charge) + wall_grab 
-| (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH",Not Labbed,,,,
+| (Summit24CenterRight | Summit24HiddenRight | Summit24UpperRight) + WALL_DASH",Not Labbed,,,,
 Summit 24,Summit24CenterLeft,Summit27CenterRight," ((Summit24CenterDoor | Summit24CenterRight | Summit24HiddenRight) + ((double_jump + dodge | wall_charge) + wall_grab)
-| Summit24UpperLeft) 
+| Summit24UpperLeft | Summit24UpperRight + WALL_DASH) 
 + Summit27Upper_Lever",Not Labbed,,,,
 Summit 24,Summit24CenterRight,Summit25UpperLeft,"Summit24CenterDoor + ((high_jump | double_jump) + WALL_DASH | high_jump + double_jump + dodge + wall_grab)
 | Summit24UpperLeft + ((double_jump + dodge | wall_charge + (double_jump | high_jump)) + wall_grab)
-| Summit24HiddenRight + (double_jump + wall_grab | high_jump)",Not Labbed,,,,
+| Summit24HiddenRight + (double_jump + wall_grab | high_jump)
+| Summit24UpperRight + WALL_DASH",Not Labbed,,,,
 Summit 24,Summit24HiddenRight,Summit25LowerLeft,"Summit24UpperLeft + (double_jump + dodge | wall_charge) + wall_grab
 | Summit24CenterDoor + (WALL_DASH | high_jump + double_jump + dodge + wall_grab)
-| Summit24CenterRight",Not Labbed,,,,
-Summit 24,Summit24LowerLeft,Summit27LowerRight,(Summit24UpperLeft | Summit24CenterRight | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Not Labbed,,,,
-Summit 24,Summit24LowerRight,Summit21Left,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight) + WALL_DASH,Not Labbed,,,,
-Summit 24,Summit24UpperLeft,Summit27UpperRight,"(Summit24CenterDoor + (high_jump + double_jump + (wall_grab | dodge) | wall_charge))
-| (Summit24CenterRight | Summit24HiddenRight) + WALL_DASH ",Not Labbed,,,,
+| Summit24CenterRight | Summit24UpperRight + WALL_DASH",Not Labbed,,,,
+Summit 24,Summit24LowerLeft,Summit27LowerRight,(Summit24UpperLeft | Summit24CenterRight | Summit24CenterDoor | Summit24HiddenRight | Summit24UpperRight) + WALL_DASH,Not Labbed,,,,
+Summit 24,Summit24LowerRight,Summit21Left,(Summit24CenterRight | Summit24UpperLeft | Summit24CenterDoor | Summit24HiddenRight | Summit24UpperRight) + WALL_DASH,Not Labbed,,,,
+Summit 24,Summit24UpperLeft,Summit27UpperRight,"Summit24CenterDoor + (high_jump + double_jump + (wall_grab | dodge) | WALL_DASH)
+| (Summit24CenterRight | Summit24HiddenRight | Summit24UpperRight) + WALL_DASH ",Not Labbed,,,,
 Summit 24,Summit24UpperRight,Summit26Left,Summit25UpperLeft + (high_jump | double_jump | dodge) + WALL_DASH,Not Labbed,,,,
 Summit 25,Summit25Lower,Summit28Upper,(Summit25LowerRight + (high_jump | (double_jump | dodge) + wall_grab)) + pile_attack,Not Labbed,,,,
 Summit 25,Summit25LowerLeft,Summit24HiddenRight,None,Not Labbed,,N/A,,
@@ -1303,21 +1322,18 @@ Summit 27,Summit27UpperRight,Summit24UpperLeft,None,Not Labbed,,N/A,,
 Summit 28,Summit28Upper,Summit25Lower,None,Not Labbed,,N/A,,
 Summit 30,Summit30CenterDoor,Summit26CenterDoor,None,Not Labbed,,N/A,,
 Swamp 1,Swamp01LowerLeft,Swamp02Upper,(Swamp01Upper | Swamp01LowerRight) + dive,Not Labbed,,N/A,,
-Swamp 1,Swamp01LowerRight,Swamp20Upper,Swamp01Upper | (Swamp01LowerLeft + double_jump) ,Not Labbed,,Swamp01Upper | Swamp01LowerLeft + (double_jump | RONIN | STALL + grav),"Starting point from Items+Transitions
-
-line 622 ref",
-Swamp 1,Swamp01Upper,Tower18Lower,"(Swamp01LowerRight + (double_jump | high_jump | wall_grab) 
-| Swamp01LowerLeft + double_jump)
-+ dive",Not Labbed,,"(Swamp01LowerLeft + (double_jump | RONIN | STALL + grav) 
-| Swamp01LowerRight + (double_jump | STALL | RONIN | wall_grab | high_jump)) + dive","Starting point from Items+Transitions
-
-line 620 ref",
+Swamp 1,Swamp01LowerRight,Swamp20Upper,Swamp01Upper | Swamp01LowerLeft + (double_jump | RONIN | STALL + grav | dive + dodge + (scythe | axe) | wall_grab + dodge + sword + REIBOLG),Done,,Finished,,
+Swamp 1,Swamp01Upper,Tower18Lower,"(Swamp01LowerLeft + (double_jump | RONIN | STALL + grav | dodge + (scythe | axe) | wall_grab + dodge + sword + REIBOLG) 
+| Swamp01LowerRight + (double_jump | STALL | RONIN | wall_grab | high_jump | REIBOLG)) 
++ dive",Done,lowerRight can pile_attack out,Finished,,
 Swamp 2,Swamp02Left,Swamp03Right,Swamp02Upper,Not Labbed,,N/A,,
 Swamp 2,Swamp02Upper,Swamp01LowerLeft,Swamp02Left + dive,Not Labbed,,N/A,,
 Swamp 3,Swamp03Left,Swamp04Right,Swamp03Right,Not Labbed,,N/A,,
 Swamp 3,Swamp03Right,Swamp02Left,Swamp03Left,Not Labbed,,N/A,,
-Swamp 4,Swamp04HiddenLeft,Swamp19Right,"(Swamp04Right | Swamp04Lower) + (double_jump | wall_grab | dive + dodge) 
-| (Swamp04Upper + (dodge | double_jump | wall_grab))",Not Labbed,,,,
+Swamp 4,Swamp04HiddenLeft,Swamp19Right,"(Swamp04Right | Swamp04Lower) + (double_jump | wall_grab | dive | STALL | snow | moon | flower + (grav | dodge)) 
+| Swamp04Upper",Done,"Simplified requirements; dive is sufficient alone and Upper has no reqs
+
+STALL requires running from the land, STALL + dodge roll into waterfall, then stall as soon as leaving waterfall",Finished,,
 Swamp 4,Swamp04Lower,Swamp13Upper,(Swamp04Right | Swamp04HiddenLeft | Swamp04Upper) + dive,Not Labbed,,N/A,,
 Swamp 4,Swamp04Right,Swamp03Left,Swamp04Lower | Swamp04Upper | Swamp04HiddenLeft,Not Labbed,,N/A,,
 Swamp 4,Swamp04Upper,Swamp05Lower,(Swamp04Lower | Swamp04Upper | Swamp04HiddenLeft) + dive,Not Labbed,,N/A,,
@@ -1367,7 +1383,7 @@ Swamp 16,Swamp16Right,Swamp17Left,Swamp16Left + ((hook + (double_jump | dodge)) 
 Swamp 17,Swamp17Left,Swamp16Right,None,Not Labbed,,N/A,,
 Swamp 18,Swamp18Left,Swamp05Right,Swamp18Upper,Not Labbed,,N/A,,
 Swamp 18,Swamp18Upper,Sewer15Lower,"Swamp18Left 
-+ (hook + (double_jump | dodge + high_jump) | wall_grab + double_jump)",Not Labbed,,,,
++ (hook + (double_jump | dodge + high_jump) | wall_grab + double_jump)",Not Labbed,Copied from locations logic,Swamp18Left + (wall_grab | STALL + grav + double_jump + (RONIN | dodge) | (axe | scythe) + grav + dodge + (snow | moon) | hook + (double_jump | dodge | REIBOLG | axe + grav | scythe | sword | RONIN)),,
 Swamp 19,Swamp19Right,Swamp04HiddenLeft,None,Not Labbed,,N/A,,
 Swamp 20,Swamp20Upper,Swamp01LowerRight,None,Not Labbed,,N/A,,
 Tower 1,Tower01CenterRight,Tower02CenterLeft,(Tower01Left | Tower01LowerRight | Tower01UpperRight) + Tower01CenterRight_Lever,Not Labbed,,N/A,,
@@ -1376,103 +1392,105 @@ Tower 1,Tower01LowerRight,Tower02LowerLeft,Tower01Left | Tower01UpperRight | Tow
 Tower 1,Tower01UpperRight,Tower02UpperLeft,Tower01Left | Tower01CenterRight | Tower01LowerRight,Not Labbed,,N/A,,
 Tower 2,Tower02CenterLeft,Tower01CenterRight,"(Tower02UpperRight | Tower02UpperLeft) + (double_jump | high_jump | dodge)
 | (Tower02LowerLeft | Tower02LowerRight | Tower02Lower) + high_jump 
-| Tower02CenterRight ",Not Labbed,,"Tower02CenterRight | (Tower02UpperRight | Tower02UpperLeft) + (STALL | double_jump | RONIN | dodge | REIBOLG | high_jump) 
+| Tower02CenterRight ",Not Labbed,"Technically, Uppers can do this without any movement, but its annoying","Tower02CenterRight | (Tower02UpperRight | Tower02UpperLeft) + (STALL | double_jump | RONIN | dodge | REIBOLG | high_jump) 
 | (Tower02LowerLeft | Tower02LowerRight | Tower02Lower) + (high_jump | wall_grab + (axe | scythe) + double_jump | STALL + grav + (dodge | double_jump) | snow + (STALL | dodge | double_jump) | moon + (scythe | double_jump) | grav + (sword | axe) | grav + (scythe | axe) + (moon | snow))","Starting point from Items+Transitions
 
 Might have messed up fixing the parenthesis (line 191 ref)
 
-untested REIBOLG",
+untested REIBOLG",Skipping - Tower1/2/3 kinda irrelevant
 Tower 2,Tower02CenterRight,Tower03CenterLeft,"(Tower02UpperRight | Tower02UpperLeft) + (double_jump | high_jump | dodge)
 | (Tower02LowerLeft | Tower02LowerRight | Tower02Lower) + high_jump 
-| Tower02CenterLeft",Not Labbed,,"Tower02CenterLeft | (Tower02UpperRight | Tower02UpperLeft) + (STALL | double_jump | RONIN | dodge | REIBOLG | high_jump) 
+| Tower02CenterLeft",Not Labbed,"Technically, Uppers can do this without any movement, but wicked annoying","Tower02CenterLeft | (Tower02UpperRight | Tower02UpperLeft) + (STALL | double_jump | RONIN | dodge | REIBOLG | high_jump) 
 | (Tower02LowerLeft | Tower02LowerRight | Tower02Lower) + (high_jump | wall_grab + (axe | scythe) + double_jump | STALL + grav + (dodge | double_jump) | snow + (STALL | dodge | double_jump) | moon + ((scythe | double_jump) | grav + (sword | axe)) | grav + (scythe | axe) + (moon | snow))","Starting point from Items+Transitions
 
 Might have messed up fixing the parenthesis (line 193 ref)
 
-untested REIBOLG",
-Tower 2,Tower02Lower,Tower07Upper,(Tower02CenterLeft | Tower02LowerLeft | Tower02CenterRight | Tower02LowerRight | Tower02UpperRight | Tower02UpperLeft ),Not Labbed,,N/A,,
-Tower 2,Tower02LowerLeft,Tower01LowerRight,(Tower02CenterLeft | Tower02Lower | Tower02CenterRight | Tower02LowerRight | Tower02UpperRight | Tower02UpperLeft ),Not Labbed,,N/A,,
+untested REIBOLG",Skipping - Tower1/2/3 kinda irrelevant
+Tower 2,Tower02Lower,Tower07Upper,Tower02CenterLeft | Tower02LowerLeft | Tower02CenterRight | Tower02LowerRight | Tower02UpperRight | Tower02UpperLeft,Not Labbed,,N/A,,
+Tower 2,Tower02LowerLeft,Tower01LowerRight,Tower02CenterLeft | Tower02Lower | Tower02CenterRight | Tower02LowerRight | Tower02UpperRight | Tower02UpperLeft,Not Labbed,,N/A,,
 Tower 2,Tower02LowerRight,Tower03LowerLeft,Tower02CenterLeft | Tower02Lower | Tower02CenterRight | Tower02LowerLeft | Tower02UpperRight | Tower02UpperLeft,Not Labbed,,N/A,,
 Tower 2,Tower02UpperLeft,Tower01UpperRight,(Tower02CenterLeft | Tower02LowerLeft | Tower02CenterRight | Tower02LowerRight | Tower02Lower) + high_jump | Tower02UpperRight,Not Labbed,,Tower02UpperRight | (Tower02CenterLeft | Tower02LowerLeft | Tower02CenterRight | Tower02LowerRight | Tower02Lower) + (high_jump | wall_grab + (STALL + double_jump + (dodge | snow) | (scythe | axe) + dodge + (flower | moon) + grav | double_jump + (moon | flower) | sword + grav | double_jump + (flower | moon) | dodge + (moon | flower)) | STALL + dodge + double_jump + grav + (snow | moon)),"Starting point from Items+Transitions
 
-Might have messed up fixing the parenthesis (line 189 ref)",
+Might have messed up fixing the parenthesis (line 189 ref)",Skipping - Tower1/2/3 kinda irrelevant
 Tower 2,Tower02UpperRight,Tower03UpperLeft,(Tower02CenterLeft | Tower02LowerLeft | Tower02CenterRight | Tower02LowerRight | Tower02Lower) + high_jump | Tower02UpperLeft,Not Labbed,,Tower02UpperLeft | (Tower02CenterLeft | Tower02LowerLeft | Tower02CenterRight | Tower02LowerRight | Tower02Lower) + (high_jump | (wall_grab + (STALL + (double_jump + (dodge | snow))) | ((scythe | axe) + (dodge + ((flower | moon) + grav)) |  (double_jump + moon | flower )) | (sword + grav + (double_jump + (flower | moon)) | (dodge + (moon | flower)))) | (STALL + dodge + double_jump + grav + (snow | moon))),"Starting point from Items+Transitions
 
-Might have messed up fixing the parenthesis (line 192 ref)",
-Tower 3,Tower03CenterLeft,Tower02CenterRight,(Tower03LowerLeft + (double_jump | high_jump | wall_grab)) | Tower03UpperLeft,Not Labbed,,Tower03UpperLeft | Tower03LowerLeft + (high_jump | wall_grab | RONIN | double_jump | STALL + (grav | dodge)),"Starting point from Items+Transitions
+Might have messed up fixing the parenthesis (line 192 ref)",Skipping - Tower1/2/3 kinda irrelevant
+Tower 3,Tower03CenterLeft,Tower02CenterRight,Tower03LowerLeft + (double_jump | high_jump | wall_grab) | Tower03UpperLeft,Not Labbed,,Tower03UpperLeft | Tower03LowerLeft + (high_jump | wall_grab | RONIN | double_jump | STALL + (grav | dodge)),"Starting point from Items+Transitions
 
-line 197 ref",
+line 197 ref",Skipping - Tower1/2/3 kinda irrelevant
 Tower 3,Tower03LowerLeft,Tower02LowerRight,Tower03CenterLeft | Tower03UpperLeft,Not Labbed,,N/A,,
 Tower 3,Tower03UpperLeft,Tower02UpperRight,(Tower03LowerLeft | Tower03CenterLeft) + (double_jump | high_jump),Not Labbed,,(Tower03LowerLeft | Tower03CenterLeft)  + (high_jump | RONIN | double_jump | STALL + (grav | dodge)),"Starting point from Items+Transitions
 
-line 198 ref",
+line 198 ref",Skipping - Tower1/2/3 kinda irrelevant
 Tower 4,Tower04Lower,Tower05Upper,Tower04Upper,Not Labbed,,N/A,,
-Tower 4,Tower04Upper,Tower07Lower,Tower04Lower + (double_jump | high_jump),Not Labbed,,Tower04Lower + (double_jump | moon | snow | grav + STALL | wall_grab | high_jump | FLOWER2),"Starting point from Items+Transitions
+Tower 4,Tower04Upper,Tower07Lower,Tower04Lower + (high_jump | double_jump | wall_grab + (REIBOLG | flower | STALL + dodge) | snow | moon | grav + (flower + REIBOLG | STALL) | axe + dodge + REIBOLG),Done,"Copied from locations logic
 
-line 200 ref",
+wall_grab + pile_attack works as well",Finished,"Starting point from Items+Transitions
+
+line 200 ref",tested with all REIBOLG
 Tower 5,Tower05Lower,Tower08Upper,Tower05Upper,Not Labbed,,N/A,,
 Tower 5,Tower05Upper,Tower04Lower,Tower05Lower,Not Labbed,,N/A,,
-Tower 6,Tower06Right,Tower18Left,None,Not Labbed,,N/A,,
+Tower 6,Tower06Right,Tower18HiddenLeft,None,Not Labbed,,N/A,,
 Tower 7,Tower07Lower,Tower04Upper,Tower07Upper,Not Labbed,,N/A,,
-Tower 7,Tower07Upper,Tower02Lower,Tower07Lower + (high_jump | double_jump | wall_grab),Not Labbed,,Tower07Lower + (double_jump | grav + STALL | wall_grab | RONIN | high_jump),"Starting point from Items+Transitions
+Tower 7,Tower07Upper,Tower02Lower,Tower07Lower + (double_jump | wall_grab | high_jump | STALL + (grav | dodge) | REIBOLG | RONIN),Done,and pile_attack,Finished,"Starting point from Items+Transitions
 
-line 211 ref",
+line 211 ref",tested with all REIBOLG
 Tower 8,Tower08Lower,Tower09Upper,Tower08Upper | Tower08Right,Not Labbed,,N/A,,
 Tower 8,Tower08Right,Tower10UpperLeft,Tower08Upper | Tower08Lower,Not Labbed,,N/A,,
 Tower 8,Tower08Upper,Tower05Lower,Tower08Right | Tower08Lower,Not Labbed,,N/A,,
-Tower 9,Tower09CenterRight,Tower10CenterLowerLeft,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower) + (double_jump | WALL_DASH | high_jump | dodge + wall_grab),Not Labbed,,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower) + (high_jump | wall_grab | double_jump | RONIN | STALL + (grav | dodge)),"Starting point from Items+Transitions
+Tower 9,Tower09CenterRight,Tower10CenterLowerLeft,Tower09UpperRight | (Tower09Upper | Tower09LowerRight | Tower09Lower) + (high_jump | wall_grab | double_jump | RONIN | STALL),Done,,Finished,"Starting point from Items+Transitions
 
 line 223 ref",
-Tower 9,Tower09Lower,Tower11Upper,Tower09Upper | Tower09LowerRight | Tower09UpperRight | Tower09CenterRight + (double_jump | high_jump | wall_grab),Not Labbed,,,,
-Tower 9,Tower09LowerRight,Tower10LowerLeft,Tower09Upper | Tower09Lower | Tower09UpperRight | Tower09CenterRight + (double_jump | high_jump | wall_grab),Not Labbed,,,CenterRight should be same as 949,
-Tower 9,Tower09Upper,Tower08Lower,Tower09Lower | Tower09LowerRight  | Tower09UpperRight | Tower09CenterRight + (double_jump | wall_grab | high_jump),Not Labbed,,,CenterRight should be same as 949,
-Tower 9,Tower09UpperRight,Tower10CenterUpperLeft,(Tower09Upper | Tower09LowerRight | Tower09Lower | Tower09CenterRight) + (high_jump | WALL_DASH + double_jump),Not Labbed,,((Tower10CenterLowerLeft | Tower08Lower | Tower10LowerLeft | Tower11Upper) + (high_jump | DJUMP2 |Tower10CenterUpperLeft,"Starting point from Items+Transitions
+Tower 9,Tower09Lower,Tower11Upper,Tower09Upper | Tower09LowerRight | Tower09UpperRight | Tower09CenterRight + (double_jump | high_jump | wall_grab | RONIN | STALL),Done,CenterRight + pile_attack + dodge,,,
+Tower 9,Tower09LowerRight,Tower10LowerLeft,Tower09Upper | Tower09Lower | Tower09UpperRight | Tower09CenterRight + (double_jump | high_jump | wall_grab | RONIN | STALL),Done,,,CenterRight should be same as 949,
+Tower 9,Tower09Upper,Tower08Lower,Tower09Lower | Tower09LowerRight  | Tower09UpperRight | Tower09CenterRight + (double_jump | wall_grab | high_jump | RONIN | STALL),Done,,,CenterRight should be same as 949,
+Tower 9,Tower09UpperRight,Tower10CenterUpperLeft,(Tower09Upper | Tower09LowerRight | Tower09Lower | Tower09CenterRight) + (high_jump | double_jump + (WALL_DASH | snow | moon + REIBOLG | dodge + (moon | axe | wall_grab + (flower | scythe | sword | axe + lazer)) | STALL + grav | axe + (flower | moon)) | wall_grab + snow + dodge | dodge + grav + (STALL + (moon | flower) | (scythe | axe) + (lazer | wall_grab)) | STALL + grav + (snow | moon + REIBOLG)),Done,Copied from Locations logic,Finished,"Starting point from Items+Transitions
 
-line 222 ref",
+line 222 ref",tested with all REIBOLG - need to confirm lazer though (could prob be changed to REIBOLG too)
 Tower 10,Tower10CenterLowerLeft,Tower09CenterRight,Tower10CenterUpperLeft,Not Labbed,,N/A,,
-Tower 10,Tower10CenterUpperLeft,Tower09UpperRight,Tower10CenterLowerLeft + (high_jump | double_jump | wall_grab),Not Labbed,,Tower10CenterLowerLeft + (double_jump | RONIN | high_jump | SCYTHE | (AXE | SWORD) + dodge),"Starting point from Items+Transitions
+Tower 10,Tower10CenterUpperLeft,Tower09UpperRight,Tower10CenterLowerLeft + (double_jump | wall_grab | RONIN | high_jump | STALL + (grav | dodge | blaster) | blaster + grav | lazer | granade),Done,pile_attack again!!,Finished,"Starting point from Items+Transitions
 
-line 228 ref",
+line 228 ref",tested with all REIBOLG
 Tower 10,Tower10LowerLeft,Tower09LowerRight,Tower10UpperLeft,Not Labbed,,N/A,,
-Tower 10,Tower10UpperLeft,Tower08Right,Tower10LowerLeft + (high_jump | double_jump),Not Labbed,,Tower10LowerLeft + (wall_grab | double_jump | RONIN | high_jump | SCYTHE | (AXE | SWORD) + dodge),"Starting point from Items+Transitions
+Tower 10,Tower10UpperLeft,Tower08Right,Tower10LowerLeft + (double_jump | RONIN | high_jump | STALL + (grav | dodge) | REIBOLG),Done,pile_attack again!!,Finished,"Starting point from Items+Transitions
 
-line 227 ref",
+line 227 ref",tested with all REIBOLG
 Tower 11,Tower11HiddenLeft,Tower12Right,Tower11Lower | Tower11Upper,Not Labbed,,N/A,,
 Tower 11,Tower11Lower,Tower13Upper,Tower11Upper | Tower11HiddenLeft,Not Labbed,,N/A,,
 Tower 11,Tower11Upper,Tower09Lower,Tower11Lower | Tower11HiddenLeft,Not Labbed,,N/A,,
 Tower 12,Tower12Right,Tower11HiddenLeft,None,Not Labbed,,N/A,,
 Tower 13,Tower13Lower,Tower19Upper,Tower13Upper,Not Labbed,,N/A,,
-Tower 13,Tower13Upper,Tower11Lower,Tower13Lower + (wall_grab | high_jump | double_jump),Not Labbed,,,,
+Tower 13,Tower13Upper,Tower11Lower,Tower13Lower + (wall_grab | high_jump | double_jump | REIBOLG | RONIN | STALL + (grav | dodge)),Done,pile_attack again!!,Finished,,
 Tower 14,Tower14LowerLeft,Tower19LowerRight,Tower14UpperLeft | Tower14Right,Not Labbed,,N/A,,
 Tower 14,Tower14Right,Tower15Left,Tower14UpperLeft | Tower14LowerLeft,Not Labbed,,N/A,,
-Tower 14,Tower14UpperLeft,Tower19UpperRight,(Tower14LowerLeft | Tower14Right) + (high_jump | double_jump + (hook + dodge + wall_grab | wall_charge)),Not Labbed,,(Tower14LowerLeft | Tower14Right) + high_jump | (wall_grab + ((SNOW | MOON) | (double_jump + (STALL | FLOWER2))) | (hook + wall_grab + ((STALL + (dodge | RONIN)) | (SCYTHE + reduce_gravity))) | (DJUMP | + LDASH)),"Starting point from Items+Transitions
+Tower 14,Tower14UpperLeft,Tower19UpperRight,(Tower14LowerLeft | Tower14Right) + (high_jump | double_jump + (hook + dodge + wall_grab | WALL_DASH)),Not Labbed,,(Tower14LowerLeft | Tower14Right) + (high_jump | (wall_grab + ((snow | moon) | (double_jump + (STALL | FLOWER2))) | (hook + wall_grab + (STALL + (dodge | RONIN) | scythe + grav)) | double_jump | moon | snow | grav + STALL | WALL_DASH),"Starting point from Items+Transitions
 
-line 243 ref",
+line 243 ref",Skipping - kinda irrelevant (Tower14LowerLeft -> Tower19UpperRight no movement req)
 Tower 15,Tower15Left,Tower14Right,Tower15Right,Not Labbed,,N/A,,
 Tower 15,Tower15Right,Tower16Left,Tower15Left,Not Labbed,,N/A,,
 Tower 16,Tower16Left,Tower15Right,Tower16Right,Not Labbed,,N/A,,
 Tower 16,Tower16Right,Tower17Left,Tower16Left,Not Labbed,,N/A,,
 Tower 17,Tower17Left,Tower16Right,Tower17Right,Not Labbed,,N/A,,
 Tower 17,Tower17Right,Forest01Left,Tower17Left,Not Labbed,,N/A,,
-Tower 18,Tower18Left,Tower06Right,Tower18UpperRight | Tower18Lower | Tower18LowerRight + (high_jump | WALL_DASH | double_jump + dodge),Not Labbed,TODO update this Transition to Tower18HiddenLeft?,Tower19UpperLeft | (Tower19LowerLeft + (double_jump + ((STALL + reduce_gravity) | dodge)) | RONIN | LDASH | high_jump),"Starting point from Items+Transitions
+Tower 18,Tower18HiddenLeft,Tower06Right,Tower18UpperRight | Tower18Lower | Tower18LowerRight + (double_jump | RONIN | STALL + (grav | dodge) | WALL_DASH | high_jump),Done,"double_jump logic simplified - sprint + base dodge roll
+
+leg enhancement relic + grav + dodge + pile_attack + REIBOLG lul",Finished,"Starting point from Items+Transitions
 
 line 264 ref",
-Tower 18,Tower18Lower,Swamp01Upper,(Tower18Left | Tower18UpperRight | Tower18LowerRight + (high_jump | WALL_DASH | double_jump + dodge)) + dive,Not Labbed,,"dive + ((Swamp01Upper | Tower06Right | Tower19UpperLeft) | 
-(Tower19LowerLeft + (double_jump + ((STALL + reduce_gravity) | dodge)) | RONIN | LDASH | high_jump))","Starting point from Items+Transitions
+Tower 18,Tower18Lower,Swamp01Upper,(Tower18HiddenLeft | Tower18UpperRight | Tower18LowerRight + (double_jump | RONIN | STALL + (grav | dodge) | WALL_DASH | high_jump)) + dive,Done,same as above,Finished,"Starting point from Items+Transitions
 
 line 265 ref",
 Tower 18,Tower18LowerRight,Tower19LowerLeft,"Tower18UpperRight 
-| (Tower18Left | Tower18Lower)  + (double_jump | high_jump + dodge + WALL_DASH)",Not Labbed,,"Tower19UpperLeft | Tower19LowerLeft | 
-((Tower06Right | Swamp01Upper) + (DJUMP | FLOWER2))","Starting point from Items+Transitions
+| (Tower18HiddenLeft | Tower18Lower) + (double_jump | moon | snow | high_jump + WALL_DASH | STALL + grav | flower + (grav | axe) | dodge + (scythe | axe | sword + flower))",Done,"the dive + dodge momentum jump IS technically possible, but even i think too hard",Finished,"Starting point from Items+Transitions
 
 line 263 ref",
-Tower 18,Tower18UpperRight,Tower19UpperLeft,(Tower18Left | Tower18Lower) + (double_jump | high_jump + dodge + WALL_DASH) | Tower18LowerRight + (high_jump | double_jump + dodge),Not Labbed,,"Tower19UpperLeft | (Tower19LowerLeft + (high_jump | DJUMP | (FLOWER + (wall_grab | (dodge + reduce_gravity))) | 
-((Tower06Right | Swamp01Upper) + (DJUMP | (FLOWER + dodge + reduce_gravity))","Starting point from Items+Transitions
+Tower 18,Tower18UpperRight,Tower19UpperLeft,(Tower18HiddenLeft | Tower18Lower) + (double_jump | high_jump + dodge + WALL_DASH) | Tower18LowerRight + (high_jump | double_jump + dodge),Not Labbed,,"Tower18LowerRight + (high_jump | double_jump | moon | snow | grav + STALL | flower + (wall_grab | dodge + grav) 
+| (Tower18HiddenLeft | Tower18Lower) + (double_jump | high_jump + dodge + WALL_DASH | moon | snow | grav + STALL | FLOWER2 + dodge)","Starting point from Items+Transitions
 
-line 262 ref",
+line 262 ref",Skipping - kinda irrelevant (Tower18LowerRight -> Tower19UpperLeft no movement req)
 Tower 19,Tower19LowerLeft,Tower18LowerRight,Tower19LowerRight | Tower19Upper | Tower19UpperLeft | Tower19UpperRight,Not Labbed,,N/A,,
 Tower 19,Tower19LowerRight,Tower14LowerLeft,Tower19LowerLeft | Tower19Upper | Tower19UpperLeft | Tower19UpperRight,Not Labbed,,N/A,,
-Tower 19,Tower19Upper,Tower13Lower,(Tower19LowerLeft | Tower19UpperRight | Tower19UpperLeft | Tower19LowerRight) + (double_jump | high_jump),Not Labbed,,(Tower19LowerLeft | Tower19UpperRight | Tower19UpperLeft | Tower19LowerRight) + (double_jump | RONIN | high_jump | SCYTHE) | ((SWORD | AXE) + dodge))),"Starting point from Items+Transitions
+Tower 19,Tower19Upper,Tower13Lower,(Tower19LowerLeft | Tower19UpperRight | Tower19UpperLeft | Tower19LowerRight) + (double_jump | high_jump | REIBOLG | RONIN | STALL + (grav | dodge)),Done,pile_attack again!!,Finished,"Starting point from Items+Transitions
 
 line 268 ref",
 Tower 19,Tower19UpperLeft,Tower18UpperRight,Tower19LowerLeft | Tower19Upper | Tower19UpperRight | Tower19LowerRight,Not Labbed,,N/A,,
