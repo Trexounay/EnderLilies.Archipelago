@@ -276,6 +276,10 @@ class EnderMagnoliaWorld(World):
         for name, value in self.options.as_dict(*slot_data_options).items():
             output += f"option.{name}:{int(value)}\n"
 
+        if self.options.shuffle_transitions:
+            for source, target in spawn_redirects(self).items():
+                output += f"er.{source}:{target}\n"
+
         start_index = 0
         for item in self.multiworld.precollected_items[self.player]:
             if item.name not in items:
