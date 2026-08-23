@@ -5,6 +5,7 @@ from rule_builder.rules import False_
 from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 
+from .Entrances import disconnect_entrances, shuffle_transitions, spawn_redirects
 from .Locations import LocationData, locations, event_locations
 from .MetaProgression import meta_progression_fill
 from .Options import (CentralElevatorFix, em_option_groups, EnderMagnoliaOptions, Goal,
@@ -244,6 +245,13 @@ class EnderMagnoliaWorld(World):
         # Goal
         self.set_completion_rule(completion_rules[self.options.goal.value])
 
+    def connect_entrances(self) -> None:
+        if not self.options.shuffle_transitions:
+            return
+
+        disconnect_entrances(self)
+        shuffle_transitions(self)
+
     def pre_fill(self) -> None:
         if self.options.meta_progression:
             meta_progression_fill(self)
@@ -252,7 +260,11 @@ class EnderMagnoliaWorld(World):
         return currencies["Default"].name
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return self.options.as_dict(*slot_data_options)
+        slot_data = dict(self.options.as_dict(*slot_data_options))
+        if self.options.shuffle_transitions:
+            slot_data.update({f"er.{source}": target
+                              for source, target in spawn_redirects(self).items()})
+        return slot_data
 
     def generate_output(self, output_directory):
         if not self.options.generate_seed_file:

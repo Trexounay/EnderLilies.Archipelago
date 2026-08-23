@@ -332,6 +332,23 @@ class GenerateSeedFile(Toggle):
 
     default = 0
 
+class ShuffleTransitions(Choice):
+    """
+    Shuffle area transitions and doors.
+    Non-door transitions between rooms of the same area are unaffected.
+
+    **Off:** transitions lead where they should.
+    **Coupled:** Returning through a transition will take you from whence you came.
+    **Decoupled:** Any transition can take you to any other transition.
+    """
+
+    # I think UT needs that
+    slot_data = True
+
+    display_name = "Shuffle Transitions"
+    option_off = 0
+    option_coupled = 1
+    option_decoupled = 2
 
 @dataclass
 class EnderMagnoliaOptions(PerGameCommonOptions):
@@ -355,6 +372,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     allow_multiskill: AllowMultiSkill
     ngplus_ai: NewGamePlusAI
     generate_seed_file: GenerateSeedFile
+    shuffle_transitions: ShuffleTransitions
 
 
 slot_data_options = [name for name, option in EnderMagnoliaOptions.type_hints.items()
@@ -376,6 +394,7 @@ em_option_groups = [
         CentralElevatorFix,
         ProgressiveAptitudes,
         MetaProgression,
+        ShuffleTransitions
     ]),
     OptionGroup("Misc", [
         ChapterScaling,
