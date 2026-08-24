@@ -140,7 +140,8 @@ class StartingRespite(Choice):
         return self.regions[self.value][1]
 
     def requires_elevator(self) -> bool:
-        return self.value in {24, 27, 29, 35, 37}
+        return self.value in {24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
+                          35, 36, 37, 38, 39, 40, 42, 43}
 
 
 class Goal(Choice):
@@ -300,6 +301,18 @@ class ShuffleBGM(Toggle):
     default = 0
 
 
+class RandomEnemies(Toggle):
+    """
+    Replaces the enemies each room spawns with other enemies.
+    (experimental)
+    """
+
+    display_name = "Randomize Enemies"
+    slot_data = True
+
+    default = 0
+
+
 class AllowMultiSkill(Toggle):
     """
     Removes the one-skill-per-spirit limit.
@@ -340,6 +353,7 @@ class ShuffleTransitions(Choice):
     **Off:** transitions lead where they should.
     **Coupled:** Returning through a transition will take you from whence you came.
     **Decoupled:** Any transition can take you to any other transition.
+    (experimental)
     """
 
     # I think UT needs that
@@ -369,6 +383,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     skill_cost_shuffle: SkillCostShuffle
     shuffle_bgm: ShuffleBGM
     shuffle_sp: ShuffleSP
+    random_enemies: RandomEnemies
     allow_multiskill: AllowMultiSkill
     ngplus_ai: NewGamePlusAI
     generate_seed_file: GenerateSeedFile
@@ -404,6 +419,7 @@ em_option_groups = [
         SkillCostShuffle,
         ShuffleBGM,
         ShuffleSP,
+        RandomEnemies,
         AllowMultiSkill,
         NewGamePlusAI,
         GenerateSeedFile,
