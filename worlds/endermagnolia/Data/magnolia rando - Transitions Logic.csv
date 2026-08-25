@@ -1905,9 +1905,9 @@ Swamp 5,Swamp05Lower,Swamp04Upper,"(Swamp05Right
 also re-ordered parenthesis",dive always required - right done...,"(Swamp05Right 
 | (Swamp05Left + (double_jump | high_jump | wall_grab)) + dive)",(Swamp05Right | Swamp05Left + (double_jump | high_jump | wall_grab | dodge + hook)) + dive
 Swamp 5,Swamp05Right,Swamp18Left,"(Swamp05Lower + (high_jump + (dodge + double_jump | WALL_DASH) | (hook + (dodge | double_jump)))) 
-| (Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump)))",Done,Wall_dash added in conjunction with high_jump,,"(Swamp05Lower + (high_jump + (dodge + double_jump) | (hook + (dodge | double_jump)))) 
-| (Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump)))","(Swamp05Lower + (high_jump + (dodge + double_jump | WALL_DASH) | (hook + (dodge | double_jump)))) 
-| (Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump)))"
+| (Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump)))",Done,Wall_dash added in conjunction with high_jump,"added dive to Lower, disingenuous to think its not required (although moot ultimately because required for other transitions anyway!)","(Swamp05Lower + (high_jump + (dodge + double_jump) | (hook + (dodge | double_jump)))) 
+| (Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump)))","Swamp05Lower + dive + (high_jump + (dodge + double_jump | WALL_DASH) | (hook + (dodge | double_jump))) 
+| Swamp05Left + dive + (hook + (double_jump | ((high_jump | wall_grab) + dodge)) | (high_jump + dodge + double_jump))"
 Swamp 6,Swamp06Lower,Swamp07Upper,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive,Done,"added wall_grab to pile_attack
 also funny, pile_attack high enough (thru hook or WALL_DASH)? means dive is NOT required; potentially softlocks in next zone :) (should be able to warp to the respite though?)",,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack) + dive,Swamp06Right + (hook | double_jump + dodge | high_jump | pile_attack + wall_grab) + dive
 Swamp 6,Swamp06Right,Swamp05Left,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive,Done,added hook capabilities,,Swamp06Lower + (high_jump | double_jump) + dive,Swamp06Lower + (high_jump | double_jump | hook + (WALL_DASH | (dodge + wall_grab))) + dive

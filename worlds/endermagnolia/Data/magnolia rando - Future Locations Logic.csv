@@ -425,7 +425,7 @@ Garden 6,Garden 6 - Origin Gem Core,Garden_001_Zone_006.BP_Interactable_AddItem_
  + (WALL_DASH + double_jump + dodge)",In Progress,Requires wall dash from garden02,"(Garden02Right | (Garden02LowerLeft | Garden02Left) + Garden02LowerLeft_Lever | Garden02LowerRight + Garden02LowerRightRight_Lever)
  + (WALL_DASH + double_jump + (dodge | high_jump))","Garden06 + high_jump + double_jump + dodge + STALL
 
-from Garden06UpperDoor + ((axe | scythe) + (RONIN | ReiBlast) | sword + RONIN (ReiBlast | wall_grab | hook)) + double_jump + dodge + grav
+from Garden06UpperDoor + ((axe | scythe) + (RONIN | REIBOLG) | sword + RONIN + (ReiBlast | wall_grab | hook)) + double_jump + dodge + grav
 WALL_DASH + double_jump + RONIN (flower IS JANK, wall_grab the doorway wall, then WALL_DASH + double_jump and flower onto the roof to wall_grab that ledge
 
 
@@ -791,9 +791,9 @@ Street 8,Street 8 - Charmed Fragment,Street_001_Zone_008.BP_Breakable_SpawnItem_
 Street 9,Street 9 - Materials,Street_001_Zone_009.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Street09Left | Street09Upper,Done,,N/A,,
 Street 12,Street 12 - Attuner's Earrings,Street_001_Zone_012.BP_Interactable_AddItem_C_0,"passives[""onkill_restoresp_1""]","Street12Left + (high_jump | wall_grab + (double_jump | moon | snow | FLOWER2 | STALL + (dodge | lazer | flower | grav)) | (scythe | axe) + (grav | snow) + double_jump + dodge | sword + grav + double_jump + dodge + (lazer | RONIN)) 
 | (Street12Door | Street12UpperRight | Street12LowerRight) + (high_jump | wall_grab + (double_jump | STALL | moon | snow | FLOWER2) | (scythe | axe) + (grav | snow) + double_jump + dodge | sword + grav + double_jump + dodge + (lazer | RONIN))
-| Street19UpperLeft + WALL_DASH",Done,"Apparently I had a comment that: Sword with reduced grav and double_jump and dodge also works easily?? Havent been able to find that.
+| Street19UpperLeft + WALL_DASH",Done,"Apparently I had a comment that: sword + grav + double_jump + dodge also works easily?? Havent been able to find that.
 
-There might be an axe + grav + snow + double_jump + ReiBlast - but it probably requires using snow twice sorta deal.",Finished,,double check lazer -> REIBOLG
+There might be an axe + grav + snow + double_jump + REIBOLG - but it probably requires using snow twice sorta deal.",Finished,,double check lazer -> REIBOLG
 Street 14,Street 14 - Crimson Ribbon,Street_001_Zone_014.BP_Interactable_AddItem_C_1,"passives[""debuff_cut_burn_1""]",Street14UpperHidden,Done,,N/A,,
 Street 14,Street 14 - Homunculus Expedition Report,Street_001_Zone_014.BP_Interactable_AddTutorial_C_1,"tips[""tip_searchrecord_01""]",Street14Right | Street14UpperRight | Street14UpperLeft,Done,,N/A,,
 Street 17,Street 17 - City Stratum Guard,Street_001_Zone_017.EVT_ev_s_e0030_Guard_Defeat,"materials[""parts_s5000_c""]",Street17Right,Done,,N/A,,
@@ -946,7 +946,9 @@ Swamp 15,Swamp 15 - Motley,Swamp_001_Zone_015.EVT_ev_s_e6010_Cluster_Defeat,"apt
 Swamp 18,Swamp 18 - Charmed Fragment,Swamp_001_Zone_018.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Swamp18Upper 
 | Swamp18Left + (wall_grab | STALL + grav + double_jump + (RONIN | dodge) | (axe | scythe) + grav + dodge + (snow | moon) | hook + (double_jump | dodge | REIBOLG | axe + grav | scythe | sword | RONIN))",Done,"The waterfalls don't actually push or have any dive potential - the last one does ""count"" as water, but will float to top - ie, no dive requirements
 
-might need a heal though :)",Finished,,double check REIBOLG
+wall_grab alone CANNOT make it without heal
+
+however, you cant really access this room currently without additional movement that would assist with removing the damage taken",Finished,,double check REIBOLG
 Swamp 19,Swamp 19 - Materials,Swamp_001_Zone_019.BP_Interactable_AddItem_C_1,"currencies[""Default""]",Swamp19Right,Done,,N/A,,
 Swamp 20,Swamp 20 - Cleaner's Tag,Swamp_001_Zone_020.BP_Interactable_AddItem_C_1,"passives[""damage_up_targetstunned_1""]",Swamp20Upper + (high_jump | double_jump | wall_grab | RONIN | STALL | REIBOLG),Done,,Finished,,double check REIBOLG
 Tower 1,Tower 1 - Charmed Fragment,Tower_001_Zone_001.BP_Breakable_SpawnItem_Pod_01_C_1,"stats[""hp_up_s""]",Tower01CenterRight,Done,,N/A,,

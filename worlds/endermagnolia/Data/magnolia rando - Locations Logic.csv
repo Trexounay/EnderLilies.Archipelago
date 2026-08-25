@@ -163,10 +163,10 @@ UpperLeftDoor WALL_DASH is excessive, can be reduced to wall_grab","(Forest04Low
 | ((Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab))"
 Forest 7,Forest 7 - Chain Belt,Forest_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""damage_up_grounded_1""]",Forest07Left,Done,,good,,Forest07Left
 Forest 9,Forest 9 - Charmed Fragment,Forest_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
-| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor) | (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) | (Forest09CenterRightDoor + (high_jump | wall_grab))) + dive",Not Labbed,,good,,"(Forest09LowerRight + TORRENT + (wall_grab | high_jump)) 
-| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor ) 
-| (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) 
-| (Forest09CenterRightDoor + (high_jump | wall_grab))) + dive"
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor) | (Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH)) | (Forest09CenterRightDoor + (high_jump | wall_grab))) + dive",Not Labbed,,good,,"Forest09LowerRight + TORRENT + (wall_grab | high_jump) 
+| ((Forest09LeftDoor | Forest09CenterLeftDoor | Forest09CenterDoor) 
+| Forest09UpperRightDoor + (dodge | double_jump | WALL_DASH) 
+| Forest09CenterRightDoor + (high_jump | wall_grab)) + dive"
 Forest 9,Forest 9 - Materials,Forest_001_Zone_009.BP_Interactable_AddItem_C_3,"currencies[""Default""]","(Forest09LowerRight + TORRENT) 
 | (Forest09CenterRightDoor 
 | (Forest09UpperRightDoor + (double_jump | dodge | WALL_CHARGE)) 
@@ -181,8 +181,8 @@ parenthesis seemed incorrect","Forest09LowerRight + TORRENT
 | (Forest09LeftDoor | Forest09CenterDoor) + (high_jump | WALL_DASH)) 
 + dive","Forest09LowerRight + TORRENT 
 | (Forest09CenterRightDoor 
-| (Forest09UpperRightDoor + (double_jump | dodge | WALL_DASH)) 
-| (Forest09CenterLeftDoor + (double_jump | dodge | high_jump | WALL_DASH)) 
+| Forest09UpperRightDoor + (double_jump | dodge | WALL_DASH) 
+| Forest09CenterLeftDoor + (double_jump | dodge | high_jump | WALL_DASH) 
 | (Forest09LeftDoor | Forest09CenterDoor) + (high_jump | WALL_DASH)) 
 + dive"
 Forest 9,Forest 9 - Effigy,Forest_001_Zone_009.BP_Interactable_AddItem_C_5,"passives[""damage_cut_minhp_1""]","(Forest09LeftDoor | Forest09CenterDoor | Forest09CenterLeftDoor) 
