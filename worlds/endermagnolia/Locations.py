@@ -75,7 +75,7 @@ class LocationTable():
                 groups.setdefault(data.group, set()).add(name)
         return groups
 
-
+#Center	        Central Stratum - Central City
 center = region_locations('Center', {
     "Center 1 - Gilroy":                             ("EVT_ev_s_e6050_Master_Defeat",                           aptitudes["SP"]),
     "Center 1 - Origin Gem Core":                    ("Center_001_Zone_001.BP_Interactable_AddItem_C_1",        materials["parts_lv6_a"]),
@@ -85,6 +85,7 @@ center = region_locations('Center', {
     "Center 4 - Faintly Glowing Aegis Curio":        ("EVT_ev_n_Levy_Treasure6_002",                            quests["quest_amulet"]),
 })
 
+#Crossroad	    Lower Stratum Streets
 crossroad = region_locations('Crossroad', {
     "Crossroad 2 - Charmed Fragment":                ("Crossroad_001_Zone_002.BP_Interactable_AddItem_C_1",     stats["hp_up_s"]),
     "Crossroad 3 - Subterranean Laborer's Code":     ("Crossroad_001_Zone_003.BP_Interactable_AddItem_C_1",     tips["tip_workerscode_01"]),
@@ -92,6 +93,7 @@ crossroad = region_locations('Crossroad', {
     "Crossroad 5 - Aerial Jump":                     ("EVT_ev_s_0050_LevyMeeting",                              aptitudes["double_jump"]),
 })
 
+#Estate	        Frost Estate Ruins
 estate = region_locations('Estate', {
     "Estate 2 - Lorna 1":                            ("EVT_ev_s_n5040_Maiden_Defeat",                           spirits["s5040_maiden"]),
     "Estate 2 - Lorna 2":                            ("EVT_ev_s_n5040_Maiden_Defeat.1",                         keys["key_higher_a"]),
@@ -108,6 +110,7 @@ estate = region_locations('Estate', {
     "Estate 12 - Frost Confidential Records 1":      ("Estate_001_Zone_012.BP_Interactable_AddItem_C_0",        tips["tip_frostsrecord_01"]),
 })
 
+#Factory	    Arcane Factory
 factory = region_locations('Factory', {
     "Factory 1 - Special Alloy Core":                ("Factory_001_Zone_001.BP_Interactable_AddItem_C_0",       materials["parts_lv5_a"]),
     "Factory 1 - Mysterious Glowing Can":            ("Factory_001_Zone_001.BP_Interactable_AddItem_C_1",       passives["stamina_damage_up_b_1"]),
@@ -132,6 +135,7 @@ factory = region_locations('Factory', {
     "Factory 21 - Milius Lord's Mark":               ("EVT_ev_s_0250_KeyFactory",                               keys["key_higher_b"]),
 })
 
+#Forest	        Crimson Forest
 forest = region_locations('Forest', {
     "Forest 1 - Crimson Bangle":                     ("Forest_001_Zone_001.BP_Interactable_AddItem_C_1",        equipments["armor_008"]),
     "Forest 2 - Obsolete Core":                      ("Forest_001_Zone_002.BP_Interactable_AddItem_C_1",        materials["parts_lv3_b"]),
@@ -154,6 +158,7 @@ forest = region_locations('Forest', {
     "Forest 23 - Hati's Charge":                     ("EVT_ev_s_5210_Fenris_Upgrade",                           aptitudes["dash_charge"]),
 })
 
+#Garden	        Sorcerer's Academy
 garden = region_locations('Garden', {
     "Garden 1 - Charmed Fragment 1":                 ("Garden_001_Zone_001.BP_Interactable_AddItem_C_1",        stats["hp_up_s"]),
     "Garden 1 - Charmed Fragment 2":                 ("Garden_001_Zone_001.BP_Interactable_AddItem_C_2",        stats["hp_up_s"]),
@@ -178,6 +183,7 @@ garden = region_locations('Garden', {
     "Garden 14 - Charmed Fragment":                  ("Garden_001_Zone_014.BP_Interactable_AddItem_C_1",        stats["hp_up_s"]),
 })
 
+#Kowloon	    Central Stratum - Steel District
 kowloon = region_locations('Kowloon', {
     "Kowloon 5 - Mother's Note":                     ("Kowloon_001_Zone_005.BP_Interactable_AddItem_C_0",       tips["tip_mothersnote_01"]),
     "Kowloon 8 - Chief Attuner's Ring":              ("Kowloon_001_Zone_008.BP_Interactable_AddItem_C_1",       passives["restore_sp_up_a_1"]),
@@ -202,6 +208,7 @@ kowloon = region_locations('Kowloon', {
     "Kowloon 51 - No.7":                             ("EVT_ev_s_e5050_Ronin_Defeat",                            spirits["s5050_ronin"]),
 })
 
+#Labo	        Biological Research Facility
 labo = region_locations('Labo', {
     "Labo 1 - Lilia's Diary":                        ("Labo_001_Zone_001.BP_Interactable_AddItem_C_0",          tips["tip_liliasdiary_01"]),
     "Labo 3 - Aggressor":                            ("EVT_ev_s_e5003_Reaper_Defeat",                           materials["parts_s5000_a"]),
@@ -223,6 +230,7 @@ labo = region_locations('Labo', {
     "Labo 27 - Origin Gem Core":                     ("Labo_001_Zone_027.BP_Interactable_TreasureBox_C_1",      materials["parts_lv6_a"]),
 })
 
+#Mine	        Magicite Mine
 mine = region_locations('Mine', {
     "Mine 2 - Helix Crystal":                        ("Mine_001_Zone_002.BP_Interactable_AddItem_C_1",          passives["onkill_restorehp_1"]),
     "Mine 4 - Miner Unit":                           ("EVT_ev_s_e0122_Wheeler_Defeat",                          materials["parts_lv2_b"]),
@@ -243,6 +251,7 @@ mine = region_locations('Mine', {
     "Mine 17 - Garm":                                ("EVT_ev_s_e5200_Pounder_Defeat",                          aptitudes["pile_attack"]),
 })
 
+#Paradise	    Declan's Estate
 paradise = region_locations('Paradise', {
     "Paradise 1 - Charmed Fragment 1":               ("Paradise_001_Zone_001.BP_Interactable_AddItem_C_1",      stats["hp_up_s"]),
     "Paradise 1 - Charmed Fragment 2":               ("Paradise_001_Zone_001.BP_Interactable_AddItem_C_2",      stats["hp_up_s"]),
@@ -265,6 +274,8 @@ paradise = region_locations('Paradise', {
     "Paradise 34 - Cracked Magicite Dagger":         ("Paradise_001_Zone_034.BP_Interactable_TreasureBox_C_1",  passives["damage_up_skillcategory_special_1"]),
 })
 
+
+#Quarry	        Crystalline Realm
 quarry = region_locations('Quarry', {
     "Quarry 1 - Survey Teams Notes":                 ("Quarry_001_Zone_001.BP_Interactable_AddTutorial_C_0",    tips["tip_freeze_01"]),
     "Quarry 2 - Charmed Fragment":                   ("Quarry_001_Zone_002.BP_Interactable_AddItem_C_2",        stats["hp_up_s"]),
@@ -289,6 +300,7 @@ quarry = region_locations('Quarry', {
     "Quarry 31 - Lars' Grip":                        ("EVT_ev_s_n7043_Quarry_Tuner",                            aptitudes["wall_grab"]),
 })
 
+#Roots	        Land of Origin
 roots = region_locations('Roots', {
     "Roots 1 - Reibolg 2":                           ("EVT_ev_s_e5012_RootsLancer_Defeat.1",                    quests["quest_eye"]),
     "Roots 1 - Reibolg 1":                           ("EVT_ev_s_e5012_RootsLancer_Defeat",                      spirits["s5010_lancer"]),
@@ -312,6 +324,7 @@ roots = region_locations('Roots', {
     "Roots 30 - Unidentified Amplifier":             ("Roots_001_Zone_030.BP_Interactable_AddItem_C_0",         materials["parts_s5000_b"]),
 })
 
+#Ruins	        Subterranean Testing Site Ruins
 ruins = region_locations('Ruins', {
     "Ruins 4 - Nola":                                ("EVT_ev_s_0020_NoraMeeting",                              spirits["s5000_reaper"]),
     "Ruins 5 - Charmed Fragment":                    ("Ruins_001_Zone_005.BP_Interactable_AddItem_C_1",         stats["hp_up_s"]),
@@ -322,6 +335,7 @@ ruins = region_locations('Ruins', {
     "Ruins 15 - Healing Ward":                       ("EVT_ev_s_0015_GetHeal",                                  aptitudes["heal"]),
 })
 
+#Sewer	        Subterranean Waterway
 sewer = region_locations('Sewer', {
     "Sewer 1 - Corroded Warning Sign":               ("Sewer_001_Zone_001.BP_Interactable_AddItem_C_0",         tips["tip_corrosionboard_01"]),
     "Sewer 2 - Grimoire":                            ("Sewer_001_Zone_002.BP_Interactable_TreasureBox_C_1",     stats["shop_line_up"]),
@@ -339,6 +353,7 @@ sewer = region_locations('Sewer', {
     "Sewer 17 - Chloe's Bracelet":                   ("Sewer_001_Zone_017.BP_Interactable_TreasureBox_C_0",     equipments["armor_007"]),
 })
 
+#Slum	        Old City Market
 slum = region_locations('Slum', {
     "Slum 1 - Tattered Letter":                      ("Slum_001_Zone_001.BP_Interactable_AddItem_C_1",          tips["tip_tunerletter_01"]),
     "Slum 1 - Eye of the Homunculus":                ("Slum_001_Zone_001.BP_Interactable_AddItem_C_2",          passives["junk_up_1"]),
@@ -349,6 +364,7 @@ slum = region_locations('Slum', {
     "Slum 2 - Charmed Fragment":                     ("Slum_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1",    stats["hp_up_s"]),
 })
 
+#Street	        Old City - Lower Stratum
 street = region_locations('Street', {
     "Street 2 - Worries of a Sorcerer":              ("Street_001_Zone_002.BP_Interactable_AddItem_C_0",        tips["tip_painting_01"]),
     "Street 3 - Sanguinary Raven":                   ("Street_001_Zone_003.BP_Interactable_AddItem_C_0",        passives["damage_up_airborne_1"]),
@@ -367,6 +383,7 @@ street = region_locations('Street', {
     "Street 21 - Materials":                         ("Street_001_Zone_021.BP_Interactable_AddItem_C_0",        currencies["Default"]),
 })
 
+#Summit	        Upper Stratum - Administrative District
 summit = region_locations('Summit', {
     "Summit 1 - Upper Stratum Communication Device": ("Summit_001_Zone_001.BP_Interactable_AddItem_C_1",        tips["tip_upperterminal_01"]),
     "Summit 4 - Administrator's Amplifier":          ("Summit_001_Zone_004.BP_Interactable_AddItem_C_0",        materials["parts_lv6_b"]),
@@ -390,6 +407,7 @@ summit = region_locations('Summit', {
     "Summit 30 - Charmed Fragment":                  ("Summit_001_Zone_030.BP_Interactable_AddItem_C_0",        stats["hp_up_s"]),
 })
 
+#Swamp	        Final Disposal Site
 swamp = region_locations('Swamp', {
     "Swamp 2 - Materials":                           ("Swamp_001_Zone_002.BP_Breakable_SpawnItem_Box_01_C_1",   currencies["Default"]),
     "Swamp 2 - Letter in a Bottle":                  ("Swamp_001_Zone_002.BP_Interactable_AddItem_C_2",         tips["tip_vials_01"]),
@@ -410,6 +428,7 @@ swamp = region_locations('Swamp', {
     "Swamp 20 - Cleaner's Tag":                      ("Swamp_001_Zone_020.BP_Interactable_AddItem_C_1",         passives["damage_up_targetstunned_1"]),
 })
 
+#Tower	        Tethered Steeple
 tower = region_locations('Tower', {
     "Tower 1 - Charmed Fragment":                    ("Tower_001_Zone_001.BP_Breakable_SpawnItem_Pod_01_C_1",   stats["hp_up_s"]),
     "Tower 4 - Blighted Dice":                       ("Tower_001_Zone_004.BP_Breakable_SpawnItem_Box_01_C_2",   passives["experience_up_1"]),
