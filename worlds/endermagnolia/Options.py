@@ -313,6 +313,18 @@ class RandomEnemies(Toggle):
     default = 0
 
 
+class RandomBosses(Toggle):
+    """
+    Replaces each boss with another boss.
+    (experimental)
+    """
+
+    display_name = "Randomize Bosses"
+    slot_data = True
+
+    default = 0
+
+
 class AllowMultiSkill(Toggle):
     """
     Removes the one-skill-per-spirit limit.
@@ -384,6 +396,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     shuffle_bgm: ShuffleBGM
     shuffle_sp: ShuffleSP
     random_enemies: RandomEnemies
+    random_bosses: RandomBosses
     allow_multiskill: AllowMultiSkill
     ngplus_ai: NewGamePlusAI
     generate_seed_file: GenerateSeedFile
@@ -420,6 +433,7 @@ em_option_groups = [
         ShuffleBGM,
         ShuffleSP,
         RandomEnemies,
+        RandomBosses,
         AllowMultiSkill,
         NewGamePlusAI,
         GenerateSeedFile,

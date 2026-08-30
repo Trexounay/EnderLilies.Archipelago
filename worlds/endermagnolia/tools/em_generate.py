@@ -10,6 +10,7 @@ from Main import main as ERmain
 
 GAME = "Ender Magnolia"
 YAML_NAME = "player.yaml"
+SPOILER_NAME = "spoiler.txt"
 TEMPLATES_DIR = "templates"
 ERROR_LOG = "generate_error.txt"
 
@@ -33,10 +34,7 @@ def render_templates(target: str) -> str:
     finally:
         Utils.__version__ = original
 
-    template = os.path.join(target, f"{GAME}.yaml")
-    if not os.path.isfile(template):
-        raise Exception(f"template not written: {template}")
-    return template
+    return os.path.join(target, f"{GAME}.yaml")
 
 
 def find_template(templates_dir: str) -> str:
@@ -45,38 +43,30 @@ def find_template(templates_dir: str) -> str:
             if name.endswith(".yaml"):
                 return os.path.join(templates_dir, name)
 
-    render_templates(templates_dir)
-
-    for name in sorted(os.listdir(templates_dir)):
-        if name.endswith(".yaml"):
-            return os.path.join(templates_dir, name)
-
-    raise Exception(f"Could not find an option template for {GAME}")
+    return render_templates(templates_dir)
 
 
 def main() -> None:
-    here = os.path.dirname(os.path.abspath(sys.executable))
-    target = here
+    exe_dir = os.path.dirname(os.path.abspath(sys.executable))
 
     settings.skip_autosave = True
     settings.get_settings._cache = settings.Settings(None)
-    settings.get_settings().general_options.output_path = target
 
-    template = find_template(os.path.join(here, TEMPLATES_DIR))
+    template = find_template(os.path.join(exe_dir, TEMPLATES_DIR))
 
-    active_yaml = os.path.join(here, YAML_NAME)
+    active_yaml = os.path.join(exe_dir, YAML_NAME)
     if not os.path.exists(active_yaml):
         shutil.copyfile(template, active_yaml)
         print(f"Created {YAML_NAME} with default options")
 
-    empty_dir = os.path.join(here, TEMPLATES_DIR, "Presets")
+    empty_dir = os.path.join(exe_dir, TEMPLATES_DIR, "Presets")
     os.makedirs(empty_dir, exist_ok=True)
 
     args = Generate.mystery_argparse()
     args.weights_file_path = active_yaml
     args.player_files_path = empty_dir
     args.multi = 1
-    args.outputpath = target
+    args.outputpath = exe_dir
 
     erargs, seed = Generate.main(args)
     erargs.skip_output = True
@@ -92,13 +82,18 @@ def main() -> None:
             continue
         world = multiworld.worlds[player]
         world.options.generate_seed_file.value = 1
-        world.generate_output(target)
+        world.generate_output(exe_dir)
         written += 1
 
     if not written:
         raise Exception(f"No {GAME} player found in {active_yaml}")
 
-    print(f"Seed written to {os.path.join(target, 'seed.txt')}")
+    print(f"Seed written to {os.path.join(exe_dir, 'seed.txt')}")
+
+    spoiler_path = os.path.join(exe_dir, SPOILER_NAME)
+    multiworld.spoiler.create_playthrough(create_paths=False)
+    multiworld.spoiler.to_file(spoiler_path)
+    print(f"Spoiler written to {spoiler_path}")
 
 
 if __name__ == "__main__":

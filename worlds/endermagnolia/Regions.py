@@ -62,6 +62,7 @@ room_connections_data = {
     ],
     "Crossroad 5": [
         ("Crossroad05Left", "Crossroad04Right"),
+        ("Crossroad05Respite", None),
         ("Crossroad05Right", "Crossroad02Left"),
     ],
     "Estate 1": [
