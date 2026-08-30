@@ -29,8 +29,9 @@ Crossroad 3,Crossroad03Right,Crossroad04UpperLeft,Crossroad03Left,Done,,,,Crossr
 Crossroad 4,Crossroad04LowerLeft,Crossroad01Right,Crossroad04Right,Done,,,,Crossroad04Right | Crossroad04UpperLeft + key_lower
 Crossroad 4,Crossroad04Right,Crossroad05Left,Crossroad04LowerLeft,Done,,,,Crossroad04LowerLeft | Crossroad04UpperLeft + key_lower
 Crossroad 4,Crossroad04UpperLeft,Crossroad03Right,(Crossroad04LowerLeft | Crossroad04Right) + key_lower,Done,,,,(Crossroad04LowerLeft | Crossroad04Right) + key_lower
-Crossroad 5,Crossroad05Left,Crossroad04Right,Crossroad05Right + (double_jump | high_jump | wall_grab),Done,wall_grab is jank but works,,,Crossroad05Right + (double_jump | high_jump | wall_grab)
-Crossroad 5,Crossroad05Right,Crossroad02Left,Crossroad05Left + (double_jump | high_jump | wall_grab),Done,,,,Crossroad05Left + (double_jump | high_jump | wall_grab)
+Crossroad 5,Crossroad05Left,Crossroad04Right,Crossroad05Right + (double_jump | high_jump | wall_grab),Done,wall_grab is jank but works,,,(Crossroad05Right | Crossroad05Respite) + (double_jump | high_jump | wall_grab)
+Crossroad 5,Crossroad05Respite,,,Done,,,,Crossroad05Right | Crossroad05Left
+Crossroad 5,Crossroad05Right,Crossroad02Left,Crossroad05Left + (double_jump | high_jump | wall_grab),Done,,,,(Crossroad05Left | Crossroad05Respite) + (double_jump | high_jump | wall_grab)
 Estate 1,Estate01Left,Estate07UpperRight,Estate01Lower + (high_jump + double_jump + dodge | WALL_DASH + (double_jump | high_jump)) ,Done,,Added high_jump + WALL_DASH option,Estate01Lower + double_jump + ((high_jump + dodge) | WALL_DASH) ,Estate01Lower + (high_jump + double_jump + dodge | WALL_DASH + (double_jump | high_jump)) 
 Estate 1,Estate01Lower,Estate08Upper,Estate01Left + dive,Done,"technically can pile_driver into Estate08 without dive, but will float back up :)",,,Estate01Left + dive
 Estate 1,Estate01Right,Estate02Left,"(Estate01Left + (dodge | double_jump | WALL_DASH)
@@ -1142,9 +1143,9 @@ Paradise 8,Paradise08LowerRight,Paradise03LowerLeft,Paradise08LowerLeft | Paradi
 that being said, this is the only way in that isnt blocked by a switch, so you couldnt be ""leaving"" without having entered from this way to begin with",,Paradise08LowerLeft | Paradise08Lower
 Paradise 8,Paradise08UpperLeft,Paradise10Right,Paradise08UpperRight,Done,,,,Paradise08UpperRight
 Paradise 8,Paradise08UpperRight,Paradise03UpperLeft,Paradise08UpperLeft,Done,,,,Paradise08UpperLeft
-Paradise 9,Paradise09Left,Paradise04UpperRight,Paradise09Right,Done,,,,Paradise09Right
+Paradise 9,Paradise09Left,Paradise04CenterRight,Paradise09Right,Done,,,,Paradise09Right
 Paradise 9,Paradise09Right,Paradise08LowerLeft,Paradise09Left,Done,,,,Paradise09Left
-Paradise 10,Paradise10Left,Paradise04CenterRight,Paradise10Right,Done,,,,Paradise10Right
+Paradise 10,Paradise10Left,Paradise04UpperRight,Paradise10Right,Done,,,,Paradise10Right
 Paradise 10,Paradise10Right,Paradise08UpperLeft,Paradise10Left,Done,,,,Paradise10Left
 Paradise 11,Paradise11Upper,Paradise08Lower,None,Done,,,,None
 Paradise 12,Paradise12Upper,Paradise04Lower,None,Done,,,,None
@@ -1440,7 +1441,7 @@ Roots 24,Roots24HiddenLeft,Roots30Right,"(Roots24Left | Roots24LowerLeft | Roots
 high_jump + dodge + jump
 dive + dodge + jump
 so (high_jump | dive) + dodge + double_jump + WALL_DASH",,,"(Roots24Left | Roots24LowerLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24UpperRight) 
-+ (high_jump + (dodge | double_jump) | dive + WALL_DASH + double_jump)"
++ (high_jump + (dodge | double_jump) | dive + double_jump) + WALL_DASH "
 Roots 24,Roots24Left,Roots03Right,"(Roots24HiddenLeft 
 | ((Roots24LowerLeft | Roots24LowerRight | Roots24Right | Roots24UpperLeft | Roots24UpperRight) + (wall_grab | dodge | double_jump)) 
 + dive)",Done,"does not require dive, small jump works",,,"(Roots24HiddenLeft 

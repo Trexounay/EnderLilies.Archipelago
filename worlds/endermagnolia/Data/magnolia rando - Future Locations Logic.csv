@@ -197,9 +197,12 @@ Forest 1,Forest 1 - Crimson Bangle,Forest_001_Zone_001.BP_Interactable_AddItem_C
 Forest 2,Forest 2 - Obsolete Core,Forest_001_Zone_002.BP_Interactable_AddItem_C_1,"materials[""parts_lv3_b""]","Forest02UpperRightDoor 
 | (Forest02Right | Forest02UpperLeftDoor | Forest02LowerLeftDoor | Forest02LowerDoor) + (high_jump | WALL_DASH | double_jump | axe + (dodge | REIBOLG | flower) | (sword | scythe) + (flower | REIBOLG + dodge) | snow | moon | (flower | STALL | REIBOLG) + grav)",Done,"(scythe | sword) + dodge ""can"" technically reach, but it involves dodging into the wall to push upward",Finished,This can also be used for the transition to Forest02UpperRightDoor!,double check REIBOLG
 Forest 2,Forest 2 - Words Etched into Stone,Forest_001_Zone_002.BP_Interactable_AddTutorial_C_1,"tips[""tip_tombstone_01""]",Forest02UpperRightDoor |  Forest02Right | Forest02LowerLeftDoor | Forest02LowerDoor | Forest02UpperLeftDoor,Done,,N/A,,
-Forest 4,Forest 4 - Charmed Fragment,Forest_001_Zone_004.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Forest04LowerLeftDoor + (double_jump | high_jump | (STALL | flower) + grav | moon | snow | wall_grab + (dodge | wall_charge | STALL | flower | lazer))
-| Forest04UpperLeftDoor + (double_jump | high_jump | (STALL | flower) + grav | moon | snow | wall_grab)
-| (Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab | STALL + dodge + (double_jump | RONIN) | dodge + grav + (sword + REIBOLG | axe | scythe) | double_jump + (snow | STALL + grav | dodge + (flower | moon | lazer + grav)))",Done,sword + dodge + grav + REIBOLG is difficult but doable,Finished,,"double check lazer -> REIBOLG ; 
+Forest 4,Forest 4 - Charmed Fragment,Forest_001_Zone_004.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","(Forest04LowerLeftDoor | Forest04UpperLeftDoor) + (double_jump | high_jump | (STALL | flower) + grav | moon | snow | wall_grab | dodge + axe)
+| (Forest04LowerCenterRightDoor | Forest04UpperRightDoor | Forest04UpperCenterDoor) + (high_jump | wall_grab | dodge + snow | STALL + (snow | dodge + (double_jump | RONIN)) | dodge + grav + (sword + REIBOLG | axe | scythe) | double_jump + (snow | STALL + (moon | flower | grav) | dodge + (flower | moon | lazer + grav)))",Done,"sword + dodge + grav + REIBOLG is difficult but doable
+
+wall_grab from lower with no reqs is very tight jump like perfect spacing.
+
+scythe (or sword?) + dodge + pile_attack or leg enhancement might be ok",Finished,,"double check lazer -> REIBOLG ; 
 May need to split ReiBlast if Blaster is not possible."
 Forest 7,Forest 7 - Chain Belt,Forest_001_Zone_007.BP_Interactable_AddItem_C_1,"passives[""damage_up_grounded_1""]",Forest07Left,Done,,N/A,,
 Forest 9,Forest 9 - Charmed Fragment,Forest_001_Zone_009.BP_Interactable_AddItem_C_1,"stats[""hp_up_s""]","Forest09LowerRight + TORRENT + (wall_grab | high_jump | STALL + grav + dodge + RONIN | double_jump + (moon | snow | axe + dodge | STALL + grav)) 
@@ -711,7 +714,7 @@ Needs access to Roots09 for WALL_DASH
 
 I had a dash_charge + dodge scenario - it does work, not sure if we want to add it; if not considering base game state, the dash_charge walls should technically already be broken if able to approach from Roots09Right, so it would more simply be just 'dodge'",Finished,,
 Roots 17,Roots 17 - Joran's Notes 1,Roots_001_Zone_017.BP_Interactable_AddItem_C_1,"tips[""tip_yoransdiary_01""]","Roots17Left 
-| Roots17Right + (STALL + double_jump + (snow | dodge) | STALL + snow + dodge | double_jump + dodge + (snow | moon) | STALL + grav + (dodge + (moon | flower) | lazer + snow | double_jump + (lazer | moon | flower)) | hook + (dodge | double_jump | STALL | RONIN | lazer + grav))",Done,,Finished,This can also be used Right to Left transition,"double check lazer -> REIBOLG ; esp the hook
+| Roots17Right + (STALL + double_jump + (snow | dodge) | STALL + snow + dodge | double_jump + dodge + (snow | moon) | STALL + grav + (dodge + (moon | flower) | lazer + snow | double_jump + (lazer | moon | flower)) | hook + (dodge | double_jump | STALL | RONIN | lazer + grav))",Done,,Finished,,"double check lazer -> REIBOLG ; esp the hook
 
 May need to verify ReiBlast Blast"
 Roots 18,Roots 18 - Joran's Notes 2,Roots_001_Zone_018.BP_Interactable_AddItem_C_0,"tips[""tip_yoransdiary_02""]","Roots18UpperRight 
@@ -869,11 +872,13 @@ Summit 22,Summit 22 - Charmed Fragment,Summit_001_Zone_022.BP_Interactable_AddIt
 If yes and we want to keep, update to Done. If not, just delete and mark as Done.",Finished,,double check REIBOLG
 Summit 23,Summit 23 - Administrator's Amplifier,Summit_001_Zone_023.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]",Summit23UpperRight,Done,,N/A,,
 Summit 23,Summit 23 - Gilroy's Communication Device,Summit_001_Zone_023.BP_Interactable_AddItem_C_1,"tips[""tip_gilroysterminal_01""]",Summit23UpperLeft,Done,,N/A,,
-Summit 23,Summit 23 - Nameless Priestess' Ring,Summit_001_Zone_023.BP_Interactable_TreasureBox_C_1,"passives[""restore_sp_up_b_1""]",Summit23UpperLeft + (wall_grab | double_jump | high_jump | RONIN | REIBOLG | STALL + (dodge | grav)),Unsure,"Since WALL_DASH is required to even enter, this is way overkill
+Summit 23,Summit 23 - Nameless Priestess' Ring,Summit_001_Zone_023.BP_Interactable_TreasureBox_C_1,"passives[""restore_sp_up_b_1""]",Summit23UpperLeft + (wall_grab | double_jump | high_jump | RONIN | REIBOLG | STALL + (dodge | grav)),Done,"Since WALL_DASH is required to even enter, this is way overkill
 
 Leaving as unsure as technically, the requirement to enter guarantees access. 
 If decided to leave requirements empty, then delete the logic.
-If want to add requirements anyway, update to Done.",Finished,,double check REIBOLG
+If want to add requirements anyway, update to Done.
+
+Marked as Done - yes its silly that having wall_dash is the requirement for the transition and wall_grab suffices for the item, so shouldnt cause any problems!",Finished,,double check REIBOLG
 Summit 24,Summit 24 - Administrator's Amplifier 1,Summit_001_Zone_024.BP_Interactable_AddItem_C_0,"materials[""parts_lv6_b""]","Summit24CenterDoor + 
 (high_jump + (wall_grab + (double_jump + (STALL | dodge | snow | moon | FLOWER2) | STALL + (snow | moon | FLOWER2) | dodge + (snow | grav + (STALL | moon | flower)))
 | lazer + (snow | moon + (double_jump | dodge | STALL + grav) | axe + (double_jump | dodge) | (sword | scythe) + (double_jump | dodge + grav) | FLOWER2 + (dodge | double_jump)) 
