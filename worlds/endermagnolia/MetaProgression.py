@@ -127,6 +127,17 @@ class Chain:
         return current.placements, []
 
 
+def remove_dead_events(world: World) -> None:
+    locations = world.multiworld.get_locations(world.player)
+    pool = [item for item in world.multiworld.itempool if item.player == world.player]
+    state = sweep_from_pool(CollectionState(world.multiworld), pool, locations)
+
+    dead = [location for location in locations
+            if location.is_event and not location.can_reach(state)]
+    for location in dead:
+        location.parent_region.locations.remove(location)
+
+
 def meta_progression_fill(world: World) -> None:
     items = [item for item in world.multiworld.itempool
              if item.player == world.player and item.advancement]
@@ -142,3 +153,5 @@ def meta_progression_fill(world: World) -> None:
 
     for location, item in placements:
         location.place_locked_item(item)
+
+    remove_dead_events(world)
