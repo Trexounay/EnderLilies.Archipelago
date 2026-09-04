@@ -162,7 +162,7 @@ Factory 13,Factory13LowerLeft,Factory12Right,"(Factory13UpperLeft | Factory13Rig
 + (wall_grab | high_jump)",Done,,,,"(Factory13UpperLeft | Factory13Right) 
 + (wall_grab | high_jump)"
 Factory 13,Factory13Right,Factory14Left,(Factory13LowerLeft | Factory13UpperLeft) + (double_jump + (WALL_DASH | dodge)) + hook,Done,Should this room require softlock preventtion if we fall to the bottom (always require high_jump or wall_grab)?,,,(Factory13LowerLeft | Factory13UpperLeft) + (double_jump + (WALL_DASH | dodge)) + hook
-Factory 13,Factory13UpperLeft,Factory15Right,Factory13Right | Factory13LowerLeft + hook,Done,,,,Factory13Right | Factory13LowerLeft + hook
+Factory 13,Factory13UpperLeft,Factory15Right,(Factory13Right | Factory13LowerLeft) + hook,Done,,,,Factory13Right | Factory13LowerLeft + hook
 Factory 14,Factory14Left,Factory13Right,None,Done,,,,None
 Factory 15,Factory15Lower,Factory12Upper,Factory15UpperLeft | Factory15Right,Done,,Not sure LowerLeft needs to be included here,Factory15LowerLeft | Factory15UpperLeft | Factory15Right,Factory15UpperLeft | Factory15Right
 Factory 15,Factory15LowerLeft,Factory21Right,"(Factory15UpperLeft | Factory15Right) + (double_jump | dodge) + WALL_DASH
@@ -1731,7 +1731,7 @@ Summit 8,Summit08LeftDoor,Summit11CenterDoor,"Summit08Left
 | (Summit08LowerRight + dash_charge + (double_jump | dodge))","Summit08Left 
 | (Summit08UpperRight | Summit08RightDoor) + (dodge | double_jump | WALL_DASH) 
 | Summit08LowerRight + dash_charge + (double_jump | dodge)"
-Summit 8,Summit08LowerRight,Summit07LowerLeft,(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + double_jump,Done,"NOTE this might be possible without double_jump, but it is.. annoying",,,(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + double_jump
+Summit 8,Summit08LowerRight,Summit07LowerLeft,(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + dash_charge + double_jump,Done,"NOTE this might be possible without double_jump, but it is.. annoying",,,(Summit08Left | Summit08LeftDoor | Summit08UpperRight | Summit08RightDoor) + wall_grab + dash_charge + double_jump
 Summit 8,Summit08RightDoor,Summit15CenterDoor,"Summit08UpperRight 
 | ((Summit08Left | Summit08LeftDoor) + (dodge | double_jump))
 | (Summit08LowerRight + dash_charge + (dodge | double_jump))",Unsure,Can be reached from Summit19 using wall dash,,,"Summit08UpperRight 
@@ -1764,7 +1764,7 @@ Summit 12,Summit12LowerLeft,Summit13LowerRight,"Summit12UpperLeft
 | Summit12LeftDoor + (double_jump | dodge | high_jump | wall_grab)
 | (Summit12Right | Summit12RightDoor) + (high_jump | wall_grab)",Done,"Added UpperLeft
 Updated LeftDoor logic - single jump doesnt seem doable (without sprint)",,"Summit12LeftDoor 
-| ((Summit12Right | Summit12RightDoor) + (high_jump | wall_grab))","Summit12LeftDoor + (double_jump | dodge | high_jump | wall_grab)
+| ((Summit12Right | Summit12RightDoor) + (high_jump | wall_grab))","Summit12UpperLeft | Summit12LeftDoor
 | (Summit12Right | Summit12RightDoor) + (high_jump | wall_grab)"
 Summit 12,Summit12Right,Summit18Left,"Summit12RightDoor 
 | (Summit12LowerLeft | Summit12UpperLeft | Summit12LeftDoor) + (high_jump | wall_grab)",Done,Added UpperLeft,,"Summit12RightDoor 
