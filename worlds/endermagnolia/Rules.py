@@ -1,9 +1,10 @@
 from typing import Dict, Tuple
 from BaseClasses import Item
 from worlds.generic.Rules import ItemRule
-from rule_builder.rules import Has, Rule, True_
+from rule_builder.field_resolvers import FromOption
+from rule_builder.rules import Has, HasAll, Rule, True_
 from .Items import ItemGroup
-from .Options import CentralElevatorFix, Goal
+from .Options import CentralElevatorFix, Goal, SteleCount
 from .Types import EnderMagnoliaItem
 
 
@@ -24,9 +25,6 @@ items_rules: Dict[str, ItemRule] = {
 }
 
 shop_rules: Dict[Tuple[str, str], Rule] = {
-	#('Slum01Left',   'Shop')           : Has('Defeat Yolvan'),
-	#('Center01LowerLeft',   'Shop')    : Has('Defeat Gilroy'),
-
 	('Shop',         'Shop Level 1' )  : True_(),
 	('Shop',         'Shop Level 2' )  : Has('Grimoire', 1),
 	('Shop',         'Shop Level 3' )  : Has('Grimoire', 2),
@@ -46,6 +44,9 @@ elevator_rules: Dict[int, Rule] = {
 	CentralElevatorFix.option_key  : Has('Grand Lift Key'),
 	CentralElevatorFix.option_free : True_(),
 }
+
+stele_rule: Rule = (HasAll('Blighted Pupil', 'Lily in Land of Origin')
+                    & Has('Stele of the Land of Origin', FromOption(SteleCount)))
 
 levy_rules: Dict[Tuple[str, str], Rule] = {
 	('Menu',         'Levy Quest Reward 1') : Has('Meet Levy', 1),

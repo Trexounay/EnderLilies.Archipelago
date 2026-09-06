@@ -194,6 +194,25 @@ class CentralElevatorFix(Choice):
     default = option_vanilla
 
 
+class SteleCount(Range):
+    """
+    Determines the number of steles Lily requires for
+    'Center 4 - Faintly Glowing Aegis Curio'.
+
+    0: Only the Blighted Pupil is required.
+    1: Vanilla.
+    2+: Extra steles are required and added to the item pool.
+    """
+
+    display_name = "Required Steles"
+    slot_data = True
+
+    range_start = 0
+    range_end = 10
+
+    default = 1
+
+
 class ProgressiveAptitudes(DefaultOnToggle):
     """
     Aptitudes are acquired in order.
@@ -412,6 +431,7 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     # Logic
     advanced_logic: AdvancedLogic
     central_elevator_fix: CentralElevatorFix
+    stele_count: SteleCount
     progressive_aptitudes: ProgressiveAptitudes
     meta_progression: MetaProgression
     shuffle_transitions: ShuffleTransitions
@@ -427,6 +447,8 @@ class EnderMagnoliaOptions(PerGameCommonOptions):
     skill_cost_shuffle: SkillCostShuffle
     shuffle_sp: ShuffleSP
     allow_multiskill: AllowMultiSkill
+
+    # Enemies
     random_enemies: RandomEnemies
     random_bosses: RandomBosses
 
@@ -452,6 +474,7 @@ em_option_groups = [
     OptionGroup("Logic", [
         AdvancedLogic,
         CentralElevatorFix,
+        SteleCount,
         ProgressiveAptitudes,
         MetaProgression,
         ShuffleTransitions,

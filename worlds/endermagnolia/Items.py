@@ -664,7 +664,7 @@ skills_materials = [
 ]
 
 # computed pool (vanilla + shop - skills_materials + skills - spirits)
-# we remove 49 tips + 2 costumes to flatten shop items
+# we remove 49 tips + 2 passive slot s to flatten shop items
 pool = [
     *aptitudes,
     *assists,
@@ -673,11 +673,10 @@ pool = [
     *passives,
     *quests,
     *skills,
-    #*[*tips][:-48],
 
     costumes["p0030"],
-    #costumes["p0040"],
-    #costumes["p0050"],
+    costumes["p0040"],
+    costumes["p0050"],
 
     *currencies["Default"] * 35,
     *currencies["rare"] * 13,
@@ -698,7 +697,7 @@ pool = [
     *stats["hp_up_l"] * 4,
     *stats["hp_up_s"] * 44,
     stats["passive_slot_l"],
-    *stats["passive_slot_s"] * 45,
+    *stats["passive_slot_s"] * 43,
     *stats["shop_line_up"] * 12,
 ]
 

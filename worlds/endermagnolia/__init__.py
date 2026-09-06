@@ -13,7 +13,7 @@ from .Options import (CentralElevatorFix, em_option_groups, EnderMagnoliaOptions
 from .Regions import room_connections
 from .Items import (ItemData, ItemGroup, advanced_logic_items, aptitudes, currencies, custom,
                     items, passives, pool, progressive_chains, quests, stats)
-from .Rules import completion_rules, elevator_rules, items_rules, levy_rules, shop_rules, shop_item_rule
+from .Rules import completion_rules, elevator_rules, items_rules, levy_rules, shop_rules, shop_item_rule, stele_rule
 from .Types import ENDERMAGNOLIA, EnderMagnoliaItem, EnderMagnoliaLocation, EnderMagnoliaEvent
 
 from .gen.TransitionsRules import rules as transitions_rules
@@ -104,6 +104,9 @@ class EnderMagnoliaWorld(World):
 
         if self.options.central_elevator_fix == CentralElevatorFix.option_key:
             added.append(custom["Grand Lift Key"])
+
+        removed.append(quests["quest_lithograph"])
+        added.extend(quests["quest_lithograph"] * self.options.stele_count.value)
 
         if self.options.progressive_aptitudes:
             for name, chain in progressive_chains.items():
@@ -241,6 +244,10 @@ class EnderMagnoliaWorld(World):
             for entrance in region.entrances:
                 self.set_rule(entrance, False_())
             self.get_region("Menu").add_exits([region.name], {region.name: rule})
+
+        # stele count option
+        for entrance in self.get_location("Center 4 - Faintly Glowing Aegis Curio").parent_region.entrances:
+            self.set_rule(entrance, stele_rule)
 
         # Goal
         self.set_completion_rule(completion_rules[self.options.goal.value])
