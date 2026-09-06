@@ -6,6 +6,25 @@ from Options import (Choice, DefaultOnToggle, OptionGroup, PerGameCommonOptions,
 
 from .Items import skills
 
+# Goal
+
+class Goal(Choice):
+    """
+    Determines the victory condition.
+
+    Ending A: Reach ending A.
+    Ending B: Reach ending B.
+    """
+
+    display_name = "Goal"
+    slot_data = True
+
+    option_ending_a = 0
+    option_ending_b = 1
+
+    default = option_ending_a
+
+# Starting Setup
 
 class StartingSkill(Choice):
     """
@@ -50,22 +69,6 @@ class StartingSkill(Choice):
 
     def get_skill_name(self) -> str:
         return [*skills][self.value].name
-
-
-class StartWithFastTravel(DefaultOnToggle):
-    """
-    Start with Fast Travel instead of shuffling it into the item pool.
-    """
-
-    display_name = "Start With Fast Travel"
-
-
-class StartWithHeal(DefaultOnToggle):
-    """
-    Start with Healing Ward instead of shuffling it into the item pool.
-    """
-
-    display_name = "Start With Healing Ward"
 
 
 class StartingRespite(Choice):
@@ -128,7 +131,7 @@ class StartingRespite(Choice):
         #44: ("roots_top",         "Roots07Left"),
         #45: ("roots_left",        "Roots13Lower"),
         #46: ("roots_right",       "Roots26Upper"),
-        
+
         #16: ("forest_bridge",     ""),
     }
 
@@ -144,30 +147,41 @@ class StartingRespite(Choice):
                           35, 36, 37, 38, 39, 40, 42, 43}
 
 
-class Goal(Choice):
+class StartWithFastTravel(DefaultOnToggle):
     """
-    Determines the victory condition.
-
-    ending_a: reach ending A
-    ending_b: reach ending B
+    Start with Fast Travel instead of shuffling it into the item pool.
     """
 
-    display_name = "Goal"
+    display_name = "Start With Fast Travel"
+
+
+class StartWithHeal(DefaultOnToggle):
+    """
+    Start with Healing Ward instead of shuffling it into the item pool.
+    """
+
+    display_name = "Start With Healing Ward"
+
+# Logic
+
+class AdvancedLogic(Toggle):
+    """
+    Include Nola, No.7, Reibolg and Incomplete Gear in the logic.
+    """
+
+    display_name = "Advanced Logic"
     slot_data = True
 
-    option_ending_a = 0
-    option_ending_b = 1
-
-    default = option_ending_a
+    default = 0
 
 
 class CentralElevatorFix(Choice):
     """
     Determines requirements to fix the Central Stratum elevator.
 
-    vanilla: same as the original game
-    key: find a key shuffled into the item pool
-    free: the elevator is already fixed
+    Vanilla: Same as the original game.
+    Key: Find a key shuffled into the item pool.
+    Free: The elevator is already fixed.
     """
 
     display_name = "Central Elevator Fix"
@@ -178,17 +192,6 @@ class CentralElevatorFix(Choice):
     option_free = 2
 
     default = option_vanilla
-
-
-class AdvancedLogic(Toggle):
-    """
-    Include Nola, No.7, Reibolg and Incomplete Gear in the logic
-    """
-
-    display_name = "Advanced Logic"
-    slot_data = True
-
-    default = 0
 
 
 class ProgressiveAptitudes(DefaultOnToggle):
@@ -213,12 +216,32 @@ class MetaProgression(Toggle):
     display_name = "Meta Progression"
 
 
+class ShuffleTransitions(Choice):
+    """
+    Shuffle area transitions and doors.
+    Non-door transitions between rooms of the same area are unaffected.
+
+    Off: Transitions lead where they should.
+    Coupled: Returning through a transition will take you from whence you came.
+    Decoupled: Any transition can take you to any other transition.
+    """
+
+    # I think UT needs that
+    slot_data = True
+
+    display_name = "Shuffle Transitions"
+    option_off = 0
+    option_coupled = 1
+    option_decoupled = 2
+
+# Difficulty
+
 class ChapterScaling(Choice):
     """
     Determines how the chapter value moves between Minimum Chapter and Maximum Chapter.
 
-    vanilla: raises difficulty when you reach specific points
-    progress: derived from completion, Minimum Chapter at 0% and Maximum Chapter at 100%
+    Vanilla: Raises difficulty when you reach specific points.
+    Progress: Derived from completion, Minimum Chapter at 0% and Maximum Chapter at 100%.
     """
 
     display_name = "Chapter Scaling"
@@ -258,6 +281,18 @@ class MaxChapter(Range):
     default = 15
 
 
+class NewGamePlusAI(Toggle):
+    """
+    Enemies use their New Game+ AI.
+    """
+
+    display_name = "NG+ AI"
+    slot_data = True
+
+    default = 0
+
+# Equipment
+
 class RelicCostShuffle(Toggle):
     """
     Shuffles the equip cost of relics.
@@ -290,21 +325,23 @@ class ShuffleSP(Toggle):
 
     default = 0
 
-class ShuffleBGM(Toggle):
+
+class AllowMultiSkill(Toggle):
     """
-    Shuffles the background music tracks.
+    Removes the one-skill-per-spirit limit.
+    (Logic doesn't account for this)
     """
 
-    display_name = "Shuffle BGM"
+    display_name = "Allow Multiple Skills Per Spirit"
     slot_data = True
 
     default = 0
 
+# Enemies
 
 class RandomEnemies(Toggle):
     """
     Replaces the enemies each room spawns with other enemies.
-    (experimental)
     """
 
     display_name = "Randomize Enemies"
@@ -313,36 +350,36 @@ class RandomEnemies(Toggle):
     default = 0
 
 
-class RandomBosses(Toggle):
+class RandomBosses(Choice):
     """
-    Replaces each boss with another boss.
-    (experimental)
+    Replaces each boss with another boss (experimental).
+    (Lars phase 2 and Rooted Primordial Beast are excluded)
+
+    None: Bosses will remain in their vanilla locations.
+    Shuffled: Bosses will be shuffled amongst each other.
+    Full: Bosses will be randomized.
     """
 
     display_name = "Randomize Bosses"
     slot_data = True
 
-    default = 0
+    option_none = 0
+    option_shuffled = 1
+    option_full = 2
 
-
-class AllowMultiSkill(Toggle):
-    """
-    Removes the one-skill-per-spirit limit.
-    Logic doesn't account for this.
-    """
-
-    display_name = "Allow Multiple Skills Per Spirit"
-    slot_data = True
+    alias_false = 0
+    alias_true = 1
 
     default = 0
 
+# Misc
 
-class NewGamePlusAI(Toggle):
+class ShuffleBGM(Toggle):
     """
-    Enemies use their New Game+ AI
+    Shuffles the background music tracks.
     """
 
-    display_name = "NG+ AI"
+    display_name = "Shuffle BGM"
     slot_data = True
 
     default = 0
@@ -357,50 +394,45 @@ class GenerateSeedFile(Toggle):
 
     default = 0
 
-class ShuffleTransitions(Choice):
-    """
-    Shuffle area transitions and doors.
-    Non-door transitions between rooms of the same area are unaffected.
-
-    **Off:** transitions lead where they should.
-    **Coupled:** Returning through a transition will take you from whence you came.
-    **Decoupled:** Any transition can take you to any other transition.
-    (experimental)
-    """
-
-    # I think UT needs that
-    slot_data = True
-
-    display_name = "Shuffle Transitions"
-    option_off = 0
-    option_coupled = 1
-    option_decoupled = 2
 
 @dataclass
 class EnderMagnoliaOptions(PerGameCommonOptions):
+    # Core
     start_inventory_from_pool: StartInventoryPool
+
+    # Goal
     goal: Goal
+
+    # Starting Setup
     starting_skill: StartingSkill
     starting_respite: StartingRespite
     start_with_fast_travel: StartWithFastTravel
     start_with_heal: StartWithHeal
-    central_elevator_fix: CentralElevatorFix
+
+    # Logic
     advanced_logic: AdvancedLogic
+    central_elevator_fix: CentralElevatorFix
     progressive_aptitudes: ProgressiveAptitudes
     meta_progression: MetaProgression
+    shuffle_transitions: ShuffleTransitions
+    
+    # Difficulty
     chapter_scaling: ChapterScaling
     min_chapter: MinChapter
     max_chapter: MaxChapter
+    ngplus_ai: NewGamePlusAI
+
+    # Equipment
     relic_cost_shuffle: RelicCostShuffle
     skill_cost_shuffle: SkillCostShuffle
-    shuffle_bgm: ShuffleBGM
     shuffle_sp: ShuffleSP
+    allow_multiskill: AllowMultiSkill
     random_enemies: RandomEnemies
     random_bosses: RandomBosses
-    allow_multiskill: AllowMultiSkill
-    ngplus_ai: NewGamePlusAI
+
+    # Misc
+    shuffle_bgm: ShuffleBGM
     generate_seed_file: GenerateSeedFile
-    shuffle_transitions: ShuffleTransitions
 
 
 slot_data_options = [name for name, option in EnderMagnoliaOptions.type_hints.items()
@@ -422,20 +454,26 @@ em_option_groups = [
         CentralElevatorFix,
         ProgressiveAptitudes,
         MetaProgression,
-        ShuffleTransitions
+        ShuffleTransitions,
     ]),
-    OptionGroup("Misc", [
+    OptionGroup("Difficulty", [
         ChapterScaling,
         MinChapter,
         MaxChapter,
+        NewGamePlusAI,
+    ]),
+    OptionGroup("Equipment", [
         RelicCostShuffle,
         SkillCostShuffle,
-        ShuffleBGM,
         ShuffleSP,
+        AllowMultiSkill,
+    ]),
+    OptionGroup("Enemies", [
         RandomEnemies,
         RandomBosses,
-        AllowMultiSkill,
-        NewGamePlusAI,
+    ]),
+    OptionGroup("Misc", [
+        ShuffleBGM,
         GenerateSeedFile,
     ]),
 ]
